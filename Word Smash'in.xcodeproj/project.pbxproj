@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		037E743816E2F704009F02CA /* helpPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 037E743716E2F704009F02CA /* helpPage.m */; };
+		037E743B16E2F7BD009F02CA /* forgotPasswordPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 037E743A16E2F7BD009F02CA /* forgotPasswordPage.m */; };
+		037E743E16E2F889009F02CA /* registerPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 037E743D16E2F889009F02CA /* registerPage.m */; };
+		037E744116E2FA68009F02CA /* loginPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 037E744016E2FA68009F02CA /* loginPage.m */; };
+		037E744416E2FC1A009F02CA /* homePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 037E744316E2FC1A009F02CA /* homePage.m */; };
 		CEA13D7C16E1E849002F3509 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA13D7B16E1E849002F3509 /* UIKit.framework */; };
 		CEA13D7E16E1E849002F3509 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA13D7D16E1E849002F3509 /* Foundation.framework */; };
 		CEA13D8016E1E849002F3509 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA13D7F16E1E849002F3509 /* CoreGraphics.framework */; };
@@ -22,6 +27,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		037E743616E2F704009F02CA /* helpPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helpPage.h; sourceTree = "<group>"; };
+		037E743716E2F704009F02CA /* helpPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helpPage.m; sourceTree = "<group>"; };
+		037E743916E2F7BD009F02CA /* forgotPasswordPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forgotPasswordPage.h; sourceTree = "<group>"; };
+		037E743A16E2F7BD009F02CA /* forgotPasswordPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = forgotPasswordPage.m; sourceTree = "<group>"; };
+		037E743C16E2F889009F02CA /* registerPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registerPage.h; sourceTree = "<group>"; };
+		037E743D16E2F889009F02CA /* registerPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registerPage.m; sourceTree = "<group>"; };
+		037E743F16E2FA68009F02CA /* loginPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginPage.h; sourceTree = "<group>"; };
+		037E744016E2FA68009F02CA /* loginPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginPage.m; sourceTree = "<group>"; };
+		037E744216E2FC1A009F02CA /* homePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = homePage.h; sourceTree = "<group>"; };
+		037E744316E2FC1A009F02CA /* homePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = homePage.m; sourceTree = "<group>"; };
 		CEA13D7816E1E849002F3509 /* Word Smash'in.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Word Smash'in.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA13D7B16E1E849002F3509 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEA13D7D16E1E849002F3509 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -89,6 +104,16 @@
 				CEA13D8B16E1E849002F3509 /* UCBAppDelegate.m */,
 				CEA13D9316E1E849002F3509 /* MainStoryboard_iPhone.storyboard */,
 				CEA13D9616E1E849002F3509 /* MainStoryboard_iPad.storyboard */,
+				037E743C16E2F889009F02CA /* registerPage.h */,
+				037E743D16E2F889009F02CA /* registerPage.m */,
+				037E743916E2F7BD009F02CA /* forgotPasswordPage.h */,
+				037E743A16E2F7BD009F02CA /* forgotPasswordPage.m */,
+				037E743616E2F704009F02CA /* helpPage.h */,
+				037E743716E2F704009F02CA /* helpPage.m */,
+				037E744216E2FC1A009F02CA /* homePage.h */,
+				037E744316E2FC1A009F02CA /* homePage.m */,
+				037E743F16E2FA68009F02CA /* loginPage.h */,
+				037E744016E2FA68009F02CA /* loginPage.m */,
 				CEA13D9916E1E849002F3509 /* UCBViewController.h */,
 				CEA13D9A16E1E849002F3509 /* UCBViewController.m */,
 				CEA13D8216E1E849002F3509 /* Supporting Files */,
@@ -181,6 +206,11 @@
 				CEA13D8816E1E849002F3509 /* main.m in Sources */,
 				CEA13D8C16E1E849002F3509 /* UCBAppDelegate.m in Sources */,
 				CEA13D9B16E1E849002F3509 /* UCBViewController.m in Sources */,
+				037E743816E2F704009F02CA /* helpPage.m in Sources */,
+				037E743B16E2F7BD009F02CA /* forgotPasswordPage.m in Sources */,
+				037E743E16E2F889009F02CA /* registerPage.m in Sources */,
+				037E744116E2FA68009F02CA /* loginPage.m in Sources */,
+				037E744416E2FC1A009F02CA /* homePage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +343,7 @@
 				CEA13DA016E1E849002F3509 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
