@@ -14,6 +14,9 @@
 
 @implementation loginPage
 
+@synthesize username = _username;
+@synthesize psd = _psd;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -35,9 +38,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)login:(UIButton *)sender {
+
+- (IBAction)login:(id)sender {
+    
 }
 
-- (IBAction)forgetPassword:(id)sender {
+
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    [theTextField resignFirstResponder];
+    return YES;
 }
+
 @end

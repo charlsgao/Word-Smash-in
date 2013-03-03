@@ -14,6 +14,10 @@
 
 @implementation registerPage
 
+@synthesize username = _username;
+@synthesize psd = _psd;
+@synthesize email = _email;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -35,6 +39,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)addUser:(UIButton *)sender {
+
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+
+    [theTextField resignFirstResponder];
+    return YES;
+}
+
+- (IBAction)addUser:(id)sender {
 }
 @end

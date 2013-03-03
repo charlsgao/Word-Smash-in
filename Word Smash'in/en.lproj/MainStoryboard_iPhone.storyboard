@@ -199,7 +199,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="addUser:" destination="Y3e-dB-aZn" eventType="touchUpInside" id="1Y4-XH-Eu4"/>
+                                    <action selector="addUser:" destination="Y3e-dB-aZn" eventType="touchUpInside" id="i02-mL-Wbd"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Welcome, New Player" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exp-B3-Nov">
@@ -239,7 +239,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="back" destination="Poz-sf-HDk" id="LJm-3m-2in"/>
                         <outlet property="email" destination="rMx-x3-PzP" id="QZN-nE-TGK"/>
                         <outlet property="password" destination="kpG-ju-vXc" id="7mC-W9-1Gb"/>
                         <outlet property="username" destination="Zzm-TF-3kT" id="EwQ-fj-Bil"/>
@@ -271,6 +270,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="g1V-KG-k9T" id="TRO-4S-9QW"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ANi-Dc-YzR">
                                 <constraints>
@@ -584,7 +586,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="login:" destination="Bow-Mp-Kaw" eventType="touchUpInside" id="eyJ-Af-pE1"/>
+                                    <action selector="login:" destination="Bow-Mp-Kaw" eventType="touchUpInside" id="k2h-QG-Bfs"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsX-9l-p0q">
@@ -847,20 +849,18 @@
         <class className="loginPage" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/loginPage.h"/>
             <relationships>
-                <relationship kind="action" name="forgetPassword:"/>
-                <relationship kind="action" name="login:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
+                <relationship kind="action" name="login:"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameField" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="registerPage" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/registerPage.h"/>
             <relationships>
-                <relationship kind="action" name="addUser:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="back" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="username" candidateClass="UITextField"/>
+                <relationship kind="action" name="addUser:"/>
+                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameField" candidateClass="UITextField"/>
             </relationships>
         </class>
     </classes>
@@ -870,7 +870,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Hqf-G6-Frc"/>
         <segue reference="hep-qW-yTZ"/>
-        <segue reference="RhE-cg-Wal"/>
     </inferredMetricsTieBreakers>
 </document>

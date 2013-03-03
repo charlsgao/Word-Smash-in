@@ -40,4 +40,11 @@
 
 - (IBAction)back:(UIButton *)sender {
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    
+    [theTextField resignFirstResponder];
+    return YES;
+}
+
 @end

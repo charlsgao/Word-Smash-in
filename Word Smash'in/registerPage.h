@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface registerPage : UIViewController
-@property (weak, nonatomic) IBOutlet UITextField *username;
-@property (weak, nonatomic) IBOutlet UITextField *password;
-@property (weak, nonatomic) IBOutlet UITextField *email;
-@property (weak, nonatomic) IBOutlet UIButton *back;
-- (IBAction)addUser:(UIButton *)sender;
+@interface registerPage : UIViewController <UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextField *usernameField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+
+@property (copy, nonatomic) NSString *username;
+@property (copy, nonatomic) NSString *psd;
+@property (copy, nonatomic) NSString *email;
+
+- (IBAction)addUser:(id)sender;
+
 
 @end

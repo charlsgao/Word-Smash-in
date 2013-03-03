@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface forgotPasswordPage : UIViewController
+@interface forgotPasswordPage : UIViewController <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailText;
 - (IBAction)request:(UIButton *)sender;
 - (IBAction)back:(UIButton *)sender;
