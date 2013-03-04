@@ -19,6 +19,8 @@
 @property (copy, nonatomic) NSString *email;
 
 - (IBAction)addUser:(id)sender;
+- (IBAction)back:(id)sender;
+- (IBAction)help:(id)sender;
 
 
 @end

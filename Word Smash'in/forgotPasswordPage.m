@@ -7,6 +7,7 @@
 //
 
 #import "forgotPasswordPage.h"
+#import "helpPage.h"
 
 @interface forgotPasswordPage ()
 
@@ -35,11 +36,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)request:(UIButton *)sender {
+
+- (IBAction)request:(id)sender {
 }
 
-- (IBAction)back:(UIButton *)sender {
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (IBAction)help:(id)sender {
+    helpPage *hg = [self.storyboard instantiateViewControllerWithIdentifier:@"helpPage"];
+    [self presentViewController:hg animated:YES completion:nil];
+}
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
     

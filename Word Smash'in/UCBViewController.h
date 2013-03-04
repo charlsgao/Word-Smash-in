@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UCBViewController : UIViewController
+- (IBAction)login:(id)sender;
+- (IBAction)reg:(id)sender;
+- (IBAction)score:(id)sender;
+- (IBAction)help:(id)sender;
 
 @end

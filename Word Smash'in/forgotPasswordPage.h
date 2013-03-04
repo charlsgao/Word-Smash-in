@@ -10,7 +10,9 @@
 
 @interface forgotPasswordPage : UIViewController <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailText;
-- (IBAction)request:(UIButton *)sender;
-- (IBAction)back:(UIButton *)sender;
+- (IBAction)request:(id)sender;
+- (IBAction)back:(id)sender;
+- (IBAction)help:(id)sender;
+
 
 @end

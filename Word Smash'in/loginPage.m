@@ -7,6 +7,7 @@
 //
 
 #import "loginPage.h"
+#import "helpPage.h"
 
 @interface loginPage ()
 
@@ -48,5 +49,21 @@
     [theTextField resignFirstResponder];
     return YES;
 }
+
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)help:(id)sender {
+    helpPage *rg = [self.storyboard instantiateViewControllerWithIdentifier:@"helpPage"];
+    [self presentViewController:rg animated:YES completion:nil];
+}
+/*
+- (void)viewDidUnload {
+    [self usernameField:nil];
+    [self passwordField:nil];
+    [super viewDidUnload];
+}
+*/
 
 @end

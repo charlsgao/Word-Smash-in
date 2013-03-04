@@ -7,6 +7,7 @@
 //
 
 #import "homePage.h"
+#import "helpPage.h"
 
 @interface homePage ()
 
@@ -42,5 +43,10 @@
 }
 
 - (IBAction)shop:(UIButton *)sender {
+}
+
+- (IBAction)help:(id)sender {
+    helpPage *hg = [self.storyboard instantiateViewControllerWithIdentifier:@"helpPage"];
+    [self presentViewController:hg animated:YES completion:nil];
 }
 @end

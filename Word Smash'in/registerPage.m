@@ -7,6 +7,7 @@
 //
 
 #import "registerPage.h"
+#import "helpPage.h"
 
 @interface registerPage ()
 
@@ -47,5 +48,14 @@
 }
 
 - (IBAction)addUser:(id)sender {
+}
+
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)help:(id)sender {
+    helpPage *hg = [self.storyboard instantiateViewControllerWithIdentifier:@"helpPage"];
+    [self presentViewController:hg animated:YES completion:nil];
 }
 @end

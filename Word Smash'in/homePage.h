@@ -12,5 +12,6 @@
 - (IBAction)single:(UIButton *)sender;
 - (IBAction)multi:(UIButton *)sender;
 - (IBAction)shop:(UIButton *)sender;
+- (IBAction)help:(id)sender;
 
 @end

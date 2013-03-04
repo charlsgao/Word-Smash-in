@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eSa-Ad-ZpN">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -22,7 +22,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Y3e-dB-aZn" kind="modal" id="9EG-q4-Ize"/>
+                                    <action selector="reg:" destination="2" eventType="touchUpInside" id="OBU-de-cTg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcC-IQ-SuR">
@@ -34,6 +34,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="score:" destination="2" eventType="touchUpInside" id="UQB-ua-WWx"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdL-YS-owG">
                                 <constraints>
@@ -48,7 +51,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9cW-hL-CRw" kind="modal" id="RhE-cg-Wal"/>
+                                    <action selector="help:" destination="2" eventType="touchUpInside" id="2gl-hX-l5E"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1LO-tW-Spn">
@@ -64,7 +67,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Bow-Mp-Kaw" kind="modal" id="5V4-ie-X82"/>
+                                    <action selector="login:" destination="2" eventType="touchUpInside" id="vBX-Eg-X7a"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ij3-QP-lRf">
@@ -165,7 +168,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="2" kind="modal" id="hep-qW-yTZ"/>
+                                    <action selector="back:" destination="Y3e-dB-aZn" eventType="touchUpInside" id="dyT-d9-5L2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCZ-C9-X1K">
@@ -181,7 +184,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9cW-hL-CRw" kind="modal" id="0LI-Fq-csQ"/>
+                                    <action selector="help:" destination="Y3e-dB-aZn" eventType="touchUpInside" id="Pck-xI-lD3"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lM4-RE-h9H">
@@ -239,9 +242,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="email" destination="rMx-x3-PzP" id="QZN-nE-TGK"/>
-                        <outlet property="password" destination="kpG-ju-vXc" id="7mC-W9-1Gb"/>
-                        <outlet property="username" destination="Zzm-TF-3kT" id="EwQ-fj-Bil"/>
+                        <outlet property="emailField" destination="rMx-x3-PzP" id="mag-xn-UEP"/>
+                        <outlet property="passwordField" destination="kpG-ju-vXc" id="cVz-f0-GA9"/>
+                        <outlet property="usernameField" destination="Zzm-TF-3kT" id="QHB-hx-PAe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eSb-h6-puj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -287,7 +290,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="request:" destination="g1V-KG-k9T" eventType="touchUpInside" id="xhW-rj-NwG"/>
+                                    <action selector="request:" destination="g1V-KG-k9T" eventType="touchUpInside" id="d8c-Yl-NYB"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xnh-tX-Zv3">
@@ -303,7 +306,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="back:" destination="g1V-KG-k9T" eventType="touchUpInside" id="UyZ-cC-iSt"/>
+                                    <action selector="back:" destination="g1V-KG-k9T" eventType="touchUpInside" id="DAD-CL-l1I"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RW1-mR-kDQ">
@@ -319,7 +322,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9cW-hL-CRw" kind="modal" id="Hqf-G6-Frc"/>
+                                    <action selector="help:" destination="g1V-KG-k9T" eventType="touchUpInside" id="EtM-24-9GI"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nHo-rE-vYD">
@@ -347,7 +350,6 @@
                     </view>
                     <connections>
                         <outlet property="emailText" destination="Ain-hc-geZ" id="Laf-SX-zH9"/>
-                        <outlet property="help" destination="RW1-mR-kDQ" id="3RI-3I-Z6h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o52-yn-NhI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -391,6 +393,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="back:" destination="9cW-hL-CRw" eventType="touchUpInside" id="E5g-xe-vUN"/>
+                                </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYH-RV-f4d">
                                 <items>
@@ -412,7 +417,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="back" destination="ox8-kr-Ld9" id="jGh-5k-jhy"/>
                         <outlet property="instruction" destination="I30-zY-dVM" id="yxj-CZ-uUK"/>
                     </connections>
                 </viewController>
@@ -444,7 +448,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hTn-0O-kND">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sst-sk-1fy">
                                 <rect key="frame" x="110" y="150" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -453,7 +457,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CIT-cn-yJn">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hTn-0O-kND">
                                 <rect key="frame" x="220" y="150" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -462,7 +466,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="sst-sk-1fy">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CIT-cn-yJn">
                                 <rect key="frame" x="0.0" y="260" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -598,9 +602,6 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="g1V-KG-k9T" kind="modal" id="a0D-y2-YMU"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Z8-0p-5wK">
                                 <constraints>
@@ -615,7 +616,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="2" kind="modal" id="QIX-dS-JhU"/>
+                                    <action selector="back:" destination="Bow-Mp-Kaw" eventType="touchUpInside" id="SBM-3o-wTB"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rq2-sY-4cb">
@@ -631,7 +632,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9cW-hL-CRw" kind="modal" id="Qbe-gv-jC9"/>
+                                    <action selector="help:" destination="Bow-Mp-Kaw" eventType="touchUpInside" id="ay5-if-9Vq"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8eY-xX-rhv">
@@ -667,8 +668,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="password" destination="ksC-It-myd" id="Ppz-7R-W4d"/>
-                        <outlet property="username" destination="liZ-z9-1px" id="g7B-rt-xrr"/>
+                        <outlet property="passwordField" destination="ksC-It-myd" id="knS-0k-ai9"/>
+                        <outlet property="usernameField" destination="liZ-z9-1px" id="Aqt-Rv-bTB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eSu-hH-jBU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -764,7 +765,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9cW-hL-CRw" kind="modal" id="tfB-Ko-LZZ"/>
+                                    <action selector="help:" destination="eSa-Ad-ZpN" eventType="touchUpInside" id="jpS-TL-fjR"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNW-HC-Vmv">
@@ -775,24 +776,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="xw1-US-r6J" firstAttribute="top" secondItem="iLV-cr-fag" secondAttribute="top" constant="184" id="1DM-sV-Zr5"/>
                             <constraint firstItem="DNW-HC-Vmv" firstAttribute="leading" secondItem="iLV-cr-fag" secondAttribute="leading" type="default" id="1ha-J4-MOv"/>
+                            <constraint firstItem="K0G-92-hRu" firstAttribute="trailing" secondItem="xw1-US-r6J" secondAttribute="trailing" type="default" id="8bf-E0-PPy"/>
                             <constraint firstItem="DNW-HC-Vmv" firstAttribute="trailing" secondItem="iLV-cr-fag" secondAttribute="trailing" type="default" id="Bmg-it-4nN"/>
                             <constraint firstAttribute="bottom" secondItem="NVc-V6-acZ" secondAttribute="bottom" constant="99" id="DjW-Gi-OJV"/>
                             <constraint firstAttribute="bottom" secondItem="on8-em-5rc" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="FML-Iy-duE"/>
                             <constraint firstItem="JnT-1x-XgK" firstAttribute="leading" secondItem="iLV-cr-fag" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="IM4-JK-v8e"/>
-                            <constraint firstItem="TVA-Zw-hWO" firstAttribute="trailing" secondItem="xw1-US-r6J" secondAttribute="trailing" type="default" id="NZ7-no-Dzb"/>
                             <constraint firstAttribute="trailing" secondItem="on8-em-5rc" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="P8l-kF-xZu"/>
-                            <constraint firstItem="K0G-92-hRu" firstAttribute="leading" secondItem="TVA-Zw-hWO" secondAttribute="leading" type="default" id="QPo-P3-keF"/>
+                            <constraint firstItem="TVA-Zw-hWO" firstAttribute="leading" secondItem="xw1-US-r6J" secondAttribute="leading" type="default" id="Qqh-mD-oKH"/>
                             <constraint firstItem="DNW-HC-Vmv" firstAttribute="centerX" secondItem="K0G-92-hRu" secondAttribute="centerX" type="default" id="TCS-vp-LYA"/>
-                            <constraint firstItem="NVc-V6-acZ" firstAttribute="leading" secondItem="xw1-US-r6J" secondAttribute="leading" type="default" id="UOM-ob-SsO"/>
+                            <constraint firstItem="TVA-Zw-hWO" firstAttribute="leading" secondItem="NVc-V6-acZ" secondAttribute="leading" type="default" id="Tt4-bg-jkn"/>
+                            <constraint firstItem="TVA-Zw-hWO" firstAttribute="trailing" secondItem="xw1-US-r6J" secondAttribute="trailing" type="default" id="VHf-Bz-BtQ"/>
                             <constraint firstAttribute="bottom" secondItem="JnT-1x-XgK" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="WBW-zJ-DKG"/>
                             <constraint firstItem="K0G-92-hRu" firstAttribute="top" secondItem="iLV-cr-fag" secondAttribute="top" constant="118" id="csM-lM-BRp"/>
-                            <constraint firstAttribute="bottom" secondItem="xw1-US-r6J" secondAttribute="bottom" constant="164" id="n9V-Jw-azK"/>
-                            <constraint firstItem="K0G-92-hRu" firstAttribute="trailing" secondItem="TVA-Zw-hWO" secondAttribute="trailing" type="default" id="oPp-am-hzW"/>
-                            <constraint firstItem="NVc-V6-acZ" firstAttribute="trailing" secondItem="xw1-US-r6J" secondAttribute="trailing" type="default" id="ptQ-WI-tE5"/>
-                            <constraint firstItem="TVA-Zw-hWO" firstAttribute="top" secondItem="iLV-cr-fag" secondAttribute="top" constant="184" id="u86-va-eak"/>
-                            <constraint firstItem="TVA-Zw-hWO" firstAttribute="leading" secondItem="xw1-US-r6J" secondAttribute="leading" type="default" id="uGT-oF-g67"/>
+                            <constraint firstAttribute="bottom" secondItem="TVA-Zw-hWO" secondAttribute="bottom" constant="165" id="ohD-v1-0KK"/>
+                            <constraint firstItem="TVA-Zw-hWO" firstAttribute="trailing" secondItem="NVc-V6-acZ" secondAttribute="trailing" type="default" id="vZt-pb-T8H"/>
                             <constraint firstItem="DNW-HC-Vmv" firstAttribute="top" secondItem="iLV-cr-fag" secondAttribute="top" type="default" id="wvX-mI-vk2"/>
+                            <constraint firstItem="xw1-US-r6J" firstAttribute="leading" secondItem="K0G-92-hRu" secondAttribute="leading" type="default" id="xaw-xW-qgH"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -807,6 +808,12 @@
         </class>
         <class className="UCBViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UCBViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="help:"/>
+                <relationship kind="action" name="login:"/>
+                <relationship kind="action" name="reg:"/>
+                <relationship kind="action" name="score:"/>
+            </relationships>
         </class>
         <class className="UICollectionReusableView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
@@ -826,21 +833,23 @@
         <class className="forgotPasswordPage" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/forgotPasswordPage.h"/>
             <relationships>
-                <relationship kind="action" name="back:" candidateClass="UIButton"/>
-                <relationship kind="action" name="request:" candidateClass="UIButton"/>
+                <relationship kind="action" name="back:"/>
+                <relationship kind="action" name="help:"/>
+                <relationship kind="action" name="request:"/>
                 <relationship kind="outlet" name="emailText" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="helpPage" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/helpPage.h"/>
             <relationships>
-                <relationship kind="outlet" name="back" candidateClass="UIButton"/>
+                <relationship kind="action" name="back:"/>
                 <relationship kind="outlet" name="instruction" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="homePage" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/homePage.h"/>
             <relationships>
+                <relationship kind="action" name="help:"/>
                 <relationship kind="action" name="multi:" candidateClass="UIButton"/>
                 <relationship kind="action" name="shop:" candidateClass="UIButton"/>
                 <relationship kind="action" name="single:" candidateClass="UIButton"/>
@@ -849,6 +858,8 @@
         <class className="loginPage" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/loginPage.h"/>
             <relationships>
+                <relationship kind="action" name="back:"/>
+                <relationship kind="action" name="help:"/>
                 <relationship kind="action" name="login:"/>
                 <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="usernameField" candidateClass="UITextField"/>
@@ -858,6 +869,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/registerPage.h"/>
             <relationships>
                 <relationship kind="action" name="addUser:"/>
+                <relationship kind="action" name="back:"/>
+                <relationship kind="action" name="help:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="usernameField" candidateClass="UITextField"/>
@@ -869,8 +882,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="Hqf-G6-Frc"/>
-        <segue reference="hep-qW-yTZ"/>
-    </inferredMetricsTieBreakers>
 </document>

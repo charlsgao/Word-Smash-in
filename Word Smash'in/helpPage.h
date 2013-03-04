@@ -10,6 +10,7 @@
 
 @interface helpPage : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *instruction;
-@property (weak, nonatomic) IBOutlet UIButton *back;
+
+- (IBAction)back:(id)sender;
 
 @end

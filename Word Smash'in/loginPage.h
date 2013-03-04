@@ -15,5 +15,7 @@
 
 @property (copy,nonatomic) NSString *username;
 @property (copy,nonatomic) NSString *psd;
+- (IBAction)back:(id)sender;
 
+- (IBAction)help:(id)sender;
 @end
