@@ -13,6 +13,7 @@
 		037E743E16E2F889009F02CA /* registerPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 037E743D16E2F889009F02CA /* registerPage.m */; };
 		037E744116E2FA68009F02CA /* loginPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 037E744016E2FA68009F02CA /* loginPage.m */; };
 		037E744416E2FC1A009F02CA /* homePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 037E744316E2FC1A009F02CA /* homePage.m */; };
+		03F26CEA16E5DB4A00FFE6C4 /* testPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F26CE916E5DB4A00FFE6C4 /* testPage.m */; };
 		CEA13D7C16E1E849002F3509 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA13D7B16E1E849002F3509 /* UIKit.framework */; };
 		CEA13D7E16E1E849002F3509 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA13D7D16E1E849002F3509 /* Foundation.framework */; };
 		CEA13D8016E1E849002F3509 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA13D7F16E1E849002F3509 /* CoreGraphics.framework */; };
@@ -40,6 +41,8 @@
 		037E744016E2FA68009F02CA /* loginPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginPage.m; sourceTree = "<group>"; };
 		037E744216E2FC1A009F02CA /* homePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = homePage.h; sourceTree = "<group>"; };
 		037E744316E2FC1A009F02CA /* homePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = homePage.m; sourceTree = "<group>"; };
+		03F26CE816E5DB4A00FFE6C4 /* testPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testPage.h; sourceTree = "<group>"; };
+		03F26CE916E5DB4A00FFE6C4 /* testPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testPage.m; sourceTree = "<group>"; };
 		CEA13D7816E1E849002F3509 /* Word Smash'in.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Word Smash'in.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA13D7B16E1E849002F3509 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEA13D7D16E1E849002F3509 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -105,6 +108,8 @@
 			children = (
 				CEA13D8A16E1E849002F3509 /* UCBAppDelegate.h */,
 				CEA13D8B16E1E849002F3509 /* UCBAppDelegate.m */,
+				03F26CE816E5DB4A00FFE6C4 /* testPage.h */,
+				03F26CE916E5DB4A00FFE6C4 /* testPage.m */,
 				CEA13D9316E1E849002F3509 /* MainStoryboard_iPhone.storyboard */,
 				CEA13D9616E1E849002F3509 /* MainStoryboard_iPad.storyboard */,
 				037E743C16E2F889009F02CA /* registerPage.h */,
@@ -217,6 +222,7 @@
 				037E744116E2FA68009F02CA /* loginPage.m in Sources */,
 				037E744416E2FC1A009F02CA /* homePage.m in Sources */,
 				0369DCFA16E5699000939453 /* stagePage.m in Sources */,
+				03F26CEA16E5DB4A00FFE6C4 /* testPage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

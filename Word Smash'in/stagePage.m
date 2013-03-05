@@ -21,7 +21,17 @@
 NSString *letters[10];
 static int count;
 NSString *l;
-const double SECOND = 0.5;
+const double SECOND = 0.7;
+const int MAX_BUTTON_APPEAR = 3;
+const bool LETTER_SPACE_CYCLE_ENABLE = true;
+//NSTimer *aTimer, *timer;
+const int STARTING_MINUTES = 0;
+const int STARTING_SECONDS = 10;
+int currMinute;
+int currSeconds;
+NSString *STARTING_TIME = @"Time : 0:10";
+BOOL STOP = false;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,25 +47,51 @@ const double SECOND = 0.5;
     srand ( time(NULL) );//clear out random numbers
     
     self.strArray = [NSArray arrayWithObjects:@"hello",@"world",@"Edward",@"Bing",@"Wenhao",@"Denny",nil];
-
+    [self initialize];
+    [self hideButtons];
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    count = 0;
-    [self initialize];
-    //[self initButton];
-    [self hideButtons];
-    self.aTimer = [NSTimer scheduledTimerWithTimeInterval:SECOND target:self selector:@selector(onTick) userInfo:nil repeats:YES];
-    //[self start];
+
+    
+    
+    //self.aTimer = [NSTimer scheduledTimerWithTimeInterval:SECOND target:self selector:@selector(onTick) userInfo:nil repeats:YES];
 }
 
 
-- (void) initialize{
+//**************  start the game  ************************
+-(IBAction)start{
     
-    count = 1;
-    l = @"";
+    [self getWords];
     
-    //**************generating the words**********************
+    [self.aTimer invalidate];
+    [self.timer invalidate];
+    self.timer = nil;
+    self.aTimer = nil;
+    
+    currMinute = STARTING_MINUTES;
+    currSeconds = STARTING_SECONDS;
+    
+    self.clock.textColor=[UIColor redColor];
+    [self.clock setText: STARTING_TIME];
+    self.clock.backgroundColor=[UIColor clearColor];
+    
+    STOP = false;
+    self.startButton.hidden = true;
+    self.clock.hidden = false;
+    
+    //stage timer
+    self.timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+    
+    
+    //button appear timer
+    self.aTimer = [NSTimer scheduledTimerWithTimeInterval:SECOND target:self selector:@selector(onTick) userInfo:nil repeats:YES];
+    
+}
+
+
+//************** generating the words **********************
+- (void) getWords{
     int r1, r2, r3;
     r2=r3=-1;
     r1 = rand() % 5;
@@ -69,6 +105,21 @@ const double SECOND = 0.5;
     while (r3==r1 || r3 == r2){ r3 = rand() % 5;}
     self.word3.text = self.strArray[r3];
     
+}
+
+
+//************** initialize all variable **********************
+- (void) initialize{
+    
+    count = 1;
+    l = @"";
+    
+    
+    self.clock.hidden = true;
+    
+    self.word1.text = @"";
+    self.word2.text = @"";
+    self.word3.text = @"";
     
     //*************initialize the 10 letter spaces*************
     self.w1.text = @"";
@@ -104,8 +155,27 @@ const double SECOND = 0.5;
 }
 
 
+//************** Timer action **********************
 - (void)onTick{
-    [self hideButtons];
+    
+    if (!STOP){
+        [self hideButtons];
+        int max_buttons = rand() % MAX_BUTTON_APPEAR + 1;
+        
+        for (int i=0; i<max_buttons; i++)
+            [self generateButton];
+    
+    }
+    else{
+        [self hideButtons];
+        self.clock.hidden = true;
+        self.startButton.hidden = false;
+        
+        [self.aTimer invalidate];
+    }
+}
+
+- (void) generateButton{
     char c;
     NSString *l;
     UIButton *b;
@@ -127,7 +197,6 @@ const double SECOND = 0.5;
     b.hidden = false;
     [b setTitle:l forState:UIControlStateNormal];
     
-    self.aTimer = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -158,9 +227,44 @@ const double SECOND = 0.5;
         case 8: self.w8.text = l;break;
         case 9: self.w9.text = l;break;
         case 10: self.w10.text = l;break;
+        default: break;
     }
     
     count++;
-    if (count > MAX_LETTERS) count=1;
+    if (count > MAX_LETTERS)
+        if (LETTER_SPACE_CYCLE_ENABLE)
+            count=1;
 }
+
+
+-(void)timerFired
+{
+    
+    if (currMinute ==0 && currSeconds == 1){
+        [self.timer invalidate];
+        STOP = true;
+    }
+    else if((currMinute>0 || currSeconds>=0) && currMinute>=0)
+    {
+        if(currSeconds==0)
+        {
+            currMinute-=1;
+            currSeconds=59;
+        }
+        else if(currSeconds>0)
+        {
+            currSeconds-=1;
+        }
+        if(currMinute>-1)
+            [self.clock setText:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
+    }
+    else
+    {
+        [self.timer invalidate];
+    }
+    
+    
+}
+
+
 @end

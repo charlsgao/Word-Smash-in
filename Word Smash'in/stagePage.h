@@ -25,6 +25,8 @@ const int MAX_LETTERS = 10;
 @property (weak, nonatomic) IBOutlet UIButton *button8;
 @property (weak, nonatomic) IBOutlet UIButton *button9;
 
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+
 @property (weak, nonatomic) IBOutlet UILabel *w1;
 @property (weak, nonatomic) IBOutlet UILabel *w2;
 @property (weak, nonatomic) IBOutlet UILabel *w3;
@@ -36,17 +38,25 @@ const int MAX_LETTERS = 10;
 @property (weak, nonatomic) IBOutlet UILabel *w9;
 @property (weak, nonatomic) IBOutlet UILabel *w10;
 
+@property (weak, nonatomic) IBOutlet UILabel *clock;
 
+- (IBAction)start;
 - (IBAction)buttonAction:(id)sender;
+
+- (void) getWords;
 - (void) hideButtons;
 - (void) initialize;
 - (void) displayLabel;
 - (void) onTick;
+- (void) generateButton;
+- (void) timerFired;
 
 @property (strong, nonatomic) NSArray *strArray;
+@property (strong, nonatomic) NSTimer *aTimer;
+@property (strong, nonatomic) NSTimer *timer;
 
 //set timer
-@property (nonatomic, retain) NSTimer *aTimer;
+//@property (nonatomic, retain) NSTimer *aTimer;
 
 
 
