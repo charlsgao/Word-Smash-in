@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0369DCFA16E5699000939453 /* stagePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0369DCF916E5699000939453 /* stagePage.m */; };
 		037E743816E2F704009F02CA /* helpPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 037E743716E2F704009F02CA /* helpPage.m */; };
 		037E743B16E2F7BD009F02CA /* forgotPasswordPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 037E743A16E2F7BD009F02CA /* forgotPasswordPage.m */; };
 		037E743E16E2F889009F02CA /* registerPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 037E743D16E2F889009F02CA /* registerPage.m */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0369DCF816E5699000939453 /* stagePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stagePage.h; sourceTree = "<group>"; };
+		0369DCF916E5699000939453 /* stagePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stagePage.m; sourceTree = "<group>"; };
 		037E743616E2F704009F02CA /* helpPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helpPage.h; sourceTree = "<group>"; };
 		037E743716E2F704009F02CA /* helpPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helpPage.m; sourceTree = "<group>"; };
 		037E743916E2F7BD009F02CA /* forgotPasswordPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forgotPasswordPage.h; sourceTree = "<group>"; };
@@ -108,6 +111,8 @@
 				037E743D16E2F889009F02CA /* registerPage.m */,
 				037E743916E2F7BD009F02CA /* forgotPasswordPage.h */,
 				037E743A16E2F7BD009F02CA /* forgotPasswordPage.m */,
+				0369DCF816E5699000939453 /* stagePage.h */,
+				0369DCF916E5699000939453 /* stagePage.m */,
 				037E743616E2F704009F02CA /* helpPage.h */,
 				037E743716E2F704009F02CA /* helpPage.m */,
 				037E744216E2FC1A009F02CA /* homePage.h */,
@@ -211,6 +216,7 @@
 				037E743E16E2F889009F02CA /* registerPage.m in Sources */,
 				037E744116E2FA68009F02CA /* loginPage.m in Sources */,
 				037E744416E2FC1A009F02CA /* homePage.m in Sources */,
+				0369DCFA16E5699000939453 /* stagePage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
