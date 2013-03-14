@@ -37,14 +37,13 @@ const int MAX_LETTERS = 10;
 @property (weak, nonatomic) IBOutlet UIButton *w8;
 @property (weak, nonatomic) IBOutlet UIButton *w9;
 @property (weak, nonatomic) IBOutlet UIButton *w10;
-
-- (IBAction)wACTION:(id)sender;
+@property double BUTTON_APPEAR_DURATION;   // THE TIME THAT THE BUTTON APPEAR, GETTING SMALLER AND SMALLER ALONG WITH THE LEVEL INCREASES
 
 @property (weak, nonatomic) IBOutlet UILabel *clock;
 
 - (IBAction)start;
 - (IBAction)buttonAction:(id)sender;
-
+- (IBAction)wACTION:(id)sender;
 
 - (void) getWords;
 - (void) hideButtons;
@@ -53,14 +52,14 @@ const int MAX_LETTERS = 10;
 - (void) onTick;
 - (void) generateButton;
 - (void) timerFired;
+- (void) testMode;
 
 @property (strong, nonatomic) NSArray *strArray;
-@property (strong, nonatomic) NSTimer *aTimer;
-@property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) NSTimer *aTimer;              //stage timer
+@property (strong, nonatomic) NSTimer *timer;               //button appear duration timer
 
-//set timer
-//@property (nonatomic, retain) NSTimer *aTimer;
-
+//test cases
+-(void) test_generateButton;  // test case to test the generateButton function is working properly
 
 
 @end

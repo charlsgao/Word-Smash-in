@@ -17,12 +17,12 @@
 
 
 const int MAX_LETTER_ARRAY = 10;             // SIZE OF THE LETTER ARRAY
-const double BUTTON_APPEAR_DURATION = 1.0;   // THE TIME THAT THE BUTTON APPEAR, GETTING SMALLER AND SMALLER ALONG WITH THE LEVEL INCREASES
+
 const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
 const int STARTING_MINUTES = 0;              // STAGE DURATION
 const int STARTING_SECONDS = 5;              // STAGE DURATION
 
-NSString *letters[MAX_LETTER_ARRAY];
+const bool TEST_MODE = false;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
 NSString *l;
 int currMinute;
 int currSeconds;
@@ -46,10 +46,17 @@ BOOL isON[MAX_LETTER_ARRAY];
     srand ( time(NULL) );//clear out random numbers
     
     self.strArray = [NSArray arrayWithObjects:@"hello",@"world",@"Edward",@"Bing",@"Wenhao",@"Denny",nil];
+    
+    
+    self.BUTTON_APPEAR_DURATION =1.0;
+    
     [self initialize];
     [self hideButtons];
     
     [super viewDidLoad];
+    
+    if (TEST_MODE)
+        [self testMode];
 	// Do any additional setup after loading the view.
 
 }
@@ -82,7 +89,7 @@ BOOL isON[MAX_LETTER_ARRAY];
     
     
     //button appear timer
-    self.aTimer = [NSTimer scheduledTimerWithTimeInterval:BUTTON_APPEAR_DURATION target:self selector:@selector(onTick) userInfo:nil repeats:YES];
+    self.aTimer = [NSTimer scheduledTimerWithTimeInterval:self.BUTTON_APPEAR_DURATION target:self selector:@selector(onTick) userInfo:nil repeats:YES];
 }
 
 
@@ -131,13 +138,14 @@ BOOL isON[MAX_LETTER_ARRAY];
     for(int i=0; i<MAX_LETTER_ARRAY; i++){
         isON[i] = false;
     }
-    
+   /*
     char character;
     
     for (int i=0;i<MAX_LETTERS;i++){
         character = (char)((rand()%26) + 65);
         letters[i] = [NSString stringWithFormat:@"%c" , character];
     }
+    */
 }
 
 -(void) hideButtons{
@@ -277,11 +285,13 @@ BOOL isON[MAX_LETTER_ARRAY];
 
 -(void)timerFired
 {
-    // if the game is still playing....
+    // time's up
     if (currMinute ==0 && currSeconds == 1){
         [self.timer invalidate];
         STOP = true;
     }
+    
+    // if the game is still playing....
     else if((currMinute>0 || currSeconds>=0) && currMinute>=0)
     {
         if(currSeconds==0)
@@ -306,5 +316,16 @@ BOOL isON[MAX_LETTER_ARRAY];
     
 }
 
+-(void) testMode
+{
+    [self test_generateButton];
+}
+-(void) test_generateButton
+{
+    for(int i=0; i<10;i++){
+        [self generateButton];
+        [self hideButtons];
+    }
+}
 
 @end
