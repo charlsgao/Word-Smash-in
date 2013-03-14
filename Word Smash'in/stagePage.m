@@ -12,25 +12,24 @@
 
 @end
 
-//@synthesize strArrray = _strArray;
-//@synthesize word2 = _word2;
-//@synthesize word3 = _word3;
 
 @implementation stagePage
 
-NSString *letters[10];
-static int count;
+
+const int MAX_LETTER_ARRAY = 10;             // SIZE OF THE LETTER ARRAY
+const double BUTTON_APPEAR_DURATION = 1.0;   // THE TIME THAT THE BUTTON APPEAR, GETTING SMALLER AND SMALLER ALONG WITH THE LEVEL INCREASES
+const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
+const int STARTING_MINUTES = 0;              // STAGE DURATION
+const int STARTING_SECONDS = 5;              // STAGE DURATION
+
+NSString *letters[MAX_LETTER_ARRAY];
 NSString *l;
-const double SECOND = 0.7;
-const int MAX_BUTTON_APPEAR = 3;
-const bool LETTER_SPACE_CYCLE_ENABLE = true;
-//NSTimer *aTimer, *timer;
-const int STARTING_MINUTES = 0;
-const int STARTING_SECONDS = 10;
 int currMinute;
 int currSeconds;
-NSString *STARTING_TIME = @"Time : 0:10";
+NSString *STARTING_TIME = @"Time : 0:05";
 BOOL STOP = false;
+BOOL isON[MAX_LETTER_ARRAY];
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -53,9 +52,6 @@ BOOL STOP = false;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 
-    
-    
-    //self.aTimer = [NSTimer scheduledTimerWithTimeInterval:SECOND target:self selector:@selector(onTick) userInfo:nil repeats:YES];
 }
 
 
@@ -80,13 +76,13 @@ BOOL STOP = false;
     self.startButton.hidden = true;
     self.clock.hidden = false;
     
+    
     //stage timer
     self.timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
     
     
     //button appear timer
-    self.aTimer = [NSTimer scheduledTimerWithTimeInterval:SECOND target:self selector:@selector(onTick) userInfo:nil repeats:YES];
-    
+    self.aTimer = [NSTimer scheduledTimerWithTimeInterval:BUTTON_APPEAR_DURATION target:self selector:@selector(onTick) userInfo:nil repeats:YES];
 }
 
 
@@ -111,7 +107,6 @@ BOOL STOP = false;
 //************** initialize all variable **********************
 - (void) initialize{
     
-    count = 1;
     l = @"";
     
     
@@ -122,16 +117,20 @@ BOOL STOP = false;
     self.word3.text = @"";
     
     //*************initialize the 10 letter spaces*************
-    self.w1.text = @"";
-    self.w2.text = @"";
-    self.w3.text = @"";
-    self.w4.text = @"";
-    self.w5.text = @"";
-    self.w6.text = @"";
-    self.w7.text = @"";
-    self.w8.text = @"";
-    self.w9.text = @"";
-    self.w10.text = @"";
+    self.w1.hidden = true;
+    self.w2.hidden = true;
+    self.w3.hidden = true;
+    self.w4.hidden = true;
+    self.w5.hidden = true;
+    self.w6.hidden = true;
+    self.w7.hidden = true;
+    self.w8.hidden = true;
+    self.w9.hidden = true;
+    self.w10.hidden = true;
+
+    for(int i=0; i<MAX_LETTER_ARRAY; i++){
+        isON[i] = false;
+    }
     
     char character;
     
@@ -141,7 +140,8 @@ BOOL STOP = false;
     }
 }
 
--(void) hideButtons{    
+-(void) hideButtons{
+    
     self.button1.hidden = true;
     self.button2.hidden = true;
     self.button3.hidden = true;
@@ -170,7 +170,7 @@ BOOL STOP = false;
         [self hideButtons];
         self.clock.hidden = true;
         self.startButton.hidden = false;
-        
+        [self initialize];
         [self.aTimer invalidate];
     }
 }
@@ -215,31 +215,69 @@ BOOL STOP = false;
     
 }
 
+- (IBAction)wACTION:(id)sender{
+    UIButton *b = (UIButton*) sender;
+    b.hidden = true;
+    
+    if (b == self.w1)
+        isON[0] = false;
+    else if (b==self.w2)
+        isON[1] = false;
+    else if (b==self.w3)
+        isON[2] = false;
+    else if (b==self.w4)
+        isON[3] = false;
+    else if (b==self.w5)
+        isON[4] = false;
+    else if (b==self.w6)
+        isON[5] = false;
+    else if (b==self.w7)
+        isON[6] = false;
+    else if (b==self.w8)
+        isON[7] = false;
+    else if (b==self.w9)
+        isON[8] = false;
+    else if (b==self.w10)
+        isON[9] = false;
+}
+
+
+
+
 - (void) displayLabel{
-    switch (count){
-        case 1: self.w1.text = l;break;
-        case 2: self.w2.text = l;break;
-        case 3: self.w3.text = l;break;
-        case 4: self.w4.text = l;break;
-        case 5: self.w5.text = l;break;
-        case 6: self.w6.text = l;break;
-        case 7: self.w7.text = l;break;
-        case 8: self.w8.text = l;break;
-        case 9: self.w9.text = l;break;
-        case 10: self.w10.text = l;break;
+    
+    int position=-1;
+    
+    //find the available position to place the letter
+    for(int i=0; i<MAX_LETTER_ARRAY; i++){
+        if (!isON[i]){
+            position = i+1;
+            isON[i] = true;
+            break;
+        }
+    }
+    
+    switch (position){
+        case 1: self.w1.hidden = false;[self.w1 setTitle:l forState:UIControlStateNormal];break;
+        case 2: self.w2.hidden = false;[self.w2 setTitle:l forState:UIControlStateNormal];break;
+        case 3: self.w3.hidden = false;[self.w3 setTitle:l forState:UIControlStateNormal];break;
+        case 4: self.w4.hidden = false;[self.w4 setTitle:l forState:UIControlStateNormal];break;
+        case 5: self.w5.hidden = false;[self.w5 setTitle:l forState:UIControlStateNormal];break;
+        case 6: self.w6.hidden = false;[self.w6 setTitle:l forState:UIControlStateNormal];break;
+        case 7: self.w7.hidden = false;[self.w7 setTitle:l forState:UIControlStateNormal];break;
+        case 8: self.w8.hidden = false;[self.w8 setTitle:l forState:UIControlStateNormal];break;
+        case 9: self.w9.hidden = false;[self.w9 setTitle:l forState:UIControlStateNormal];break;
+        case 10: self.w10.hidden = false;[self.w10 setTitle:l forState:UIControlStateNormal];break;
         default: break;
     }
     
-    count++;
-    if (count > MAX_LETTERS)
-        if (LETTER_SPACE_CYCLE_ENABLE)
-            count=1;
+   
 }
 
 
 -(void)timerFired
 {
-    
+    // if the game is still playing....
     if (currMinute ==0 && currSeconds == 1){
         [self.timer invalidate];
         STOP = true;
@@ -258,6 +296,8 @@ BOOL STOP = false;
         if(currMinute>-1)
             [self.clock setText:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
     }
+    
+    // time's up
     else
     {
         [self.timer invalidate];

@@ -27,21 +27,24 @@ const int MAX_LETTERS = 10;
 
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 
-@property (weak, nonatomic) IBOutlet UILabel *w1;
-@property (weak, nonatomic) IBOutlet UILabel *w2;
-@property (weak, nonatomic) IBOutlet UILabel *w3;
-@property (weak, nonatomic) IBOutlet UILabel *w4;
-@property (weak, nonatomic) IBOutlet UILabel *w5;
-@property (weak, nonatomic) IBOutlet UILabel *w6;
-@property (weak, nonatomic) IBOutlet UILabel *w7;
-@property (weak, nonatomic) IBOutlet UILabel *w8;
-@property (weak, nonatomic) IBOutlet UILabel *w9;
-@property (weak, nonatomic) IBOutlet UILabel *w10;
+@property (weak, nonatomic) IBOutlet UIButton *w1;
+@property (weak, nonatomic) IBOutlet UIButton *w2;
+@property (weak, nonatomic) IBOutlet UIButton *w3;
+@property (weak, nonatomic) IBOutlet UIButton *w4;
+@property (weak, nonatomic) IBOutlet UIButton *w5;
+@property (weak, nonatomic) IBOutlet UIButton *w6;
+@property (weak, nonatomic) IBOutlet UIButton *w7;
+@property (weak, nonatomic) IBOutlet UIButton *w8;
+@property (weak, nonatomic) IBOutlet UIButton *w9;
+@property (weak, nonatomic) IBOutlet UIButton *w10;
+
+- (IBAction)wACTION:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *clock;
 
 - (IBAction)start;
 - (IBAction)buttonAction:(id)sender;
+
 
 - (void) getWords;
 - (void) hideButtons;

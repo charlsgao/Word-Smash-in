@@ -33,17 +33,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Word Smash&apos;in/stagePage.m"
-         timestampString = "384139016.029913"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "15"
-         endingLineNumber = "15">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Word Smash&apos;in/stagePage.h"
          timestampString = "384134744.154173"
          startingColumnNumber = "9223372036854775807"
@@ -56,11 +45,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Word Smash&apos;in/stagePage.m"
-         timestampString = "384168126.495055"
+         timestampString = "384927072.423063"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "120"
-         endingLineNumber = "120"
+         startingLineNumber = "115"
+         endingLineNumber = "115"
          landmarkName = "-initialize"
          landmarkType = "5">
       </FileBreakpoint>
@@ -69,12 +58,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Word Smash&apos;in/stagePage.h"
-         timestampString = "384164512.406253"
+         timestampString = "384925744.474258"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "44"
-         endingLineNumber = "44"
-         landmarkName = "-buttonAction:"
+         startingLineNumber = "55"
+         endingLineNumber = "55"
+         landmarkName = "-timerFired"
          landmarkType = "4">
       </FileBreakpoint>
    </FileBreakpoints>
