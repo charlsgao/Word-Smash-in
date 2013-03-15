@@ -8,14 +8,28 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @interface loginPage : UIViewController <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
-- (IBAction)login:(id)sender;
+@property (nonatomic, strong) IBOutlet UITextView *messageText;
+
 
 @property (copy,nonatomic) NSString *username;
-@property (copy,nonatomic) NSString *psd;
-- (IBAction)back:(id)sender;
+@property (copy,nonatomic) NSString *password;
 
-- (IBAction)help:(id)sender;
+@property (nonatomic, strong) NSDictionary *errCode; // ERROR CODE Dictionary
+@property (nonatomic, strong) NSString *urlString; // Server URL
+
+- (IBAction)usernameTextEntered:(id)sender;
+- (IBAction)passwordTextEntered:(id)sender;
+- (IBAction)loginButtonTapped:(id)sender;
+- (IBAction)forgotPasswordButtonTapped:(id)sender;
+- (IBAction)backButtonTapped:(id)sender;
+- (IBAction)helpButtonTapped:(id)sender;
+
+- (NSDictionary*)HTTPResponseAndRequest:(NSString*)url_addition;
+- (void)responseAction:(NSDictionary*)response;
+
 @end

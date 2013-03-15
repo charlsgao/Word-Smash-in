@@ -14,6 +14,10 @@
 		037E744116E2FA68009F02CA /* loginPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 037E744016E2FA68009F02CA /* loginPage.m */; };
 		037E744416E2FC1A009F02CA /* homePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 037E744316E2FC1A009F02CA /* homePage.m */; };
 		03F26CEA16E5DB4A00FFE6C4 /* testPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F26CE916E5DB4A00FFE6C4 /* testPage.m */; };
+		A27DBB4E16F2AB9900F20044 /* levelPage.m in Sources */ = {isa = PBXBuildFile; fileRef = A27DBB4C16F2AB9800F20044 /* levelPage.m */; };
+		A27DBB5516F2ADEB00F20044 /* pausePage.m in Sources */ = {isa = PBXBuildFile; fileRef = A27DBB5316F2ADEB00F20044 /* pausePage.m */; };
+		A27DBB5C16F2AE2E00F20044 /* scorePage.m in Sources */ = {isa = PBXBuildFile; fileRef = A27DBB5B16F2AE2E00F20044 /* scorePage.m */; };
+		A27DBB5F16F2BADF00F20044 /* statisticPage.m in Sources */ = {isa = PBXBuildFile; fileRef = A27DBB5E16F2BADE00F20044 /* statisticPage.m */; };
 		CEA13D7C16E1E849002F3509 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA13D7B16E1E849002F3509 /* UIKit.framework */; };
 		CEA13D7E16E1E849002F3509 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA13D7D16E1E849002F3509 /* Foundation.framework */; };
 		CEA13D8016E1E849002F3509 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA13D7F16E1E849002F3509 /* CoreGraphics.framework */; };
@@ -43,6 +47,14 @@
 		037E744316E2FC1A009F02CA /* homePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = homePage.m; sourceTree = "<group>"; };
 		03F26CE816E5DB4A00FFE6C4 /* testPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testPage.h; sourceTree = "<group>"; };
 		03F26CE916E5DB4A00FFE6C4 /* testPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testPage.m; sourceTree = "<group>"; };
+		A27DBB4B16F2AB9800F20044 /* levelPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = levelPage.h; sourceTree = "<group>"; };
+		A27DBB4C16F2AB9800F20044 /* levelPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = levelPage.m; sourceTree = "<group>"; };
+		A27DBB5216F2ADEB00F20044 /* pausePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pausePage.h; sourceTree = "<group>"; };
+		A27DBB5316F2ADEB00F20044 /* pausePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pausePage.m; sourceTree = "<group>"; };
+		A27DBB5A16F2AE2D00F20044 /* scorePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scorePage.h; sourceTree = "<group>"; };
+		A27DBB5B16F2AE2E00F20044 /* scorePage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scorePage.m; sourceTree = "<group>"; };
+		A27DBB5D16F2BADE00F20044 /* statisticPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = statisticPage.h; sourceTree = "<group>"; };
+		A27DBB5E16F2BADE00F20044 /* statisticPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = statisticPage.m; sourceTree = "<group>"; };
 		CEA13D7816E1E849002F3509 /* Word Smash'in.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Word Smash'in.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA13D7B16E1E849002F3509 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEA13D7D16E1E849002F3509 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -106,26 +118,34 @@
 		CEA13D8116E1E849002F3509 /* Word Smash'in */ = {
 			isa = PBXGroup;
 			children = (
-				CEA13D8A16E1E849002F3509 /* UCBAppDelegate.h */,
-				CEA13D8B16E1E849002F3509 /* UCBAppDelegate.m */,
-				03F26CE816E5DB4A00FFE6C4 /* testPage.h */,
-				03F26CE916E5DB4A00FFE6C4 /* testPage.m */,
 				CEA13D9316E1E849002F3509 /* MainStoryboard_iPhone.storyboard */,
-				CEA13D9616E1E849002F3509 /* MainStoryboard_iPad.storyboard */,
-				037E743C16E2F889009F02CA /* registerPage.h */,
-				037E743D16E2F889009F02CA /* registerPage.m */,
-				037E743916E2F7BD009F02CA /* forgotPasswordPage.h */,
-				037E743A16E2F7BD009F02CA /* forgotPasswordPage.m */,
-				0369DCF816E5699000939453 /* stagePage.h */,
-				0369DCF916E5699000939453 /* stagePage.m */,
-				037E743616E2F704009F02CA /* helpPage.h */,
-				037E743716E2F704009F02CA /* helpPage.m */,
 				037E744216E2FC1A009F02CA /* homePage.h */,
 				037E744316E2FC1A009F02CA /* homePage.m */,
 				037E743F16E2FA68009F02CA /* loginPage.h */,
 				037E744016E2FA68009F02CA /* loginPage.m */,
+				037E743C16E2F889009F02CA /* registerPage.h */,
+				037E743D16E2F889009F02CA /* registerPage.m */,
+				037E743916E2F7BD009F02CA /* forgotPasswordPage.h */,
+				037E743A16E2F7BD009F02CA /* forgotPasswordPage.m */,
+				037E743616E2F704009F02CA /* helpPage.h */,
+				037E743716E2F704009F02CA /* helpPage.m */,
+				A27DBB4B16F2AB9800F20044 /* levelPage.h */,
+				A27DBB4C16F2AB9800F20044 /* levelPage.m */,
+				0369DCF816E5699000939453 /* stagePage.h */,
+				0369DCF916E5699000939453 /* stagePage.m */,
+				A27DBB5216F2ADEB00F20044 /* pausePage.h */,
+				A27DBB5316F2ADEB00F20044 /* pausePage.m */,
+				A27DBB5A16F2AE2D00F20044 /* scorePage.h */,
+				A27DBB5B16F2AE2E00F20044 /* scorePage.m */,
+				A27DBB5D16F2BADE00F20044 /* statisticPage.h */,
+				A27DBB5E16F2BADE00F20044 /* statisticPage.m */,
+				03F26CE816E5DB4A00FFE6C4 /* testPage.h */,
+				03F26CE916E5DB4A00FFE6C4 /* testPage.m */,
 				CEA13D9916E1E849002F3509 /* UCBViewController.h */,
 				CEA13D9A16E1E849002F3509 /* UCBViewController.m */,
+				CEA13D8A16E1E849002F3509 /* UCBAppDelegate.h */,
+				CEA13D8B16E1E849002F3509 /* UCBAppDelegate.m */,
+				CEA13D9616E1E849002F3509 /* MainStoryboard_iPad.storyboard */,
 				CEA13D8216E1E849002F3509 /* Supporting Files */,
 			);
 			path = "Word Smash'in";
@@ -223,6 +243,10 @@
 				037E744416E2FC1A009F02CA /* homePage.m in Sources */,
 				0369DCFA16E5699000939453 /* stagePage.m in Sources */,
 				03F26CEA16E5DB4A00FFE6C4 /* testPage.m in Sources */,
+				A27DBB4E16F2AB9900F20044 /* levelPage.m in Sources */,
+				A27DBB5516F2ADEB00F20044 /* pausePage.m in Sources */,
+				A27DBB5C16F2AE2E00F20044 /* scorePage.m in Sources */,
+				A27DBB5F16F2BADF00F20044 /* statisticPage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
