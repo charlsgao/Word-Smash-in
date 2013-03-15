@@ -62,5 +62,6 @@ const int MAX_LETTERS = 10;
 -(void) test_generateButton;  // test case to test the generateButton function is working properly
 -(void) test_hideButtons;     // test case to test the hideButton funciton is working properly
 -(void) test_displayLabel;    // test case to test the tabbed letters display correctly
+-(void) test_tabButton1;      // test tabbing button1, first letter in letter array will appear
 
 @end

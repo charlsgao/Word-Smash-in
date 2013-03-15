@@ -15,7 +15,7 @@
 
 @implementation stagePage
 
-const bool TEST_MODE = false;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
+const bool TEST_MODE = true;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
 
 const int MAX_LETTER_ARRAY = 10;             // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
@@ -28,7 +28,9 @@ int currSeconds;
 NSString *STARTING_TIME = @"Time : 0:05";
 BOOL STOP = false;
 BOOL isON[MAX_LETTER_ARRAY];
-
+int total_tests = 0;
+int successful_tests = 0;
+int failed_tests = 0;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -317,27 +319,242 @@ BOOL isON[MAX_LETTER_ARRAY];
 
 -(void) testMode
 {
-    self.startButton.hidden = true;
+    [self test_displayLabel];
     [self test_generateButton];
     [self test_hideButtons];
-    [self test_displayLabel];
+    [self test_simulate_getting_1_char];
+    [self test_simulate_getting_2_char];
+    [self test_simulate_getting_5_char];
+    [self test_simulate_getting_9_char];
+    NSLog(@"Total Number of Tests: %i", total_tests);
+    NSLog(@"Successful Tests: %i", successful_tests);
+    NSLog(@"Failed Tests: %i", failed_tests);
+    
 }
+
+-(bool) cmp_char_vals: (NSMutableArray*)holder Value:(NSArray*) value fromButton:(NSMutableArray*) button
+{
+    int i = 0;
+    //if number of holder is not equal to the number of obtained characters, return false
+    if ([holder count] != [value count] || [holder count] != [button count]){
+        return false;
+    }
+    
+    //Iterate through the lists and ensure that the holder titles matches with the data its holding
+    for (UIButton*h in holder){
+        if(h.titleLabel.text != value[i] && ((UIButton*) button[i]).hidden != true){
+            return false;
+        }
+        i++;
+    }
+    return true;
+}
+
+-(void) test_simulate_getting_9_char
+{
+    total_tests ++;
+    self.startButton.hidden = true;
+    [self.button3 setTitle:@"A" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button3];
+    [self.button7 setTitle:@"B" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button7];
+    [self.button2 setTitle:@"C" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button2];
+    [self.button5 setTitle:@"X" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button5];
+    [self.button1 setTitle:@"Y" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button1];
+    [self.button6 setTitle:@"Z" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button6];
+    [self.button9 setTitle:@"J" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button9];
+    [self.button4 setTitle:@"Q" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button4];
+    [self.button8 setTitle:@"K" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button8];
+    
+    
+    //Store the holders with values in an array
+    NSMutableArray *holder_array = [NSMutableArray array];
+    [holder_array addObject:self.w1];
+    [holder_array addObject:self.w2];
+    [holder_array addObject:self.w3];
+    [holder_array addObject:self.w4];
+    [holder_array addObject:self.w5];
+    [holder_array addObject:self.w6];
+    [holder_array addObject:self.w7];
+    [holder_array addObject:self.w8];
+    [holder_array addObject:self.w9];
+    
+    //Store the values in an array
+    NSArray *value_array = [NSArray arrayWithObjects:@"A", @"B", @"C", @"X", @"Y", @"Z", @"J", @"Q", @"K", nil];
+    
+    //Store the clicked buttons in an aray
+    NSMutableArray *button_array = [NSMutableArray array];
+    [button_array addObject:self.button3];
+    [button_array addObject:self.button7];
+    [button_array addObject:self.button2];
+    [button_array addObject:self.button5];
+    [button_array addObject:self.button1];
+    [button_array addObject:self.button6];
+    [button_array addObject:self.button9];
+    [button_array addObject:self.button4];
+    [button_array addObject:self.button8];
+    
+    //Iterate through the lists of holders, values, and buttons and ensure that they have the expected corresponding values
+    if ([self cmp_char_vals:holder_array Value:value_array fromButton:button_array]){
+        NSLog(@"Passed test_simulate_getting_9_char!");
+        successful_tests ++;
+    }
+    else{
+        NSLog(@"Error, letter appeared does not match expected!");
+        failed_tests ++;
+    }
+    [self reset];
+}
+
+-(void) test_simulate_getting_5_char
+{
+    total_tests ++;
+    self.startButton.hidden = true;
+    [self.button3 setTitle:@"A" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button3];
+    [self.button7 setTitle:@"B" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button7];
+    [self.button2 setTitle:@"C" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button2];
+    [self.button5 setTitle:@"Y" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button5];
+    [self.button1 setTitle:@"Z" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button1];
+    
+    //Store the holders with values in an array
+    NSMutableArray *holder_array = [NSMutableArray array];
+    [holder_array addObject:self.w1];
+    [holder_array addObject:self.w2];
+    [holder_array addObject:self.w3];
+    [holder_array addObject:self.w4];
+    [holder_array addObject:self.w5];
+    
+    //Store the values in an array
+    NSArray *value_array = [NSArray arrayWithObjects:@"A", @"B", @"C", @"Y", @"Z", nil];
+    
+    //Store the clicked buttons in an aray
+    NSMutableArray *button_array = [NSMutableArray array];
+    [button_array addObject:self.button3];
+    [button_array addObject:self.button7];
+    [button_array addObject:self.button2];
+    [button_array addObject:self.button5];
+    [button_array addObject:self.button1];
+    
+    //Iterate through the lists of holders, values, and buttons and ensure that they have the expected corresponding values
+    if ([self cmp_char_vals:holder_array Value:value_array fromButton:button_array]){
+        NSLog(@"Passed test_simulate_getting_5_char!");
+        successful_tests ++;
+    }
+    else{
+        NSLog(@"Error, letter appeared does not match expected!");
+        failed_tests ++;
+    }
+    [self reset];
+}
+
+-(void) test_simulate_getting_2_char
+{
+    total_tests ++;
+    self.startButton.hidden = true;
+    [self.button3 setTitle:@"C" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button3];
+    [self.button7 setTitle:@"A" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button7];
+    
+    //Store the holders with values in an array
+    NSMutableArray *holder_array = [NSMutableArray array];
+    [holder_array addObject:self.w1];
+    [holder_array addObject:self.w2];
+    
+    //Store the values in an array
+    NSArray *value_array = [NSArray arrayWithObjects:@"C", @"A", nil];
+    
+    //Store the clicked buttons in an aray
+    NSMutableArray *button_array = [NSMutableArray array];
+    [button_array addObject:self.button3];
+    [button_array addObject:self.button7];
+    
+    //Iterate through the lists of holders, values, and buttons and ensure that they have the expected corresponding values
+    if ([self cmp_char_vals:holder_array Value:value_array fromButton:button_array]){
+        NSLog(@"Passed test_simulate_getting_2_char!");
+        successful_tests ++;
+    }
+    else{
+        NSLog(@"Error, letter appeared does not match expected!");
+        failed_tests ++;
+    }
+    [self reset];
+}
+
+-(void) test_simulate_getting_1_char
+{
+    total_tests ++;
+    self.startButton.hidden = true;
+    [self.button2 setTitle:@"B" forState:UIControlStateNormal];
+    [self buttonAction:(UIButton*)self.button2];
+    
+    //Store the holders with values in an array
+    NSMutableArray *holder_array = [NSMutableArray array];
+    [holder_array addObject:self.w1];
+    
+    //Store the values in an array
+    NSArray *value_array = [NSArray arrayWithObject:@"B"];
+    
+    //Store the clicked buttons in an aray
+    NSMutableArray *button_array = [NSMutableArray array];
+    [button_array addObject:self.button2];
+    
+    //Iterate through the lists of holders, values, and buttons and ensure that they have the expected corresponding values
+    if ([self cmp_char_vals:holder_array Value:value_array fromButton:button_array]){
+        NSLog(@"Passed test_simulate_getting_1_char!");
+        successful_tests ++;
+    }
+    else{
+        NSLog(@"Error, letter appeared does not match expected!");
+        failed_tests ++;
+    }
+    [self reset];
+    
+}
+
+
+
+//self.startButton.hidden = true;
+//[self test_generateButton];
+//[self test_hideButtons];
+//[self test_displayLabel];
+
 -(void) test_generateButton
 {
+    total_tests ++;
     [self generateButton];
     
     if (self.button1.hidden == true || self.button2.hidden == true ||
         self.button3.hidden == true || self.button4.hidden == true ||
         self.button5.hidden == true || self.button6.hidden == true ||
         self.button7.hidden == true || self.button8.hidden == true ||
-        self.button9.hidden == true)
+        self.button9.hidden == true){
         NSLog(@"Button(s) generated correctly!");
-    else
+        successful_tests ++;
+    }
+    else{
         NSLog(@"Error, no buttons are generated!");
+        failed_tests ++;
+    }
+    [self reset];
 }
 
 -(void) test_hideButtons
 {
+    total_tests ++;
+    bool pass=false;
     [self hideButtons];
     if (self.button1.hidden == false)
         NSLog(@"Error, button1 is not hidden!");
@@ -357,12 +574,22 @@ BOOL isON[MAX_LETTER_ARRAY];
         NSLog(@"Error, button8 is not hidden!");
     else if (self.button9.hidden == false)
         NSLog(@"Error, button9 is not hidden!");
-    else
+    else{
+        pass = true;
         NSLog(@"All buttons are hidden!");
+    }
+    if (pass){
+        successful_tests ++;
+    }
+    else{
+        failed_tests ++;
+    }
+    [self reset];
 }
 
 -(void) test_displayLabel
 {
+    total_tests ++;
     l = @"a";
     
     for(int i=0; i<MAX_LETTER_ARRAY; i++){
@@ -374,10 +601,18 @@ BOOL isON[MAX_LETTER_ARRAY];
         self.w7.hidden == false && self.w8.hidden == false &&
         self.w9.hidden == false && self.w10.hidden == false){
         NSLog(@"All letters displayed correctly!");
+        successful_tests ++;
     }
-    else
+    else{
         NSLog(@"Error, letter array buttons did not display properly!");
-        
+        failed_tests ++;
+    }
+    [self reset];
+}
+
+-(void) reset{
+    [self initialize];
+    [self hideButtons];
 }
 
 @end
