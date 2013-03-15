@@ -15,14 +15,13 @@
 
 @implementation stagePage
 
+const bool TEST_MODE = false;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
 
 const int MAX_LETTER_ARRAY = 10;             // SIZE OF THE LETTER ARRAY
-
 const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
 const int STARTING_MINUTES = 0;              // STAGE DURATION
 const int STARTING_SECONDS = 5;              // STAGE DURATION
 
-const bool TEST_MODE = false;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
 NSString *l;
 int currMinute;
 int currSeconds;
@@ -318,14 +317,67 @@ BOOL isON[MAX_LETTER_ARRAY];
 
 -(void) testMode
 {
+    self.startButton.hidden = true;
     [self test_generateButton];
+    [self test_hideButtons];
+    [self test_displayLabel];
 }
 -(void) test_generateButton
 {
-    for(int i=0; i<10;i++){
-        [self generateButton];
-        [self hideButtons];
+    [self generateButton];
+    
+    if (self.button1.hidden == true || self.button2.hidden == true ||
+        self.button3.hidden == true || self.button4.hidden == true ||
+        self.button5.hidden == true || self.button6.hidden == true ||
+        self.button7.hidden == true || self.button8.hidden == true ||
+        self.button9.hidden == true)
+        NSLog(@"Button(s) generated correctly!");
+    else
+        NSLog(@"Error, no buttons are generated!");
+}
+
+-(void) test_hideButtons
+{
+    [self hideButtons];
+    if (self.button1.hidden == false)
+        NSLog(@"Error, button1 is not hidden!");
+    else if (self.button2.hidden == false)
+        NSLog(@"Error, button2 is not hidden!");
+    else if (self.button3.hidden == false)
+        NSLog(@"Error, button3 is not hidden!");
+    else if (self.button4.hidden == false)
+        NSLog(@"Error, button4 is not hidden!");
+    else if (self.button5.hidden == false)
+        NSLog(@"Error, button5 is not hidden!");
+    else if (self.button6.hidden == false)
+        NSLog(@"Error, button6 is not hidden!");
+    else if (self.button7.hidden == false)
+        NSLog(@"Error, button7 is not hidden!");
+    else if (self.button8.hidden == false)
+        NSLog(@"Error, button8 is not hidden!");
+    else if (self.button9.hidden == false)
+        NSLog(@"Error, button9 is not hidden!");
+    else
+        NSLog(@"All buttons are hidden!");
+}
+
+-(void) test_displayLabel
+{
+    l = @"a";
+    
+    for(int i=0; i<MAX_LETTER_ARRAY; i++){
+        [self displayLabel];
     }
+    if (self.w1.hidden == false && self.w2.hidden == false &&
+        self.w3.hidden == false && self.w4.hidden == false &&
+        self.w5.hidden == false && self.w6.hidden == false &&
+        self.w7.hidden == false && self.w8.hidden == false &&
+        self.w9.hidden == false && self.w10.hidden == false){
+        NSLog(@"All letters displayed correctly!");
+    }
+    else
+        NSLog(@"Error, letter array buttons did not display properly!");
+        
 }
 
 @end
