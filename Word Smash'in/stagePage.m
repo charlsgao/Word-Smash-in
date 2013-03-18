@@ -106,6 +106,37 @@ NSMutableDictionary *lettersDict;
     self.aTimer = [NSTimer scheduledTimerWithTimeInterval:self.BUTTON_APPEAR_DURATION target:self selector:@selector(onTick) userInfo:nil repeats:YES];
 }
 
+-(void)timerFired
+{
+    // time's up
+    if (currMinute ==0 && currSeconds == 1){
+        [self.timer invalidate];
+        STOP = true;
+    }
+    
+    // if the game is still playing....
+    else if((currMinute>0 || currSeconds>=0) && currMinute>=0)
+    {
+        if(currSeconds==0)
+        {
+            currMinute-=1;
+            currSeconds=59;
+        }
+        else if(currSeconds>0)
+        {
+            currSeconds-=1;
+        }
+        if(currMinute>-1)
+            [self.clock setText:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
+    }
+    
+    // time's up
+    else
+    {
+        [self.timer invalidate];
+    }
+}
+
 
 //************** generating the words **********************
 - (void) getWords{
@@ -219,12 +250,13 @@ NSMutableDictionary *lettersDict;
 // calculate the score
 -(NSInteger) getScore: (NSMutableDictionary*) dict{
     
-    if (dict == NULL)
+    if ([dict count]== 0)
         return 0;
     
     Boolean hit = false;
     
     for (id wordkey in dict){ //for each key in the word dictionary
+        //NSLog(@"wordkey: %@", wordkey);
         for (id letterkey in lettersDict){ //compare with each key in letter dictionary
             if ([wordkey isEqualToString:letterkey] && ([[lettersDict objectForKey:letterkey] intValue] >= [[dict objectForKey:wordkey] intValue])){
                 hit = true;
@@ -290,8 +322,6 @@ NSMutableDictionary *lettersDict;
     }
     */
 }
-
-
 
 
 //generating a button to appear
@@ -402,39 +432,6 @@ NSMutableDictionary *lettersDict;
 }
 
 
--(void)timerFired
-{
-    // time's up
-    if (currMinute ==0 && currSeconds == 1){
-        [self.timer invalidate];
-        STOP = true;
-    }
-    
-    // if the game is still playing....
-    else if((currMinute>0 || currSeconds>=0) && currMinute>=0)
-    {
-        if(currSeconds==0)
-        {
-            currMinute-=1;
-            currSeconds=59;
-        }
-        else if(currSeconds>0)
-        {
-            currSeconds-=1;
-        }
-        if(currMinute>-1)
-            [self.clock setText:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
-    }
-    
-    // time's up
-    else
-    {
-        [self.timer invalidate];
-    }
-    
-    
-}
-
 
 
 /************************************************************
@@ -452,8 +449,8 @@ NSMutableDictionary *lettersDict;
     [self test_simulate_getting_9_char];
     */
     [self test_score];
-    //[self test_score2];
-    //[self test_score3];
+    [self test_score2];
+    [self test_score3];
     NSLog(@"Total Number of Tests: %i", total_tests);
     NSLog(@"Successful Tests: %i", successful_tests);
     NSLog(@"Failed Tests: %i", failed_tests);
@@ -752,18 +749,6 @@ NSMutableDictionary *lettersDict;
     [self parseWord: self.word1.text dictionary:word1Dict];
     [self parseWord: self.word2.text dictionary:word2Dict];
     [self parseWord: self.word3.text dictionary:word3Dict];
-    
-    for (id key in word1Dict) {
-        NSLog(@"key: %@, value: %@", key, [word1Dict objectForKey:key]);
-    }
-    
-    for (id key in word2Dict) {
-        NSLog(@"key: %@, value: %@", key, [word2Dict objectForKey:key]);
-    }
-    
-    for (id key in word3Dict) {
-        NSLog(@"key: %@, value: %@", key, [word3Dict objectForKey:key]);
-    }
     
     score = [self getScore:word1Dict] + [self getScore:word2Dict] + [self getScore:word3Dict];
     
