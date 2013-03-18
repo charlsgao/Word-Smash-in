@@ -50,7 +50,6 @@ def index(request):
 	elif request.method=="GET":
 		content_type="application/json"
 		if request.path == "/users/Top10Scores":
-			print ("top 10")
 			result = g_user.getTopScores()
 			return HttpResponse(json.dumps({'Code': result[0],'data':result[1]}),content_type="application/json" )
 		elif request.path =="/requestPassword":

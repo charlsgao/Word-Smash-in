@@ -1,4 +1,5 @@
 from django.db import models
+import django
 
 # Create your models here.
 SUCCESS               =   1  # : a success
@@ -51,7 +52,6 @@ class User(models.Model):
 			temp[1].save()
 			code = SUCCESS
 			data=self.parseHandler(temp[1])
-			print(data)
 		else:
 			code=ERR_BAD_CREDENTIALS
 			data = {}
@@ -60,8 +60,10 @@ class User(models.Model):
 	def getTopScores(self):
 		try:
 			dbResult = User.objects.order_by("-mpScore")[0:10]
+			print(type(dbResult))
 			return (SUCCESS, self.parseHandler(dbResult,'easy'))
 		except Exception as e:
+			print (e)
 			return (FAILURE, {})
 
 	def saveScore(self, inUser, inScore):
@@ -93,7 +95,7 @@ class User(models.Model):
 	def parseHandler(self,userObj, mode = 'fullInfo'):
 		if userObj==[] or userObj==None:
 			return {}
-		if type(userObj)==list:
+		if type(userObj)==django.db.models.query.QuerySet:
 			data=[]
 			for elem in userObj:
 				if mode=='fullInfo':
@@ -102,7 +104,10 @@ class User(models.Model):
 					data.append(self.easyParser(elem))
 			return data
 		else:
-			return self.parser(userObj)
+			if mode == 'fullInfo':
+				return self.parser(userObj)
+			else:
+				return self.easyParser(userObj)
 	def parser(self, user):
 		return {'user':user.userName, 'password':user.password, 'email':user.email, 'count':user.count, 'balance':user.balance, 'level':user.level, 'mpMoney':user.mpMoney, 'mpScore':user.mpScore, 'spScore':user.spScore}
 	def easyParser(self, user):
