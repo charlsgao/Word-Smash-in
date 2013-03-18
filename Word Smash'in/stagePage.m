@@ -15,7 +15,7 @@
 
 @implementation stagePage
 
-const bool TEST_MODE = false;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
+const bool TEST_MODE = true;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
 
 const int MAX_LETTER_ARRAY = 10;             // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
@@ -133,9 +133,9 @@ NSMutableDictionary *lettersDict;
     
     self.clock.hidden = true;
     
-    self.word1.text = @"";
-    self.word2.text = @"";
-    self.word3.text = @"";
+    self.word1.text = NULL;
+    self.word2.text = NULL;
+    self.word3.text = NULL;
     
     //*************initialize the 10 letter spaces*************
     self.w1.hidden = true;
@@ -207,7 +207,7 @@ NSMutableDictionary *lettersDict;
     for (int i =0; i<MAX_LETTER_ARRAY;i++)
         NSLog(@"%@", letter[i]);
     */
-    NSLog(@"%i", score);
+    //NSLog(@"%i", score);
     
     word1Dict = nil;
     word2Dict = nil;
@@ -218,8 +218,11 @@ NSMutableDictionary *lettersDict;
 
 // calculate the score
 -(NSInteger) getScore: (NSMutableDictionary*) dict{
+    
+    if (dict == NULL)
+        return 0;
+    
     Boolean hit = false;
-    //NSInteger score = 0;
     
     for (id wordkey in dict){ //for each key in the word dictionary
         for (id letterkey in lettersDict){ //compare with each key in letter dictionary
@@ -249,18 +252,21 @@ NSMutableDictionary *lettersDict;
             }
             [lettersDict setObject:[NSString stringWithFormat:@"%i", count] forKey:letter[i]];
         }
-        count = 1;  // reset count
+        count = 0;  // reset count
     }
-    
+    /*
     for (id key in lettersDict) {
         NSLog(@"key: %@, value: %@", key, [lettersDict objectForKey:key]);
     }
+     */
 }
 
 //counting letters occurance in a word
 -(void)parseWord: (NSString*) str dictionary:(NSMutableDictionary*) dict{
-    if (str == NULL)
+    if (str == NULL){
+        dict = NULL;
         return;
+    }
     
     NSString *key, *value;
     NSInteger numberOfChar=0;
@@ -437,13 +443,17 @@ NSMutableDictionary *lettersDict;
 
 -(void) testMode
 {
-    [self test_displayLabel];
+    /*[self test_displayLabel];
     [self test_generateButton];
     [self test_hideButtons];
     [self test_simulate_getting_1_char];
     [self test_simulate_getting_2_char];
     [self test_simulate_getting_5_char];
     [self test_simulate_getting_9_char];
+    */
+    [self test_score];
+    //[self test_score2];
+    //[self test_score3];
     NSLog(@"Total Number of Tests: %i", total_tests);
     NSLog(@"Successful Tests: %i", successful_tests);
     NSLog(@"Failed Tests: %i", failed_tests);
@@ -643,12 +653,6 @@ NSMutableDictionary *lettersDict;
 }
 
 
-
-//self.startButton.hidden = true;
-//[self test_generateButton];
-//[self test_hideButtons];
-//[self test_displayLabel];
-
 -(void) test_generateButton
 {
     total_tests ++;
@@ -728,9 +732,131 @@ NSMutableDictionary *lettersDict;
     [self reset];
 }
 
+-(void) test_score
+{
+    self.word1.text = @"BING";
+    self.word2.text = NULL;
+    self.word3.text = NULL;
+    letter[0] = @"A";
+    letter[1] = @"A";
+    letter[2] = @"G";
+    letter[3] = @"A";
+    letter[4] = @"N";
+    letter[5] = @"A";
+    letter[6] = @"A";
+    letter[7] = @"I";
+    letter[8] = @"A";
+    letter[9] = @"B";
+    [self countLetters];
+    
+    [self parseWord: self.word1.text dictionary:word1Dict];
+    [self parseWord: self.word2.text dictionary:word2Dict];
+    [self parseWord: self.word3.text dictionary:word3Dict];
+    
+    for (id key in word1Dict) {
+        NSLog(@"key: %@, value: %@", key, [word1Dict objectForKey:key]);
+    }
+    
+    for (id key in word2Dict) {
+        NSLog(@"key: %@, value: %@", key, [word2Dict objectForKey:key]);
+    }
+    
+    for (id key in word3Dict) {
+        NSLog(@"key: %@, value: %@", key, [word3Dict objectForKey:key]);
+    }
+    
+    score = [self getScore:word1Dict] + [self getScore:word2Dict] + [self getScore:word3Dict];
+    
+    //NSLog(@"word2 score: %i", [self getScore:word2Dict]);
+    //NSLog(@"word3 socre: %i", [self getScore:word3Dict]);
+    
+    if (score == 10){
+        NSLog(@"Score_test1 passed!");
+        successful_tests++;
+    }
+    else{
+        NSLog(@"Score_test1 failed, expected score 10, got %i!", score);
+        failed_tests++;
+    }
+    [self reset];
+}
+
+-(void) test_score2
+{
+    self.word1.text = @"BING";
+    self.word2.text = @"EDWARD";
+    letter[0] = @"D";
+    letter[1] = @"A";
+    letter[2] = @"G";
+    letter[3] = @"E";
+    letter[4] = @"N";
+    letter[5] = @"R";
+    letter[6] = @"W";
+    letter[7] = @"I";
+    letter[8] = @"D";
+    letter[9] = @"B";
+    [self countLetters];
+    
+    
+    [self parseWord: self.word1.text dictionary:word1Dict];
+    [self parseWord: self.word2.text dictionary:word2Dict];
+    [self parseWord: self.word3.text dictionary:word3Dict];
+    
+    score = [self getScore:word1Dict] + [self getScore:word2Dict] + [self getScore:word3Dict];
+    
+    if (score == 20){
+        NSLog(@"Score_test2 passed!");
+        successful_tests++;
+    }
+    else{
+        NSLog(@"Score_test2 failed, expected score 20, got %i!", score);
+        failed_tests++;
+    }
+    
+    [self reset];
+}
+
+-(void) test_score3
+{
+    self.word1.text = @"BING";
+    self.word2.text = @"BIND";
+    self.word3.text = @"HEGDE";
+    letter[0] = @"D";
+    letter[1] = @"H";
+    letter[2] = @"G";
+    letter[3] = @"E";
+    letter[4] = @"N";
+    letter[5] = @"E";
+    letter[6] = @"A";
+    letter[7] = @"I";
+    letter[8] = @"A";
+    letter[9] = @"B";
+    
+    [self countLetters];
+    
+    [self parseWord: self.word1.text dictionary:word1Dict];
+    [self parseWord: self.word2.text dictionary:word2Dict];
+    [self parseWord: self.word3.text dictionary:word3Dict];
+    
+    score = [self getScore:word1Dict] + [self getScore:word2Dict] + [self getScore:word3Dict];
+    
+    if (score == 30){
+        NSLog(@"Score_test3 passed!");
+        successful_tests++;
+    }
+    else{
+        NSLog(@"Score_test3 failed, expected score 30, got %i!", score);
+        failed_tests++;
+    }
+    
+    [self reset];
+}
+
+
 -(void) reset{
     [self initialize];
     [self hideButtons];
+    score = 0;
 }
 
 @end
