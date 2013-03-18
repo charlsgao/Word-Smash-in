@@ -15,22 +15,31 @@
 
 @implementation stagePage
 
-const bool TEST_MODE = true;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
+const bool TEST_MODE = false;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
 
 const int MAX_LETTER_ARRAY = 10;             // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
 const int STARTING_MINUTES = 0;              // STAGE DURATION
-const int STARTING_SECONDS = 5;              // STAGE DURATION
+const int STARTING_SECONDS = 30;             // STAGE DURATION
+const int INCR_SCORE = 10;                   // score increment step
+
 
 NSString *l;
 int currMinute;
 int currSeconds;
-NSString *STARTING_TIME = @"Time : 0:05";
+NSString *STARTING_TIME = @"Time : 1:00";
 BOOL STOP = false;
-BOOL isON[MAX_LETTER_ARRAY];
+NSString *letter[MAX_LETTER_ARRAY];
 int total_tests = 0;
 int successful_tests = 0;
 int failed_tests = 0;
+NSInteger score = 0;
+
+NSMutableDictionary *word1Dict;
+NSMutableDictionary *word2Dict;
+NSMutableDictionary *word3Dict;
+
+NSMutableDictionary *lettersDict;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,7 +55,7 @@ int failed_tests = 0;
 {
     srand ( time(NULL) );//clear out random numbers
     
-    self.strArray = [NSArray arrayWithObjects:@"hello",@"world",@"Edward",@"Bing",@"Wenhao",@"Denny",nil];
+    self.strArray = [NSArray arrayWithObjects:@"HELLO",@"WORLD",@"EDWARD",@"BING",@"WENHAO",@"DENNY",nil];
     
     
     self.BUTTON_APPEAR_DURATION =1.0;
@@ -67,6 +76,10 @@ int failed_tests = 0;
 -(IBAction)start{
     
     [self getWords];
+    //self.word1.text = @"Edwarda";
+    [self parseWord: self.word1.text dictionary:word1Dict];
+    [self parseWord: self.word2.text dictionary:word2Dict];
+    [self parseWord: self.word3.text dictionary:word3Dict];
     
     [self.aTimer invalidate];
     [self.timer invalidate];
@@ -135,18 +148,17 @@ int failed_tests = 0;
     self.w8.hidden = true;
     self.w9.hidden = true;
     self.w10.hidden = true;
-
-    for(int i=0; i<MAX_LETTER_ARRAY; i++){
-        isON[i] = false;
-    }
-   /*
-    char character;
     
     for (int i=0;i<MAX_LETTERS;i++){
-        character = (char)((rand()%26) + 65);
-        letters[i] = [NSString stringWithFormat:@"%c" , character];
+        letter[i] = nil;
     }
-    */
+    
+    word1Dict= [NSMutableDictionary dictionary];
+    word2Dict= [NSMutableDictionary dictionary];
+    word3Dict= [NSMutableDictionary dictionary];
+    
+    lettersDict= [NSMutableDictionary dictionary];
+    
 }
 
 -(void) hideButtons{
@@ -176,20 +188,109 @@ int failed_tests = 0;
     
     }
     else{
-        [self hideButtons];
-        self.clock.hidden = true;
-        self.startButton.hidden = false;
-        [self initialize];
+        [self endOfGame];
         [self.aTimer invalidate];
     }
 }
 
-- (void) generateButton{
+//When the game finishes
+-(void) endOfGame{
+    [self hideButtons];
+    self.clock.hidden = true;
+    self.startButton.hidden = false;
+    [self countLetters];
+    
+    score = [self getScore:word1Dict];
+    score += [self getScore:word2Dict];
+    score += [self getScore:word3Dict];
+    /*
+    for (int i =0; i<MAX_LETTER_ARRAY;i++)
+        NSLog(@"%@", letter[i]);
+    */
+    NSLog(@"%i", score);
+    
+    word1Dict = nil;
+    word2Dict = nil;
+    word3Dict = nil;
+    lettersDict = nil;
+    [self initialize];
+}
+
+// calculate the score
+-(NSInteger) getScore: (NSMutableDictionary*) dict{
+    Boolean hit = false;
+    //NSInteger score = 0;
+    
+    for (id wordkey in dict){ //for each key in the word dictionary
+        for (id letterkey in lettersDict){ //compare with each key in letter dictionary
+            if ([wordkey isEqualToString:letterkey] && ([[lettersDict objectForKey:letterkey] intValue] >= [[dict objectForKey:wordkey] intValue])){
+                hit = true;
+            }
+        }
+        if (!hit) return 0;
+        else hit = false;
+    }
+
+    return INCR_SCORE;
+}
+
+
+//counting letters occurance in letter array
+-(void) countLetters{
+    
+    NSInteger count = 0;
+    
+    for (int i=0; i<MAX_LETTER_ARRAY; i++){
+        
+        if ([lettersDict objectForKey:letter[i]]==nil && letter[i]!=nil){
+            for (int j=i; j<MAX_LETTER_ARRAY; j++){
+                if ([letter[i] isEqualToString:letter[j]])
+                    count++;
+            }
+            [lettersDict setObject:[NSString stringWithFormat:@"%i", count] forKey:letter[i]];
+        }
+        count = 1;  // reset count
+    }
+    
+    for (id key in lettersDict) {
+        NSLog(@"key: %@, value: %@", key, [lettersDict objectForKey:key]);
+    }
+}
+
+//counting letters occurance in a word
+-(void)parseWord: (NSString*) str dictionary:(NSMutableDictionary*) dict{
+    if (str == NULL)
+        return;
+    
+    NSString *key, *value;
+    NSInteger numberOfChar=0;
+    NSInteger i = 0;
     char c;
-    NSString *l;
+    
+    for (i=0; i<[str length];i++){
+        
+        c = [str characterAtIndex:i];
+        key = [NSString stringWithFormat:@"%c",c];
+        if ([dict objectForKey:key]==nil){        //if c is not one of the key in dictionary
+            //numberOfChar = [self occurrencesOfCharacter: &c nsstring:str];
+            numberOfChar = [[str componentsSeparatedByString:key] count] - 1;
+            value = [NSString stringWithFormat:@"%d", numberOfChar];
+            [dict setObject:value forKey: key];
+        }
+    }
+   /*
+   for (id key in dict) {
+        NSLog(@"key: %@, value: %@", key, [dict objectForKey:key]);
+    }
+    */
+}
+
+
+
+
+//generating a button to appear
+- (void) generateButton{
     UIButton *b;
-    c = (char)((rand()%26) + 65);
-    l = [NSString stringWithFormat:@"%c" , c];
     int buttonToAppear = rand()%8 + 1;
     switch (buttonToAppear) {
         case 1: b = self.button1; break;
@@ -203,9 +304,19 @@ int failed_tests = 0;
         case 9: b = self.button9; break;
         default: break;
     }
+    
+    [self getLetter];
+    
     b.hidden = false;
     [b setTitle:l forState:UIControlStateNormal];
     
+}
+
+//generating a letter to show on the button
+- (void)getLetter{
+    char c;
+    c = (char)((rand()%26) + 65);
+    l = [NSString stringWithFormat:@"%c" , c];
 }
 
 - (void)didReceiveMemoryWarning
@@ -214,7 +325,7 @@ int failed_tests = 0;
     // Dispose of any resources that can be recreated.
 }
 
-
+//action for tabbing the 9-grid buttons
 - (IBAction)buttonAction:(id)sender{
     UIButton *b = (UIButton*) sender;
     
@@ -224,30 +335,31 @@ int failed_tests = 0;
     
 }
 
+//action for letter array buttons
 - (IBAction)wACTION:(id)sender{
     UIButton *b = (UIButton*) sender;
     b.hidden = true;
     
     if (b == self.w1)
-        isON[0] = false;
+        letter[0] = nil;
     else if (b==self.w2)
-        isON[1] = false;
+        letter[1] = nil;
     else if (b==self.w3)
-        isON[2] = false;
+        letter[2] = nil;
     else if (b==self.w4)
-        isON[3] = false;
+        letter[3] = nil;
     else if (b==self.w5)
-        isON[4] = false;
+        letter[4] = nil;
     else if (b==self.w6)
-        isON[5] = false;
+        letter[5] = nil;
     else if (b==self.w7)
-        isON[6] = false;
+        letter[6] = nil;
     else if (b==self.w8)
-        isON[7] = false;
+        letter[7] = nil;
     else if (b==self.w9)
-        isON[8] = false;
+        letter[8] = nil;
     else if (b==self.w10)
-        isON[9] = false;
+        letter[9] = nil;
 }
 
 
@@ -259,9 +371,9 @@ int failed_tests = 0;
     
     //find the available position to place the letter
     for(int i=0; i<MAX_LETTER_ARRAY; i++){
-        if (!isON[i]){
+        if (letter[i] == nil){
             position = i+1;
-            isON[i] = true;
+            letter[i] = l;
             break;
         }
     }
@@ -316,6 +428,12 @@ int failed_tests = 0;
     
     
 }
+
+
+
+/************************************************************
+                        TEST CASES
+ ***********************************************************/
 
 -(void) testMode
 {
