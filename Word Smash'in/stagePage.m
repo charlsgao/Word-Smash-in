@@ -15,19 +15,22 @@
 
 @implementation stagePage
 
-const bool TEST_MODE = true;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
+const bool TEST_MODE = false;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
 
 const int MAX_LETTER_ARRAY = 10;             // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
-const int STARTING_MINUTES = 0;              // STAGE DURATION
-const int STARTING_SECONDS = 30;             // STAGE DURATION
+
+const int STARTING_MINUTES = 1;              // STAGE DURATION
+const int STARTING_SECONDS = 0;             // STAGE DURATION
 const int INCR_SCORE = 10;                   // score increment step
 
 
 NSString *l;
 int currMinute;
 int currSeconds;
-NSString *STARTING_TIME = @"Time : 1:00";
+NSString *STARTING_TIME;
+
+//@"Time : 0:05";
 BOOL STOP = false;
 NSString *letter[MAX_LETTER_ARRAY];
 int total_tests = 0;
@@ -62,7 +65,7 @@ NSMutableDictionary *lettersDict;
     
     [self initialize];
     [self hideButtons];
-    
+    self.scoreLabel.hidden = true;
     [super viewDidLoad];
     
     if (TEST_MODE)
@@ -97,6 +100,8 @@ NSMutableDictionary *lettersDict;
     self.startButton.hidden = true;
     self.clock.hidden = false;
     
+    score = 0;
+    self.scoreLabel.hidden = true;
     
     //stage timer
     self.timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
@@ -159,6 +164,11 @@ NSMutableDictionary *lettersDict;
 //************** initialize all variable **********************
 - (void) initialize{
     
+    if (STARTING_SECONDS>10)
+        STARTING_TIME = [NSString stringWithFormat:@"Time : %i:%i", STARTING_MINUTES, STARTING_SECONDS];
+    else
+        STARTING_TIME = [NSString stringWithFormat:@"Time : %i:0%i", STARTING_MINUTES, STARTING_SECONDS];
+    
     l = @"";
     
     
@@ -189,6 +199,8 @@ NSMutableDictionary *lettersDict;
     word3Dict= [NSMutableDictionary dictionary];
     
     lettersDict= [NSMutableDictionary dictionary];
+    
+    //self.scoreLabel.hidden = true;
     
 }
 
@@ -231,20 +243,32 @@ NSMutableDictionary *lettersDict;
     self.startButton.hidden = false;
     [self countLetters];
     
-    score = [self getScore:word1Dict];
-    score += [self getScore:word2Dict];
-    score += [self getScore:word3Dict];
-    /*
+        /*
     for (int i =0; i<MAX_LETTER_ARRAY;i++)
         NSLog(@"%@", letter[i]);
     */
     //NSLog(@"%i", score);
     
+    
+    [self showScore];
+    
+    [self initialize];
     word1Dict = nil;
     word2Dict = nil;
     word3Dict = nil;
     lettersDict = nil;
-    [self initialize];
+}
+
+-(void) showScore{
+    score = [self getScore:word1Dict];
+    score += [self getScore:word2Dict];
+    score += [self getScore:word3Dict];
+    
+    self.scoreLabel.hidden = false;
+    self.scoreLabel.textColor = [UIColor redColor];
+    [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %i", score]];
+    
+
 }
 
 // calculate the score
@@ -327,7 +351,7 @@ NSMutableDictionary *lettersDict;
 //generating a button to appear
 - (void) generateButton{
     UIButton *b;
-    int buttonToAppear = rand()%8 + 1;
+    int buttonToAppear = rand()%9 + 1;
     switch (buttonToAppear) {
         case 1: b = self.button1; break;
         case 2: b = self.button2; break;

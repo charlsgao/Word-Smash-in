@@ -10,4 +10,13 @@
 
 @interface levelPage : UIViewController
 
+@property (nonatomic, retain) IBOutletCollection(UIButton) NSArray *levelButton;
+
+@property (nonatomic, weak) IBOutlet UILabel *label;
+
+@property NSInteger level;
+
+- (IBAction)action:(id)sender;
+
 @end
+

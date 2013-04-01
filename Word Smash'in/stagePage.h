@@ -40,6 +40,7 @@ const int MAX_LETTERS = 10;
 @property double BUTTON_APPEAR_DURATION;   // THE TIME THAT THE BUTTON APPEAR, GETTING SMALLER AND SMALLER ALONG WITH THE LEVEL INCREASES
 
 @property (weak, nonatomic) IBOutlet UILabel *clock;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 - (IBAction)start;
 - (IBAction)buttonAction:(id)sender;
