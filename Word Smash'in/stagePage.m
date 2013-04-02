@@ -15,7 +15,7 @@
 
 @implementation stagePage
 
-const bool TEST_MODE = false;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
+const bool TEST_MODE = true;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
 
 const int MAX_LETTER_ARRAY = 10;             // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
@@ -23,6 +23,8 @@ const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR
 const int STARTING_MINUTES = 1;              // STAGE DURATION
 const int STARTING_SECONDS = 0;             // STAGE DURATION
 const int INCR_SCORE = 10;                   // score increment step
+
+const int TOTAL_WORDS_IN_FILE = 5;
 
 
 NSString *l;
@@ -66,9 +68,9 @@ NSMutableDictionary *lettersDict;
     [self hideButtons];
     self.scoreLabel.hidden = true;
     [super viewDidLoad];
-    
     if (TEST_MODE)
         [self testMode];
+    
 	// Do any additional setup after loading the view.
 
 }
@@ -143,7 +145,8 @@ NSMutableDictionary *lettersDict;
 
 
 //************** generating the words **********************
-- (void) getWords{
+/*
+- (void) getWords_old{
     int r1, r2, r3;
     r2=r3=-1;
     r1 = rand() % 5;
@@ -158,7 +161,70 @@ NSMutableDictionary *lettersDict;
     self.word3.text = self.strArray[r3];
     
 }
+ */
 
+//************** getWords **********************
+// This function will generate 3 words by generating 2 random numbers and call a
+// method readDictionaryFile that will take the random number as an indication of 
+// which line number in a text file need to be retrieved.
+- (void) getWords
+{
+    int r1, r2, r3;
+    int l1, l2, l3;
+    NSString *fileName;
+    
+    r1 = rand() % TOTAL_WORDS_IN_FILE;
+    l1 = rand() % 3 + 4;
+    fileName = [NSString stringWithFormat:@"%i.txt", l1];
+    self.word1.text = [self readDictionaryFile:r1 fileName:fileName];
+    
+    r2 = rand() % TOTAL_WORDS_IN_FILE;
+    l2 = rand() % 3 + 4;
+    fileName = [NSString stringWithFormat:@"%i.txt", l2];
+    while (r2==r1){ r2 = rand() % TOTAL_WORDS_IN_FILE;}
+    self.word2.text = [self readDictionaryFile:r2 fileName:fileName];
+    
+    r3 = rand() % TOTAL_WORDS_IN_FILE;
+    l3 = rand() % 3 + 4;
+    fileName = [NSString stringWithFormat:@"%i.txt", l3];
+    while (r3==r1 || r3 == r2){ r3 = rand() % TOTAL_WORDS_IN_FILE;}
+    self.word3.text = [self readDictionaryFile:r3 fileName:fileName];
+}
+
+//************** readDictionaryFile  **********************
+// This function will take 2 parameters lineNum and wordLength, read a file called fileName
+// containing a dictionary of words and return the corresponding word given the
+// line number.
+- (NSString*) readDictionaryFile:(NSInteger)lineNum fileName:(NSString*)fileName
+{
+
+    NSFileManager *filemgr;
+    filemgr = [NSFileManager defaultManager];
+    
+    NSString *home = NSHomeDirectory();
+    
+    //NSLog(currentpath);
+    NSString *destinationPath = [NSString stringWithFormat:@"%@/Word Smash'in.app/%@", home, fileName];
+    NSLog(@"\nText File: %@\n", destinationPath);
+    
+
+    if ([filemgr fileExistsAtPath: destinationPath] == YES)
+        NSLog (@"File exists");
+    else
+        NSLog (@"File not found!");
+    
+    NSString *readText = [[NSString alloc] initWithContentsOfFile:destinationPath
+                                                         encoding:NSUTF8StringEncoding
+                                                            error:nil];
+    NSArray *lines = [readText componentsSeparatedByString:@"\n"];
+    
+    /*
+    for (int i = 0; i < lines.count; i++) {
+        NSLog(@"Line %d: %@", i, lines[i]);
+    }
+     */
+    return lines[lineNum];
+}
 
 //************** initialize all variable **********************
 - (void) initialize{
@@ -474,6 +540,7 @@ NSMutableDictionary *lettersDict;
     [self test_score];
     [self test_score2];
     [self test_score3];
+    [self test_readDictionary];
     NSLog(@"Total Number of Tests: %i", total_tests);
     NSLog(@"Successful Tests: %i", successful_tests);
     NSLog(@"Failed Tests: %i", failed_tests);
@@ -858,6 +925,87 @@ NSMutableDictionary *lettersDict;
     }
     
     [self reset];
+}
+
+/***************** test_readDictionary ********************/
+// Test the readDictionary function
+// This test consitst of '5' tests
+- (void) test_readDictionary
+{
+    NSString *line;
+    int i = 0;
+    
+    line = [self readDictionaryFile:1 fileName:@"test.txt"];
+    if([line isEqualToString: @"hello"])
+    {
+        NSLog(@"test_readDictionary (%d): passed!", i);
+        successful_tests++;
+    }
+    else
+    {
+        NSLog(@"test_readDictionary (%d): failed!", i);
+        NSLog(@"Expected: %@     |     Got: %@", @"hello", line);
+        failed_tests++;
+    }
+    i++;
+    
+    line = [self readDictionaryFile:2 fileName:@"test.txt"];
+    if([line isEqualToString: @""])
+    {
+        NSLog(@"test_readDictionary (%d): passed!", i);
+        successful_tests++;
+    }
+    else
+    {
+        NSLog(@"test_readDictionary (%d): failed!", i);
+        NSLog(@"Expected: %@     |     Got: %@", @"", line);
+        failed_tests++;
+    }
+    i++;
+    
+    line = [self readDictionaryFile:3 fileName:@"test.txt"];
+    if([line isEqualToString: @"0"])
+    {
+        NSLog(@"test_readDictionary (%d): passed!", i);
+        successful_tests++;
+    }
+    else
+    {
+        NSLog(@"test_readDictionary (%d): failed!", i);
+        NSLog(@"Expected: %@     |     Got: %@", @"0", line);
+        failed_tests++;
+    }
+    i++;
+    
+    line = [self readDictionaryFile:4 fileName:@"test.txt"];
+    if([line isEqualToString: @" n"])
+    {
+        NSLog(@"test_readDictionary (%d): passed!", i);
+        successful_tests++;
+    }
+    else
+    {
+        NSLog(@"test_readDictionary (%d): failed!", i);
+        NSLog(@"Expected: %@     |     Got: %@", @" n", line);
+        failed_tests++;
+    }
+    i++;
+    
+    line = [self readDictionaryFile:0 fileName:@"test2.txt"];
+    if([line isEqualToString: @""])
+    {
+        NSLog(@"test_readDictionary (%d): passed!", i);
+        successful_tests++;
+    }
+    else
+    {
+        NSLog(@"test_readDictionary (%d): failed!", i);
+        NSLog(@"Expected: %@     |     Got: %@", @"", line);
+        failed_tests++;
+    }
+    i++;
+    
+    
 }
 
 

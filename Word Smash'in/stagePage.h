@@ -47,6 +47,7 @@ double BUTTON_APPEAR_DURATION;
 - (IBAction)wACTION:(id)sender;
 
 - (void) getWords;
+- (NSString*) readDictionaryFile:(NSInteger)lineNum fileName:(NSString*)fileName;
 - (void) hideButtons;
 - (void) initialize;
 - (void) displayLabel;
