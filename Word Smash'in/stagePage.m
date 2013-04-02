@@ -60,8 +60,7 @@ NSMutableDictionary *lettersDict;
     
     self.strArray = [NSArray arrayWithObjects:@"HELLO",@"WORLD",@"EDWARD",@"BING",@"WENHAO",@"DENNY",nil];
     
-    
-    self.BUTTON_APPEAR_DURATION =1.0;
+    NSLog(@"%g",BUTTON_APPEAR_DURATION);
     
     [self initialize];
     [self hideButtons];
@@ -108,7 +107,7 @@ NSMutableDictionary *lettersDict;
     
     
     //button appear timer
-    self.aTimer = [NSTimer scheduledTimerWithTimeInterval:self.BUTTON_APPEAR_DURATION target:self selector:@selector(onTick) userInfo:nil repeats:YES];
+    self.aTimer = [NSTimer scheduledTimerWithTimeInterval:BUTTON_APPEAR_DURATION target:self selector:@selector(onTick) userInfo:nil repeats:YES];
 }
 
 -(void)timerFired
@@ -190,7 +189,7 @@ NSMutableDictionary *lettersDict;
     self.w9.hidden = true;
     self.w10.hidden = true;
     
-    for (int i=0;i<MAX_LETTERS;i++){
+    for (int i=0;i<MAX_LETTER_ARRAY;i++){
         letter[i] = nil;
     }
     

@@ -12,11 +12,9 @@
 
 @property (nonatomic, retain) IBOutletCollection(UIButton) NSArray *levelButton;
 
-@property (nonatomic, weak) IBOutlet UILabel *label;
-
 @property NSInteger level;
 
-- (IBAction)action:(id)sender;
+- (IBAction)select_action:(id)sender;
 
 @end
 

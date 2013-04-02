@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-const int MAX_LETTERS = 10;
+double BUTTON_APPEAR_DURATION; 
+//const int MAX_LETTERS = 10;
 
 @interface stagePage : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *word1;
@@ -37,7 +37,7 @@ const int MAX_LETTERS = 10;
 @property (weak, nonatomic) IBOutlet UIButton *w8;
 @property (weak, nonatomic) IBOutlet UIButton *w9;
 @property (weak, nonatomic) IBOutlet UIButton *w10;
-@property double BUTTON_APPEAR_DURATION;   // THE TIME THAT THE BUTTON APPEAR, GETTING SMALLER AND SMALLER ALONG WITH THE LEVEL INCREASES
+//@property double BUTTON_APPEAR_DURATION;   // THE TIME THAT THE BUTTON APPEAR, GETTING SMALLER AND SMALLER ALONG WITH THE LEVEL INCREASES
 
 @property (weak, nonatomic) IBOutlet UILabel *clock;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;

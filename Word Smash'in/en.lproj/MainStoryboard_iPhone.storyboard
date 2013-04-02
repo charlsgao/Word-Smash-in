@@ -495,7 +495,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eY0-qn-t1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="563"/>
+            <point key="canvasLocation" x="1087" y="533"/>
         </scene>
         <!--Login Page-->
         <scene sceneID="v7a-aN-sa4">
@@ -807,11 +807,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpc-2w-oBA">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" restorationIdentifier="2" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHz-tp-lO9">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="8y4-ck-vrj"/>
@@ -825,7 +820,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="action:" destination="Vtw-Xg-BaP" eventType="touchUpInside" id="7Z6-tD-7dI"/>
+                                    <action selector="select_action:" destination="Vtw-Xg-BaP" eventType="touchUpInside" id="dPo-QC-LBe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="5" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Haf-4s-sVn">
@@ -841,7 +836,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="action:" destination="Vtw-Xg-BaP" eventType="touchUpInside" id="lXp-dr-70l"/>
+                                    <action selector="select_action:" destination="Vtw-Xg-BaP" eventType="touchUpInside" id="o5k-Sg-Len"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="3" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iiW-l7-QnT">
@@ -857,7 +852,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="action:" destination="Vtw-Xg-BaP" eventType="touchUpInside" id="uZJ-42-0UE"/>
+                                    <action selector="select_action:" destination="Vtw-Xg-BaP" eventType="touchUpInside" id="nIs-y3-nYG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" restorationIdentifier="0" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jh8-oc-CG8">
@@ -873,7 +868,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="action:" destination="Vtw-Xg-BaP" eventType="touchUpInside" id="9iQ-mn-Hrl"/>
+                                    <action selector="select_action:" destination="Vtw-Xg-BaP" eventType="touchUpInside" id="plJ-yL-fSE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" restorationIdentifier="4" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Qz-Ix-I0f">
@@ -889,7 +884,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="action:" destination="Vtw-Xg-BaP" eventType="touchUpInside" id="0NH-3y-SpH"/>
+                                    <action selector="select_action:" destination="Vtw-Xg-BaP" eventType="touchUpInside" id="Ao0-bh-1Ee"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -901,11 +896,9 @@
                             <constraint firstItem="iiW-l7-QnT" firstAttribute="baseline" secondItem="pHz-tp-lO9" secondAttribute="baseline" type="default" id="7qe-nn-aT1"/>
                             <constraint firstItem="iiW-l7-QnT" firstAttribute="leading" secondItem="pHz-tp-lO9" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="AQq-Oy-jdM"/>
                             <constraint firstAttribute="trailing" secondItem="jh8-oc-CG8" secondAttribute="trailing" constant="59" id="BNM-xr-lgl"/>
-                            <constraint firstItem="Qpc-2w-oBA" firstAttribute="leading" secondItem="KwN-fS-EfJ" secondAttribute="leading" constant="141" id="Hf1-CL-Ft2"/>
                             <constraint firstItem="jh8-oc-CG8" firstAttribute="baseline" secondItem="iiW-l7-QnT" secondAttribute="baseline" type="default" id="JgJ-qK-JBf"/>
                             <constraint firstItem="Haf-4s-sVn" firstAttribute="top" secondItem="KwN-fS-EfJ" secondAttribute="top" constant="68" id="Ll9-in-CF3"/>
                             <constraint firstItem="4Y6-8T-m6A" firstAttribute="trailing" secondItem="KwN-fS-EfJ" secondAttribute="trailing" type="default" id="Ruq-zD-oxF"/>
-                            <constraint firstItem="Qpc-2w-oBA" firstAttribute="top" secondItem="KwN-fS-EfJ" secondAttribute="top" constant="158" id="VPw-PP-jeF"/>
                             <constraint firstItem="4Y6-8T-m6A" firstAttribute="top" secondItem="KwN-fS-EfJ" secondAttribute="top" type="default" id="VUF-vx-Dwh"/>
                             <constraint firstItem="pHz-tp-lO9" firstAttribute="baseline" secondItem="5Qz-Ix-I0f" secondAttribute="baseline" type="default" id="cRF-O1-Ndd"/>
                             <constraint firstItem="ypu-dw-j3h" firstAttribute="leading" secondItem="KwN-fS-EfJ" secondAttribute="leading" constant="67" id="iZw-aJ-Y2j"/>
@@ -917,7 +910,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="label" destination="Qpc-2w-oBA" id="aGt-pV-0HG"/>
                         <outletCollection property="levelButton" destination="pHz-tp-lO9" id="70O-MI-GNe"/>
                         <outletCollection property="levelButton" destination="Haf-4s-sVn" id="Ukq-MW-8RW"/>
                         <outletCollection property="levelButton" destination="iiW-l7-QnT" id="IZp-KY-Pfh"/>
@@ -1070,13 +1062,12 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMP-B3-j2J">
-                                <color key="backgroundColor" red="0.79036469427265099" green="1" blue="0.81707550626064929" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.045294966540000002" green="1" blue="0.33075297329999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="nCJ-5F-IFw"/>
                                     <constraint firstAttribute="width" constant="298" id="yCK-fb-KJO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Word1:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mv-7U-qt0">
@@ -1332,7 +1323,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.95647084640125213" blue="0.12441330127997741" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="FIM-sy-2Qc" firstAttribute="leading" secondItem="uts-kQ-uWo" secondAttribute="leading" constant="91" id="1Yd-gf-Rqw"/>
                             <constraint firstItem="YOa-uK-1R6" firstAttribute="bottom" secondItem="zgu-XZ-5Dm" secondAttribute="bottom" type="default" id="1bD-2x-v9o"/>
@@ -1446,127 +1437,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H7F-s5-mml" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1257" y="-76"/>
+            <point key="canvasLocation" x="1483" y="-56"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="UCBViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UCBViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="help:"/>
-                <relationship kind="action" name="login:"/>
-                <relationship kind="action" name="reg:"/>
-                <relationship kind="action" name="score:"/>
-            </relationships>
-        </class>
-        <class className="forgotPasswordPage" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/forgotPasswordPage.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonTapped:"/>
-                <relationship kind="action" name="emailTextEntered:"/>
-                <relationship kind="action" name="helpButtonTapped:"/>
-                <relationship kind="action" name="requestButtonTapped:"/>
-                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="messageText" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="helpPage" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/helpPage.h"/>
-            <relationships>
-                <relationship kind="action" name="back:"/>
-                <relationship kind="outlet" name="instruction" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="homePage" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/homePage.h"/>
-            <relationships>
-                <relationship kind="action" name="help:"/>
-                <relationship kind="action" name="multi:" candidateClass="UIButton"/>
-                <relationship kind="action" name="shop:" candidateClass="UIButton"/>
-                <relationship kind="action" name="single:" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="levelPage" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/levelPage.h"/>
-            <relationships>
-                <relationship kind="action" name="action:"/>
-                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
-                <relationship kind="outletCollection" name="levelButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="loginPage" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/loginPage.h"/>
-            <relationships>
-                <relationship kind="action" name="backButtonTapped:"/>
-                <relationship kind="action" name="forgotPasswordButtonTapped:"/>
-                <relationship kind="action" name="helpButtonTapped:"/>
-                <relationship kind="action" name="loginButtonTapped:"/>
-                <relationship kind="action" name="passwordTextEntered:"/>
-                <relationship kind="action" name="usernameTextEntered:"/>
-                <relationship kind="outlet" name="messageText" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="registerPage" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/registerPage.h"/>
-            <relationships>
-                <relationship kind="action" name="addButtonTapped:"/>
-                <relationship kind="action" name="backButtonTapped:"/>
-                <relationship kind="action" name="emailTextEntered:"/>
-                <relationship kind="action" name="helpButtonTapped:"/>
-                <relationship kind="action" name="passwordTextEntered:"/>
-                <relationship kind="action" name="usernameTextEntered:"/>
-                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="messageText" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="stagePage" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/stagePage.h"/>
-            <relationships>
-                <relationship kind="action" name="buttonAction:"/>
-                <relationship kind="action" name="start"/>
-                <relationship kind="action" name="wACTION:"/>
-                <relationship kind="outlet" name="button1" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="button2" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="button3" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="button4" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="button5" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="button6" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="button7" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="button8" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="button9" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="clock" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="startButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="w1" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="w10" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="w2" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="w3" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="w4" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="w5" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="w6" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="w7" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="w8" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="w9" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="word1" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="word2" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="word3" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="testPage" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/testPage.h"/>
-            <relationships>
-                <relationship kind="action" name="start"/>
-                <relationship kind="outlet" name="progress" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -7,12 +7,15 @@
 //
 
 #import "levelPage.h"
+#import "stagePage.h"
+
 
 @interface levelPage ()
 
 @end
 
 @implementation levelPage
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,7 +28,8 @@
 
 - (void)viewDidLoad
 {
-    [self initialize];
+    self.level = 5;
+    [self init_p];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -36,30 +40,43 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)initialize
+-(void)init_p
 {
     UIButton *b;
     for (b in self.levelButton){
-        if (b.tag != 0)
-            b.hidden = true;
-        else
+        if (b.tag <= self.level)
             b.hidden = false;
+        else
+            b.hidden = true;
     }
 
 }
 
-- (IBAction)action:(id)sender
+- (IBAction)select_action:(id)sender
 {
     UIButton *b = (UIButton*) sender;
-    //[self.label setText:[NSString stringWithFormat:@"%d", b.tag]];
+    double time = 1;
     
+    for (int i=0; i<b.tag; i++)
+        time -= 0.02;
+    
+    NSLog(@"%g" , time);
+    
+    /*
     for (UIButton *next in self.levelButton){
         if (next.tag == b.tag+1){
             next.hidden = false;
             [self.label setText:[NSString stringWithFormat:@"button%d", b.tag]];
         }
     }
+    */
+    BUTTON_APPEAR_DURATION = time ;
+    stagePage *s = [self.storyboard instantiateViewControllerWithIdentifier:@"stagePage"];
+    [self presentViewController:s animated:YES completion:nil];
     
+    
+     
 }
+
 
 @end
