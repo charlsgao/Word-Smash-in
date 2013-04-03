@@ -15,21 +15,25 @@
 
 @implementation stagePage
 
-const bool easy = true;                     // THIS WILL READ THE FILE FROM 1-WORD LENGTH ONLY
+const bool easy = false;                     // THIS WILL READ THE FILE FROM 1-WORD LENGTH ONLY
 
 const int MAX_LETTER_ARRAY = 10;            // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR = 9;            // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
 
 const int STARTING_MINUTES = 0;             // STAGE DURATION
 <<<<<<< HEAD
+<<<<<<< HEAD
 const int STARTING_SECONDS = 10;             // STAGE DURATION
 =======
 const int STARTING_SECONDS = 30;             // STAGE DURATION
 >>>>>>> update
+=======
+const int STARTING_SECONDS = 20;             // STAGE DURATION
+>>>>>>> x
 
 const int INCR_SCORE = 10;                  // score increment step
 
-const int TOTAL_WORDS_IN_FILE = 175;          // MAXIMUM NUMBER OF WORDS IN A DICTIONARY FILE
+const int TOTAL_WORDS_IN_FILE = 20;          // MAXIMUM NUMBER OF WORDS IN A DICTIONARY FILE
 const int RANGE_OF_WORD_LENGTH = 2;         // RANGE OF WORD LENGTH USED
 const int START_OF_WORD_LENGTH = 3;         // START OF WORD LENGTH USED
 
@@ -291,6 +295,8 @@ NSMutableDictionary *lettersDict;
                                                             error:nil];
     NSArray *lines = [readText componentsSeparatedByString:@"\n"];
     
+    //NSLog(@"%@ HAA", lines[lineNum]);
+    
     return [lines[lineNum] lowercaseString];
 }
 
@@ -482,7 +488,8 @@ NSMutableDictionary *lettersDict;
     NSLog(@"MID");
     for (id letterkey in lettersDict)
         NSLog(letterkey);
-     */
+    
+    */
     
     for (id wordkey in dict){ //for each key in the word dictionary
         //NSLog(@"wordkey: %@", wordkey);

@@ -32,12 +32,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Word Smash&apos;in/stagePage.m"
-         timestampString = "386647557.008188"
+         timestampString = "386657946.011015"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1023"
-         endingLineNumber = "1023"
-         landmarkName = "-test_readDictionary"
+         startingLineNumber = "1011"
+         endingLineNumber = "1011"
+         landmarkName = "-test_score3"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
