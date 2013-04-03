@@ -7,4 +7,4 @@ Word-Smash-in
 
 2. Once you download the files, double click on "Word Smash'in.xcodeproj", Xcode will be lunched automatically.
 
-3. Click the file "stagePage.m" on the left hand side, the constant boolean variable "TEST_MODE" by default is set to be "true" which indicates the game is currently running under automatic test mode. Change this variable to ture so that the game is playable.
+3. Click the file "stagePage.m" on the left hand side, the constant boolean variable "TEST_MODE" by default is set to be "true" which indicates the game is currently running under automatic test mode. Change this variable to false so that the game is playable.
