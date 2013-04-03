@@ -15,16 +15,19 @@
 
 @implementation stagePage
 
+const bool easy = true;                     // THIS WILL READ THE FILE FROM 1-WORD LENGTH ONLY
 
 const int MAX_LETTER_ARRAY = 10;            // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR = 9;            // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
 
 const int STARTING_MINUTES = 0;             // STAGE DURATION
-const int STARTING_SECONDS = 7;             // STAGE DURATION
+const int STARTING_SECONDS = 10;             // STAGE DURATION
 
 const int INCR_SCORE = 10;                  // score increment step
 
-const int TOTAL_WORDS_IN_FILE = 5;
+const int TOTAL_WORDS_IN_FILE = 175;          // MAXIMUM NUMBER OF WORDS IN A DICTIONARY FILE
+const int RANGE_OF_WORD_LENGTH = 2;         // RANGE OF WORD LENGTH USED
+const int START_OF_WORD_LENGTH = 3;         // START OF WORD LENGTH USED
 
 int currMinute;
 int currSeconds;
@@ -184,39 +187,6 @@ NSMutableDictionary *lettersDict;
     //button appear timer
     self.aTimer = [NSTimer scheduledTimerWithTimeInterval:BUTTON_APPEAR_DURATION target:self selector:@selector(onTick) userInfo:nil repeats:YES];
 }
-
--(void)timerFired
-{
-    // time's up
-    if (currMinute ==0 && currSeconds == 1){
-        [self.timer invalidate];
-        STOP = true;
-    }
-    
-    // if the game is still playing....
-    else if((currMinute>0 || currSeconds>=0) && currMinute>=0)
-    {
-        if(currSeconds==0)
-        {
-            currMinute-=1;
-            currSeconds=59;
-        }
-        else if(currSeconds>0)
-        {
-            currSeconds-=1;
-        }
-        if(currMinute>-1)
-            [self.clock setText:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
-    }
-    
-    // time's up
-    else
-    {
-        [self.timer invalidate];
-    }
-}
-
-
 //************** generating the words **********************
 /*
 - (void) getWords_old{
@@ -247,21 +217,48 @@ NSMutableDictionary *lettersDict;
     NSString *fileName;
     
     r1 = rand() % TOTAL_WORDS_IN_FILE;
-    l1 = rand() % 3 + 4;
+    l1 = rand() % RANGE_OF_WORD_LENGTH + START_OF_WORD_LENGTH;
     fileName = [NSString stringWithFormat:@"%i.txt", l1];
-    self.word1.text = [self readDictionaryFile:r1 fileName:fileName];
+    word_1 = [self readDictionaryFile:r1 fileName:fileName];
+    self.word1.text = word_1;
     
     r2 = rand() % TOTAL_WORDS_IN_FILE;
-    l2 = rand() % 3 + 4;
+    l2 = rand() % RANGE_OF_WORD_LENGTH + START_OF_WORD_LENGTH;
     fileName = [NSString stringWithFormat:@"%i.txt", l2];
     while (r2==r1){ r2 = rand() % TOTAL_WORDS_IN_FILE;}
-    self.word2.text = [self readDictionaryFile:r2 fileName:fileName];
+    word_2 = [self readDictionaryFile:r2 fileName:fileName];
+    self.word2.text = word_2;
     
     r3 = rand() % TOTAL_WORDS_IN_FILE;
-    l3 = rand() % 3 + 4;
+    l3 = rand() % RANGE_OF_WORD_LENGTH + START_OF_WORD_LENGTH;
     fileName = [NSString stringWithFormat:@"%i.txt", l3];
     while (r3==r1 || r3 == r2){ r3 = rand() % TOTAL_WORDS_IN_FILE;}
-    self.word3.text = [self readDictionaryFile:r3 fileName:fileName];
+    word_3 = [self readDictionaryFile:r3 fileName:fileName];
+    self.word3.text = word_3;
+    
+    /************** CHANGE boolean 'easy' ON TOP FOR EASY GAME ****************/
+    if(easy)
+    {
+        r1 = rand() % 26;
+        l1 = 1;
+        fileName = [NSString stringWithFormat:@"%i.txt", l1];
+        word_1 = [self readDictionaryFile:r1 fileName:fileName];
+        self.word1.text = word_1;
+        
+        r2 = rand() % 26;
+        l2 = 1;
+        fileName = [NSString stringWithFormat:@"%i.txt", l2];
+        while (r2==r1){ r2 = rand() % TOTAL_WORDS_IN_FILE;}
+        word_2 = [self readDictionaryFile:r2 fileName:fileName];
+        self.word2.text = word_2;
+        
+        r3 = rand() % 26;
+        l3 = 1;
+        fileName = [NSString stringWithFormat:@"%i.txt", l3];
+        while (r3==r1 || r3 == r2){ r3 = rand() % TOTAL_WORDS_IN_FILE;}
+        word_3 = [self readDictionaryFile:r3 fileName:fileName];
+        self.word3.text = word_3;
+    }
 }
 
 //************** readDictionaryFile  **********************
@@ -324,22 +321,42 @@ NSMutableDictionary *lettersDict;
      */
 }
 
-
-
-
-//generating a letter to show on the button
-- (void)getLetter{
-    char c;
-    c = (char)((rand()%26) + 65);
-    l = [NSString stringWithFormat:@"%c" , c];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+-(void)timerFired
+{
+    // time's up
+    if (currMinute ==0 && currSeconds == 1){
+        [self.timer invalidate];
+        STOP = true;
+    }
+    
+    // if the game is still playing....
+    else if((currMinute>0 || currSeconds>=0) && currMinute>=0)
+    {
+        if(currSeconds==0)
+        {
+            currMinute-=1;
+            currSeconds=59;
+        }
+        else if(currSeconds>0)
+        {
+            currSeconds-=1;
+        }
+        if(currMinute>-1)
+            [self.clock setText:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
+    }
+    
+    // time's up
+    else
+    {
+        [self.timer invalidate];
+    }
+}
 
 //************** Timer action **********************
 - (void)onTick{
@@ -387,6 +404,13 @@ NSMutableDictionary *lettersDict;
     
 }
 
+//generating a letter to show on the button
+- (void)getLetter{
+    char c;
+    c = (char)((rand()%26) + 65);
+    l = [NSString stringWithFormat:@"%c" , c];
+}
+
 /****************************************************************************************/
 /*                                                                                      */
 /*                                                                                      */
@@ -411,8 +435,8 @@ NSMutableDictionary *lettersDict;
     [self showScore];
     
     // Move to Statistic Page
-    //statisticPage *s = [self.storyboard instantiateViewControllerWithIdentifier:@"statisticPage"];
-    //[self presentViewController:s animated:YES completion:nil];
+    statisticPage *s = [self.storyboard instantiateViewControllerWithIdentifier:@"statisticPage"];
+    [self presentViewController:s animated:YES completion:nil];
     
     [self initialize];
     //word1Dict = nil;
@@ -422,9 +446,16 @@ NSMutableDictionary *lettersDict;
 }
 
 -(void) showScore{
+    /*
     score = [self getScore:word1Dict];
     score += [self getScore:word2Dict];
     score += [self getScore:word3Dict];
+    */
+    score_1 = [self getScore:word1Dict];
+    score_2 = [self getScore:word2Dict];
+    score_3 = [self getScore:word3Dict];
+    
+    score = score_1 + score_2 + score_3;
     
     self.scoreLabel.hidden = false;
     self.scoreLabel.textColor = [UIColor redColor];
@@ -441,14 +472,14 @@ NSMutableDictionary *lettersDict;
     
     Boolean hit = false;
     
-    
+    /*
     NSLog(@"BEGIN");
     for (id wordkey in dict)
         NSLog(wordkey);
     NSLog(@"MID");
     for (id letterkey in lettersDict)
         NSLog(letterkey);
-     
+     */
     
     for (id wordkey in dict){ //for each key in the word dictionary
         //NSLog(@"wordkey: %@", wordkey);
@@ -575,7 +606,7 @@ NSMutableDictionary *lettersDict;
 /*                                                                                      */
 /****************************************************************************************/
 
-const bool TEST_MODE = true;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
+const bool TEST_MODE = false;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
 
 
 int total_tests = 0;

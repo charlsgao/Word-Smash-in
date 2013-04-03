@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 double BUTTON_APPEAR_DURATION;
+
+NSString *word_1;
+NSString *word_2;
+NSString *word_3;
+
+NSInteger score_1;
+NSInteger score_2;
+NSInteger score_3;
+
 NSInteger score;
 //const int MAX_LETTERS = 10;
 

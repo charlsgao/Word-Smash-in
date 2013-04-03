@@ -12,7 +12,7 @@
 
 @property (nonatomic, retain) IBOutletCollection(UIButton) NSArray *levelButton;
 
-@property NSInteger level;
+@property (nonatomic) NSInteger level;
 
 - (IBAction)select_action:(id)sender;
 
