@@ -7,44 +7,40 @@
 //
 
 #import "stagePage.h"
+#import "statisticPage.h"
 
 @interface stagePage ()
 
 @end
 
-
 @implementation stagePage
 
-const bool TEST_MODE = true;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
 
-const int MAX_LETTER_ARRAY = 10;             // SIZE OF THE LETTER ARRAY
-const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
+const int MAX_LETTER_ARRAY = 10;            // SIZE OF THE LETTER ARRAY
+const int MAX_BUTTON_APPEAR = 9;            // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
 
-const int STARTING_MINUTES = 1;              // STAGE DURATION
-const int STARTING_SECONDS = 0;             // STAGE DURATION
-const int INCR_SCORE = 10;                   // score increment step
+const int STARTING_MINUTES = 0;             // STAGE DURATION
+const int STARTING_SECONDS = 7;             // STAGE DURATION
+
+const int INCR_SCORE = 10;                  // score increment step
 
 const int TOTAL_WORDS_IN_FILE = 5;
 
-
-NSString *l;
 int currMinute;
 int currSeconds;
 NSString *STARTING_TIME;
-
-//@"Time : 0:05";
 BOOL STOP = false;
+
+NSString *l;                                // TEMPORARY VARIABLE FOR DATA TRANSFER
 NSString *letter[MAX_LETTER_ARRAY];
-int total_tests = 0;
-int successful_tests = 0;
-int failed_tests = 0;
-NSInteger score = 0;
 
 NSMutableDictionary *word1Dict;
 NSMutableDictionary *word2Dict;
 NSMutableDictionary *word3Dict;
 
 NSMutableDictionary *lettersDict;
+
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -58,16 +54,17 @@ NSMutableDictionary *lettersDict;
 
 - (void)viewDidLoad
 {
-    srand ( time(NULL) );//clear out random numbers
+    srand ( time(NULL) );  //clear out random numbers
     
     self.strArray = [NSArray arrayWithObjects:@"HELLO",@"WORLD",@"EDWARD",@"BING",@"WENHAO",@"DENNY",nil];
     
-    NSLog(@"%g",BUTTON_APPEAR_DURATION);
+    NSLog(@"Button Appear Duration: %g",BUTTON_APPEAR_DURATION);
     
     [self initialize];
-    [self hideButtons];
-    self.scoreLabel.hidden = true;
+    //[self hideButtons];
+    //self.scoreLabel.hidden = true;
     [super viewDidLoad];
+    
     if (TEST_MODE)
         [self testMode];
     
@@ -75,10 +72,86 @@ NSMutableDictionary *lettersDict;
 
 }
 
+/****************************************************************************************/
+/*                                                                                      */
+/*                                                                                      */
+/*                                INITIALIZATION                                        */
+/*                                                                                      */
+/*                                                                                      */
+/****************************************************************************************/
 
-//**************  start the game  ************************
--(IBAction)start{
+- (void) initialize{
     
+    if (STARTING_SECONDS>10)
+        STARTING_TIME = [NSString stringWithFormat:@"Time : %i:%i", STARTING_MINUTES, STARTING_SECONDS];
+    else
+        STARTING_TIME = [NSString stringWithFormat:@"Time : %i:0%i", STARTING_MINUTES, STARTING_SECONDS];
+    
+    l = @"";
+    
+    
+    self.clock.hidden = true;
+    
+    self.word1.text = NULL;
+    self.word2.text = NULL;
+    self.word3.text = NULL;
+    
+    //*************initialize the 10 letter spaces*************
+    /*
+     self.w1.hidden = true;
+     self.w2.hidden = true;
+     self.w3.hidden = true;
+     self.w4.hidden = true;
+     self.w5.hidden = true;
+     self.w6.hidden = true;
+     self.w7.hidden = true;
+     self.w8.hidden = true;
+     self.w9.hidden = true;
+     self.w10.hidden = false;
+     */
+    [self.wCollection setValue:[NSNumber numberWithBool:YES] forKey:@"hidden"];
+    
+    for (int i=0;i<MAX_LETTER_ARRAY;i++){
+        letter[i] = nil;
+    }
+    
+    word1Dict= [NSMutableDictionary dictionary];
+    word2Dict= [NSMutableDictionary dictionary];
+    word3Dict= [NSMutableDictionary dictionary];
+    
+    lettersDict= [NSMutableDictionary dictionary];
+    
+    self.scoreLabel.hidden = true;
+    [self hideButtons];
+}
+
+-(void) hideButtons{
+    /*
+     self.button1.hidden = true;
+     self.button2.hidden = true;
+     self.button3.hidden = true;
+     self.button4.hidden = true;
+     self.button5.hidden = true;
+     self.button6.hidden = true;
+     self.button6.hidden = true;
+     self.button7.hidden = true;
+     self.button8.hidden = true;
+     self.button9.hidden = true;
+     */
+    [self.buttonCollection setValue:[NSNumber numberWithBool:YES] forKey:@"hidden"];
+}
+
+
+/****************************************************************************************/
+/*                                                                                      */
+/*                                                                                      */
+/*                                    START GAME                                        */
+/*                                                                                      */
+/*                                                                                      */
+/****************************************************************************************/
+
+-(IBAction)start{
+    [self initialize];
     [self getWords];
     //self.word1.text = @"Edwarda";
     [self parseWord: self.word1.text dictionary:word1Dict];
@@ -203,84 +276,68 @@ NSMutableDictionary *lettersDict;
     
     NSString *home = NSHomeDirectory();
     
-    //NSLog(currentpath);
     NSString *destinationPath = [NSString stringWithFormat:@"%@/Word Smash'in.app/%@", home, fileName];
-    NSLog(@"\nText File: %@\n", destinationPath);
+    //NSLog(@"\nText File: %@\n", destinationPath);
     
-
+    /*
     if ([filemgr fileExistsAtPath: destinationPath] == YES)
         NSLog (@"File exists");
     else
         NSLog (@"File not found!");
+    */
     
     NSString *readText = [[NSString alloc] initWithContentsOfFile:destinationPath
                                                          encoding:NSUTF8StringEncoding
                                                             error:nil];
     NSArray *lines = [readText componentsSeparatedByString:@"\n"];
     
+    return [lines[lineNum] lowercaseString];
+}
+
+//counting letters occurance in a word
+-(void)parseWord: (NSString*) str dictionary:(NSMutableDictionary*) dict{
+    if (str == NULL){
+        dict = NULL;
+        return;
+    }
+    
+    NSString *key, *value;
+    NSInteger numberOfChar=0;
+    NSInteger i = 0;
+    char c;
+    
+    for (i=0; i<[str length];i++){
+        
+        c = [str characterAtIndex:i];
+        key = [NSString stringWithFormat:@"%c",c];
+        if ([dict objectForKey:key]==nil){        //if c is not one of the key in dictionary
+            //numberOfChar = [self occurrencesOfCharacter: &c nsstring:str];
+            numberOfChar = [[str componentsSeparatedByString:key] count] - 1;
+            value = [NSString stringWithFormat:@"%d", numberOfChar];
+            [dict setObject:value forKey: key];
+        }
+    }
     /*
-    for (int i = 0; i < lines.count; i++) {
-        NSLog(@"Line %d: %@", i, lines[i]);
-    }
+     for (id key in dict) {
+     NSLog(@"key: %@, value: %@", key, [dict objectForKey:key]);
+     }
      */
-    return lines[lineNum];
 }
 
-//************** initialize all variable **********************
-- (void) initialize{
-    
-    if (STARTING_SECONDS>10)
-        STARTING_TIME = [NSString stringWithFormat:@"Time : %i:%i", STARTING_MINUTES, STARTING_SECONDS];
-    else
-        STARTING_TIME = [NSString stringWithFormat:@"Time : %i:0%i", STARTING_MINUTES, STARTING_SECONDS];
-    
-    l = @"";
-    
-    
-    self.clock.hidden = true;
-    
-    self.word1.text = NULL;
-    self.word2.text = NULL;
-    self.word3.text = NULL;
-    
-    //*************initialize the 10 letter spaces*************
-    self.w1.hidden = true;
-    self.w2.hidden = true;
-    self.w3.hidden = true;
-    self.w4.hidden = true;
-    self.w5.hidden = true;
-    self.w6.hidden = true;
-    self.w7.hidden = true;
-    self.w8.hidden = true;
-    self.w9.hidden = true;
-    self.w10.hidden = true;
-    
-    for (int i=0;i<MAX_LETTER_ARRAY;i++){
-        letter[i] = nil;
-    }
-    
-    word1Dict= [NSMutableDictionary dictionary];
-    word2Dict= [NSMutableDictionary dictionary];
-    word3Dict= [NSMutableDictionary dictionary];
-    
-    lettersDict= [NSMutableDictionary dictionary];
-    
-    //self.scoreLabel.hidden = true;
-    
+
+
+
+//generating a letter to show on the button
+- (void)getLetter{
+    char c;
+    c = (char)((rand()%26) + 65);
+    l = [NSString stringWithFormat:@"%c" , c];
 }
 
--(void) hideButtons{
-    
-    self.button1.hidden = true;
-    self.button2.hidden = true;
-    self.button3.hidden = true;
-    self.button4.hidden = true;
-    self.button5.hidden = true;
-    self.button6.hidden = true;
-    self.button6.hidden = true;
-    self.button7.hidden = true;
-    self.button8.hidden = true;
-    self.button9.hidden = true;
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 
@@ -301,7 +358,43 @@ NSMutableDictionary *lettersDict;
     }
 }
 
-//When the game finishes
+//generating a button to appear
+- (void) generateButton{
+    //UIButton *b;
+    //int buttonToAppear = rand()%9 + 1;
+    
+    /*
+     switch (buttonToAppear) {
+     case 1: b = self.button1; break;
+     case 2: b = self.button2; break;
+     case 3: b = self.button3; break;
+     case 4: b = self.button4; break;
+     case 5: b = self.button5; break;
+     case 6: b = self.button6; break;
+     case 7: b = self.button7; break;
+     case 8: b = self.button8; break;
+     case 9: b = self.button9; break;
+     default: break;
+     }
+     */
+    int buttonToAppear = rand()%9;
+    [self.buttonCollection[buttonToAppear] setValue:[NSNumber numberWithBool:NO] forKey:@"hidden"];
+    
+    [self getLetter];
+    [self.buttonCollection[buttonToAppear] setTitle:l forState:UIControlStateNormal];
+    //b.hidden = false;
+    //[b setTitle:l forState:UIControlStateNormal];
+    
+}
+
+/****************************************************************************************/
+/*                                                                                      */
+/*                                                                                      */
+/*                                    END GAME                                          */
+/*                                                                                      */
+/*                                                                                      */
+/****************************************************************************************/
+
 -(void) endOfGame{
     [self hideButtons];
     self.clock.hidden = true;
@@ -317,11 +410,15 @@ NSMutableDictionary *lettersDict;
     
     [self showScore];
     
+    // Move to Statistic Page
+    //statisticPage *s = [self.storyboard instantiateViewControllerWithIdentifier:@"statisticPage"];
+    //[self presentViewController:s animated:YES completion:nil];
+    
     [self initialize];
-    word1Dict = nil;
-    word2Dict = nil;
-    word3Dict = nil;
-    lettersDict = nil;
+    //word1Dict = nil;
+    //word2Dict = nil;
+    //word3Dict = nil;
+    //lettersDict = nil;
 }
 
 -(void) showScore{
@@ -333,7 +430,7 @@ NSMutableDictionary *lettersDict;
     self.scoreLabel.textColor = [UIColor redColor];
     [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %i", score]];
     
-
+    NSLog(@"Score : %i", score);
 }
 
 // calculate the score
@@ -344,9 +441,19 @@ NSMutableDictionary *lettersDict;
     
     Boolean hit = false;
     
+    
+    NSLog(@"BEGIN");
+    for (id wordkey in dict)
+        NSLog(wordkey);
+    NSLog(@"MID");
+    for (id letterkey in lettersDict)
+        NSLog(letterkey);
+     
+    
     for (id wordkey in dict){ //for each key in the word dictionary
         //NSLog(@"wordkey: %@", wordkey);
         for (id letterkey in lettersDict){ //compare with each key in letter dictionary
+            
             if ([wordkey isEqualToString:letterkey] && ([[lettersDict objectForKey:letterkey] intValue] >= [[dict objectForKey:wordkey] intValue])){
                 hit = true;
             }
@@ -382,73 +489,13 @@ NSMutableDictionary *lettersDict;
      */
 }
 
-//counting letters occurance in a word
--(void)parseWord: (NSString*) str dictionary:(NSMutableDictionary*) dict{
-    if (str == NULL){
-        dict = NULL;
-        return;
-    }
-    
-    NSString *key, *value;
-    NSInteger numberOfChar=0;
-    NSInteger i = 0;
-    char c;
-    
-    for (i=0; i<[str length];i++){
-        
-        c = [str characterAtIndex:i];
-        key = [NSString stringWithFormat:@"%c",c];
-        if ([dict objectForKey:key]==nil){        //if c is not one of the key in dictionary
-            //numberOfChar = [self occurrencesOfCharacter: &c nsstring:str];
-            numberOfChar = [[str componentsSeparatedByString:key] count] - 1;
-            value = [NSString stringWithFormat:@"%d", numberOfChar];
-            [dict setObject:value forKey: key];
-        }
-    }
-   /*
-   for (id key in dict) {
-        NSLog(@"key: %@, value: %@", key, [dict objectForKey:key]);
-    }
-    */
-}
-
-
-//generating a button to appear
-- (void) generateButton{
-    UIButton *b;
-    int buttonToAppear = rand()%9 + 1;
-    switch (buttonToAppear) {
-        case 1: b = self.button1; break;
-        case 2: b = self.button2; break;
-        case 3: b = self.button3; break;
-        case 4: b = self.button4; break;
-        case 5: b = self.button5; break;
-        case 6: b = self.button6; break;
-        case 7: b = self.button7; break;
-        case 8: b = self.button8; break;
-        case 9: b = self.button9; break;
-        default: break;
-    }
-    
-    [self getLetter];
-    
-    b.hidden = false;
-    [b setTitle:l forState:UIControlStateNormal];
-    
-}
-
-//generating a letter to show on the button
-- (void)getLetter{
-    char c;
-    c = (char)((rand()%26) + 65);
-    l = [NSString stringWithFormat:@"%c" , c];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+/****************************************************************************************/
+/*                                                                                      */
+/*                                                                                      */
+/*                                BUTTON ACTIONS                                        */
+/*                                                                                      */
+/*                                                                                      */
+/****************************************************************************************/
 
 //action for tabbing the 9-grid buttons
 - (IBAction)buttonAction:(id)sender{
@@ -487,9 +534,6 @@ NSMutableDictionary *lettersDict;
         letter[9] = nil;
 }
 
-
-
-
 - (void) displayLabel{
     
     int position=-1;
@@ -498,7 +542,7 @@ NSMutableDictionary *lettersDict;
     for(int i=0; i<MAX_LETTER_ARRAY; i++){
         if (letter[i] == nil){
             position = i+1;
-            letter[i] = l;
+            letter[i] = [l lowercaseString];
             break;
         }
     }
@@ -523,9 +567,21 @@ NSMutableDictionary *lettersDict;
 
 
 
-/************************************************************
-                        TEST CASES
- ***********************************************************/
+/****************************************************************************************/
+/*                                                                                      */
+/*                                                                                      */
+/*                                    TEST CASES                                        */
+/*                                                                                      */
+/*                                                                                      */
+/****************************************************************************************/
+
+const bool TEST_MODE = true;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
+
+
+int total_tests = 0;
+int successful_tests = 0;
+int failed_tests = 0;
+
 
 -(void) testMode
 {

@@ -7,40 +7,43 @@
 //
 
 #import <UIKit/UIKit.h>
-double BUTTON_APPEAR_DURATION; 
+double BUTTON_APPEAR_DURATION;
+NSInteger score;
 //const int MAX_LETTERS = 10;
 
 @interface stagePage : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *word1;
-@property (weak, nonatomic) IBOutlet UILabel *word2;
-@property (weak, nonatomic) IBOutlet UILabel *word3;
+@property (nonatomic) IBOutlet UILabel *word1;
+@property (nonatomic) IBOutlet UILabel *word2;
+@property (nonatomic) IBOutlet UILabel *word3;
 
-@property (weak, nonatomic) IBOutlet UIButton *button1;
-@property (weak, nonatomic) IBOutlet UIButton *button2;
-@property (weak, nonatomic) IBOutlet UIButton *button3;
-@property (weak, nonatomic) IBOutlet UIButton *button4;
-@property (weak, nonatomic) IBOutlet UIButton *button5;
-@property (weak, nonatomic) IBOutlet UIButton *button6;
-@property (weak, nonatomic) IBOutlet UIButton *button7;
-@property (weak, nonatomic) IBOutlet UIButton *button8;
-@property (weak, nonatomic) IBOutlet UIButton *button9;
+@property (nonatomic) IBOutlet UIButton *button1;
+@property (nonatomic) IBOutlet UIButton *button2;
+@property (nonatomic) IBOutlet UIButton *button3;
+@property (nonatomic) IBOutlet UIButton *button4;
+@property (nonatomic) IBOutlet UIButton *button5;
+@property (nonatomic) IBOutlet UIButton *button6;
+@property (nonatomic) IBOutlet UIButton *button7;
+@property (nonatomic) IBOutlet UIButton *button8;
+@property (nonatomic) IBOutlet UIButton *button9;
+@property (nonatomic) IBOutletCollection(UIButton) NSArray *buttonCollection;
 
-@property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (nonatomic) IBOutlet UIButton *startButton;
 
-@property (weak, nonatomic) IBOutlet UIButton *w1;
-@property (weak, nonatomic) IBOutlet UIButton *w2;
-@property (weak, nonatomic) IBOutlet UIButton *w3;
-@property (weak, nonatomic) IBOutlet UIButton *w4;
-@property (weak, nonatomic) IBOutlet UIButton *w5;
-@property (weak, nonatomic) IBOutlet UIButton *w6;
-@property (weak, nonatomic) IBOutlet UIButton *w7;
-@property (weak, nonatomic) IBOutlet UIButton *w8;
-@property (weak, nonatomic) IBOutlet UIButton *w9;
-@property (weak, nonatomic) IBOutlet UIButton *w10;
+@property (nonatomic) IBOutlet UIButton *w1;
+@property (nonatomic) IBOutlet UIButton *w2;
+@property (nonatomic) IBOutlet UIButton *w3;
+@property (nonatomic) IBOutlet UIButton *w4;
+@property (nonatomic) IBOutlet UIButton *w5;
+@property (nonatomic) IBOutlet UIButton *w6;
+@property (nonatomic) IBOutlet UIButton *w7;
+@property (nonatomic) IBOutlet UIButton *w8;
+@property (nonatomic) IBOutlet UIButton *w9;
+@property (nonatomic) IBOutlet UIButton *w10;
+@property (nonatomic, retain) IBOutletCollection(UIButton) NSArray *wCollection;
 //@property double BUTTON_APPEAR_DURATION;   // THE TIME THAT THE BUTTON APPEAR, GETTING SMALLER AND SMALLER ALONG WITH THE LEVEL INCREASES
 
-@property (weak, nonatomic) IBOutlet UILabel *clock;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (nonatomic) IBOutlet UILabel *clock;
+@property (nonatomic) IBOutlet UILabel *scoreLabel;
 
 - (IBAction)start;
 - (IBAction)buttonAction:(id)sender;
@@ -56,9 +59,9 @@ double BUTTON_APPEAR_DURATION;
 - (void) timerFired;
 - (void) testMode;
 
-@property (strong, nonatomic) NSArray *strArray;
-@property (strong, nonatomic) NSTimer *aTimer;              //stage timer
-@property (strong, nonatomic) NSTimer *timer;               //button appear duration timer
+@property (nonatomic) NSArray *strArray;
+@property (nonatomic) NSTimer *aTimer;              //stage timer
+@property (nonatomic) NSTimer *timer;               //button appear duration timer
 
 //test cases
 -(void) test_generateButton;  // test case to test the generateButton function is working properly

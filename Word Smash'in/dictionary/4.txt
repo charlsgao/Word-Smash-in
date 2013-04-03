@@ -1,9 +1,6 @@
-abbe
-abbr
-abed
-abet
-able
-ably
-abut
-acct
-aced
+a
+b
+c
+d
+e
+f

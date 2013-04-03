@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3012" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="B4i-0n-jkH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3012" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Vtw-Xg-BaP">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -935,7 +935,7 @@
                                     <constraint firstAttribute="height" constant="73" id="peg-lx-D8t"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal">
+                                <state key="normal" title="b1">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -951,7 +951,7 @@
                                     <constraint firstAttribute="width" constant="73" id="6E5-vT-fkd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal">
+                                <state key="normal" title="b2">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -967,7 +967,7 @@
                                     <constraint firstAttribute="width" constant="71" id="xkm-tP-lZa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal">
+                                <state key="normal" title="b3">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <state key="highlighted">
@@ -982,7 +982,7 @@
                                     <constraint firstAttribute="height" constant="73" id="jzf-rc-3rf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal">
+                                <state key="normal" title="b4">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -995,7 +995,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qrf-ss-236">
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal">
+                                <state key="normal" title="b5">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1008,7 +1008,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mqc-Az-T7J">
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal">
+                                <state key="normal" title="b6">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1024,7 +1024,7 @@
                                     <constraint firstAttribute="height" constant="73" id="B7o-Wp-o0e"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal">
+                                <state key="normal" title="b7">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1037,7 +1037,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OrB-5X-hB3">
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal">
+                                <state key="normal" title="b8">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1050,7 +1050,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEJ-pC-Oie">
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal">
+                                <state key="normal" title="b9">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1088,7 +1088,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ssdfdf" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXf-yc-WMs">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="label_1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXf-yc-WMs">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="93" id="cno-S1-G6C"/>
                                 </constraints>
@@ -1096,7 +1096,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ewrerwe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxH-XF-nC2">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="label_2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxH-XF-nC2">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="99" id="h48-CT-EtL"/>
                                 </constraints>
@@ -1104,7 +1104,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="dfasdfasdf" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EL1-q8-szv">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="label_3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EL1-q8-szv">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -1139,7 +1139,7 @@
                                     <constraint firstAttribute="height" constant="29" id="woe-aM-a8F"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
+                                <state key="normal" title="w1">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1157,7 +1157,7 @@
                                     <constraint firstAttribute="width" constant="30" id="eI8-0Q-yVl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
+                                <state key="normal" title="w2">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1175,7 +1175,7 @@
                                     <constraint firstAttribute="width" constant="30" id="au0-lR-7qQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
+                                <state key="normal" title="w3">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1193,7 +1193,7 @@
                                     <constraint firstAttribute="width" constant="30" id="T82-lt-7wL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
+                                <state key="normal" title="w4">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1211,7 +1211,7 @@
                                     <constraint firstAttribute="width" constant="30" id="trA-dv-DPl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
+                                <state key="normal" title="w5">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1229,7 +1229,7 @@
                                     <constraint firstAttribute="width" constant="30" id="830-0W-NsT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
+                                <state key="normal" title="w6">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1247,7 +1247,7 @@
                                     <constraint firstAttribute="width" constant="30" id="Vbf-xN-AD1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
+                                <state key="normal" title="w7">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1265,7 +1265,7 @@
                                     <constraint firstAttribute="width" constant="30" id="81M-Au-6fe"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
+                                <state key="normal" title="w8">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1283,7 +1283,7 @@
                                     <constraint firstAttribute="width" constant="30" id="zXL-fg-HhW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
+                                <state key="normal" title="w9">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1301,7 +1301,7 @@
                                     <constraint firstAttribute="width" constant="30" id="fRJ-Wi-ZUS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
+                                <state key="normal" title="w10">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1433,6 +1433,25 @@
                         <outlet property="word1" destination="uXf-yc-WMs" id="gTP-O3-EVK"/>
                         <outlet property="word2" destination="DxH-XF-nC2" id="X7P-la-HmB"/>
                         <outlet property="word3" destination="EL1-q8-szv" id="Byz-WX-SaB"/>
+                        <outletCollection property="buttonCollection" destination="57F-7M-sZm" id="Wlf-Gz-2RF"/>
+                        <outletCollection property="buttonCollection" destination="Mqc-Az-T7J" id="O0d-ND-d7y"/>
+                        <outletCollection property="buttonCollection" destination="aEJ-pC-Oie" id="Cq2-VN-ZUb"/>
+                        <outletCollection property="buttonCollection" destination="OrB-5X-hB3" id="nLZ-no-XCY"/>
+                        <outletCollection property="buttonCollection" destination="Qrf-ss-236" id="c2o-qw-ay2"/>
+                        <outletCollection property="buttonCollection" destination="CRs-oF-hqq" id="Be9-7E-y1h"/>
+                        <outletCollection property="buttonCollection" destination="y6d-FJ-9cm" id="IgK-je-1w8"/>
+                        <outletCollection property="buttonCollection" destination="NyM-Kr-BsV" id="D22-Vb-Js9"/>
+                        <outletCollection property="buttonCollection" destination="XZE-zL-ROF" id="hhg-hw-K4t"/>
+                        <outletCollection property="wCollection" destination="Kcs-9z-td8" id="BjZ-qo-JP6"/>
+                        <outletCollection property="wCollection" destination="zgu-XZ-5Dm" id="up7-vd-nby"/>
+                        <outletCollection property="wCollection" destination="YOa-uK-1R6" id="BMx-Ql-c34"/>
+                        <outletCollection property="wCollection" destination="FIM-sy-2Qc" id="Q3o-Sz-kP9"/>
+                        <outletCollection property="wCollection" destination="SZV-tj-1qr" id="vQw-gD-70n"/>
+                        <outletCollection property="wCollection" destination="Ndj-83-NeF" id="h41-m0-g1e"/>
+                        <outletCollection property="wCollection" destination="Ez8-Td-aqk" id="N1p-WW-Udc"/>
+                        <outletCollection property="wCollection" destination="HBP-Jq-GHC" id="zIf-Kh-fgS"/>
+                        <outletCollection property="wCollection" destination="w81-FF-3p5" id="tnB-Mk-WmQ"/>
+                        <outletCollection property="wCollection" destination="wIX-Sv-iuc" id="lMr-z5-jUP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H7F-s5-mml" userLabel="First Responder" sceneMemberID="firstResponder"/>
