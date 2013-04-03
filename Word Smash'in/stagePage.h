@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+<<<<<<< HEAD
 double BUTTON_APPEAR_DURATION;
 
 NSString *word_1;
@@ -17,6 +18,9 @@ NSInteger score_1;
 NSInteger score_2;
 NSInteger score_3;
 
+=======
+double BUTTON_APPEAR_DURATION;  // THE TIME THAT THE BUTTON APPEAR, GETTING SMALLER AND SMALLER ALONG WITH THE LEVEL INCREASES
+>>>>>>> update
 NSInteger score;
 //const int MAX_LETTERS = 10;
 
@@ -49,7 +53,6 @@ NSInteger score;
 @property (nonatomic) IBOutlet UIButton *w9;
 @property (nonatomic) IBOutlet UIButton *w10;
 @property (nonatomic, retain) IBOutletCollection(UIButton) NSArray *wCollection;
-//@property double BUTTON_APPEAR_DURATION;   // THE TIME THAT THE BUTTON APPEAR, GETTING SMALLER AND SMALLER ALONG WITH THE LEVEL INCREASES
 
 @property (nonatomic) IBOutlet UILabel *clock;
 @property (nonatomic) IBOutlet UILabel *scoreLabel;
