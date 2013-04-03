@@ -33,7 +33,6 @@
 		A260F157170A9862005E86EC /* 25.txt in Resources */ = {isa = PBXBuildFile; fileRef = A260F13C170A9862005E86EC /* 25.txt */; };
 		A260F158170A9862005E86EC /* 28.txt in Resources */ = {isa = PBXBuildFile; fileRef = A260F13D170A9862005E86EC /* 28.txt */; };
 		A260F159170A9862005E86EC /* 3.txt in Resources */ = {isa = PBXBuildFile; fileRef = A260F13E170A9862005E86EC /* 3.txt */; };
-		A260F15A170A9862005E86EC /* 4 copy.txt in Resources */ = {isa = PBXBuildFile; fileRef = A260F13F170A9862005E86EC /* 4 copy.txt */; };
 		A260F15B170A9862005E86EC /* 4.txt in Resources */ = {isa = PBXBuildFile; fileRef = A260F140170A9862005E86EC /* 4.txt */; };
 		A260F15C170A9862005E86EC /* 5.txt in Resources */ = {isa = PBXBuildFile; fileRef = A260F141170A9862005E86EC /* 5.txt */; };
 		A260F15D170A9862005E86EC /* 6.txt in Resources */ = {isa = PBXBuildFile; fileRef = A260F142170A9862005E86EC /* 6.txt */; };
@@ -94,7 +93,6 @@
 		A260F13C170A9862005E86EC /* 25.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 25.txt; sourceTree = "<group>"; };
 		A260F13D170A9862005E86EC /* 28.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 28.txt; sourceTree = "<group>"; };
 		A260F13E170A9862005E86EC /* 3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 3.txt; sourceTree = "<group>"; };
-		A260F13F170A9862005E86EC /* 4 copy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "4 copy.txt"; sourceTree = "<group>"; };
 		A260F140170A9862005E86EC /* 4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 4.txt; sourceTree = "<group>"; };
 		A260F141170A9862005E86EC /* 5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5.txt; sourceTree = "<group>"; };
 		A260F142170A9862005E86EC /* 6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 6.txt; sourceTree = "<group>"; };
@@ -168,7 +166,6 @@
 				A260F13C170A9862005E86EC /* 25.txt */,
 				A260F13D170A9862005E86EC /* 28.txt */,
 				A260F13E170A9862005E86EC /* 3.txt */,
-				A260F13F170A9862005E86EC /* 4 copy.txt */,
 				A260F140170A9862005E86EC /* 4.txt */,
 				A260F141170A9862005E86EC /* 5.txt */,
 				A260F142170A9862005E86EC /* 6.txt */,
@@ -334,7 +331,6 @@
 				A260F157170A9862005E86EC /* 25.txt in Resources */,
 				A260F158170A9862005E86EC /* 28.txt in Resources */,
 				A260F159170A9862005E86EC /* 3.txt in Resources */,
-				A260F15A170A9862005E86EC /* 4 copy.txt in Resources */,
 				A260F15B170A9862005E86EC /* 4.txt in Resources */,
 				A260F15C170A9862005E86EC /* 5.txt in Resources */,
 				A260F15D170A9862005E86EC /* 6.txt in Resources */,
