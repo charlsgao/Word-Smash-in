@@ -21,7 +21,7 @@ const int MAX_LETTER_ARRAY = 10;            // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR = 9;            // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
 
 const int STARTING_MINUTES = 0;             // STAGE DURATION
-const int STARTING_SECONDS = 20;             // STAGE DURATION
+const int STARTING_SECONDS = 10;             // STAGE DURATION
 
 const int INCR_SCORE = 10;                  // score increment step
 
@@ -85,7 +85,7 @@ NSMutableDictionary *lettersDict;
 
 - (void) initialize{
     
-    if (STARTING_SECONDS>10)
+    if (STARTING_SECONDS>=10)
         STARTING_TIME = [NSString stringWithFormat:@"Time : %i:%i", STARTING_MINUTES, STARTING_SECONDS];
     else
         STARTING_TIME = [NSString stringWithFormat:@"Time : %i:0%i", STARTING_MINUTES, STARTING_SECONDS];
@@ -123,6 +123,8 @@ NSMutableDictionary *lettersDict;
     word3Dict= [NSMutableDictionary dictionary];
     
     lettersDict= [NSMutableDictionary dictionary];
+    
+    self.scoreLabel.hidden = true;
     
     [self hideButtons];
 }
