@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-<<<<<<< HEAD
+
 double BUTTON_APPEAR_DURATION;
 
 NSString *word_1;
@@ -18,9 +18,8 @@ NSInteger score_1;
 NSInteger score_2;
 NSInteger score_3;
 
-=======
 double BUTTON_APPEAR_DURATION;  // THE TIME THAT THE BUTTON APPEAR, GETTING SMALLER AND SMALLER ALONG WITH THE LEVEL INCREASES
->>>>>>> update
+
 NSInteger score;
 //const int MAX_LETTERS = 10;
 
@@ -79,6 +78,6 @@ NSInteger score;
 -(void) test_generateButton;  // test case to test the generateButton function is working properly
 -(void) test_hideButtons;     // test case to test the hideButton funciton is working properly
 -(void) test_displayLabel;    // test case to test the tabbed letters display correctly
--(void) test_tabButton1;      // test tabbing button1, first letter in letter array will appear
+//-(void) test_tabButton1;      // test tabbing button1, first letter in letter array will appear
 
 @end

@@ -21,15 +21,7 @@ const int MAX_LETTER_ARRAY = 10;            // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR = 9;            // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
 
 const int STARTING_MINUTES = 0;             // STAGE DURATION
-<<<<<<< HEAD
-<<<<<<< HEAD
-const int STARTING_SECONDS = 10;             // STAGE DURATION
-=======
-const int STARTING_SECONDS = 30;             // STAGE DURATION
->>>>>>> update
-=======
 const int STARTING_SECONDS = 20;             // STAGE DURATION
->>>>>>> x
 
 const int INCR_SCORE = 10;                  // score increment step
 
