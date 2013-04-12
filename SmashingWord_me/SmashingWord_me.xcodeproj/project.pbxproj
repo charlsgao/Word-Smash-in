@@ -72,7 +72,7 @@
 		2B82DABD16F92A7400DE8649 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B82DABC16F92A7400DE8649 /* UIKit.framework */; };
 		2B82DABF16F92A7400DE8649 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B82DABE16F92A7400DE8649 /* Foundation.framework */; };
 		2B82DAC116F92A7400DE8649 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B82DAC016F92A7400DE8649 /* CoreGraphics.framework */; };
-		2B82DAC316F92A7400DE8649 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B82DAC216F92A7400DE8649 /* GameKit.framework */; };
+		2B82DAC316F92A7400DE8649 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B82DAC216F92A7400DE8649 /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2B82DAC716F92A7400DE8649 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B82DAC616F92A7400DE8649 /* Default.png */; };
 		2B82DAC916F92A7400DE8649 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B82DAC816F92A7400DE8649 /* Default-Landscape~ipad.png */; };
 		2B82DACB16F92A7400DE8649 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B82DACA16F92A7400DE8649 /* fps_images.png */; };
@@ -221,7 +221,9 @@
 		2B82EDD0170A87460044DB5A /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B82EDCF170A87460044DB5A /* background.png */; };
 		2B865E6017126D8000DC791B /* globalVar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B865E5F17126D8000DC791B /* globalVar.m */; };
 		2B865E651712BB9900DC791B /* LevelSelectScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B865E641712BB9900DC791B /* LevelSelectScene.m */; };
-		2B865E671712BBF700DC791B /* ccb.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2B865E661712BBF700DC791B /* ccb.zip */; };
+		2B865E6A17137DAF00DC791B /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B865E6917137DAF00DC791B /* GCHelper.m */; };
+		2B865E721713D98700DC791B /* ccb.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2B865E711713D98700DC791B /* ccb.zip */; };
+		2B865E731713DA1600DC791B /* MultiPlayerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B865E6F1713C97200DC791B /* MultiPlayerScene.m */; };
 		2B89927716FC211700FE90E8 /* SinglePlayerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B89927616FC211700FE90E8 /* SinglePlayerScene.m */; };
 /* End PBXBuildFile section */
 
@@ -606,7 +608,11 @@
 		2B865E5F17126D8000DC791B /* globalVar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = globalVar.m; sourceTree = "<group>"; };
 		2B865E631712BB9900DC791B /* LevelSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectScene.h; sourceTree = "<group>"; };
 		2B865E641712BB9900DC791B /* LevelSelectScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectScene.m; sourceTree = "<group>"; };
-		2B865E661712BBF700DC791B /* ccb.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ccb.zip; sourceTree = "<group>"; };
+		2B865E6817137DAE00DC791B /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
+		2B865E6917137DAF00DC791B /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
+		2B865E6E1713C97200DC791B /* MultiPlayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiPlayerScene.h; sourceTree = "<group>"; };
+		2B865E6F1713C97200DC791B /* MultiPlayerScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiPlayerScene.m; sourceTree = "<group>"; };
+		2B865E711713D98700DC791B /* ccb.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ccb.zip; sourceTree = "<group>"; };
 		2B89927516FC211700FE90E8 /* SinglePlayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SinglePlayerScene.h; path = ../SinglePlayerScene.h; sourceTree = "<group>"; };
 		2B89927616FC211700FE90E8 /* SinglePlayerScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SinglePlayerScene.m; path = ../SinglePlayerScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -704,14 +710,18 @@
 			children = (
 				2B82DC4A16F92ADD00DE8649 /* cocos2d-iphone */,
 				2B829BAD170D30B300EEFEC3 /* dictionary */,
-				2B82DC3C16F92A7600DE8649 /* AppDelegate.h */,
 				2B865E5E17126D8000DC791B /* globalVar.h */,
 				2B865E5F17126D8000DC791B /* globalVar.m */,
+				2B82DC3C16F92A7600DE8649 /* AppDelegate.h */,
 				2B82DC3D16F92A7600DE8649 /* AppDelegate.m */,
 				2B82DC4216F92A7600DE8649 /* IntroLayer.h */,
 				2B82DC4316F92A7600DE8649 /* IntroLayer.m */,
+				2B865E6817137DAE00DC791B /* GCHelper.h */,
+				2B865E6917137DAF00DC791B /* GCHelper.m */,
 				2B82DCAD16F96FE700DE8649 /* GameMenuScene.h */,
 				2B82DCAE16F96FE700DE8649 /* GameMenuScene.m */,
+				2B865E6E1713C97200DC791B /* MultiPlayerScene.h */,
+				2B865E6F1713C97200DC791B /* MultiPlayerScene.m */,
 				2B865E631712BB9900DC791B /* LevelSelectScene.h */,
 				2B865E641712BB9900DC791B /* LevelSelectScene.m */,
 				2B89927516FC211700FE90E8 /* SinglePlayerScene.h */,
@@ -730,7 +740,7 @@
 		2B82DAC516F92A7400DE8649 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2B865E661712BBF700DC791B /* ccb.zip */,
+				2B865E711713D98700DC791B /* ccb.zip */,
 				2B821006170BF1D40000A1DC /* start.png */,
 				2B820FD2170BE52C0000A1DC /* A.png */,
 				2B820FD3170BE52C0000A1DC /* B.png */,
@@ -1366,7 +1376,7 @@
 				2B829BE3170D30B300EEFEC3 /* 9.txt in Resources */,
 				2B829BE4170D30B300EEFEC3 /* test.txt in Resources */,
 				2B829BE5170D30B300EEFEC3 /* test2.txt in Resources */,
-				2B865E671712BBF700DC791B /* ccb.zip in Resources */,
+				2B865E721713D98700DC791B /* ccb.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1377,6 +1387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B865E731713DA1600DC791B /* MultiPlayerScene.m in Sources */,
 				2B82DAE316F92A7400DE8649 /* CCAction.m in Sources */,
 				2B82DAE616F92A7400DE8649 /* CCActionCamera.m in Sources */,
 				2B82DAE916F92A7400DE8649 /* CCActionCatmullRom.m in Sources */,
@@ -1511,6 +1522,7 @@
 				2B829BAA170D235200EEFEC3 /* ScoreScene.m in Sources */,
 				2B865E6017126D8000DC791B /* globalVar.m in Sources */,
 				2B865E651712BB9900DC791B /* LevelSelectScene.m in Sources */,
+				2B865E6A17137DAF00DC791B /* GCHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
