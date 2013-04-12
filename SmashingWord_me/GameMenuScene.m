@@ -19,4 +19,10 @@
     CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"LevelSelect.ccbi"];
     [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
 }
+
+-(void)MultiPlayerButtonPress:(id)sender{
+    [[GCHelper sharedInstance] authenticateLocalUser];
+    CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"MultiPlayer.ccbi"];
+    [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
+}
 @end
