@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "IntroLayer.h"
 #import "CCBReader.h"
+#import "GCHelper.h"
 
 @implementation AppController
 
