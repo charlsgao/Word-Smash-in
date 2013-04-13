@@ -961,7 +961,7 @@ NSMutableDictionary *lettersDict;
 
 -(void)sendWord1:(NSString*) words{
     MessageWord1 message;
-    message.word = words;
+    message.word = [NSString stringWithString:words];
     message.message.messageType = kMessageTypeWord1;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord1)];
     [self sendData:data];
@@ -969,7 +969,7 @@ NSMutableDictionary *lettersDict;
 
 -(void)sendWord2:(NSString*) words{
     MessageWord2 message;
-    message.word = words;
+    message.word = [NSString stringWithString:words];
     message.message.messageType = kMessageTypeWord2;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord2)];
     [self sendData:data];
@@ -977,7 +977,7 @@ NSMutableDictionary *lettersDict;
 
 -(void)sendWord3:(NSString*) words{
     MessageWord3 message;
-    message.word = words;
+    message.word = [NSString stringWithString:words];
     message.message.messageType = kMessageTypeWord3;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord3)];
     [self sendData:data];
@@ -985,7 +985,7 @@ NSMutableDictionary *lettersDict;
 
 -(void)sendTime:(NSString*) times{
     MessageTime message;
-    message.time = times;
+    message.time = [NSString stringWithString:times];
     message.message.messageType = kMessageTypeTime;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageTime)];
     [self sendData:data];
