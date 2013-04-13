@@ -808,14 +808,7 @@ NSMutableDictionary *lettersDict;
         
         ///////////////////////////////////////////////////
         ///////////////////start button
-        if(isPlayer1){
-            startButton = [CCMenuItemImage itemWithNormalImage:@"start.png" selectedImage:@"start.png" target:self selector:@selector(start:)];
-            [startButton setScale:0.5];
-            starMenu = [CCMenu menuWithItems:startButton, nil];
-            starMenu.position = CGPointZero;
-            [starMenu setPosition:ccp(300,455)];
-            [self addChild:starMenu z:1];
-        }
+        
         
         ////////////////add clock and given words labels
         clock = [CCLabelTTF labelWithString:@"Time" fontName:@"Arial" fontSize:24];
@@ -937,103 +930,6 @@ NSMutableDictionary *lettersDict;
     
 }
 
-/*
-+(CCScene *) scene
-{
-	// 'scene' is an autorelease object.
-	CCScene *scene = [CCScene node];
-	
-	// 'layer' is an autorelease object.
-	HelloWorldLayer *layer = [HelloWorldLayer node];
-	
-	// add layer as a child to scene
-	[scene addChild: layer];
-	
-	// return the scene
-	return scene;
-}
-
-// on "init" you need to initialize your instance
--(id) init
-{
-	// always call "super" init
-	// Apple recommends to re-assign "self" with the "super" return value
-	if( (self=[super init])) {
-		
-        // Get win size
-        CGSize winSize = [CCDirector sharedDirector].winSize;
-        
-        // Add background
-        CCSprite *bg = [CCSprite spriteWithFile:@"bg.png"];
-        bg.anchorPoint = CGPointZero;
-        [self addChild:bg z:-2];
-        
-        // Add batch node
-        batchNode = [CCSpriteBatchNode batchNodeWithFile:@"CatSmash.png"];
-        [self addChild:batchNode z:-1];
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"CatSmash.plist"];
-        
-        // Create sprite for cat
-        float catYOffset = 35;
-        cat = [CCSprite spriteWithSpriteFrameName:@"cat_stand_1.png"];
-        cat.position = ccp(winSize.width-cat.contentSize.width/2, cat.contentSize.height/2 + catYOffset);
-        [batchNode addChild:cat z:1];
-        
-        // Create sprites for each player
-        player1 = [[[PlayerSprite alloc] initWithType:kPlayerSpriteDog] autorelease];
-        player2 = [[[PlayerSprite alloc] initWithType:kPlayerSpriteKid] autorelease];
-        [batchNode addChild:player1 z:2];
-        [batchNode addChild:player2 z:0];
-        
-        // Set positions of each player
-        float maxWidth = MAX(player1.contentSize.width, player2.contentSize.width);
-        float playersYOffset = 50;
-        float playersXOffset = -(maxWidth-MIN(player1.contentSize.width, player2.contentSize.width));
-        player1.position = ccp(maxWidth-player1.contentSize.width + player1.contentSize.width/2 + playersXOffset,
-                               player1.contentSize.height/2);
-        player1.moveTarget = player1.position;
-        player2.position = ccp(maxWidth-player2.contentSize.width + player2.contentSize.width/2 + playersXOffset,
-                               player1.contentSize.height/2 + playersYOffset);
-        player2.moveTarget = player2.position;
-        
-        // Enable touches
-        self.isTouchEnabled = YES;
-        
-        // Set up main loop to check for wins
-        [self scheduleUpdate];
-        
-        // Add a debug label to the scene to display current game state
-        debugLabel = [CCLabelBMFont labelWithString:@"" fntFile:@"Arial.fnt"];
-        debugLabel.position = ccp(winSize.width/2, 300);
-        [self addChild:debugLabel];
-        
-        // Set ourselves as player 1 and the game to active
-        isPlayer1 = YES;
-        //[self setGameState:kGameStateActive];
-        
-        AppDelegate * delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
-        [[GCHelper sharedInstance] findMatchWithMinPlayers:2 maxPlayers:2 viewController:delegate.viewController delegate:self];
-        
-        ourRandom = arc4random();
-        [self setGameState:kGameStateWaitingForMatch];
-        
-	}
-	return self;
-}
-
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    if (gameState != kGameStateActive) return;
-    [self sendMove];
-    
-    // Move the appropriate player forward a bit
-    if (isPlayer1) {
-        [player1 moveForward];
-    } else {
-        [player2 moveForward];
-    }
-    
-}*/
 
 - (void)restartTapped:(id)sender {
     
@@ -1087,30 +983,7 @@ NSMutableDictionary *lettersDict;
     }
     
 }
-/*
-- (void)update:(ccTime)dt {
-    
-    player1Label.position = player1.position;
-    player2Label.position = player2.position;
-    
-    if (!isPlayer1) return;
-    
-    // Check to see if player 1 or player 2 has passed the cat's center
-    if (player1.position.x + player1.contentSize.width/2 > cat.position.x) {
-        if (isPlayer1) {
-            [self endScene:kEndReasonWin];
-        } else {
-            [self endScene:kEndReasonLose];
-        }
-    } else if (player2.position.x + player2.contentSize.width/2 > cat.position.x) {
-        if (isPlayer1) {
-            [self endScene:kEndReasonLose];
-        } else {
-            [self endScene:kEndReasonWin];
-        }
-    }
-    
-}*/
+
 
 - (void)tryStartGame {
     
@@ -1208,6 +1081,14 @@ NSMutableDictionary *lettersDict;
         } else if (ourRandom > messageInit->randomNumber) {
             CCLOG(@"We are player 1");
             isPlayer1 = YES;
+            if(isPlayer1){
+                startButton = [CCMenuItemImage itemWithNormalImage:@"start.png" selectedImage:@"start.png" target:self selector:@selector(start:)];
+                [startButton setScale:0.5];
+                CCMenu* starMenu = [CCMenu menuWithItems:startButton, nil];
+                starMenu.position = CGPointZero;
+                [starMenu setPosition:ccp(300,455)];
+                [self addChild:starMenu z:1];
+            }
         } else {
             CCLOG(@"We are player 2");
             isPlayer1 = NO;
