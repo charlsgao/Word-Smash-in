@@ -129,39 +129,39 @@ NSMutableDictionary *lettersDict;
     [button[0] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[0] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[0].isEnabled=NO;
-    [self sendHideButton:0];
+    //[self sendHideButton:0];
     [button[1] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[1] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[1].isEnabled=NO;
-    [self sendHideButton:1];
+    //[self sendHideButton:1];
     [button[2] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[2] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[2].isEnabled=NO;
-    [self sendHideButton:2];
+    //[self sendHideButton:2];
     [button[3] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[3] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[3].isEnabled=NO;
-    [self sendHideButton:3];
+    //[self sendHideButton:3];
     [button[4] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[4] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[4].isEnabled=NO;
-    [self sendHideButton:4];
+    //[self sendHideButton:4];
     [button[5] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[5] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[5].isEnabled=NO;
-    [self sendHideButton:5];
+    //[self sendHideButton:5];
     [button[6] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[6] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[6].isEnabled=NO;
-    [self sendHideButton:6];
+    //[self sendHideButton:6];
     [button[7] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[7] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[7].isEnabled=NO;
-    [self sendHideButton:7];
+    //[self sendHideButton:7];
     [button[8] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[8] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[8].isEnabled=NO;
-    [self sendHideButton:8];
+    //[self sendHideButton:8];
 }
 
 
@@ -451,6 +451,7 @@ NSMutableDictionary *lettersDict;
             [button[0] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[0] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[0].isEnabled=NO;
+            [self sendPressButton:0];
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[0].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[0].tag]]];
             select[i].tag = button[0].tag;
@@ -465,6 +466,7 @@ NSMutableDictionary *lettersDict;
             [button[1] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[1] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[1].isEnabled=NO;
+            [self sendPressButton:1];
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[1].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[1].tag]]];
             select[i].tag = button[1].tag;
@@ -479,6 +481,7 @@ NSMutableDictionary *lettersDict;
             [button[2] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[2] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[2].isEnabled=NO;
+            [self sendPressButton:2];
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[2].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[2].tag]]];
             select[i].tag = button[2].tag;
@@ -493,6 +496,7 @@ NSMutableDictionary *lettersDict;
             [button[3] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[3] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[3].isEnabled=NO;
+            [self sendPressButton:3];
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[3].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[3].tag]]];
             select[i].tag = button[3].tag;
@@ -507,6 +511,7 @@ NSMutableDictionary *lettersDict;
             [button[4] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[4] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[4].isEnabled=NO;
+            [self sendPressButton:4];
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[4].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[4].tag]]];
             select[i].tag = button[4].tag;
@@ -521,6 +526,7 @@ NSMutableDictionary *lettersDict;
             [button[5] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[5] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[5].isEnabled=NO;
+            [self sendPressButton:5];
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[5].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[5].tag]]];
             select[i].tag = button[5].tag;
@@ -535,6 +541,7 @@ NSMutableDictionary *lettersDict;
             [button[6] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[6] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[6].isEnabled=NO;
+            [self sendPressButton:6];
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[6].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[6].tag]]];
             select[i].tag = button[6].tag;
@@ -549,6 +556,7 @@ NSMutableDictionary *lettersDict;
             [button[7] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[7] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[7].isEnabled=NO;
+            [self sendPressButton:7];
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[7].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[7].tag]]];
             select[i].tag = button[7].tag;
@@ -563,6 +571,7 @@ NSMutableDictionary *lettersDict;
             [button[8] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[8] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[8].isEnabled=NO;
+            [self sendPressButton:8];
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[8].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[8].tag]]];
             select[i].tag = button[8].tag;
@@ -928,12 +937,19 @@ NSMutableDictionary *lettersDict;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageGenerateButton)];
     [self sendData:data];
 }
-
+/*
 -(void)sendHideButton:(int) position{
     MessageHideButton message;
     message.buttonPosition = position;
     message.message.messageType = kMessageTypeHideButton;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageHideButton)];
+    [self sendData:data];
+}*/
+
+-(void)sendStartButton{
+    MessageStartButton message;
+    message.message.messageType = kMessageTypeGameBegin;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageStartButton)];
     [self sendData:data];
 }
 
@@ -1141,12 +1157,36 @@ NSMutableDictionary *lettersDict;
         [button[tempMessage->buttonPosition] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
         button[tempMessage->buttonPosition].isEnabled = NO;
         
-    } else if(message->messageType == kMessageTypeHideButton) {
+    } /*else if(message->messageType == kMessageTypeHideButton) {
         MessageHideButton * tempMessage = (MessageHideButton *) [data bytes];
         CCLOG(@"Hide button information");
         [button[tempMessage->buttonPosition] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
         [button[tempMessage->buttonPosition] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
         button[tempMessage->buttonPosition].isEnabled = NO;
+    }*/
+    else if(message->messageType == kMessageTypeStartButton) {
+        if(!isPlayer1){
+            [self.aTimer invalidate];
+            [self.timer invalidate];
+            self.timer = nil;
+            self.aTimer = nil;
+            
+            currMinute = STARTING_MINUTES_M;
+            currSeconds = STARTING_SECONDS_M;
+            
+            clock.color = ccBLACK;
+            [clock setString: STARTING_TIME_M];
+            //self.clock.backgroundColor=[UIColor clearColor];
+            
+            STOP_M = false;
+            
+            //stage timer
+            self.timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+            
+            
+            //button appear timer
+            self.aTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(onTick) userInfo:nil repeats:YES];
+        }
     }
     else if (message->messageType == kMessageTypeGameOver) {
         
@@ -1158,7 +1198,6 @@ NSMutableDictionary *lettersDict;
         } else {
             [self endScene:kEndReasonWin];
         }
-        
     }
 }
 
