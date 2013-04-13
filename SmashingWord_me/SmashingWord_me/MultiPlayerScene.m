@@ -410,7 +410,7 @@ NSMutableDictionary *lettersDict;
 ////////////////////////////////////////////////////////
 //**************  start the game  ************************
 -(void)start: (id)sender{
-    
+    [self sendStartButton];
     [self getWords];
     //self.word1.text = @"Edwarda";
     [self parseWord: [word1 string] dictionary:word1Dict];
