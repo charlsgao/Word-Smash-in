@@ -16,7 +16,7 @@ const bool TEST_MODE_M = false;                // A FLAG TO INDICATE WHETHER THE
 const int MAX_LETTER_ARRAY_M = 10;             // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR_M = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
 const int STARTING_MINUTES_M = 0;              // STAGE DURATION
-const int STARTING_SECONDS_M = 5;             // STAGE DURATION
+const int STARTING_SECONDS_M = 30;             // STAGE DURATION
 const int INCR_SCORE_M = 10;                   // score increment step
 
 const int TOTAL_WORDS_IN_FILE_M = 20;          // MAXIMUM NUMBER OF WORDS IN A DICTIONARY FILE
@@ -129,30 +129,39 @@ NSMutableDictionary *lettersDict;
     [button[0] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[0] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[0].isEnabled=NO;
+    [self sendHideButton:0];
     [button[1] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[1] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[1].isEnabled=NO;
+    [self sendHideButton:1];
     [button[2] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[2] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[2].isEnabled=NO;
+    [self sendHideButton:2];
     [button[3] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[3] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[3].isEnabled=NO;
+    [self sendHideButton:3];
     [button[4] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[4] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[4].isEnabled=NO;
+    [self sendHideButton:4];
     [button[5] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[5] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[5].isEnabled=NO;
+    [self sendHideButton:5];
     [button[6] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[6] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[6].isEnabled=NO;
+    [self sendHideButton:6];
     [button[7] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[7] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[7].isEnabled=NO;
+    [self sendHideButton:7];
     [button[8] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[8] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[8].isEnabled=NO;
+    [self sendHideButton:8];
 }
 
 
@@ -920,6 +929,14 @@ NSMutableDictionary *lettersDict;
     [self sendData:data];
 }
 
+-(void)sendHideButton:(int) position{
+    MessageHideButton message;
+    message.buttonPosition = position;
+    message.message.messageType = kMessageTypeHideButton;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageHideButton)];
+    [self sendData:data];
+}
+
 - (void)sendGameOver:(BOOL)player1Won {
     
     MessageGameOver message;
@@ -1124,7 +1141,14 @@ NSMutableDictionary *lettersDict;
         [button[tempMessage->buttonPosition] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
         button[tempMessage->buttonPosition].isEnabled = NO;
         
-    } else if (message->messageType == kMessageTypeGameOver) {
+    } else if(message->messageType == kMessageTypeHideButton) {
+        MessageHideButton * tempMessage = (MessageHideButton *) [data bytes];
+        CCLOG(@"Hide button information");
+        [button[tempMessage->buttonPosition] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+        [button[tempMessage->buttonPosition] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+        button[tempMessage->buttonPosition].isEnabled = NO;
+    }
+    else if (message->messageType == kMessageTypeGameOver) {
         
         MessageGameOver * messageGameOver = (MessageGameOver *) [data bytes];
         CCLOG(@"Received game over with player 1 won: %d", messageGameOver->player1Won);

@@ -17,6 +17,7 @@ typedef enum {
     kMessageTypeGameBegin,
     kMessageTypePressButton,
     kMessageTypeGenerateButton,
+    kMessageTypeHideButton,
     kMessageTypeGameOver
 } MessageType;
 
@@ -37,6 +38,11 @@ typedef struct {
     Message message;
     int buttonPosition;
 } MessagePressButton;
+
+typedef struct {
+    Message message;
+    int buttonPosition;
+} MessageHideButton;
 
 typedef struct {
     Message message;
