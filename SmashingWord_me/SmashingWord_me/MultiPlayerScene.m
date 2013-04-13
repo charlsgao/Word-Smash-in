@@ -192,10 +192,12 @@ NSMutableDictionary *lettersDict;
     
     if (!STOP_M){
         [self hideButtons];
-        int max_buttons = rand() % MAX_BUTTON_APPEAR_M + 1;
+        if(isPlayer1){
+            int max_buttons = rand() % MAX_BUTTON_APPEAR_M + 1;
         
-        for (int i=0; i<max_buttons; i++)
-            [self generateButton];
+            for (int i=0; i<max_buttons; i++)
+                [self generateButton];
+        }
         
     }
     else{
@@ -211,21 +213,29 @@ NSMutableDictionary *lettersDict;
     //self.startButton.hidden = false;
     [self countLetters];
     
-    score = [self getScore:word1Dict];
-    score += [self getScore:word2Dict];
-    score += [self getScore:word3Dict];
+    //score = [self getScore:word1Dict];
+    //score += [self getScore:word2Dict];
+    //score += [self getScore:word3Dict];
     /*
      for (int i =0; i<MAX_LETTER_ARRAY_M;i++)
      NSLog(@"%@", letter[i]);
      */
-    NSLog(@"%i", score);
+    //NSLog(@"%i", score);
     
     word1Dict = nil;
     word2Dict = nil;
     word3Dict = nil;
     lettersDict = nil;
-    CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
-    [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
+    //CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
+    //[[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
+    if(score_m[0]>=score_m[1]){
+        if (isPlayer1) {
+            [self endScene:kEndReasonWin];
+        }
+        else {
+            [self endScene:kEndReasonLose];
+        }
+    }
     [self init];
     
 }
@@ -317,54 +327,63 @@ NSMutableDictionary *lettersDict;
             [button[0] setSelectedImage:[CCSprite spriteWithFile:l_M]];
             button[0].tag = tempTag;
             button[0].isEnabled=YES;
+            [self sendGenerateButton:0 :tempTag];
             break;
         case 2:
             [button[1] setNormalImage:[CCSprite spriteWithFile:l_M]];
             [button[1] setSelectedImage:[CCSprite spriteWithFile:l_M]];
             button[1].tag = tempTag;
             button[1].isEnabled=YES;
+            [self sendGenerateButton:1 :tempTag];
             break;
         case 3:
             [button[2] setNormalImage:[CCSprite spriteWithFile:l_M]];
             [button[2] setSelectedImage:[CCSprite spriteWithFile:l_M]];
             button[2].tag = tempTag;
             button[2].isEnabled=YES;
+            [self sendGenerateButton:2 :tempTag];
             break;
         case 4:
             [button[3] setNormalImage:[CCSprite spriteWithFile:l_M]];
             [button[3] setSelectedImage:[CCSprite spriteWithFile:l_M]];
             button[3].tag = tempTag;
             button[3].isEnabled=YES;
+            [self sendGenerateButton:3 :tempTag];
             break;
         case 5:
             [button[4] setNormalImage:[CCSprite spriteWithFile:l_M]];
             [button[4] setSelectedImage:[CCSprite spriteWithFile:l_M]];
             button[4].tag = tempTag;
             button[4].isEnabled=YES;
+            [self sendGenerateButton:4 :tempTag];
             break;
         case 6:
             [button[5] setNormalImage:[CCSprite spriteWithFile:l_M]];
             [button[5] setSelectedImage:[CCSprite spriteWithFile:l_M]];
             button[5].tag = tempTag;
             button[5].isEnabled=YES;
+            [self sendGenerateButton:5 :tempTag];
             break;
         case 7:
             [button[6] setNormalImage:[CCSprite spriteWithFile:l_M]];
             [button[6] setSelectedImage:[CCSprite spriteWithFile:l_M]];
             button[6].tag = tempTag;
             button[6].isEnabled=YES;
+            [self sendGenerateButton:6 :tempTag];
             break;
         case 8:
             [button[7] setNormalImage:[CCSprite spriteWithFile:l_M]];
             [button[7] setSelectedImage:[CCSprite spriteWithFile:l_M]];
             button[7].tag = tempTag;
             button[7].isEnabled=YES;
+            [self sendGenerateButton:7 :tempTag];
             break;
         case 9:
             [button[8] setNormalImage:[CCSprite spriteWithFile:l_M]];
             [button[8] setSelectedImage:[CCSprite spriteWithFile:l_M]];
             button[8].tag = tempTag;
             button[8].isEnabled=YES;
+            [self sendGenerateButton:8 :tempTag];
             break;
         default: break;
     }
@@ -408,11 +427,12 @@ NSMutableDictionary *lettersDict;
     
     
     //button appear timer
-    self.aTimer = [NSTimer scheduledTimerWithTimeInterval:BUTTON_APPEAR_DURATION target:self selector:@selector(onTick) userInfo:nil repeats:YES];
+    self.aTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(onTick) userInfo:nil repeats:YES];
     
     [startButton setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [startButton setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     startButton.isEnabled=NO;
+    
     
 }
 
@@ -420,7 +440,7 @@ NSMutableDictionary *lettersDict;
     for(int i = 0; i<10; i++){
         if(select[i].tag == 0){
             [button[0] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
-            [button[0] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+            [button[0] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[0].isEnabled=NO;
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[0].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[0].tag]]];
@@ -434,7 +454,7 @@ NSMutableDictionary *lettersDict;
     for(int i = 0; i<10; i++){
         if(select[i].tag == 0){
             [button[1] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
-            [button[1] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+            [button[1] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[1].isEnabled=NO;
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[1].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[1].tag]]];
@@ -448,7 +468,7 @@ NSMutableDictionary *lettersDict;
     for(int i = 0; i<10; i++){
         if(select[i].tag == 0){
             [button[2] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
-            [button[2] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+            [button[2] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[2].isEnabled=NO;
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[2].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[2].tag]]];
@@ -462,7 +482,7 @@ NSMutableDictionary *lettersDict;
     for(int i = 0; i<10; i++){
         if(select[i].tag == 0){
             [button[3] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
-            [button[3] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+            [button[3] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[3].isEnabled=NO;
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[3].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[3].tag]]];
@@ -476,7 +496,7 @@ NSMutableDictionary *lettersDict;
     for(int i = 0; i<10; i++){
         if(select[i].tag == 0){
             [button[4] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
-            [button[4] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+            [button[4] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[4].isEnabled=NO;
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[4].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[4].tag]]];
@@ -490,7 +510,7 @@ NSMutableDictionary *lettersDict;
     for(int i = 0; i<10; i++){
         if(select[i].tag == 0){
             [button[5] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
-            [button[5] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+            [button[5] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[5].isEnabled=NO;
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[5].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[5].tag]]];
@@ -504,7 +524,7 @@ NSMutableDictionary *lettersDict;
     for(int i = 0; i<10; i++){
         if(select[i].tag == 0){
             [button[6] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
-            [button[6] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+            [button[6] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[6].isEnabled=NO;
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[6].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[6].tag]]];
@@ -518,7 +538,7 @@ NSMutableDictionary *lettersDict;
     for(int i = 0; i<10; i++){
         if(select[i].tag == 0){
             [button[7] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
-            [button[7] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+            [button[7] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[7].isEnabled=NO;
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[7].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[7].tag]]];
@@ -532,7 +552,7 @@ NSMutableDictionary *lettersDict;
     for(int i = 0; i<10; i++){
         if(select[i].tag == 0){
             [button[8] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
-            [button[8] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+            [button[8] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[8].isEnabled=NO;
             [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[8].tag]]];
             [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[8].tag]]];
@@ -788,12 +808,14 @@ NSMutableDictionary *lettersDict;
         
         ///////////////////////////////////////////////////
         ///////////////////start button
-        startButton = [CCMenuItemImage itemWithNormalImage:@"start.png" selectedImage:@"start.png" target:self selector:@selector(start:)];
-        [startButton setScale:0.5];
-        starMenu = [CCMenu menuWithItems:startButton, nil];
-        starMenu.position = CGPointZero;
-        [starMenu setPosition:ccp(300,455)];
-        [self addChild:starMenu z:1];
+        if(isPlayer1){
+            startButton = [CCMenuItemImage itemWithNormalImage:@"start.png" selectedImage:@"start.png" target:self selector:@selector(start:)];
+            [startButton setScale:0.5];
+            starMenu = [CCMenu menuWithItems:startButton, nil];
+            starMenu.position = CGPointZero;
+            [starMenu setPosition:ccp(300,455)];
+            [self addChild:starMenu z:1];
+        }
         
         ////////////////add clock and given words labels
         clock = [CCLabelTTF labelWithString:@"Time" fontName:@"Arial" fontSize:24];
@@ -819,6 +841,18 @@ NSMutableDictionary *lettersDict;
         AppController * delegate = (AppController *) [UIApplication sharedApplication].delegate;
         [[GCHelper sharedInstance] findMatchWithMinPlayers:2 maxPlayers:2 viewController:delegate.navController delegate:self];
         
+        
+        ///////////////////
+        isPlayer1 = YES;
+        
+        debugLabel = [CCLabelTTF labelWithString:@"" fontName:@"Arial" fontSize:15];
+        debugLabel.position = ccp(200,200);
+        debugLabel.color = ccBLACK;
+        [self addChild:debugLabel z:1];
+        
+        ourRandom = arc4random();
+        [self setGameState:kGameStateWaitingForStart];
+        
     }
     return self;
 }
@@ -828,5 +862,399 @@ NSMutableDictionary *lettersDict;
     CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"GameMenu.ccbi"];
     [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
 }
+
+
+- (void)setGameState:(GameState)state {
+    
+    gameState = state;
+    if (gameState == kGameStateWaitingForMatch) {
+        [debugLabel setString:@"Waiting for match"];
+    } else if (gameState == kGameStateWaitingForRandomNumber) {
+        [debugLabel setString:@"Waiting for rand #"];
+    } else if (gameState == kGameStateWaitingForStart) {
+        [debugLabel setString:@"Waiting for start"];
+    } else if (gameState == kGameStateActive) {
+        [debugLabel setString:@"Active"];
+    } else if (gameState == kGameStateDone) {
+        [debugLabel setString:@"Done"];
+    }
+    
+}
+
+- (void)sendData:(NSData *)data {
+    NSError *error;
+    BOOL success = [[GCHelper sharedInstance].match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
+    if (!success) {
+        CCLOG(@"Error sending init packet");
+        [self matchEnded];
+    }
+}
+
+- (void)sendRandomNumber {
+    
+    MessageRandomNumber message;
+    message.message.messageType = kMessageTypeRandomNumber;
+    message.randomNumber = ourRandom;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageRandomNumber)];
+    [self sendData:data];
+}
+
+- (void)sendGameBegin {
+    
+    MessageGameBegin message;
+    message.message.messageType = kMessageTypeGameBegin;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageGameBegin)];
+    [self sendData:data];
+    
+}
+
+- (void)sendPressButton:(int) position{
+    
+    MessagePressButton message;
+    message.buttonPosition = position;
+    message.message.messageType = kMessageTypePressButton;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessagePressButton)];
+    [self sendData:data];
+    
+}
+
+-(void)sendGenerateButton:(int) position :(int) tag {
+    MessageGenerateButton message;
+    message.buttonPosition = position;
+    message.letterTag = tag;
+    message.message.messageType = kMessageTypeGenerateButton;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageGenerateButton)];
+    [self sendData:data];
+}
+
+- (void)sendGameOver:(BOOL)player1Won {
+    
+    MessageGameOver message;
+    message.message.messageType = kMessageTypeGameOver;
+    message.player1Won = player1Won;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageGameOver)];
+    [self sendData:data];
+    
+}
+
+/*
++(CCScene *) scene
+{
+	// 'scene' is an autorelease object.
+	CCScene *scene = [CCScene node];
+	
+	// 'layer' is an autorelease object.
+	HelloWorldLayer *layer = [HelloWorldLayer node];
+	
+	// add layer as a child to scene
+	[scene addChild: layer];
+	
+	// return the scene
+	return scene;
+}
+
+// on "init" you need to initialize your instance
+-(id) init
+{
+	// always call "super" init
+	// Apple recommends to re-assign "self" with the "super" return value
+	if( (self=[super init])) {
+		
+        // Get win size
+        CGSize winSize = [CCDirector sharedDirector].winSize;
+        
+        // Add background
+        CCSprite *bg = [CCSprite spriteWithFile:@"bg.png"];
+        bg.anchorPoint = CGPointZero;
+        [self addChild:bg z:-2];
+        
+        // Add batch node
+        batchNode = [CCSpriteBatchNode batchNodeWithFile:@"CatSmash.png"];
+        [self addChild:batchNode z:-1];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"CatSmash.plist"];
+        
+        // Create sprite for cat
+        float catYOffset = 35;
+        cat = [CCSprite spriteWithSpriteFrameName:@"cat_stand_1.png"];
+        cat.position = ccp(winSize.width-cat.contentSize.width/2, cat.contentSize.height/2 + catYOffset);
+        [batchNode addChild:cat z:1];
+        
+        // Create sprites for each player
+        player1 = [[[PlayerSprite alloc] initWithType:kPlayerSpriteDog] autorelease];
+        player2 = [[[PlayerSprite alloc] initWithType:kPlayerSpriteKid] autorelease];
+        [batchNode addChild:player1 z:2];
+        [batchNode addChild:player2 z:0];
+        
+        // Set positions of each player
+        float maxWidth = MAX(player1.contentSize.width, player2.contentSize.width);
+        float playersYOffset = 50;
+        float playersXOffset = -(maxWidth-MIN(player1.contentSize.width, player2.contentSize.width));
+        player1.position = ccp(maxWidth-player1.contentSize.width + player1.contentSize.width/2 + playersXOffset,
+                               player1.contentSize.height/2);
+        player1.moveTarget = player1.position;
+        player2.position = ccp(maxWidth-player2.contentSize.width + player2.contentSize.width/2 + playersXOffset,
+                               player1.contentSize.height/2 + playersYOffset);
+        player2.moveTarget = player2.position;
+        
+        // Enable touches
+        self.isTouchEnabled = YES;
+        
+        // Set up main loop to check for wins
+        [self scheduleUpdate];
+        
+        // Add a debug label to the scene to display current game state
+        debugLabel = [CCLabelBMFont labelWithString:@"" fntFile:@"Arial.fnt"];
+        debugLabel.position = ccp(winSize.width/2, 300);
+        [self addChild:debugLabel];
+        
+        // Set ourselves as player 1 and the game to active
+        isPlayer1 = YES;
+        //[self setGameState:kGameStateActive];
+        
+        AppDelegate * delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+        [[GCHelper sharedInstance] findMatchWithMinPlayers:2 maxPlayers:2 viewController:delegate.viewController delegate:self];
+        
+        ourRandom = arc4random();
+        [self setGameState:kGameStateWaitingForMatch];
+        
+	}
+	return self;
+}
+
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    if (gameState != kGameStateActive) return;
+    [self sendMove];
+    
+    // Move the appropriate player forward a bit
+    if (isPlayer1) {
+        [player1 moveForward];
+    } else {
+        [player2 moveForward];
+    }
+    
+}*/
+
+- (void)restartTapped:(id)sender {
+    
+    // Reload the current scene
+    [[GCHelper sharedInstance] authenticateLocalUser];
+    CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"MultiPlayer.ccbi"];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionZoomFlipX transitionWithDuration:0.5 scene:scene]];
+    
+}
+
+// Helper code to show a menu to restart the level
+// From Cat Nap tutorial
+- (void)endScene:(EndReason)endReason {
+    
+    if (gameState == kGameStateDone) return;
+    [self setGameState:kGameStateDone];
+    
+    CGSize winSize = [CCDirector sharedDirector].winSize;
+    
+    NSString *message;
+    if (endReason == kEndReasonWin) {
+        message = @"You win!";
+    } else if (endReason == kEndReasonLose) {
+        message = @"You lose!";
+    }
+    
+    CCLabelBMFont *label = [CCLabelBMFont labelWithString:message fntFile:@"Arial.fnt"];
+    label.scale = 0.1;
+    label.position = ccp(winSize.width/2, 180);
+    [self addChild:label];
+    
+    CCLabelBMFont *restartLabel = [CCLabelBMFont labelWithString:@"Restart" fntFile:@"Arial.fnt"];
+    
+    CCMenuItemLabel *restartItem = [CCMenuItemLabel itemWithLabel:restartLabel target:self selector:@selector(restartTapped:)];
+    restartItem.scale = 0.1;
+    restartItem.position = ccp(winSize.width/2, 140);
+    
+    CCMenu *menu = [CCMenu menuWithItems:restartItem, nil];
+    menu.position = CGPointZero;
+    [self addChild:menu];
+    
+    [restartItem runAction:[CCScaleTo actionWithDuration:0.5 scale:1.0]];
+    [label runAction:[CCScaleTo actionWithDuration:0.5 scale:1.0]];
+    
+    if (isPlayer1) {
+        if (endReason == kEndReasonWin) {
+            [self sendGameOver:true];
+        } else if (endReason == kEndReasonLose) {
+            [self sendGameOver:false];
+        }
+    }
+    
+}
+/*
+- (void)update:(ccTime)dt {
+    
+    player1Label.position = player1.position;
+    player2Label.position = player2.position;
+    
+    if (!isPlayer1) return;
+    
+    // Check to see if player 1 or player 2 has passed the cat's center
+    if (player1.position.x + player1.contentSize.width/2 > cat.position.x) {
+        if (isPlayer1) {
+            [self endScene:kEndReasonWin];
+        } else {
+            [self endScene:kEndReasonLose];
+        }
+    } else if (player2.position.x + player2.contentSize.width/2 > cat.position.x) {
+        if (isPlayer1) {
+            [self endScene:kEndReasonLose];
+        } else {
+            [self endScene:kEndReasonWin];
+        }
+    }
+    
+}*/
+
+- (void)tryStartGame {
+    
+    if (isPlayer1 && gameState == kGameStateWaitingForStart) {
+        [self setGameState:kGameStateActive];
+        [self sendGameBegin];
+        [self setupStringsWithOtherPlayerId:otherPlayerID];
+    }
+    
+}
+
+
+- (void)setupStringsWithOtherPlayerId:(NSString *)playerID {
+    
+    if (isPlayer1) {
+        
+        player1Label = [CCLabelBMFont labelWithString:[GKLocalPlayer localPlayer].alias fntFile:@"Arial.fnt"];
+        [self addChild:player1Label];
+        
+        GKPlayer *player = [[GCHelper sharedInstance].playersDict objectForKey:playerID];
+        player2Label = [CCLabelBMFont labelWithString:player.alias fntFile:@"Arial.fnt"];
+        [self addChild:player2Label];
+        
+    } else {
+        
+        player2Label = [CCLabelBMFont labelWithString:[GKLocalPlayer localPlayer].alias fntFile:@"Arial.fnt"];
+        [self addChild:player2Label];
+        
+        GKPlayer *player = [[GCHelper sharedInstance].playersDict objectForKey:playerID];
+        player1Label = [CCLabelBMFont labelWithString:player.alias fntFile:@"Arial.fnt"];
+        [self addChild:player1Label];
+        
+    }
+    
+}
+
+// on "dealloc" you need to release all your retained objects
+- (void) dealloc
+{
+	// in case you have something to dealloc, do it in this method
+	// in this particular example nothing needs to be released.
+	// cocos2d will automatically release all the children (Label)
+    [otherPlayerID release];
+    otherPlayerID = nil;
+    
+	// don't forget to call "super dealloc"
+	[super dealloc];
+}
+
+#pragma mark GCHelperDelegate
+
+- (void)matchStarted {
+    CCLOG(@"Match started");
+    if (receivedRandom) {
+        [self setGameState:kGameStateWaitingForStart];
+    } else {
+        [self setGameState:kGameStateWaitingForRandomNumber];
+    }
+    [self sendRandomNumber];
+    [self tryStartGame];
+}
+
+- (void)inviteReceived {
+    [self restartTapped:nil];
+}
+
+- (void)matchEnded {
+    CCLOG(@"Match ended");
+    [[GCHelper sharedInstance].match disconnect];
+    [GCHelper sharedInstance].match = nil;
+    [self endScene:kEndReasonDisconnect];
+}
+
+- (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID {
+    
+    // Store away other player ID for later
+    if (otherPlayerID == nil) {
+        otherPlayerID = [playerID retain];
+    }
+    
+    Message *message = (Message *) [data bytes];
+    if (message->messageType == kMessageTypeRandomNumber) {
+        
+        MessageRandomNumber * messageInit = (MessageRandomNumber *) [data bytes];
+        CCLOG(@"Received random number: %ud, ours %ud", messageInit->randomNumber, ourRandom);
+        bool tie = false;
+        
+        if (messageInit->randomNumber == ourRandom) {
+            CCLOG(@"TIE!");
+            tie = true;
+            ourRandom = arc4random();
+            [self sendRandomNumber];
+        } else if (ourRandom > messageInit->randomNumber) {
+            CCLOG(@"We are player 1");
+            isPlayer1 = YES;
+        } else {
+            CCLOG(@"We are player 2");
+            isPlayer1 = NO;
+        }
+        
+        if (!tie) {
+            receivedRandom = YES;
+            if (gameState == kGameStateWaitingForRandomNumber) {
+                [self setGameState:kGameStateWaitingForStart];
+            }
+            [self tryStartGame];
+        }
+        
+    } else if (message->messageType == kMessageTypeGameBegin) {
+        
+        [self setGameState:kGameStateActive];
+        [self setupStringsWithOtherPlayerId:playerID];
+        
+    } else if (message->messageType == kMessageTypeGenerateButton) {
+        
+        MessageGenerateButton * tempMessage = (MessageGenerateButton*) [data bytes];
+        CCLOG(@"Received button information to generate");
+        if(!isPlayer1){
+            [button[tempMessage->buttonPosition] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)tempMessage->letterTag]]];
+            [button[tempMessage->buttonPosition] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)tempMessage->letterTag]]];
+            button[tempMessage->buttonPosition].tag = tempMessage->letterTag;
+            button[tempMessage->buttonPosition].isEnabled = YES;
+        }
+    } else if(message->messageType == kMessageTypePressButton) {
+        MessagePressButton * tempMessage = (MessagePressButton *) [data bytes];
+        CCLOG(@"Received button information to hide");
+        [button[tempMessage->buttonPosition] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+        [button[tempMessage->buttonPosition] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+        button[tempMessage->buttonPosition].isEnabled = NO;
+        
+    } else if (message->messageType == kMessageTypeGameOver) {
+        
+        MessageGameOver * messageGameOver = (MessageGameOver *) [data bytes];
+        CCLOG(@"Received game over with player 1 won: %d", messageGameOver->player1Won);
+        
+        if (messageGameOver->player1Won) {
+            [self endScene:kEndReasonLose];
+        } else {
+            [self endScene:kEndReasonWin];
+        }
+        
+    }
+}
+
+
 
 @end
