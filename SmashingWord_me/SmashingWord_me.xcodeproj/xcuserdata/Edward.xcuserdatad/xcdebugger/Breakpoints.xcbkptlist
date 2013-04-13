@@ -190,11 +190,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SmashingWord_me/MultiPlayerScene.h"
-         timestampString = "387518384.581714"
+         timestampString = "387526193.358902"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "127"
-         endingLineNumber = "127"
+         startingLineNumber = "131"
+         endingLineNumber = "131"
          landmarkName = "@interface MultiPlayerScene"
          landmarkType = "2">
       </FileBreakpoint>
@@ -203,13 +203,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SmashingWord_me/MultiPlayerScene.m"
-         timestampString = "387521701.889389"
+         timestampString = "387526193.358902"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1021"
-         endingLineNumber = "1021"
+         startingLineNumber = "1058"
+         endingLineNumber = "1058"
          landmarkName = "-tryStartGame"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SmashingWord_me/MultiPlayerScene.h"
+         timestampString = "387526193.358902"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "68"
+         endingLineNumber = "68">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

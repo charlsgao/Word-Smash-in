@@ -17,9 +17,13 @@ typedef enum {
     kMessageTypeGameBegin,
     kMessageTypePressButton,
     kMessageTypeGenerateButton,
-    //kMessageTypeHideButton,
+    kMessageTypeHideButton,
     kMessageTypeGameOver,
-    kMessageTypeStartButton
+    //kMessageTypeStartButton
+    kMessageTypeWord1,
+    kMessageTypeWord2,
+    kMessageTypeWord3,
+    kMessageTypeTime
 } MessageType;
 
 typedef struct {
@@ -39,12 +43,12 @@ typedef struct {
     Message message;
     int buttonPosition;
 } MessagePressButton;
-/*
+
 typedef struct {
     Message message;
     int buttonPosition;
 } MessageHideButton;
-*/
+
 typedef struct {
     Message message;
     int buttonPosition;
@@ -55,10 +59,30 @@ typedef struct {
     Message message;
     BOOL player1Won;
 } MessageGameOver;
+/*
+typedef struct {
+    Message message;
+} MessageStartButton;*/
+typedef struct {
+    Message message;
+    NSString *word;
+} MessageWord1;
 
 typedef struct {
     Message message;
-} MessageStartButton;
+    NSString *word;
+} MessageWord2;
+
+typedef struct {
+    Message message;
+    NSString *word;
+} MessageWord3;
+
+typedef struct {
+    Message message;
+    NSString *time;
+} MessageTime;
+
 
 typedef enum {
     kEndReasonWin,
@@ -83,26 +107,6 @@ NSInteger score_1;
 NSInteger score_2;
 NSInteger score_3;
 
-/*
-// HelloWorldLayer
-@interface HelloWorldLayer : CCLayer <GCHelperDelegate>
-{
-    CCSpriteBatchNode *batchNode;
-    CCSprite *cat;
-    PlayerSprite *player1;
-    PlayerSprite *player2;
-    BOOL isPlayer1;
-    CCLabelBMFont *debugLabel;
-    GameState gameState;
-    
-    uint32_t ourRandom;
-    BOOL receivedRandom;
-    NSString *otherPlayerID;
-    
-    CCLabelBMFont *player1Label;
-    CCLabelBMFont *player2Label;
-    
-}*/
 
 
 @interface MultiPlayerScene : CCLayer <GCHelperDelegate>{ 

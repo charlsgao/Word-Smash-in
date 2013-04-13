@@ -129,39 +129,39 @@ NSMutableDictionary *lettersDict;
     [button[0] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[0] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[0].isEnabled=NO;
-    //[self sendHideButton:0];
+    [self sendHideButton:0];
     [button[1] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[1] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[1].isEnabled=NO;
-    //[self sendHideButton:1];
+    [self sendHideButton:1];
     [button[2] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[2] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[2].isEnabled=NO;
-    //[self sendHideButton:2];
+    [self sendHideButton:2];
     [button[3] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[3] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[3].isEnabled=NO;
-    //[self sendHideButton:3];
+    [self sendHideButton:3];
     [button[4] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[4] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[4].isEnabled=NO;
-    //[self sendHideButton:4];
+    [self sendHideButton:4];
     [button[5] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[5] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[5].isEnabled=NO;
-    //[self sendHideButton:5];
+    [self sendHideButton:5];
     [button[6] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[6] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[6].isEnabled=NO;
-    //[self sendHideButton:6];
+    [self sendHideButton:6];
     [button[7] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[7] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[7].isEnabled=NO;
-    //[self sendHideButton:7];
+    [self sendHideButton:7];
     [button[8] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[8] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     button[8].isEnabled=NO;
-    //[self sendHideButton:8];
+    [self sendHideButton:8];
 }
 
 
@@ -186,8 +186,11 @@ NSMutableDictionary *lettersDict;
         {
             currSeconds-=1;
         }
-        if(currMinute>-1)
+        if(currMinute>-1){
             [clock setString:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
+            [self sendTime:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
+        }
+        
     }
     
     // time's up
@@ -410,12 +413,15 @@ NSMutableDictionary *lettersDict;
 ////////////////////////////////////////////////////////
 //**************  start the game  ************************
 -(void)start: (id)sender{
-    [self sendStartButton];
+    //[self sendStartButton];
     [self getWords];
     //self.word1.text = @"Edwarda";
     [self parseWord: [word1 string] dictionary:word1Dict];
+    [self sendWord1:word_1];
     [self parseWord: [word2 string] dictionary:word2Dict];
+    [self sendWord2:word_2];
     [self parseWord: [word3 string] dictionary:word3Dict];
+    [self sendWord3:word_3];
     
     [self.aTimer invalidate];
     [self.timer invalidate];
@@ -937,22 +943,53 @@ NSMutableDictionary *lettersDict;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageGenerateButton)];
     [self sendData:data];
 }
-/*
+
 -(void)sendHideButton:(int) position{
     MessageHideButton message;
     message.buttonPosition = position;
     message.message.messageType = kMessageTypeHideButton;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageHideButton)];
     [self sendData:data];
-}*/
-
+}
+/*
 -(void)sendStartButton{
     MessageStartButton message;
     message.message.messageType = kMessageTypeGameBegin;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageStartButton)];
     [self sendData:data];
+}*/
+
+-(void)sendWord1:(NSString*) words{
+    MessageWord1 message;
+    message.word = words;
+    message.message.messageType = kMessageTypeWord1;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord1)];
+    [self sendData:data];
 }
 
+-(void)sendWord2:(NSString*) words{
+    MessageWord2 message;
+    message.word = words;
+    message.message.messageType = kMessageTypeWord2;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord2)];
+    [self sendData:data];
+}
+
+-(void)sendWord3:(NSString*) words{
+    MessageWord3 message;
+    message.word = words;
+    message.message.messageType = kMessageTypeWord3;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord3)];
+    [self sendData:data];
+}
+
+-(void)sendTime:(NSString*) times{
+    MessageTime message;
+    message.time = times;
+    message.message.messageType = kMessageTypeTime;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageTime)];
+    [self sendData:data];
+}
 - (void)sendGameOver:(BOOL)player1Won {
     
     MessageGameOver message;
@@ -1157,37 +1194,34 @@ NSMutableDictionary *lettersDict;
         [button[tempMessage->buttonPosition] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
         button[tempMessage->buttonPosition].isEnabled = NO;
         
-    } /*else if(message->messageType == kMessageTypeHideButton) {
+    } else if(message->messageType == kMessageTypeHideButton) {
         MessageHideButton * tempMessage = (MessageHideButton *) [data bytes];
         CCLOG(@"Hide button information");
         [button[tempMessage->buttonPosition] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
         [button[tempMessage->buttonPosition] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
         button[tempMessage->buttonPosition].isEnabled = NO;
-    }*/
-    else if(message->messageType == kMessageTypeStartButton) {
-        if(!isPlayer1){
-            [self.aTimer invalidate];
-            [self.timer invalidate];
-            self.timer = nil;
-            self.aTimer = nil;
-            
-            currMinute = STARTING_MINUTES_M;
-            currSeconds = STARTING_SECONDS_M;
-            
-            clock.color = ccBLACK;
-            [clock setString: STARTING_TIME_M];
-            //self.clock.backgroundColor=[UIColor clearColor];
-            
-            STOP_M = false;
-            
-            //stage timer
-            self.timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
-            
-            
-            //button appear timer
-            self.aTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(onTick) userInfo:nil repeats:YES];
-        }
     }
+    
+    else if(message->messageType == kMessageTypeWord1){
+        MessageWord1 * tempMessage = (MessageWord1*) [data bytes];
+        [word1 setString:tempMessage->word];
+    }
+    
+    else if(message->messageType == kMessageTypeWord2){
+        MessageWord2 * tempMessage = (MessageWord2*) [data bytes];
+        [word2 setString:tempMessage->word];
+    }
+    
+    else if(message->messageType == kMessageTypeWord3){
+        MessageWord3 * tempMessage = (MessageWord3*) [data bytes];
+        [word3 setString:tempMessage->word];
+    }
+    
+    else if(message->messageType == kMessageTypeTime){
+        MessageTime * tempMessage = (MessageTime*) [data bytes];
+        [clock setString:tempMessage->time];
+    }
+    
     else if (message->messageType == kMessageTypeGameOver) {
         
         MessageGameOver * messageGameOver = (MessageGameOver *) [data bytes];
