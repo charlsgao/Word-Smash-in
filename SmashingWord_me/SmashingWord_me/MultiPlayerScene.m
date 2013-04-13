@@ -1059,16 +1059,16 @@ NSMutableDictionary *lettersDict;
     } else if (endReason == kEndReasonLose) {
         message = @"You lose!";
     }
-    
-    CCLabelBMFont *label = [CCLabelBMFont labelWithString:message fntFile:@"Arial.fnt"];
-    label.scale = 0.1;
+
+    CCLabelTTF *label = [CCLabelTTF labelWithString:message fontName:@"Arial" fontSize:15];
+    label.color = ccBLACK;
     label.position = ccp(winSize.width/2, 180);
-    [self addChild:label];
+    [self addChild:label z:1];
     
-    CCLabelBMFont *restartLabel = [CCLabelBMFont labelWithString:@"Restart" fntFile:@"Arial.fnt"];
-    
+    //CCLabelBMFont *restartLabel = [CCLabelBMFont labelWithString:@"Restart" fntFile:@"Arial.fnt"];
+    CCLabelTTF *restartLabel = [CCLabelTTF labelWithString:@"Restart" fontName:@"Arial" fontSize:15];
     CCMenuItemLabel *restartItem = [CCMenuItemLabel itemWithLabel:restartLabel target:self selector:@selector(restartTapped:)];
-    restartItem.scale = 0.1;
+    //restartItem.scale = 0.1;
     restartItem.position = ccp(winSize.width/2, 140);
     
     CCMenu *menu = [CCMenu menuWithItems:restartItem, nil];
@@ -1127,21 +1127,23 @@ NSMutableDictionary *lettersDict;
     
     if (isPlayer1) {
         
-        player1Label = [CCLabelBMFont labelWithString:[GKLocalPlayer localPlayer].alias fntFile:@"Arial.fnt"];
+        /*player1Label = [CCLabelBMFont labelWithString:[GKLocalPlayer localPlayer].alias fntFile:@"Arial.fnt"];
         [self addChild:player1Label];
         
         GKPlayer *player = [[GCHelper sharedInstance].playersDict objectForKey:playerID];
         player2Label = [CCLabelBMFont labelWithString:player.alias fntFile:@"Arial.fnt"];
-        [self addChild:player2Label];
+        [self addChild:player2Label];*/
+        CCLOG(@"ddasd");
         
     } else {
-        
+        /*
         player2Label = [CCLabelBMFont labelWithString:[GKLocalPlayer localPlayer].alias fntFile:@"Arial.fnt"];
         [self addChild:player2Label];
         
         GKPlayer *player = [[GCHelper sharedInstance].playersDict objectForKey:playerID];
         player1Label = [CCLabelBMFont labelWithString:player.alias fntFile:@"Arial.fnt"];
-        [self addChild:player1Label];
+        [self addChild:player1Label];*/
+        CCLOG(@"dsadas");
         
     }
     

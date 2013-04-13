@@ -111,8 +111,8 @@ NSInteger score_3;
     BOOL receivedRandom;
     NSString *otherPlayerID;
     
-    CCLabelBMFont *player1Label;
-    CCLabelBMFont *player2Label;
+    CCLabelTTF *player1Label;
+    CCLabelTTF *player2Label;
     
     NSInteger score_m[2];
 }
