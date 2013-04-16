@@ -65,22 +65,22 @@ typedef struct {
 } MessageStartButton;*/
 typedef struct {
     Message message;
-    NSString *word;
+    char word[30];
 } MessageWord1;
 
 typedef struct {
     Message message;
-    NSString *word;
+    char word[30];
 } MessageWord2;
 
 typedef struct {
     Message message;
-    NSString *word;
+    char word[30];
 } MessageWord3;
 
 typedef struct {
     Message message;
-    NSString *time;
+    char time[30];
 } MessageTime;
 
 

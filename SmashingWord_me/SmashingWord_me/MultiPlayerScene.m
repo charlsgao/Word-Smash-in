@@ -187,8 +187,9 @@ NSMutableDictionary *lettersDict;
             currSeconds-=1;
         }
         if(currMinute>-1){
-            [clock setString:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
-            //[self sendTime:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
+            NSString* tempString = [NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds];
+            [clock setString:tempString];
+            [self sendTime:[tempString UTF8String]];
         }
         
     }
@@ -417,11 +418,11 @@ NSMutableDictionary *lettersDict;
     [self getWords];
     //self.word1.text = @"Edwarda";
     [self parseWord: [word1 string] dictionary:word1Dict];
-    [self sendWord1:word_1];
+    [self sendWord1:[word_1 UTF8String]];
     [self parseWord: [word2 string] dictionary:word2Dict];
-    //[self sendWord2:word_2];
+    [self sendWord2:[word_2 UTF8String]];
     [self parseWord: [word3 string] dictionary:word3Dict];
-    //[self sendWord3:word_3];
+    [self sendWord3:[word_3 UTF8String]];
     
     [self.aTimer invalidate];
     [self.timer invalidate];
@@ -959,34 +960,32 @@ NSMutableDictionary *lettersDict;
     [self sendData:data];
 }*/
 
--(void)sendWord1:(NSString*) words{
+-(void)sendWord1:(const char*) words{
     MessageWord1 message;
-    //message.word = [NSString stringWithString:words];
-    message.word = @"sada";
+    strcpy(message.word,words);
     message.message.messageType = kMessageTypeWord1;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord1)];
     [self sendData:data];
 }
 
--(void)sendWord2:(NSString*) words{
+-(void)sendWord2:(const char*) words{
     MessageWord2 message;
-    message.word = [NSString stringWithString:words];
-    message.message.messageType = kMessageTypeWord2;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord2)];
-    [self sendData:data];
-}
+    strcpy(message.word,words);
+    message.message.messageType = kMessageTypeWord1;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord1)];
+    [self sendData:data];}
 
--(void)sendWord3:(NSString*) words{
+-(void)sendWord3:(const char*) words{
     MessageWord3 message;
-    message.word = [NSString stringWithString:words];
-    message.message.messageType = kMessageTypeWord3;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord3)];
+    strcpy(message.word,words);
+    message.message.messageType = kMessageTypeWord1;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord1)];
     [self sendData:data];
 }
 
--(void)sendTime:(NSString*) times{
+-(void)sendTime:(const char*) times{
     MessageTime message;
-    message.time = [NSString stringWithString:times];
+    strcpy(message.time, times);
     message.message.messageType = kMessageTypeTime;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageTime)];
     [self sendData:data];
@@ -1181,7 +1180,7 @@ NSMutableDictionary *lettersDict;
     } else if (message->messageType == kMessageTypeGenerateButton) {
         
         MessageGenerateButton * tempMessage = (MessageGenerateButton*) [data bytes];
-        CCLOG(@"Received button information to generate");
+        //CCLOG(@"Received button information to generate");
         if(!isPlayer1){
             [button[tempMessage->buttonPosition] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)tempMessage->letterTag]]];
             [button[tempMessage->buttonPosition] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)tempMessage->letterTag]]];
@@ -1190,39 +1189,44 @@ NSMutableDictionary *lettersDict;
         }
     } else if(message->messageType == kMessageTypePressButton) {
         MessagePressButton * tempMessage = (MessagePressButton *) [data bytes];
-        CCLOG(@"Received button information to hide");
+        //CCLOG(@"Received button information to hide");
         [button[tempMessage->buttonPosition] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
         [button[tempMessage->buttonPosition] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
         button[tempMessage->buttonPosition].isEnabled = NO;
         
     } else if(message->messageType == kMessageTypeHideButton) {
         MessageHideButton * tempMessage = (MessageHideButton *) [data bytes];
-        CCLOG(@"Hide button information");
+        //CCLOG(@"Hide button information");
         [button[tempMessage->buttonPosition] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
         [button[tempMessage->buttonPosition] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
         button[tempMessage->buttonPosition].isEnabled = NO;
     }
     
     else if(message->messageType == kMessageTypeWord1){
+        //NSLog(@"sdasdddddda111");
         MessageWord1 * tempMessage = (MessageWord1*) [data bytes];
-        //[word1 setString:tempMessage->word];
-        NSLog(@"%@", tempMessage->word);
-        [word1 setString: @"asdas"];
+        NSString* tempString = [NSString stringWithUTF8String:tempMessage->word];
+        [word1 setString: tempString];
     }
     
     else if(message->messageType == kMessageTypeWord2){
         MessageWord2 * tempMessage = (MessageWord2*) [data bytes];
-        [word2 setString:tempMessage->word];
+        NSString* tempString = [NSString stringWithUTF8String:tempMessage->word];
+        [word2 setString: tempString];
+
     }
     
     else if(message->messageType == kMessageTypeWord3){
         MessageWord3 * tempMessage = (MessageWord3*) [data bytes];
-        [word3 setString:tempMessage->word];
+        NSString* tempString = [NSString stringWithUTF8String:tempMessage->word];
+        [word3 setString: tempString];
+
     }
     
     else if(message->messageType == kMessageTypeTime){
         MessageTime * tempMessage = (MessageTime*) [data bytes];
-        [clock setString:tempMessage->time];
+        NSString* tempString = [NSString stringWithUTF8String:tempMessage->time];
+        [word3 setString: tempString];
     }
     
     else if (message->messageType == kMessageTypeGameOver) {
