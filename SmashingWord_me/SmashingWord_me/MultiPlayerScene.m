@@ -188,7 +188,7 @@ NSMutableDictionary *lettersDict;
         }
         if(currMinute>-1){
             [clock setString:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
-            [self sendTime:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
+            //[self sendTime:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
         }
         
     }
@@ -419,9 +419,9 @@ NSMutableDictionary *lettersDict;
     [self parseWord: [word1 string] dictionary:word1Dict];
     [self sendWord1:word_1];
     [self parseWord: [word2 string] dictionary:word2Dict];
-    [self sendWord2:word_2];
+    //[self sendWord2:word_2];
     [self parseWord: [word3 string] dictionary:word3Dict];
-    [self sendWord3:word_3];
+    //[self sendWord3:word_3];
     
     [self.aTimer invalidate];
     [self.timer invalidate];
@@ -961,7 +961,8 @@ NSMutableDictionary *lettersDict;
 
 -(void)sendWord1:(NSString*) words{
     MessageWord1 message;
-    message.word = [NSString stringWithString:words];
+    //message.word = [NSString stringWithString:words];
+    message.word = @"sada";
     message.message.messageType = kMessageTypeWord1;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord1)];
     [self sendData:data];
@@ -1204,7 +1205,9 @@ NSMutableDictionary *lettersDict;
     
     else if(message->messageType == kMessageTypeWord1){
         MessageWord1 * tempMessage = (MessageWord1*) [data bytes];
-        [word1 setString:tempMessage->word];
+        //[word1 setString:tempMessage->word];
+        NSLog(@"%@", tempMessage->word);
+        [word1 setString: @"asdas"];
     }
     
     else if(message->messageType == kMessageTypeWord2){
