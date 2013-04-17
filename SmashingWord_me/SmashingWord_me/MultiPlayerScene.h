@@ -122,6 +122,7 @@ NSInteger score_3;
 
 @interface MultiPlayerScene : CCLayer <GCHelperDelegate>{ 
     CCMenuItemImage* startButton;
+    CCMenuItemImage* back;
     CCMenuItemImage* button[9];
     CCMenuItemImage* select[10];
     CCLabelTTF* clock;
