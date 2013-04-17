@@ -666,12 +666,15 @@ NSMutableDictionary *lettersDict;
         [self addChild:bg z:0];
         //[self addChild:[CCMenuLayer node] z:1];
         
-        [back setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
-        [back setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
-        back.isEnabled=NO;
-        
         ////////////////////////add 9 buttons and selected letters
         CCMenu *starMenu;
+        
+        back = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(BackButtonPress:)];
+        starMenu = [CCMenu menuWithItems:back, nil];
+        starMenu.position = CGPointZero;
+        [starMenu setPosition:ccp(280,60)];
+        [self addChild:starMenu z:1];
+
         button[0] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(pressButton0:)];
         [button[0] setScale:0.7];
         button[0].tag = 0;
@@ -896,11 +899,10 @@ NSMutableDictionary *lettersDict;
         [debugLabel setString:@"Waiting for rand #"];
     } else if (gameState == kGameStateWaitingForStart) {
         [debugLabel setString:@"Waiting for start"];
-        back = [CCMenuItemImage itemWithNormalImage:@"backarrow.png" selectedImage:@"backarrow.png" target:self selector:@selector(BackButtonPress:)];
-        CCMenu* starMenu = [CCMenu menuWithItems:back, nil];
-        starMenu.position = CGPointZero;
-        [starMenu setPosition:ccp(280,60)];
-        [self addChild:starMenu z:1];
+        [back setNormalImage:[CCSprite spriteWithFile:@"backarrow.png"]];
+        [back setSelectedImage:[CCSprite spriteWithFile:@"backarrow.png"]];
+        back.isEnabled=YES;
+
 
     } else if (gameState == kGameStateActive) {
         [debugLabel setString:@""];
