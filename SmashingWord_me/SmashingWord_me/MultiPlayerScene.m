@@ -1137,28 +1137,29 @@ NSMutableDictionary *lettersDict;
      NSLog(@"%@", letter[i]);
      */
     //NSLog(@"%i", score);
-    
     word1Dict = nil;
     word2Dict = nil;
     word3Dict = nil;
     lettersDict = nil;
-    
-    if(my_score < opponent_score)
-        scorePageMessage = @"You Lost!";
-    else if(my_score > opponent_score)
-        scorePageMessage = @"You Win!";
-    else
-        scorePageMessage = @"Tie";
-    
-    if(isPlayer1){
-        score_p1 = my_score;
-        score_p2 = opponent_score;
+    if(!isPlayer1){
+        if(my_score < opponent_score)
+            scorePageMessage = @"You Lost!";
+        else if(my_score > opponent_score)
+            scorePageMessage = @"You Win!";
+        else
+            scorePageMessage = @"Tie";
+        
+        if(isPlayer1){
+            score_p1 = my_score;
+            score_p2 = opponent_score;
+        }
+        else{
+            score_p1 = opponent_score;
+            score_p2 = my_score;
+        }
+        CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
+        [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
     }
-    else{
-        score_p1 = opponent_score;
-        score_p2 = my_score;
-    }
-    
     //[self init];
 
 }
@@ -1274,8 +1275,25 @@ NSMutableDictionary *lettersDict;
     else if(message->messageType == kMessageTypeScore) {
         MessageScore* tempMessage = (MessageScore*) [data bytes];
         opponent_score = tempMessage->score;
-        CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
-        [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
+        if(isPlayer1){
+            if(my_score < opponent_score)
+                scorePageMessage = @"You Lost!";
+            else if(my_score > opponent_score)
+                scorePageMessage = @"You Win!";
+            else
+                scorePageMessage = @"Tie";
+            
+            if(isPlayer1){
+                score_p1 = my_score;
+                score_p2 = opponent_score;
+            }
+            else{
+                score_p1 = opponent_score;
+                score_p2 = my_score;
+            }
+            CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
+            [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
+        }
     }
 
 }
