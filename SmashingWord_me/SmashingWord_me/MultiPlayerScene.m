@@ -905,7 +905,9 @@ NSMutableDictionary *lettersDict;
     BOOL success = [[GCHelper sharedInstance].match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
     if (!success) {
         CCLOG(@"Error sending init packet");
-        [self matchEnded];
+        //[self matchEnded];
+        [[GCHelper sharedInstance].match disconnect];
+        [GCHelper sharedInstance].match = nil;
     }
 }
 
@@ -1142,10 +1144,11 @@ NSMutableDictionary *lettersDict;
 
 - (void)matchEnded {
     CCLOG(@"Match ended");
-    [[GCHelper sharedInstance].match disconnect];
-    [GCHelper sharedInstance].match = nil;
+    //[[GCHelper sharedInstance].match disconnect];
+    //[GCHelper sharedInstance].match = nil;
     //[self endScene:kEndReasonDisconnect];
-    [self hideButtons];
+    if(isPlayer1)
+        [self hideButtons];
     [self countLetters];
     
     
