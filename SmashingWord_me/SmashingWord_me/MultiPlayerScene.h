@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-//#import "globalVar.h"
+#import "globalVar.h"
 #import "GCHelper.h"
 
 
@@ -23,7 +23,10 @@ typedef enum {
     kMessageTypeWord1,
     kMessageTypeWord2,
     kMessageTypeWord3,
-    kMessageTypeTime
+    kMessageTypeTime,
+    
+    kMessageTypeEndGame,
+    kMessageTypeScore
 } MessageType;
 
 typedef struct {
@@ -83,6 +86,14 @@ typedef struct {
     char time[30];
 } MessageTime;
 
+typedef struct {
+    Message message;
+} MessageEndGame;
+
+typedef struct {
+    Message message;
+    int score;
+} MessageScore;
 
 typedef enum {
     kEndReasonWin,
@@ -129,7 +140,8 @@ NSInteger score_3;
     CCLabelTTF *player1Label;
     CCLabelTTF *player2Label;
     
-    NSInteger score_m[2];
+    int my_score;
+    int opponent_score;
 }
 
 @property (strong, nonatomic) NSTimer *aTimer;              //stage timer

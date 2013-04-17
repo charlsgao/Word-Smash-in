@@ -19,4 +19,11 @@ extern NSString *word_3;
 extern NSInteger score_1;
 extern NSInteger score_2;
 extern NSInteger score_3;
+
+extern NSInteger score_p1;
+extern NSInteger score_p2;
+
+extern NSString* scorePageMessage;
+
+extern BOOL isSinglePlayer;
 @end
