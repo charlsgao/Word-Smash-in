@@ -666,6 +666,10 @@ NSMutableDictionary *lettersDict;
         [self addChild:bg z:0];
         //[self addChild:[CCMenuLayer node] z:1];
         
+        [back setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+        [back setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+        back.isEnabled=NO;
+        
         ////////////////////////add 9 buttons and selected letters
         CCMenu *starMenu;
         button[0] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(pressButton0:)];
@@ -1153,8 +1157,6 @@ NSMutableDictionary *lettersDict;
         score_p2 = my_score;
     }
     
-    CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
-    [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
     //[self init];
 
 }
@@ -1270,6 +1272,8 @@ NSMutableDictionary *lettersDict;
     else if(message->messageType == kMessageTypeScore) {
         MessageScore* tempMessage = (MessageScore*) [data bytes];
         opponent_score = tempMessage->score;
+        CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
+        [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
     }
 
 }
