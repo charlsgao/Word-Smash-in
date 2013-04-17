@@ -892,8 +892,14 @@ NSMutableDictionary *lettersDict;
         [debugLabel setString:@"Waiting for rand #"];
     } else if (gameState == kGameStateWaitingForStart) {
         [debugLabel setString:@"Waiting for start"];
+        CCMenuItemImage * back = [CCMenuItemImage itemWithNormalImage:@"backarrow.png" selectedImage:@"backarrow.png" target:self selector:@selector(BackButtonPress:)];
+        CCMenu* starMenu = [CCMenu menuWithItems:back, nil];
+        starMenu.position = CGPointZero;
+        [starMenu setPosition:ccp(280,60)];
+        [self addChild:starMenu z:1];
+
     } else if (gameState == kGameStateActive) {
-        [debugLabel setString:@"Active"];
+        [debugLabel setString:@""];
     } else if (gameState == kGameStateDone) {
         [debugLabel setString:@"Done"];
     }
@@ -1031,48 +1037,7 @@ NSMutableDictionary *lettersDict;
 
 // Helper code to show a menu to restart the level
 // From Cat Nap tutorial
-/*
-- (void)endScene:(EndReason)endReason {
-    
-    if (gameState == kGameStateDone) return;
-    [self setGameState:kGameStateDone];
-    
-    CGSize winSize = [CCDirector sharedDirector].winSize;
-    
-    NSString *message;
-    if (endReason == kEndReasonWin) {
-        message = @"You win!";
-    } else if (endReason == kEndReasonLose) {
-        message = @"You lose!";
-    }
 
-    CCLabelTTF *label = [CCLabelTTF labelWithString:message fontName:@"Arial" fontSize:15];
-    label.color = ccBLACK;
-    label.position = ccp(winSize.width/2, 180);
-    [self addChild:label z:1];
-    
-    //CCLabelBMFont *restartLabel = [CCLabelBMFont labelWithString:@"Restart" fntFile:@"Arial.fnt"];
-    CCLabelTTF *restartLabel = [CCLabelTTF labelWithString:@"Restart" fontName:@"Arial" fontSize:15];
-    CCMenuItemLabel *restartItem = [CCMenuItemLabel itemWithLabel:restartLabel target:self selector:@selector(restartTapped:)];
-    //restartItem.scale = 0.1;
-    restartItem.position = ccp(winSize.width/2, 140);
-    
-    CCMenu *menu = [CCMenu menuWithItems:restartItem, nil];
-    menu.position = CGPointZero;
-    [self addChild:menu];
-    
-    [restartItem runAction:[CCScaleTo actionWithDuration:0.5 scale:1.0]];
-    [label runAction:[CCScaleTo actionWithDuration:0.5 scale:1.0]];
-    
-    if (isPlayer1) {
-        if (endReason == kEndReasonWin) {
-            [self sendGameOver:true];
-        } else if (endReason == kEndReasonLose) {
-            [self sendGameOver:false];
-        }
-    }
- 
-}*/
 
 
 - (void)tryStartGame {
@@ -1176,9 +1141,18 @@ NSMutableDictionary *lettersDict;
     else
         scorePageMessage = @"Tie";
     
+    if(isPlayer1){
+        score_p1 = my_score;
+        score_p2 = opponent_score;
+    }
+    else{
+        score_p1 = opponent_score;
+        score_p2 = my_score;
+    }
+    
     CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
     [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
-    [self init];
+    //[self init];
 
 }
 
@@ -1294,18 +1268,7 @@ NSMutableDictionary *lettersDict;
         MessageScore* tempMessage = (MessageScore*) [data bytes];
         opponent_score = tempMessage->score;
     }
-    /*
-    else if (message->messageType == kMessageTypeGameOver) {
-        
-        MessageGameOver * messageGameOver = (MessageGameOver *) [data bytes];
-        CCLOG(@"Received game over with player 1 won: %d", messageGameOver->player1Won);
-        
-        if (messageGameOver->player1Won) {
-            [self endScene:kEndReasonLose];
-        } else {
-            [self endScene:kEndReasonWin];
-        }
-    }*/
+
 }
 
 

@@ -130,7 +130,7 @@ NSInteger score_3;
     CCLabelTTF* word3;
     CCSprite* bg;
     
-    BOOL isPlayer1;
+    //BOOL isPlayer1;
     GameState gameState;
     CCLabelTTF *debugLabel;
     uint32_t ourRandom;

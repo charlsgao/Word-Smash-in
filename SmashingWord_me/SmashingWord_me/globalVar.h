@@ -25,5 +25,5 @@ extern NSInteger score_p2;
 
 extern NSString* scorePageMessage;
 
-extern BOOL isSinglePlayer;
+extern BOOL isPlayer1;
 @end
