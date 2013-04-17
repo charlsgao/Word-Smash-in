@@ -25,7 +25,7 @@
             tempMyScore = score_p2;
             tempOppScore = score_p1;
         }
-        finalScore = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Your Score Is %i./nYour Opponent Score Is %i./n""%@", tempMyScore, tempOppScore, scorePageMessage] fontName:@"Arial" fontSize:24];
+        finalScore = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Your Score Is %i.\nYour Opponent Score Is %i.\n""%@", tempMyScore, tempOppScore, scorePageMessage] fontName:@"Arial" fontSize:24];
         finalScore.position = ccp(100,365);
         finalScore.color = ccBLACK;
         [self addChild:finalScore z:1];

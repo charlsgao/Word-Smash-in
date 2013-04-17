@@ -892,7 +892,7 @@ NSMutableDictionary *lettersDict;
         [debugLabel setString:@"Waiting for rand #"];
     } else if (gameState == kGameStateWaitingForStart) {
         [debugLabel setString:@"Waiting for start"];
-        CCMenuItemImage * back = [CCMenuItemImage itemWithNormalImage:@"backarrow.png" selectedImage:@"backarrow.png" target:self selector:@selector(BackButtonPress:)];
+        back = [CCMenuItemImage itemWithNormalImage:@"backarrow.png" selectedImage:@"backarrow.png" target:self selector:@selector(BackButtonPress:)];
         CCMenu* starMenu = [CCMenu menuWithItems:back, nil];
         starMenu.position = CGPointZero;
         [starMenu setPosition:ccp(280,60)];
@@ -900,6 +900,9 @@ NSMutableDictionary *lettersDict;
 
     } else if (gameState == kGameStateActive) {
         [debugLabel setString:@""];
+        [back setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+        [back setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+        back.isEnabled=NO;
     } else if (gameState == kGameStateDone) {
         [debugLabel setString:@"Done"];
     }
