@@ -28,6 +28,7 @@ NSString *l_M;
 int tempTag;
 int currMinute;
 int currSeconds;
+int temp_score;
 NSString *STARTING_TIME_M = @"Time : 1:00";
 BOOL STOP_M = false;
 //NSString *letter[MAX_LETTER_ARRAY_M];
@@ -214,44 +215,42 @@ NSMutableDictionary *lettersDict;
         
     }
     else{
-        [self endOfGame];
+        [self matchEnded];
         [self.aTimer invalidate];
     }
 }
 
 //When the game finishes
+/*
 -(void) endOfGame{
     [self hideButtons];
-    
-    //self.startButton.hidden = false;
     [self countLetters];
     
-    //score = [self getScore:word1Dict];
-    //score += [self getScore:word2Dict];
-    //score += [self getScore:word3Dict];
-    /*
-     for (int i =0; i<MAX_LETTER_ARRAY_M;i++)
-     NSLog(@"%@", letter[i]);
-     */
-    //NSLog(@"%i", score);
     
+    my_score = [self getScore:word1Dict];
+    my_score += [self getScore:word2Dict];
+    my_score += [self getScore:word3Dict];
+    [self sendScore:my_score];
+    if(isPlayer1)
+        [self sendEndGame];
+
     word1Dict = nil;
     word2Dict = nil;
     word3Dict = nil;
     lettersDict = nil;
-    //CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
-    //[[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
-    if(score_m[0]>=score_m[1]){
-        if (isPlayer1) {
-            [self endScene:kEndReasonWin];
-        }
-        else {
-            [self endScene:kEndReasonLose];
-        }
-    }
+    
+    if(my_score < opponent_score)
+        scorePageMessage = @"You Lost!";
+    else if(my_score > opponent_score)
+        scorePageMessage = @"You Win!";
+    else
+        scorePageMessage = @"Tie";
+    
+    CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
+    [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
     [self init];
     
-}
+}*/
 
 // calculate the score
 -(NSInteger) getScore: (NSMutableDictionary*) dict{
@@ -649,6 +648,8 @@ NSMutableDictionary *lettersDict;
 
 -(id)init{
     if((self=[super init])){
+        my_score = 0;
+        opponent_score = 0;
         srand ( time(NULL) );//clear out random numbers
         
         self.strArray = [NSArray arrayWithObjects:@"HELLO",@"WORLD",@"EDWARD",@"BING",@"WENHAO",@"DENNY",nil];
@@ -971,15 +972,15 @@ NSMutableDictionary *lettersDict;
 -(void)sendWord2:(const char*) words{
     MessageWord2 message;
     strcpy(message.word,words);
-    message.message.messageType = kMessageTypeWord1;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord1)];
+    message.message.messageType = kMessageTypeWord2;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord2)];
     [self sendData:data];}
 
 -(void)sendWord3:(const char*) words{
     MessageWord3 message;
     strcpy(message.word,words);
-    message.message.messageType = kMessageTypeWord1;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord1)];
+    message.message.messageType = kMessageTypeWord3;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord3)];
     [self sendData:data];
 }
 
@@ -990,6 +991,22 @@ NSMutableDictionary *lettersDict;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageTime)];
     [self sendData:data];
 }
+
+-(void)sendEndGame {
+    MessageEndGame message;
+    message.message.messageType = kMessageTypeEndGame;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageEndGame)];
+    [self sendData:data];   
+}
+
+-(void)sendScore: (int) score {
+    MessageScore message;
+    message.message.messageType = kMessageTypeScore;
+    message.score = score;
+    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageScore)];
+    [self sendData:data];
+}
+
 - (void)sendGameOver:(BOOL)player1Won {
     
     MessageGameOver message;
@@ -1012,6 +1029,7 @@ NSMutableDictionary *lettersDict;
 
 // Helper code to show a menu to restart the level
 // From Cat Nap tutorial
+/*
 - (void)endScene:(EndReason)endReason {
     
     if (gameState == kGameStateDone) return;
@@ -1051,8 +1069,8 @@ NSMutableDictionary *lettersDict;
             [self sendGameOver:false];
         }
     }
-    
-}
+ 
+}*/
 
 
 - (void)tryStartGame {
@@ -1126,7 +1144,39 @@ NSMutableDictionary *lettersDict;
     CCLOG(@"Match ended");
     [[GCHelper sharedInstance].match disconnect];
     [GCHelper sharedInstance].match = nil;
-    [self endScene:kEndReasonDisconnect];
+    //[self endScene:kEndReasonDisconnect];
+    [self hideButtons];
+    [self countLetters];
+    
+    
+    my_score = [self getScore:word1Dict];
+    my_score += [self getScore:word2Dict];
+    my_score += [self getScore:word3Dict];
+    [self sendScore:my_score];
+    if(isPlayer1)
+        [self sendEndGame];
+    /*
+     for (int i =0; i<MAX_LETTER_ARRAY_M;i++)
+     NSLog(@"%@", letter[i]);
+     */
+    //NSLog(@"%i", score);
+    
+    word1Dict = nil;
+    word2Dict = nil;
+    word3Dict = nil;
+    lettersDict = nil;
+    
+    if(my_score < opponent_score)
+        scorePageMessage = @"You Lost!";
+    else if(my_score > opponent_score)
+        scorePageMessage = @"You Win!";
+    else
+        scorePageMessage = @"Tie";
+    
+    CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
+    [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
+    [self init];
+
 }
 
 - (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID {
@@ -1207,12 +1257,15 @@ NSMutableDictionary *lettersDict;
         MessageWord1 * tempMessage = (MessageWord1*) [data bytes];
         NSString* tempString = [NSString stringWithUTF8String:tempMessage->word];
         [word1 setString: tempString];
+        [self parseWord: tempString dictionary:word1Dict];
+
     }
     
     else if(message->messageType == kMessageTypeWord2){
         MessageWord2 * tempMessage = (MessageWord2*) [data bytes];
         NSString* tempString = [NSString stringWithUTF8String:tempMessage->word];
         [word2 setString: tempString];
+        [self parseWord: tempString dictionary:word2Dict];
 
     }
     
@@ -1220,15 +1273,25 @@ NSMutableDictionary *lettersDict;
         MessageWord3 * tempMessage = (MessageWord3*) [data bytes];
         NSString* tempString = [NSString stringWithUTF8String:tempMessage->word];
         [word3 setString: tempString];
+        [self parseWord: tempString dictionary:word3Dict];
 
     }
     
     else if(message->messageType == kMessageTypeTime){
         MessageTime * tempMessage = (MessageTime*) [data bytes];
         NSString* tempString = [NSString stringWithUTF8String:tempMessage->time];
-        [word3 setString: tempString];
+        [clock setString: tempString];
+    }
+    else if(message->messageType == kMessageTypeEndGame){
+        //MessageEndGame * tempMessage = (MessageEndGame*) [data bytes];
+        [self matchEnded];
     }
     
+    else if(message->messageType == kMessageTypeScore) {
+        MessageScore* tempMessage = (MessageScore*) [data bytes];
+        opponent_score = tempMessage->score;
+    }
+    /*
     else if (message->messageType == kMessageTypeGameOver) {
         
         MessageGameOver * messageGameOver = (MessageGameOver *) [data bytes];
@@ -1239,7 +1302,7 @@ NSMutableDictionary *lettersDict;
         } else {
             [self endScene:kEndReasonWin];
         }
-    }
+    }*/
 }
 
 
