@@ -1167,7 +1167,7 @@ int pressButtonTest;
             score_p1 = opponent_score;
             score_p2 = my_score;
         }
-        
+        [self request:@"/users/SaveScores/multiple"];
         CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
         [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
     }
@@ -1310,12 +1310,41 @@ int pressButtonTest;
                 score_p1 = opponent_score;
                 score_p2 = my_score;
             }
+            [self request:@"/users/SaveScores/multiple"];
             CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
             [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
         }
     }
 
 }
+
+- (void) request:(NSString*) path{
+    NSDictionary *jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [GKLocalPlayer localPlayer].alias, @"user",
+                              my_score, @"score",
+                              nil];
+    NSError *tempError;
+    NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&tempError];
+    NSString *fullPath = [NSString stringWithFormat:@"%@%@", @"http://fast-hollows-4122.herokuapp.com", path];
+    NSURL *url = [NSURL URLWithString:fullPath];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:[NSString stringWithFormat:@"%d", [jsonRequest length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:jsonRequest];
+    
+    NSURLResponse *tempResponse =[[NSURLResponse alloc]init];
+    NSData *jsonResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&tempResponse error:&tempError];
+    
+    NSDictionary *jsonDictionaryResponse = [NSJSONSerialization JSONObjectWithData:jsonResponse options:kNilOptions error:&tempError];
+    
+    //NSArray  = [jsonDictionaryResponse objectForKey:@"data"];
+    
+}
+
+
 
 //Methods added for testing
 
@@ -1415,6 +1444,7 @@ int pressButtonTest;
     testsCount = 0;
     successTests = 0;
     failedTests = 0;
+    [self testPressButton];
     [self testMulti_GetWords];
     [self testMulti_RandomWords];
     [self testMulti_Button0];
@@ -1677,8 +1707,12 @@ int pressButtonTest;
 }
 
 -(void) testPressButton{
+    testsCount++;
     [self sendPressButton:5];
     NSAssert(pressButtonTest == 5, @"After sending 5, pressButtonTest should be 5");
+    successTests++;
 }
+
+
 
 @end

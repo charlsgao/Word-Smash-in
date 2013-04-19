@@ -15,6 +15,9 @@
     CCSprite* bg;
     CCLabelTTF* single;
     CCLabelTTF* multi;
+    
+    int single_highest[10];
+    int multi_highest[10];
 }
 
 @end

@@ -327,6 +327,7 @@ NSMutableDictionary *lettersDict;
     word2Dict = nil;
     word3Dict = nil;
     lettersDict = nil;
+    [self request:@"users/SaveScores/single"];
     CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
     [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
     [self init];
@@ -931,4 +932,30 @@ NSMutableDictionary *lettersDict;
 
 // Changing the image of the same sprite
 //[test setTexture:[[CCTextureCache sharedTextureCache] addImage:@"two.png"]];
+
+- (void) request:(NSString*) path{
+    NSDictionary *jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              score_p1, @"score",
+                              nil];
+    NSError *tempError;
+    NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&tempError];
+    NSString *fullPath = [NSString stringWithFormat:@"%@%@", @"http://fast-hollows-4122.herokuapp.com", path];
+    NSURL *url = [NSURL URLWithString:fullPath];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:[NSString stringWithFormat:@"%d", [jsonRequest length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:jsonRequest];
+    
+    NSURLResponse *tempResponse =[[NSURLResponse alloc]init];
+    NSData *jsonResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&tempResponse error:&tempError];
+    
+    NSDictionary *jsonDictionaryResponse = [NSJSONSerialization JSONObjectWithData:jsonResponse options:kNilOptions error:&tempError];
+    
+    //NSArray  = [jsonDictionaryResponse objectForKey:@"data"];
+    
+}
+
 @end
