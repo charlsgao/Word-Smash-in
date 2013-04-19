@@ -30,7 +30,7 @@
             score_message = [NSString stringWithFormat:@"Your Score is %i!", score_p1];
         }
         finalScore = [CCLabelTTF labelWithString:score_message fontName:@"Arial" fontSize:24];
-        finalScore.position = ccp(100,365);
+        finalScore.position = ccp(140,365);
         finalScore.color = ccBLACK;
         [self addChild:finalScore z:1];
         
