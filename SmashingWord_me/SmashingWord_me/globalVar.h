@@ -26,4 +26,6 @@ extern NSInteger score_p2;
 extern NSString* scorePageMessage;
 
 extern BOOL isPlayer1;
+
+extern BOOL TEST_MODE;
 @end

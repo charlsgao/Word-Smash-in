@@ -16,4 +16,5 @@ NSString* scorePageMessage = @"";
 double BUTTON_APPEAR_DURATION = 0;
 BOOL isPlayer1 = YES;
 
+BOOL TEST_MODE = YES;
 @end

@@ -11,7 +11,10 @@
 #import "AppDelegate.h"
 
 @implementation MultiPlayerScene
-const bool TEST_MODE_M = false;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
+const bool TEST_MODE_M = true;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
+int testsCount = 0;
+int successTests = 0;
+int failedTests = 0;
 
 const int MAX_LETTER_ARRAY_M = 10;             // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR_M = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
@@ -413,6 +416,10 @@ NSMutableDictionary *lettersDict;
 ////////////////////////////////////////////////////////
 //**************  start the game  ************************
 -(void)start: (id)sender{
+    if(TEST_MODE){
+        [self temporaryTests];
+        return;
+    }
     //[self sendStartButton];
     [self getWords];
     //self.word1.text = @"Edwarda";
@@ -1036,7 +1043,6 @@ NSMutableDictionary *lettersDict;
 
 
 - (void)restartTapped:(id)sender {
-    
     // Reload the current scene
     [[GCHelper sharedInstance] authenticateLocalUser];
     CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"MultiPlayer.ccbi"];
@@ -1157,6 +1163,7 @@ NSMutableDictionary *lettersDict;
             score_p1 = opponent_score;
             score_p2 = my_score;
         }
+        
         CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
         [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
     }
@@ -1390,5 +1397,270 @@ NSMutableDictionary *lettersDict;
     return select[9];
 }
 
+//Temporary tests methods
+-(void) temporaryTests
+{
+    testsCount = 0;
+    successTests = 0;
+    failedTests = 0;
+    [self testMulti_GetWords];
+    [self testMulti_RandomWords];
+    [self testMulti_Button0];
+    [self testMulti_Button1];
+    [self testMulti_Button0To8];
+    [self testMulti_Select9];
+    [self testMulti_Button0BecomesDisabled];
+    [self testMulti_Button0To8_BecomesTransparent];
+    NSLog(@"# of tests: %d", testsCount);
+    NSLog(@"# of successful Tests: %d", successTests);
+    
+}
+
+- (void) testMulti_GetWords
+{
+    testsCount ++;
+    [self getWords];
+    NSAssert([self getWord1]!=nil, @"Word1 should not be nil");
+    successTests ++;
+}
+
+
+- (void) testMulti_RandomWords
+{
+    testsCount ++;
+    [self getWords];
+    NSAssert(word_1!=nil, @"Word1 should not be nil");
+    NSAssert(word_2!=nil, @"Word2 should not be nil");
+    NSAssert(word_3!=nil, @"Word3 should not be nil");
+    successTests ++;
+    
+}
+
+- (void) testMulti_Button0
+{
+    testsCount ++;
+    //Initialize the buttons and select lists
+    [self hideButtons];
+    [self resetSelectArray];
+    [[self getButton0] setNormalImage:[CCSprite spriteWithFile:@"A.png"]];
+    [[self getButton0] setSelectedImage:[CCSprite spriteWithFile:@"A.png"]];
+    [self getButton0].tag = 65;
+    [self getButton0].isEnabled=YES;
+    [self pressButton0:self];
+    NSAssert([self getButton0].tag == [self getSelect0].tag, @"button 0 and select 0 should have same tag values");
+    successTests ++;
+    
+}
+
+- (void) testMulti_Button1
+{
+    testsCount ++;
+    //Initialize the buttons and select lists
+    [self hideButtons];
+    [self resetSelectArray];
+    [[self getButton1] setNormalImage:[CCSprite spriteWithFile:@"B.png"]];
+    [[self getButton1] setSelectedImage:[CCSprite spriteWithFile:@"B.png"]];
+    [self getButton1].tag = 66;
+    [self getButton1].isEnabled=YES;
+    
+    //Assume select[0] is occupied
+    [self getSelect0].tag = 1;
+    [self pressButton1:self];
+    NSAssert([self getButton1].tag == [self getSelect1].tag, @"button 0 and select 0 should have same tag values");
+    successTests ++;
+    
+}
+
+- (void) testMulti_Button0To8
+{
+    testsCount ++;
+    //Initialize the buttons and select lists
+    [self hideButtons];
+    [self resetSelectArray];
+    [[self getButton0] setNormalImage:[CCSprite spriteWithFile:@"A.png"]];
+    [[self getButton0] setSelectedImage:[CCSprite spriteWithFile:@"A.png"]];
+    [self getButton0].tag = 65;
+    [self getButton0].isEnabled=YES;
+    
+    [[self getButton1] setNormalImage:[CCSprite spriteWithFile:@"B.png"]];
+    [[self getButton1] setSelectedImage:[CCSprite spriteWithFile:@"B.png"]];
+    [self getButton1].tag = 66;
+    [self getButton1].isEnabled=YES;
+    
+    [[self getButton2] setNormalImage:[CCSprite spriteWithFile:@"C.png"]];
+    [[self getButton2] setSelectedImage:[CCSprite spriteWithFile:@"C.png"]];
+    [self getButton2].tag = 67;
+    [self getButton2].isEnabled=YES;
+    
+    [[self getButton3] setNormalImage:[CCSprite spriteWithFile:@"D.png"]];
+    [[self getButton3] setSelectedImage:[CCSprite spriteWithFile:@"D.png"]];
+    [self getButton3].tag = 68;
+    [self getButton3].isEnabled=YES;
+    
+    [[self getButton4] setNormalImage:[CCSprite spriteWithFile:@"E.png"]];
+    [[self getButton4] setSelectedImage:[CCSprite spriteWithFile:@"E.png"]];
+    [self getButton4].tag = 69;
+    [self getButton4].isEnabled=YES;
+    
+    [[self getButton5] setNormalImage:[CCSprite spriteWithFile:@"F.png"]];
+    [[self getButton5] setSelectedImage:[CCSprite spriteWithFile:@"F.png"]];
+    [self getButton5].tag = 70;
+    [self getButton5].isEnabled=YES;
+    
+    [[self getButton6] setNormalImage:[CCSprite spriteWithFile:@"G.png"]];
+    [[self getButton6] setSelectedImage:[CCSprite spriteWithFile:@"G.png"]];
+    [self getButton6].tag = 71;
+    [self getButton6].isEnabled=YES;
+    
+    [[self getButton7] setNormalImage:[CCSprite spriteWithFile:@"H.png"]];
+    [[self getButton7] setSelectedImage:[CCSprite spriteWithFile:@"H.png"]];
+    [self getButton7].tag = 72;
+    [self getButton7].isEnabled=YES;
+    
+    [[self getButton8] setNormalImage:[CCSprite spriteWithFile:@"I.png"]];
+    [[self getButton8] setSelectedImage:[CCSprite spriteWithFile:@"I.png"]];
+    [self getButton8].tag = 73;
+    [self getButton8].isEnabled=YES;
+    
+    [self pressButton0:self];
+    [self pressButton1:self];
+    [self pressButton2:self];
+    [self pressButton3:self];
+    [self pressButton4:self];
+    [self pressButton5:self];
+    [self pressButton6:self];
+    [self pressButton7:self];
+    [self pressButton8:self];
+    
+    NSAssert([self getButton0].tag == [self getSelect0].tag, @"button 0 and select 0 should have same tag values");
+    NSAssert([self getButton1].tag == [self getSelect1].tag, @"button 1 and select 1 should have same tag values");
+    NSAssert([self getButton2].tag == [self getSelect2].tag, @"button 2 and select 2 should have same tag values");
+    NSAssert([self getButton3].tag == [self getSelect3].tag, @"button 3 and select 3 should have same tag values");
+    NSAssert([self getButton4].tag == [self getSelect4].tag, @"button 4 and select 4 should have same tag values");
+    NSAssert([self getButton5].tag == [self getSelect5].tag, @"button 5 and select 5 should have same tag values");
+    NSAssert([self getButton6].tag == [self getSelect6].tag, @"button 6 and select 6 should have same tag values");
+    NSAssert([self getButton7].tag == [self getSelect7].tag, @"button 7 and select 7 should have same tag values");
+    NSAssert([self getButton8].tag == [self getSelect8].tag, @"button 8 and select 8 should have same tag values");
+    successTests ++;
+    
+}
+
+- (void) testMulti_Select9
+{
+    testsCount ++;
+    //Initialize the buttons and select lists
+    [self hideButtons];
+    [self resetSelectArray];
+    [[self getButton1] setNormalImage:[CCSprite spriteWithFile:@"B.png"]];
+    [[self getButton1] setSelectedImage:[CCSprite spriteWithFile:@"B.png"]];
+    [self getButton1].tag = 66;
+    [self getButton1].isEnabled=YES;
+    
+    //Assume select[0] to select[8] is occupied
+    [self getSelect0].tag = 1;
+    [self getSelect1].tag = 1;
+    [self getSelect2].tag = 1;
+    [self getSelect3].tag = 1;
+    [self getSelect4].tag = 1;
+    [self getSelect5].tag = 1;
+    [self getSelect6].tag = 1;
+    [self getSelect7].tag = 1;
+    [self getSelect8].tag = 1;
+    
+    [self pressButton1:self];
+    NSAssert([self getSelect9].tag != [self getSelect2].tag, @"select[9] and select[2] should have diff tags");
+    NSAssert([self getButton1].tag == [self getSelect9].tag, @"button 1 and select 9 should have same tag values");
+    successTests ++;
+    
+}
+
+- (void) testMulti_Button0BecomesDisabled
+{
+    testsCount ++;
+    //Initialize the buttons and select lists
+    [self hideButtons];
+    [self resetSelectArray];
+    [[self getButton0] setNormalImage:[CCSprite spriteWithFile:@"A.png"]];
+    [[self getButton0] setSelectedImage:[CCSprite spriteWithFile:@"A.png"]];
+    [self getButton0].tag = 65;
+    [self getButton0].isEnabled=YES;
+    
+    [self pressButton0:self];
+    NSAssert([self getButton0].isEnabled == NO, @"After pressing button, button should be disabled");
+    successTests ++;
+}
+
+- (void) testMulti_Button0To8_BecomesTransparent
+{
+    testsCount ++;
+    //Initialize the buttons and select lists
+    [self hideButtons];
+    [self resetSelectArray];
+    [[self getButton0] setNormalImage:[CCSprite spriteWithFile:@"A.png"]];
+    [[self getButton0] setSelectedImage:[CCSprite spriteWithFile:@"A.png"]];
+    [self getButton0].tag = 65;
+    [self getButton0].isEnabled=YES;
+    
+    [[self getButton1] setNormalImage:[CCSprite spriteWithFile:@"B.png"]];
+    [[self getButton1] setSelectedImage:[CCSprite spriteWithFile:@"B.png"]];
+    [self getButton1].tag = 66;
+    [self getButton1].isEnabled=YES;
+    
+    [[self getButton2] setNormalImage:[CCSprite spriteWithFile:@"C.png"]];
+    [[self getButton2] setSelectedImage:[CCSprite spriteWithFile:@"C.png"]];
+    [self getButton2].tag = 67;
+    [self getButton2].isEnabled=YES;
+    
+    [[self getButton3] setNormalImage:[CCSprite spriteWithFile:@"D.png"]];
+    [[self getButton3] setSelectedImage:[CCSprite spriteWithFile:@"D.png"]];
+    [self getButton3].tag = 68;
+    [self getButton3].isEnabled=YES;
+    
+    [[self getButton4] setNormalImage:[CCSprite spriteWithFile:@"E.png"]];
+    [[self getButton4] setSelectedImage:[CCSprite spriteWithFile:@"E.png"]];
+    [self getButton4].tag = 69;
+    [self getButton4].isEnabled=YES;
+    
+    [[self getButton5] setNormalImage:[CCSprite spriteWithFile:@"F.png"]];
+    [[self getButton5] setSelectedImage:[CCSprite spriteWithFile:@"F.png"]];
+    [self getButton5].tag = 70;
+    [self getButton5].isEnabled=YES;
+    
+    [[self getButton6] setNormalImage:[CCSprite spriteWithFile:@"G.png"]];
+    [[self getButton6] setSelectedImage:[CCSprite spriteWithFile:@"G.png"]];
+    [self getButton6].tag = 71;
+    [self getButton6].isEnabled=YES;
+    
+    [[self getButton7] setNormalImage:[CCSprite spriteWithFile:@"H.png"]];
+    [[self getButton7] setSelectedImage:[CCSprite spriteWithFile:@"H.png"]];
+    [self getButton7].tag = 72;
+    [self getButton7].isEnabled=YES;
+    
+    [[self getButton8] setNormalImage:[CCSprite spriteWithFile:@"I.png"]];
+    [[self getButton8] setSelectedImage:[CCSprite spriteWithFile:@"I.png"]];
+    [self getButton8].tag = 73;
+    [self getButton8].isEnabled=YES;
+    
+    [self pressButton0:self];
+    [self pressButton1:self];
+    [self pressButton2:self];
+    [self pressButton3:self];
+    [self pressButton4:self];
+    [self pressButton5:self];
+    [self pressButton6:self];
+    [self pressButton7:self];
+    [self pressButton8:self];
+    
+    NSAssert([self getButton0].isEnabled == NO, @"After pressing button0, button0 should be disabled");
+    NSAssert([self getButton1].isEnabled == NO, @"After pressing button1, button1 should be disabled");
+    NSAssert([self getButton2].isEnabled == NO, @"After pressing button2, button2 should be disabled");
+    NSAssert([self getButton3].isEnabled == NO, @"After pressing button3, button3 should be disabled");
+    NSAssert([self getButton4].isEnabled == NO, @"After pressing button4, button4 should be disabled");
+    NSAssert([self getButton5].isEnabled == NO, @"After pressing button5, button5 should be disabled");
+    NSAssert([self getButton6].isEnabled == NO, @"After pressing button6, button6 should be disabled");
+    NSAssert([self getButton7].isEnabled == NO, @"After pressing button7, button7 should be disabled");
+    NSAssert([self getButton8].isEnabled == NO, @"After pressing button8, button8 should be disabled");
+    successTests ++;
+}
 
 @end
