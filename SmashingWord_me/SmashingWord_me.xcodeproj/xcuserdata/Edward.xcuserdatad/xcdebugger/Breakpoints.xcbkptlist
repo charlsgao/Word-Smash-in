@@ -208,8 +208,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1052"
          endingLineNumber = "1052"
-         landmarkName = "-tryStartGame"
-         landmarkType = "5">
+         landmarkName = "@implementation MultiPlayerScene"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -243,7 +243,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "991"
          endingLineNumber = "991"
-         landmarkName = "-sendWord2:"
+         landmarkName = "-sendWord1:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

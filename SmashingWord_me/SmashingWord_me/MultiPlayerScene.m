@@ -45,6 +45,9 @@ NSMutableDictionary *word2Dict;
 NSMutableDictionary *word3Dict;
 NSMutableDictionary *lettersDict;
 
+///////for testing purposes
+int pressButtonTest;
+
 
 //************** generating the words **********************
 - (void) getWords
@@ -1235,6 +1238,12 @@ NSMutableDictionary *lettersDict;
         [button[tempMessage->buttonPosition] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
         [button[tempMessage->buttonPosition] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
         button[tempMessage->buttonPosition].isEnabled = NO;
+        if(TEST_MODE && !isPlayer1){
+            [self sendPressButton:tempMessage->buttonPosition];
+        }
+        else if(TEST_MODE && isPlayer1){
+            pressButtonTest = tempMessage->buttonPosition;
+        }
         
     } else if(message->messageType == kMessageTypeHideButton) {
         MessageHideButton * tempMessage = (MessageHideButton *) [data bytes];
@@ -1411,6 +1420,7 @@ NSMutableDictionary *lettersDict;
     [self testMulti_Select9];
     [self testMulti_Button0BecomesDisabled];
     [self testMulti_Button0To8_BecomesTransparent];
+    [self testPressButton];
     NSLog(@"# of tests: %d", testsCount);
     NSLog(@"# of successful Tests: %d", successTests);
     
@@ -1661,6 +1671,11 @@ NSMutableDictionary *lettersDict;
     NSAssert([self getButton7].isEnabled == NO, @"After pressing button7, button7 should be disabled");
     NSAssert([self getButton8].isEnabled == NO, @"After pressing button8, button8 should be disabled");
     successTests ++;
+}
+
+-(void) testPressButton{
+    [self sendPressButton:5];
+    NSAssert(pressButtonTest == 5, @"After sending 5, pressButtonTest should be 5");
 }
 
 @end
