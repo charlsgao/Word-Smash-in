@@ -52,4 +52,10 @@
     GHAssertTrue([line isEqualToString: @"hello"], @"Not equal to hello");
 }
 
+- (void) testGetWords
+{
+    [spc getWords];
+    GHAssertNotNil([spc getWord1], @"Word1 should not be nil");
+}
+
 @end

@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "globalVar.h"
 //score=0;
+/*
 NSString *word_1;
 NSString *word_2;
 NSString *word_3;
@@ -17,6 +18,7 @@ NSString *word_3;
 NSInteger score_1;
 NSInteger score_2;
 NSInteger score_3;
+ */
 
 @interface SinglePlayerScene : CCLayer {
     CCMenuItemImage* startButton;
@@ -37,4 +39,7 @@ NSInteger score_3;
 
 - (NSString*) readDictionaryFile:(NSInteger)lineNum fileName:(NSString*)fileName;
 - (NSString*) testing;
+- (void) getWords;
+
+- (CCLabelTTF*) getWord1;
 @end

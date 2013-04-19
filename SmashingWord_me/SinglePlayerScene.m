@@ -21,7 +21,7 @@ const int INCR_SCORE = 10;                   // score increment step
 const int TOTAL_WORDS_IN_FILE = 20;          // MAXIMUM NUMBER OF WORDS IN A DICTIONARY FILE
 const int RANGE_OF_WORD_LENGTH = 2;         // RANGE OF WORD LENGTH USED
 const int START_OF_WORD_LENGTH = 3;
-const bool easy = false; 
+const bool easy = true;
 
 NSString *l;
 int tempTag;
@@ -76,6 +76,7 @@ NSMutableDictionary *lettersDict;
         word_1 = [self readDictionaryFile:r1 fileName:fileName];
         [word1 setString:word_1];
         
+        
         r2 = rand() % 26;
         l2 = 1;
         fileName = [NSString stringWithFormat:@"%i.txt", l2];
@@ -90,6 +91,11 @@ NSMutableDictionary *lettersDict;
         word_3 = [self readDictionaryFile:r3 fileName:fileName];
         [word3 setString:word_3];
     }
+}
+
+- (CCLabelTTF*) getWord1
+{
+    return word1;
 }
 
 - (NSString*) testing
@@ -227,6 +233,7 @@ NSMutableDictionary *lettersDict;
      NSLog(@"%@", letter[i]);
      */
     NSLog(@"%i", score);
+    score_p1 = score;
     
     word1Dict = nil;
     word2Dict = nil;
