@@ -34,4 +34,7 @@ NSInteger score_3;
 @property (strong, nonatomic) NSTimer *timer;               //button appear duration timer
 //@property double BUTTON_APPEAR_DURATION;
 @property (strong, nonatomic) NSArray *strArray;
+
+- (NSString*) readDictionaryFile:(NSInteger)lineNum fileName:(NSString*)fileName;
+- (NSString*) testing;
 @end

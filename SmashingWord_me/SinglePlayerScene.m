@@ -92,6 +92,11 @@ NSMutableDictionary *lettersDict;
     }
 }
 
+- (NSString*) testing
+{
+    return @"hello";
+}
+
 //************** readDictionaryFile  **********************
 // This function will take 2 parameters lineNum and wordLength, read a file called fileName
 // containing a dictionary of words and return the corresponding word given the
@@ -102,17 +107,21 @@ NSMutableDictionary *lettersDict;
     NSFileManager *filemgr;
     filemgr = [NSFileManager defaultManager];
     
-    NSString *home = NSHomeDirectory();
+    //NSString *home = NSHomeDirectory();
     
-    NSString *destinationPath = [NSString stringWithFormat:@"%@/SmashingWord_me.app/%@", home, fileName];
+    //NSString *destinationPath = [NSString stringWithFormat:@"%@/SmashingWord_me.app/%@", home, fileName];
     //NSLog(@"\nText File: %@\n", destinationPath);
+    //NSLog( @"THIZZZZ: %@" , [[NSBundle mainBundle] bundlePath] );
     
-    /*
-     if ([filemgr fileExistsAtPath: destinationPath] == YES)
-     NSLog (@"File exists");
-     else
-     NSLog (@"File not found!");
-     */
+    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+    NSString *destinationPath = [NSString stringWithFormat:@"%@/%@", bundlePath, fileName];
+    
+    NSLog(@"\nText File: %@\n", destinationPath);
+    if ([filemgr fileExistsAtPath: destinationPath] == YES)
+        NSLog (@"File exists");
+    else
+        NSLog (@"File not found!");
+     
     
     NSString *readText = [[NSString alloc] initWithContentsOfFile:destinationPath
                                                          encoding:NSUTF8StringEncoding
