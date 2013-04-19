@@ -620,7 +620,6 @@ NSMutableDictionary *lettersDict;
 
 -(id)init{
     if((self=[super init])){
-        isSinglePlayer = YES;
         srand ( time(NULL) );//clear out random numbers
         
         self.strArray = [NSArray arrayWithObjects:@"HELLO",@"WORLD",@"EDWARD",@"BING",@"WENHAO",@"DENNY",nil];
