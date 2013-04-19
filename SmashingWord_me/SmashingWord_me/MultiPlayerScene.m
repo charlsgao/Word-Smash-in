@@ -46,6 +46,7 @@ NSMutableDictionary *word3Dict;
 NSMutableDictionary *lettersDict;
 
 ///////for testing purposes
+
 int pressButtonTest;
 
 
@@ -1239,9 +1240,11 @@ int pressButtonTest;
         [button[tempMessage->buttonPosition] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
         button[tempMessage->buttonPosition].isEnabled = NO;
         if(TEST_MODE && !isPlayer1){
+            NSLog(@"buttonposition is %d", tempMessage->buttonPosition);
             [self sendPressButton:tempMessage->buttonPosition];
         }
         else if(TEST_MODE && isPlayer1){
+            NSLog(@"buttonposition is %d", tempMessage->buttonPosition);
             pressButtonTest = tempMessage->buttonPosition;
         }
         

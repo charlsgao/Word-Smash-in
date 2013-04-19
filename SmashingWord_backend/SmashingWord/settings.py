@@ -108,7 +108,8 @@ import os
 path = os.getcwd()
 TEMPLATE_DIRS = (
     #"/app/templates"
-    "/home/ubuntu/Documents/Dev/SmashingWord/templates/"
+    #"/home/ubuntu/Documents/Dev/SmashingWord/templates/"
+    "/home/ubuntu/169proj/SmashingWord/templates/"
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
