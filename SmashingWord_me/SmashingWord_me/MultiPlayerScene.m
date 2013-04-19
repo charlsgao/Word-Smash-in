@@ -648,6 +648,7 @@ NSMutableDictionary *lettersDict;
 
 -(id)init{
     if((self=[super init])){
+        isSinglePlayer = FALSE;
         my_score = 0;
         opponent_score = 0;
         srand ( time(NULL) );//clear out random numbers

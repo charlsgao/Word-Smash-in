@@ -203,11 +203,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SmashingWord_me/MultiPlayerScene.m"
-         timestampString = "387874860.766663"
+         timestampString = "388041697.439495"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1052"
-         endingLineNumber = "1052"
+         startingLineNumber = "1053"
+         endingLineNumber = "1053"
          landmarkName = "-tryStartGame"
          landmarkType = "5">
       </FileBreakpoint>
@@ -238,11 +238,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SmashingWord_me/MultiPlayerScene.m"
-         timestampString = "387874860.766663"
+         timestampString = "388041697.439495"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "991"
-         endingLineNumber = "991"
+         startingLineNumber = "992"
+         endingLineNumber = "992"
          landmarkName = "-sendWord2:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -257,6 +257,19 @@
          startingLineNumber = "191"
          endingLineNumber = "191"
          landmarkName = "-timerFired"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SmashingWord_me/ScoreScene.m"
+         timestampString = "388041697.439495"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "30"
+         endingLineNumber = "30"
+         landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
