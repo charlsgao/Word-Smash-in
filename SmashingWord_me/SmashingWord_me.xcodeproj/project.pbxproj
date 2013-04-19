@@ -862,6 +862,11 @@
 		A29D197C1720FFD500328D51 /* 9.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 9.txt; sourceTree = "<group>"; };
 		A29D197D1720FFD500328D51 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		A29D197E1720FFD500328D51 /* test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test2.txt; sourceTree = "<group>"; };
+		CE0207241721497400000760 /* MultiplayerTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MultiplayerTest-Info.plist"; sourceTree = "<group>"; };
+		CE0207261721497400000760 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CE0207281721497400000760 /* MultiplayerTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiplayerTest.h; sourceTree = "<group>"; };
+		CE0207291721497400000760 /* MultiplayerTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiplayerTest.m; sourceTree = "<group>"; };
+		CE02072B1721497400000760 /* MultiplayerTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MultiplayerTest-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -908,6 +913,7 @@
 				A29D18221720EC2100328D51 /* libz.dylib */,
 				2B82DAC416F92A7400DE8649 /* SmashingWord_me */,
 				A29D17241720E19E00328D51 /* Tests */,
+				CE0207221721497400000760 /* MultiplayerTest */,
 				2B82DAB116F92A7400DE8649 /* Frameworks */,
 				2B82DAB016F92A7400DE8649 /* Products */,
 			);
@@ -1552,6 +1558,26 @@
 			path = dictionary;
 			sourceTree = "<group>";
 		};
+		CE0207221721497400000760 /* MultiplayerTest */ = {
+			isa = PBXGroup;
+			children = (
+				CE0207281721497400000760 /* MultiplayerTest.h */,
+				CE0207291721497400000760 /* MultiplayerTest.m */,
+				CE0207231721497400000760 /* Supporting Files */,
+			);
+			path = MultiplayerTest;
+			sourceTree = "<group>";
+		};
+		CE0207231721497400000760 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CE0207241721497400000760 /* MultiplayerTest-Info.plist */,
+				CE0207251721497400000760 /* InfoPlist.strings */,
+				CE02072B1721497400000760 /* MultiplayerTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2082,6 +2108,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				A29D17281720E19E00328D51 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CE0207251721497400000760 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE0207261721497400000760 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

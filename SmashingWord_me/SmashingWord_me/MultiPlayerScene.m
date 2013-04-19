@@ -1298,6 +1298,97 @@ NSMutableDictionary *lettersDict;
 
 }
 
+//Methods added for testing
+
+- (void) resetSelectArray
+{
+    for (int i = 0; i < 10; i++) {
+        select[i].tag = 0;
+    }
+}
+
+- (CCLabelTTF*) getWord1
+{
+    return word1;
+}
+
+- (CCMenuItemImage*) getButton0
+{
+    return button[0];
+}
+- (CCMenuItemImage*) getButton1
+{
+    return button[1];
+}
+- (CCMenuItemImage*) getButton2
+{
+    return button[2];
+}
+- (CCMenuItemImage*) getButton3
+{
+    return button[3];
+}
+- (CCMenuItemImage*) getButton4
+{
+    return button[4];
+}
+- (CCMenuItemImage*) getButton5
+{
+    return button[5];
+}
+- (CCMenuItemImage*) getButton6
+{
+    return button[6];
+}
+- (CCMenuItemImage*) getButton7
+{
+    return button[7];
+}
+- (CCMenuItemImage*) getButton8
+{
+    return button[8];
+}
+
+- (CCMenuItemImage*) getSelect0
+{
+    return select[0];
+}
+- (CCMenuItemImage*) getSelect1
+{
+    return select[1];
+}
+- (CCMenuItemImage*) getSelect2
+{
+    return select[2];
+}
+- (CCMenuItemImage*) getSelect3
+{
+    return select[3];
+}
+- (CCMenuItemImage*) getSelect4
+{
+    return select[4];
+}
+- (CCMenuItemImage*) getSelect5
+{
+    return select[5];
+}
+- (CCMenuItemImage*) getSelect6
+{
+    return select[6];
+}
+- (CCMenuItemImage*) getSelect7
+{
+    return select[7];
+}
+- (CCMenuItemImage*) getSelect8
+{
+    return select[8];
+}
+- (CCMenuItemImage*) getSelect9
+{
+    return select[9];
+}
 
 
 @end
