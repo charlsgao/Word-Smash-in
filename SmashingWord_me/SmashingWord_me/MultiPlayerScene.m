@@ -1239,6 +1239,7 @@ int pressButtonTest;
         [button[tempMessage->buttonPosition] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
         [button[tempMessage->buttonPosition] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
         button[tempMessage->buttonPosition].isEnabled = NO;
+        /*
         if(TEST_MODE && !isPlayer1){
             NSLog(@"buttonposition is %d", tempMessage->buttonPosition);
             [self sendPressButton:tempMessage->buttonPosition];
@@ -1246,7 +1247,7 @@ int pressButtonTest;
         else if(TEST_MODE && isPlayer1){
             NSLog(@"buttonposition is %d", tempMessage->buttonPosition);
             pressButtonTest = tempMessage->buttonPosition;
-        }
+        }*/
         
     } else if(message->messageType == kMessageTypeHideButton) {
         MessageHideButton * tempMessage = (MessageHideButton *) [data bytes];
@@ -1444,7 +1445,7 @@ int pressButtonTest;
     testsCount = 0;
     successTests = 0;
     failedTests = 0;
-    [self testPressButton];
+    //[self testPressButton];
     [self testMulti_GetWords];
     [self testMulti_RandomWords];
     [self testMulti_Button0];
@@ -1453,7 +1454,7 @@ int pressButtonTest;
     [self testMulti_Select9];
     [self testMulti_Button0BecomesDisabled];
     [self testMulti_Button0To8_BecomesTransparent];
-    [self testPressButton];
+    //[self testPressButton];
     NSLog(@"# of tests: %d", testsCount);
     NSLog(@"# of successful Tests: %d", successTests);
     
@@ -1705,13 +1706,13 @@ int pressButtonTest;
     NSAssert([self getButton8].isEnabled == NO, @"After pressing button8, button8 should be disabled");
     successTests ++;
 }
-
+/*
 -(void) testPressButton{
     testsCount++;
     [self sendPressButton:5];
     NSAssert(pressButtonTest == 5, @"After sending 5, pressButtonTest should be 5");
     successTests++;
-}
+}*/
 
 
 
