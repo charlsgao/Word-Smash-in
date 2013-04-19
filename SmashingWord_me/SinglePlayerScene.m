@@ -234,6 +234,7 @@ NSMutableDictionary *lettersDict;
      */
     NSLog(@"%i", score);
     score_p1 = score;
+    score_p2 = -1;
     
     word1Dict = nil;
     word2Dict = nil;
