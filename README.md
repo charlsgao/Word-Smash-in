@@ -5,7 +5,7 @@ Word-Smash-in
 
 1. You need to have Xcode installed.
 
-2. Once you download the files, go to SmashingWord_me, double click on "SmashingWord_me.xcodeproj", Xcode will be launched automatically.
+2. Once you download the files, go to Word-Smash-in_latest, double click on "SmashingWord_me.xcodeproj", Xcode will be launched automatically.
 
 3. Click the Run on top left of XCode with the target SmashingWord_me > iPhone 6.1 Simulator.
 
@@ -17,8 +17,9 @@ There are 3 options on the menu screen:
 
 2. How to play - tutorial on how to play (not yet written)
 
-3. MultiPlayer - (the text still reads "SinglePlayer") play a multiplayer game
+3. MultiPlayer - play a multiplayer game
 	* requires either two iPhone/iPhone simulator (which means 2 of either iPhone/Mac)
+	* reuqires Apple account
 	* to run on iPhone, connect your iPhone, Click the Run on top left of XCode with target SmashingWord_me > youriphone
 	
 How to play:
