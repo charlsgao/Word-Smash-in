@@ -21,17 +21,8 @@
 }
 
 -(void)MultiPlayerButtonPress:(id)sender{
-    //if (!TEST_MODE) {
-        [[GCHelper sharedInstance] authenticateLocalUser];
-    //}
-    
+    [[GCHelper sharedInstance] authenticateLocalUser];
     CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"MultiPlayer.ccbi"];
     [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
 }
-
--(void)HighestScoreButtonPress: (id)sender{
-    CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"HighestScore.ccbi"];
-    [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
-}
-
 @end

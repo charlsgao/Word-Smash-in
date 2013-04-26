@@ -10,7 +10,7 @@
 #import "CCBReader.h"
 
 @implementation SinglePlayerScene
-//const bool TEST_MODE_S = false;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
+const bool TEST_MODE = false;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
 
 const int MAX_LETTER_ARRAY = 10;             // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
@@ -21,7 +21,7 @@ const int INCR_SCORE = 10;                   // score increment step
 const int TOTAL_WORDS_IN_FILE = 20;          // MAXIMUM NUMBER OF WORDS IN A DICTIONARY FILE
 const int RANGE_OF_WORD_LENGTH = 2;         // RANGE OF WORD LENGTH USED
 const int START_OF_WORD_LENGTH = 3;
-const bool easy = true;
+const bool easy = false;
 
 NSString *l;
 int tempTag;
@@ -93,96 +93,9 @@ NSMutableDictionary *lettersDict;
     }
 }
 
-//Methods added for testing
-
-- (void) resetSelectArray
-{
-    for (int i = 0; i < 10; i++) {
-        select[i].tag = 0;
-    }
-}
-
 - (CCLabelTTF*) getWord1
 {
     return word1;
-}
-
-- (CCMenuItemImage*) getButton0
-{
-    return button[0];
-}
-- (CCMenuItemImage*) getButton1
-{
-    return button[1];
-}
-- (CCMenuItemImage*) getButton2
-{
-    return button[2];
-}
-- (CCMenuItemImage*) getButton3
-{
-    return button[3];
-}
-- (CCMenuItemImage*) getButton4
-{
-    return button[4];
-}
-- (CCMenuItemImage*) getButton5
-{
-    return button[5];
-}
-- (CCMenuItemImage*) getButton6
-{
-    return button[6];
-}
-- (CCMenuItemImage*) getButton7
-{
-    return button[7];
-}
-- (CCMenuItemImage*) getButton8
-{
-    return button[8];
-}
-
-- (CCMenuItemImage*) getSelect0
-{
-    return select[0];
-}
-- (CCMenuItemImage*) getSelect1
-{
-    return select[1];
-}
-- (CCMenuItemImage*) getSelect2
-{
-    return select[2];
-}
-- (CCMenuItemImage*) getSelect3
-{
-    return select[3];
-}
-- (CCMenuItemImage*) getSelect4
-{
-    return select[4];
-}
-- (CCMenuItemImage*) getSelect5
-{
-    return select[5];
-}
-- (CCMenuItemImage*) getSelect6
-{
-    return select[6];
-}
-- (CCMenuItemImage*) getSelect7
-{
-    return select[7];
-}
-- (CCMenuItemImage*) getSelect8
-{
-    return select[8];
-}
-- (CCMenuItemImage*) getSelect9
-{
-    return select[9];
 }
 
 - (NSString*) testing
@@ -327,7 +240,6 @@ NSMutableDictionary *lettersDict;
     word2Dict = nil;
     word3Dict = nil;
     lettersDict = nil;
-    [self request:@"users/SaveScores/single"];
     CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
     [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
     [self init];
@@ -932,30 +844,4 @@ NSMutableDictionary *lettersDict;
 
 // Changing the image of the same sprite
 //[test setTexture:[[CCTextureCache sharedTextureCache] addImage:@"two.png"]];
-
-- (void) request:(NSString*) path{
-    NSDictionary *jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              score_p1, @"score",
-                              nil];
-    NSError *tempError;
-    NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&tempError];
-    NSString *fullPath = [NSString stringWithFormat:@"%@%@", @"http://fast-hollows-4122.herokuapp.com", path];
-    NSURL *url = [NSURL URLWithString:fullPath];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:[NSString stringWithFormat:@"%d", [jsonRequest length]] forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody:jsonRequest];
-    
-    NSURLResponse *tempResponse =[[NSURLResponse alloc]init];
-    NSData *jsonResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&tempResponse error:&tempError];
-    
-    NSDictionary *jsonDictionaryResponse = [NSJSONSerialization JSONObjectWithData:jsonResponse options:kNilOptions error:&tempError];
-    
-    //NSArray  = [jsonDictionaryResponse objectForKey:@"data"];
-    
-}
-
 @end

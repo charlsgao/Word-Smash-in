@@ -52,7 +52,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "224"
          endingLineNumber = "224"
-         landmarkName = "-readDictionaryFile:fileName:"
+         landmarkName = "-endOfGame"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -65,7 +65,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "315"
          endingLineNumber = "315"
-         landmarkName = "-endOfGame"
+         landmarkName = "-generateButton"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -78,7 +78,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "323"
          endingLineNumber = "323"
-         landmarkName = "-endOfGame"
+         landmarkName = "-generateButton"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -91,7 +91,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "327"
          endingLineNumber = "327"
-         landmarkName = "-endOfGame"
+         landmarkName = "-generateButton"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -104,7 +104,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "325"
          endingLineNumber = "325"
-         landmarkName = "-endOfGame"
+         landmarkName = "-generateButton"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -117,7 +117,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "321"
          endingLineNumber = "321"
-         landmarkName = "-endOfGame"
+         landmarkName = "-generateButton"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -130,7 +130,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "326"
          endingLineNumber = "326"
-         landmarkName = "-endOfGame"
+         landmarkName = "-generateButton"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -143,7 +143,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "214"
          endingLineNumber = "214"
-         landmarkName = "-readDictionaryFile:fileName:"
+         landmarkName = "-endOfGame"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -156,7 +156,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "213"
          endingLineNumber = "213"
-         landmarkName = "-readDictionaryFile:fileName:"
+         landmarkName = "-endOfGame"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -169,7 +169,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "211"
          endingLineNumber = "211"
-         landmarkName = "-readDictionaryFile:fileName:"
+         landmarkName = "-endOfGame"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -208,7 +208,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1052"
          endingLineNumber = "1052"
-         landmarkName = "-restartTapped:"
+         landmarkName = "-tryStartGame"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -243,8 +243,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "991"
          endingLineNumber = "991"
-         landmarkName = "@implementation MultiPlayerScene"
-         landmarkType = "3">
+         landmarkName = "-sendWord2:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
