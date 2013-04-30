@@ -41,3 +41,8 @@ How to play:
 Contact:
 Zhaohua Gao: zhaohuagao@berkeley.edu
 BingChong Lim: bingchonglim@berkeley.edu
+
+Our Pivotal Tracker's address is:
+https://www.pivotaltracker.com/s/projects/769765
+
+Access has been granted to the tester team's berkeley.edu address.
