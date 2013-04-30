@@ -37,3 +37,7 @@ How to play:
 * Note that position does not matter (e.g. word: and, you can choose nda)
 * Each word worth 10 points
 * Picking higher level will result the letters to change more quickly
+
+Contact:
+Zhaohua Gao: zhaohuagao@berkeley.edu
+BingChong Lim: bingchonglim@berkeley.edu
