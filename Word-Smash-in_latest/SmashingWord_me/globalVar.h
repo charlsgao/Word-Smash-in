@@ -22,6 +22,7 @@ extern NSInteger score_3;
 
 extern NSInteger score_p1;
 extern NSInteger score_p2;
+extern NSInteger penalty_score;
 
 extern NSString* scorePageMessage;
 

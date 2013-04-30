@@ -321,6 +321,7 @@ NSMutableDictionary *lettersDict;
      */
     NSLog(@"%i", score);
     score_p1 = score;
+    score_p1 -= penalty_score;
     score_p2 = -1;
     
     word1Dict = nil;
@@ -650,60 +651,70 @@ NSMutableDictionary *lettersDict;
     [select[0] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[0] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     select[0].tag = 0;
+    penalty_score += 1;
 }
 
 -(void)unSelect1: (id)sender{
     [select[1] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[1] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     select[1].tag = 0;
+    penalty_score += 1;
 }
 
 -(void)unSelect2: (id)sender{
     [select[2] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[2] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     select[2].tag = 0;
+    penalty_score += 1;
 }
 
 -(void)unSelect3: (id)sender{
     [select[3] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[3] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     select[3].tag = 0;
+    penalty_score += 1;
 }
 
 -(void)unSelect4: (id)sender{
     [select[4] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[4] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     select[4].tag = 0;
+    penalty_score += 1;
 }
 
 -(void)unSelect5: (id)sender{
     [select[5] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[5] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     select[5].tag = 0;
+    penalty_score += 1;
 }
 
 -(void)unSelect6: (id)sender{
     [select[6] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[6] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     select[6].tag = 0;
+    penalty_score += 1;
 }
 
 -(void)unSelect7: (id)sender{
     [select[7] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[7] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     select[7].tag = 0;
+    penalty_score += 1;
 }
 
 -(void)unSelect8: (id)sender{
     [select[8] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[8] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     select[8].tag = 0;
+    penalty_score += 1;
 }
 
 -(void)unSelect9: (id)sender{
     [select[9] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[9] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
     select[9].tag = 0;
+    penalty_score += 1;
 }
 
 -(id)init{

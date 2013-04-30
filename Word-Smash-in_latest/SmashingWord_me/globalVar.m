@@ -12,6 +12,7 @@
 NSInteger score = 0;
 NSInteger score_p1 = 0;
 NSInteger score_p2 = 0;
+NSInteger penalty_score = 0;
 NSString* scorePageMessage = @"";
 double BUTTON_APPEAR_DURATION = 0;
 BOOL isPlayer1 = YES;
