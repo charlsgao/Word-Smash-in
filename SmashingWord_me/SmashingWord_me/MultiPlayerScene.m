@@ -1195,6 +1195,7 @@ NSMutableDictionary *lettersDict;
     
     [self sendWord1:[CharacterIncrease UTF8String]];
 }
+
 - (void) useTimeFreezer{
     
     
