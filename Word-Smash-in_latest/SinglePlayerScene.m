@@ -1185,7 +1185,7 @@ double freezeButtonDuration = 0;
 
 - (NSArray*) request:(NSString*) path SecondParameter:(NSDictionary*) parameter{
     NSDictionary *jsonDict;
-    NSNumber *tempNum = [NSNumber numberWithInt:score_1];
+    NSNumber *tempNum = [NSNumber numberWithInt:score_p1];
     jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
                               tempNum, @"score",
                               nil];
