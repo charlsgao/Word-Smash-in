@@ -23,12 +23,17 @@ NSInteger score_3;
 @interface SinglePlayerScene : CCLayer {
     CCMenuItemImage* startButton;
     CCMenuItemImage* button[9];
-    CCMenuItemImage* select[10];
+    CCMenuItemImage* select[15];
     CCLabelTTF* clock;
     CCLabelTTF* word1;
     CCLabelTTF* word2;
     CCLabelTTF* word3;
     CCSprite* bg;
+    
+    //needed for features from the shop
+    BOOL increaseCharUsed;
+    CCMenuItemImage* shopItem[4];
+    CCLabelTTF* shopItemCounter[4];
     
 }
 

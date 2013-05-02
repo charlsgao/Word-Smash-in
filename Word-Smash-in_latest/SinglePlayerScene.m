@@ -12,7 +12,7 @@
 @implementation SinglePlayerScene
 //const bool TEST_MODE_S = false;                // A FLAG TO INDICATE WHETHER THE GAME IS IN TEST MODE
 
-const int MAX_LETTER_ARRAY = 10;             // SIZE OF THE LETTER ARRAY
+const int MAX_LETTER_ARRAY = 15;             // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
 const int STARTING_MINUTES = 0;              // STAGE DURATION
 const int STARTING_SECONDS = 10;             // STAGE DURATION
@@ -40,6 +40,15 @@ NSMutableDictionary *word2Dict;
 NSMutableDictionary *word3Dict;
 NSMutableDictionary *lettersDict;
 
+//new variables needed for features from the shop
+int maxChar = 10;
+BOOL isFreeze = NO;
+BOOL isSlowDown = NO;
+int timeInterval = 1;
+int freezeMinute = 0;
+int freezeSecond = 0;
+int slowSecond = 0;
+double freezeButtonDuration = 0;
 
 //************** generating the words **********************
 - (void) getWords
@@ -97,7 +106,7 @@ NSMutableDictionary *lettersDict;
 
 - (void) resetSelectArray
 {
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < maxChar; i++) {
         select[i].tag = 0;
     }
 }
@@ -278,14 +287,39 @@ NSMutableDictionary *lettersDict;
         {
             currSeconds-=1;
         }
-        if(currMinute>-1)
-            [clock setString:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
+        if(currMinute>-1){
+            if(!isFreeze ){
+                [clock setString:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds]];
+                if(isSlowDown && currSeconds == slowSecond-3){
+                    isSlowDown = NO;
+                    shopItem[0].isEnabled = YES;
+                    shopItem[1].isEnabled = YES;
+                    shopItem[2].isEnabled = YES;
+                    [self.timer invalidate];
+                    self.timer=[NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+                    [self.aTimer invalidate];
+                    self.aTimer = [NSTimer scheduledTimerWithTimeInterval:BUTTON_APPEAR_DURATION target:self selector:@selector(onTick) userInfo:nil repeats:YES];
+                }
+            }
+            else if(isFreeze && freezeSecond == currSeconds){
+                isFreeze = NO;
+                //isSlowDown = NO;
+                shopItem[0].isEnabled = YES;
+                shopItem[1].isEnabled = YES;
+                shopItem[2].isEnabled = YES;
+                //[self.timer invalidate];
+                //self.timer=[NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+                [self.aTimer invalidate];
+                self.aTimer = [NSTimer scheduledTimerWithTimeInterval:BUTTON_APPEAR_DURATION target:self selector:@selector(onTick) userInfo:nil repeats:YES];
+            }
+        }
     }
     
     // time's up
     else
     {
         [self.timer invalidate];
+
     }
 }
 
@@ -367,10 +401,10 @@ NSMutableDictionary *lettersDict;
     
     NSInteger count = 0;
     
-    for (int i=0; i<MAX_LETTER_ARRAY; i++){
+    for (int i=0; i<maxChar; i++){
         
         if ([lettersDict objectForKey:[NSString stringWithFormat:@"%c",(char)(select[i].tag+32)]]==nil && select[i].tag != 0){
-            for (int j=i; j<MAX_LETTER_ARRAY; j++){
+            for (int j=i; j<maxChar; j++){
                 if (select[i].tag == select[j].tag)
                     count++;
             }
@@ -489,6 +523,10 @@ NSMutableDictionary *lettersDict;
 ////////////////////////////////////////////////////////
 //**************  start the game  ************************
 -(void)start: (id)sender{
+    shopItem[0].isEnabled = YES;
+    shopItem[1].isEnabled = YES;
+    shopItem[2].isEnabled = YES;
+    shopItem[3].isEnabled = YES;
     
     [self getWords];
     //self.word1.text = @"Edwarda";
@@ -511,10 +549,11 @@ NSMutableDictionary *lettersDict;
     STOP = false;
     
     //stage timer
-    self.timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+    self.timer=[NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
     
     
     //button appear timer
+    
     self.aTimer = [NSTimer scheduledTimerWithTimeInterval:BUTTON_APPEAR_DURATION target:self selector:@selector(onTick) userInfo:nil repeats:YES];
     
     [startButton setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
@@ -524,7 +563,7 @@ NSMutableDictionary *lettersDict;
 }
 
 -(void)pressButton0:(id)sender{
-    for(int i = 0; i<10; i++){
+    for(int i = 0; i<maxChar; i++){
         if(select[i].tag == 0){
             [button[0] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[0] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
@@ -538,7 +577,7 @@ NSMutableDictionary *lettersDict;
 }
 
 -(void)pressButton1:(id)sender{
-    for(int i = 0; i<10; i++){
+    for(int i = 0; i<maxChar; i++){
         if(select[i].tag == 0){
             [button[1] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[1] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
@@ -552,7 +591,7 @@ NSMutableDictionary *lettersDict;
 }
 
 -(void)pressButton2:(id)sender{
-    for(int i = 0; i<10; i++){
+    for(int i = 0; i<maxChar; i++){
         if(select[i].tag == 0){
             [button[2] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[2] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
@@ -566,7 +605,7 @@ NSMutableDictionary *lettersDict;
 }
 
 -(void)pressButton3:(id)sender{
-    for(int i = 0; i<10; i++){
+    for(int i = 0; i<maxChar; i++){
         if(select[i].tag == 0){
             [button[3] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[3] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
@@ -580,7 +619,7 @@ NSMutableDictionary *lettersDict;
 }
 
 -(void)pressButton4:(id)sender{
-    for(int i = 0; i<10; i++){
+    for(int i = 0; i<maxChar; i++){
         if(select[i].tag == 0){
             [button[4] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[4] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
@@ -594,7 +633,7 @@ NSMutableDictionary *lettersDict;
 }
 
 -(void)pressButton5:(id)sender{
-    for(int i = 0; i<10; i++){
+    for(int i = 0; i<maxChar; i++){
         if(select[i].tag == 0){
             [button[5] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[5] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
@@ -608,7 +647,7 @@ NSMutableDictionary *lettersDict;
 }
 
 -(void)pressButton6:(id)sender{
-    for(int i = 0; i<10; i++){
+    for(int i = 0; i<maxChar; i++){
         if(select[i].tag == 0){
             [button[6] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[6] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
@@ -622,7 +661,7 @@ NSMutableDictionary *lettersDict;
 }
 
 -(void)pressButton7:(id)sender{
-    for(int i = 0; i<10; i++){
+    for(int i = 0; i<maxChar; i++){
         if(select[i].tag == 0){
             [button[7] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[7] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
@@ -636,7 +675,7 @@ NSMutableDictionary *lettersDict;
 }
 
 -(void)pressButton8:(id)sender{
-    for(int i = 0; i<10; i++){
+    for(int i = 0; i<maxChar; i++){
         if(select[i].tag == 0){
             [button[8] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[8] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
@@ -719,6 +758,99 @@ NSMutableDictionary *lettersDict;
     penalty_score += 1;
 }
 
+-(void)unSelect10: (id)sender{
+    [select[10] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    [select[10] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    select[10].tag = 0;
+    penalty_score += 1;
+}
+
+-(void)unSelect11: (id)sender{
+    [select[11] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    [select[11] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    select[11].tag = 0;
+    penalty_score += 1;
+}
+
+-(void)unSelect12: (id)sender{
+    [select[12] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    [select[12] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    select[12].tag = 0;
+    penalty_score += 1;
+}
+
+-(void)unSelect13: (id)sender{
+    [select[13] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    [select[13] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    select[13].tag = 0;
+    penalty_score += 1;
+}
+
+-(void)unSelect14: (id)sender{
+    [select[14] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    [select[14] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    select[14].tag = 0;
+    penalty_score += 1;
+}
+
+
+////////////selector for shop
+-(void)freezeTimePress: (id)sender{
+    if(freezeTimeCounter > 0){
+        shopItem[0].isEnabled = NO;
+        shopItem[1].isEnabled = NO;
+        shopItem[2].isEnabled = NO;
+        freezeTimeCounter --;
+        isFreeze = YES;
+        [shopItemCounter[0] setString:[NSString stringWithFormat:@"x%i", freezeTimeCounter]];
+        freezeMinute = currMinute;
+        freezeSecond = currSeconds;
+        [clock setString:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",freezeMinute,@":",freezeSecond]];
+        currSeconds += 5;
+        [self.aTimer invalidate];
+        self.aTimer = [NSTimer scheduledTimerWithTimeInterval:99999 target:self selector:@selector(onTick) userInfo:nil repeats:YES];
+    }
+}
+
+-(void)extraTimePress: (id)sender{
+    if(extraTimeCounter > 0){
+        extraTimeCounter --;
+        [shopItemCounter[2] setString:[NSString stringWithFormat:@"x%i", extraTimeCounter]];
+        currSeconds += 5;
+        if(currSeconds>59)
+        {
+            currMinute++;
+            currSeconds -=60;
+        }
+    }
+}
+
+-(void)slowdownTimePress: (id)sender{
+    if(slowdownTimeCounter > 0){
+        shopItem[0].isEnabled = NO;
+        shopItem[1].isEnabled = NO;
+        shopItem[2].isEnabled = NO;
+        slowdownTimeCounter --;
+        [shopItemCounter[1] setString:[NSString stringWithFormat:@"x%i", slowdownTimeCounter]];
+        isSlowDown = YES;
+        slowSecond = currSeconds;
+        [self.timer invalidate];
+        self.timer=[NSTimer scheduledTimerWithTimeInterval:timeInterval*2 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+        [self.aTimer invalidate];
+        self.aTimer = [NSTimer scheduledTimerWithTimeInterval:BUTTON_APPEAR_DURATION*2 target:self selector:@selector(onTick) userInfo:nil repeats:YES];
+    }
+}
+
+-(void)increasePress: (id)sender{
+    shopItem[3].isEnabled = NO;
+    if(increaseCounter > 0){
+        increaseCounter --;
+        [shopItemCounter[3] setString:[NSString stringWithFormat:@"x%i", increaseCounter]];
+        maxChar = 15;
+    }
+}
+
+
 -(id)init{
     if((self=[super init])){
         srand ( time(NULL) );//clear out random numbers
@@ -740,7 +872,7 @@ NSMutableDictionary *lettersDict;
         ////////////////////////add 9 buttons and selected letters
         CCMenu *starMenu;
         button[0] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(pressButton0:)];
-        [button[0] setScale:0.7];
+        [button[0] setScale:0.55];
         button[0].tag = 0;
         button[0].isEnabled=NO;
         starMenu = [CCMenu menuWithItems:button[0], nil];
@@ -749,7 +881,7 @@ NSMutableDictionary *lettersDict;
         [self addChild:starMenu z:1];
         
         button[1] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(pressButton1:)];
-        [button[1] setScale:0.7];
+        [button[1] setScale:0.55];
         button[1].isEnabled=NO;
         starMenu = [CCMenu menuWithItems:button[1], nil];
         starMenu.position = CGPointZero;
@@ -757,7 +889,7 @@ NSMutableDictionary *lettersDict;
         [self addChild:starMenu z:1];
         
         button[2] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(pressButton2:)];
-        [button[2] setScale:0.7];
+        [button[2] setScale:0.55];
         button[2].isEnabled=NO;
         starMenu = [CCMenu menuWithItems:button[2], nil];
         starMenu.position = CGPointZero;
@@ -765,143 +897,248 @@ NSMutableDictionary *lettersDict;
         [self addChild:starMenu z:1];
         
         button[3] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(pressButton3:)];
-        [button[3] setScale:0.7];
+        [button[3] setScale:0.55];
         button[3].isEnabled=NO;
         starMenu = [CCMenu menuWithItems:button[3], nil];
         starMenu.position = CGPointZero;
-        [starMenu setPosition:ccp(50,250)];
+        [starMenu setPosition:ccp(50,210)];
         [self addChild:starMenu z:1];
         
         button[4] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(pressButton4:)];
-        [button[4] setScale:0.7];
+        [button[4] setScale:0.55];
         button[4].isEnabled=NO;
         starMenu = [CCMenu menuWithItems:button[4], nil];
         starMenu.position = CGPointZero;
-        [starMenu setPosition:ccp(150,250)];
+        [starMenu setPosition:ccp(150,210)];
         [self addChild:starMenu z:1];
         
         button[5] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(pressButton5:)];
-        [button[5] setScale:0.7];
+        [button[5] setScale:0.55];
         button[5].isEnabled=NO;
         starMenu = [CCMenu menuWithItems:button[5], nil];
         starMenu.position = CGPointZero;
-        [starMenu setPosition:ccp(250,250)];
+        [starMenu setPosition:ccp(250,210)];
         [self addChild:starMenu z:1];
         
         button[6] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(pressButton6:)];
-        [button[6] setScale:0.7];
+        [button[6] setScale:0.55];
         button[6].isEnabled=NO;
         starMenu = [CCMenu menuWithItems:button[6], nil];
         starMenu.position = CGPointZero;
-        [starMenu setPosition:ccp(50,350)];
+        [starMenu setPosition:ccp(50,270)];
         [self addChild:starMenu z:1];
         
         button[7] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(pressButton7:)];
-        [button[7] setScale:0.7];
+        [button[7] setScale:0.55];
         button[7].isEnabled=NO;
         starMenu = [CCMenu menuWithItems:button[7], nil];
         starMenu.position = CGPointZero;
-        [starMenu setPosition:ccp(150,350)];
+        [starMenu setPosition:ccp(150,270)];
         [self addChild:starMenu z:1];
         
         button[8] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(pressButton8:)];
-        [button[8] setScale:0.7];
+        [button[8] setScale:0.55];
         button[8].isEnabled=NO;
         starMenu = [CCMenu menuWithItems:button[8], nil];
         starMenu.position = CGPointZero;
-        [starMenu setPosition:ccp(250,350)];
+        [starMenu setPosition:ccp(250,270)];
         [self addChild:starMenu z:1];
         
         /////////////////////////
         select[0] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect0:)];
-        [select[0] setScale:0.4];
+        [select[0] setScale:0.3];
         starMenu = [CCMenu menuWithItems:select[0], nil];
         select[0].tag = 0;
         starMenu.position = CGPointZero;
         //[self addChild:starMenu];
-        [starMenu setPosition:ccp(20,50)];
+        [starMenu setPosition:ccp(30,40)];
         [self addChild:starMenu z:1];
         
         select[1] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect1:)];
-        [select[1] setScale:0.4];
+        [select[1] setScale:0.3];
         starMenu = [CCMenu menuWithItems:select[1], nil];
         select[1].tag = 0;
         starMenu.position = CGPointZero;
         //[self addChild:starMenu];
-        [starMenu setPosition:ccp(50,50)];
+        [starMenu setPosition:ccp(60,40)];
         [self addChild:starMenu z:1];
         
         select[2] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect2:)];
-        [select[2] setScale:0.4];
+        [select[2] setScale:0.3];
         starMenu = [CCMenu menuWithItems:select[2], nil];
         select[2].tag = 0;
         starMenu.position = CGPointZero;
         //[self addChild:starMenu];
-        [starMenu setPosition:ccp(85,50)];
+        [starMenu setPosition:ccp(90,40)];
         [self addChild:starMenu z:1];
         
         select[3] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect3:)];
-        [select[3] setScale:0.4];
+        [select[3] setScale:0.3];
         starMenu = [CCMenu menuWithItems:select[3], nil];
         select[3].tag = 0;
         starMenu.position = CGPointZero;
         //[self addChild:starMenu];
-        [starMenu setPosition:ccp(120,50)];
+        [starMenu setPosition:ccp(120,40)];
         [self addChild:starMenu z:1];
         
         select[4] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect4:)];
-        [select[4] setScale:0.4];
+        [select[4] setScale:0.3];
         starMenu = [CCMenu menuWithItems:select[4], nil];
         select[4].tag = 0;
         starMenu.position = CGPointZero;
         //[self addChild:starMenu];
-        [starMenu setPosition:ccp(155,50)];
+        [starMenu setPosition:ccp(150,40)];
         [self addChild:starMenu z:1];
         
         select[5] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect5:)];
-        [select[5] setScale:0.4];
+        [select[5] setScale:0.3];
         starMenu = [CCMenu menuWithItems:select[5], nil];
         select[5].tag = 0;
         starMenu.position = CGPointZero;
         //[self addChild:starMenu];
-        [starMenu setPosition:ccp(190,50)];
+        [starMenu setPosition:ccp(180,40)];
         [self addChild:starMenu z:1];
         
         select[6] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect6:)];
-        [select[6] setScale:0.4];
+        [select[6] setScale:0.3];
         starMenu = [CCMenu menuWithItems:select[6], nil];
         select[6].tag = 0;
         starMenu.position = CGPointZero;
         //[self addChild:starMenu];
-        [starMenu setPosition:ccp(225,50)];
+        [starMenu setPosition:ccp(210,40)];
         [self addChild:starMenu z:1];
         
         select[7] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect7:)];
-        [select[7] setScale:0.4];
+        [select[7] setScale:0.3];
         starMenu = [CCMenu menuWithItems:select[7], nil];
         select[7].tag = 0;
         starMenu.position = CGPointZero;
         //[self addChild:starMenu];
-        [starMenu setPosition:ccp(260,50)];
+        [starMenu setPosition:ccp(240,40)];
         [self addChild:starMenu z:1];
         
         select[8] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect8:)];
-        [select[8] setScale:0.4];
+        [select[8] setScale:0.3];
         starMenu = [CCMenu menuWithItems:select[8], nil];
         select[8].tag = 0;
         starMenu.position = CGPointZero;
         //[self addChild:starMenu];
-        [starMenu setPosition:ccp(295,50)];
+        [starMenu setPosition:ccp(270,40)];
         [self addChild:starMenu z:1];
         
         select[9] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect9:)];
-        [select[9] setScale:0.4];
+        [select[9] setScale:0.3];
         starMenu = [CCMenu menuWithItems:select[9], nil];
         select[9].tag = 0;
         starMenu.position = CGPointZero;
         //[self addChild:starMenu];
-        [starMenu setPosition:ccp(330,50)];
+        [starMenu setPosition:ccp(300,40)];
         [self addChild:starMenu z:1];
+        
+        select[10] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect10:)];
+        [select[10] setScale:0.3];
+        starMenu = [CCMenu menuWithItems:select[10], nil];
+        select[10].tag = 0;
+        starMenu.position = CGPointZero;
+        //[self addChild:starMenu];
+        [starMenu setPosition:ccp(30,80)];
+        [self addChild:starMenu z:1];
+
+        select[11] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect11:)];
+        [select[11] setScale:0.3];
+        starMenu = [CCMenu menuWithItems:select[11], nil];
+        select[11].tag = 0;
+        starMenu.position = CGPointZero;
+        //[self addChild:starMenu];
+        [starMenu setPosition:ccp(60,80)];
+        [self addChild:starMenu z:1];
+
+        select[12] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect12:)];
+        [select[12] setScale:0.3];
+        starMenu = [CCMenu menuWithItems:select[12], nil];
+        select[12].tag = 0;
+        starMenu.position = CGPointZero;
+        //[self addChild:starMenu];
+        [starMenu setPosition:ccp(90,80)];
+        [self addChild:starMenu z:1];
+
+        select[13] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect13:)];
+        [select[13] setScale:0.3];
+        starMenu = [CCMenu menuWithItems:select[13], nil];
+        select[13].tag = 0;
+        starMenu.position = CGPointZero;
+        //[self addChild:starMenu];
+        [starMenu setPosition:ccp(120,80)];
+        [self addChild:starMenu z:1];
+        
+        select[14] = [CCMenuItemImage itemWithNormalImage:@"transparent.png" selectedImage:@"transparent.png" target:self selector:@selector(unSelect14:)];
+        [select[14] setScale:0.3];
+        starMenu = [CCMenu menuWithItems:select[14], nil];
+        select[14].tag = 0;
+        starMenu.position = CGPointZero;
+        //[self addChild:starMenu];
+        [starMenu setPosition:ccp(150,80)];
+        [self addChild:starMenu z:1];
+        
+        /////////////////////////////shop items
+        shopItem[0] = [CCMenuItemImage itemWithNormalImage:@"freezeTime.png" selectedImage:@"freezeTime.png" target:self selector:@selector(freezeTimePress:)];
+        [shopItem[0] setScale:0.2];
+        shopItem[0].isEnabled=YES;
+        starMenu = [CCMenu menuWithItems:shopItem[0], nil];
+        starMenu.position = CGPointZero;
+        [starMenu setPosition:ccp(30,340)];
+        [self addChild:starMenu z:1];
+        
+        shopItemCounter[0] = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"x%i", freezeTimeCounter] fontName:@"ArialRoundedMTBold" fontSize:24];
+        shopItemCounter[0].position = ccp(30,310);
+        shopItemCounter[0].color = ccBLACK;
+        [self addChild:shopItemCounter[0] z:1];
+        
+        shopItem[1] = [CCMenuItemImage itemWithNormalImage:@"slowdownTime.png" selectedImage:@"slowdownTime.png" target:self selector:@selector(slowdownTimePress:)];
+        [shopItem[1] setScale:0.2];
+        shopItem[1].isEnabled=YES;
+        starMenu = [CCMenu menuWithItems:shopItem[1], nil];
+        starMenu.position = CGPointZero;
+        [starMenu setPosition:ccp(110,350)];
+        [self addChild:starMenu z:1];
+        
+        shopItemCounter[1] = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"x%i", slowdownTimeCounter] fontName:@"ArialRoundedMTBold" fontSize:24];
+        shopItemCounter[1].position = ccp(110,310);
+        shopItemCounter[1].color = ccBLACK;
+        [self addChild:shopItemCounter[1] z:1];
+        
+        shopItem[2] = [CCMenuItemImage itemWithNormalImage:@"extraTime.png" selectedImage:@"extraTime.png" target:self selector:@selector(extraTimePress:)];
+        [shopItem[2] setScale:0.2];
+        shopItem[2].isEnabled=YES;
+        starMenu = [CCMenu menuWithItems:shopItem[2], nil];
+        starMenu.position = CGPointZero;
+        [starMenu setPosition:ccp(190,350)];
+        [self addChild:starMenu z:1];
+        
+        shopItemCounter[2] = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"x%i", extraTimeCounter] fontName:@"ArialRoundedMTBold" fontSize:24];
+        shopItemCounter[2].position = ccp(190,310);
+        shopItemCounter[2].color = ccBLACK;
+        [self addChild:shopItemCounter[2] z:1];
+        
+        shopItem[3] = [CCMenuItemImage itemWithNormalImage:@"increase.png" selectedImage:@"increase.png" target:self selector:@selector(increasePress:)];
+        [shopItem[3] setScale:0.2];
+        shopItem[3].isEnabled=YES;
+        starMenu = [CCMenu menuWithItems:shopItem[3], nil];
+        starMenu.position = CGPointZero;
+        [starMenu setPosition:ccp(270,350)];
+        [self addChild:starMenu z:1];
+        
+        shopItemCounter[3] = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"x%i", increaseCounter] fontName:@"ArialRoundedMTBold" fontSize:24];
+        shopItemCounter[3].position = ccp(270,310);
+        shopItemCounter[3].color = ccBLACK;
+        [self addChild:shopItemCounter[3] z:1];
+        
+        shopItem[0].isEnabled = NO;
+        shopItem[1].isEnabled = NO;
+        shopItem[2].isEnabled = NO;
+        shopItem[3].isEnabled = NO;
+
+
         
         ///////////////////////////////////////////////////
         ///////////////////start button
@@ -913,22 +1150,22 @@ NSMutableDictionary *lettersDict;
         [self addChild:starMenu z:1];
         
         ////////////////add clock and given words labels
-        clock = [CCLabelTTF labelWithString:@"Time" fontName:@"Arial" fontSize:24];
+        clock = [CCLabelTTF labelWithString:@"Time" fontName:@"ArialRoundedMTBold" fontSize:24];
         clock.position = ccp(250,420);
         clock.color = ccBLACK;
         [self addChild:clock z:1];
         
-        word1 = [CCLabelTTF labelWithString:@"Word1:" fontName:@"Arial" fontSize:15];
+        word1 = [CCLabelTTF labelWithString:@"Word1:" fontName:@"ArialRoundedMTBold" fontSize:15];
         word1.position = ccp(50,460);
         word1.color = ccBLACK;
         [self addChild:word1 z:1];
         
-        word2 = [CCLabelTTF labelWithString:@"Word2:" fontName:@"Arial" fontSize:15];
+        word2 = [CCLabelTTF labelWithString:@"Word2:" fontName:@"ArialRoundedMTBold" fontSize:15];
         word2.position = ccp(50,430);
         word2.color = ccBLACK;
         [self addChild:word2 z:1];
         
-        word3 = [CCLabelTTF labelWithString:@"Word3:" fontName:@"Arial" fontSize:15];
+        word3 = [CCLabelTTF labelWithString:@"Word3:" fontName:@"ArialRoundedMTBold" fontSize:15];
         word3.position = ccp(50,400);
         word3.color = ccBLACK;
         [self addChild:word3 z:1];
