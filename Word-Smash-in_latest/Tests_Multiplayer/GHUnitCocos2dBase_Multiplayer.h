@@ -1,31 +1,30 @@
 //
-//  GHUnitCocos2dBase.h
+//  GHUnitCocos2dBase_Multiplayer.h
 //  SmashingWord_me
 //
-//  Created by Denny Winoto on 4/18/13.
+//  Created by Denny Winoto on 5/1/13.
 //
 //
-
 
 #import <Foundation/Foundation.h>
 #import <GHUnitIOS/GHUnit.h>
 #import "cocos2d.h"
 
-#import "SinglePlayerScene.h"
-//#import "MultiPlayerScene.h"
+//#import "SinglePlayerScene.h"
+#import "MultiPlayerScene.h"
 #import "AppDelegate.h"
 
-@interface GHUnitCocos2dBase : GHTestCase
+@interface GHUnitCocos2dBase_Multiplayer : GHTestCase
 {
     //AppController *app;
 	UIWindow *window_;
 	UINavigationController *navController_;
-
+    
     
     
 	CCDirectorIOS	*director_;							// weak ref
     
-    SinglePlayerScene *spc;
-    //MultiPlayerScene *mpc;
+    //SinglePlayerScene *spc;
+    MultiPlayerScene *mpc;
 }
 @end

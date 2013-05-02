@@ -30,6 +30,8 @@ extern BOOL isPlayer1;
 
 extern BOOL TEST_MODE;
 
+extern BOOL TEST_MUL;
+
 ///feature for shop
 extern int money;
 extern int extraTimeCounter;
