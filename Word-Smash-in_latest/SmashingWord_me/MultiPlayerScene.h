@@ -131,6 +131,8 @@ NSString* CharacterIncrease = @"Character Increase";
 NSString* TimeFreezer = @"Time Freezer";
 NSString* TimeSlower =@"Time Slower";
 
+NSString* selfName;
+
 @interface MultiPlayerScene : CCLayer <GCHelperDelegate>{ 
     CCMenuItemImage* startButton;
     CCMenuItemImage* back;

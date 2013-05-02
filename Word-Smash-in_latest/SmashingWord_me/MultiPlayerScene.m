@@ -1112,6 +1112,8 @@ int pressButtonTest;
 #pragma mark GCHelperDelegate
 
 - (void)matchStarted {
+    selfName =[[GKLocalPlayer localPlayer]alias];
+    NSLog(@"%@", selfName);
     CCLOG(@"Match started");
     if (receivedRandom) {
         [self setGameState:kGameStateWaitingForStart];
@@ -1422,32 +1424,6 @@ int pressButtonTest;
     }
 
 
-}
-
-- (void) request:(NSString*) path{
-    NSDictionary *jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [GKLocalPlayer localPlayer].alias, @"user",
-                              my_score, @"score",
-                              nil];
-    NSError *tempError;
-    NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&tempError];
-    NSString *fullPath = [NSString stringWithFormat:@"%@%@", @"http://fast-hollows-4122.herokuapp.com", path];
-    NSURL *url = [NSURL URLWithString:fullPath];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:[NSString stringWithFormat:@"%d", [jsonRequest length]] forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody:jsonRequest];
-    
-    NSURLResponse *tempResponse =[[NSURLResponse alloc]init];
-    NSData *jsonResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&tempResponse error:&tempError];
-    
-    NSDictionary *jsonDictionaryResponse = [NSJSONSerialization JSONObjectWithData:jsonResponse options:kNilOptions error:&tempError];
-    
-    //NSArray  = [jsonDictionaryResponse objectForKey:@"data"];
-    
 }
 
 
@@ -1818,6 +1794,41 @@ int pressButtonTest;
     NSAssert(pressButtonTest == 5, @"After sending 5, pressButtonTest should be 5");
     successTests++;
 }
+
+
+- (NSArray*) request:(NSString*) path SecondParameter:(NSDictionary*) parameter{
+    NSDictionary *jsonDict;
+    if ([path isEqualToString:@"users/SaveScores/multiple"]){
+        jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                    score_p1, @"score",
+                    selfName,@"user",
+                    nil];
+    }
+    else{
+        jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:nil];
+    }
+    
+    NSError *tempError;
+    NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&tempError];
+    NSString *fullPath = [NSString stringWithFormat:@"%@%@", @"http://enigmatic-everglades-8004.herokuapp.com/", path];
+    NSURL *url = [NSURL URLWithString:fullPath];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:[NSString stringWithFormat:@"%d", [jsonRequest length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:jsonRequest];
+    NSLog(@"diu la ma");
+    NSURLResponse *tempResponse =[[NSURLResponse alloc]init];
+    NSData *jsonResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&tempResponse error:&tempError];
+    
+    NSDictionary *jsonDictionaryResponse = [NSJSONSerialization JSONObjectWithData:jsonResponse options:kNilOptions error:&tempError];
+    
+    return [jsonDictionaryResponse objectForKey:@"data"];
+    
+}
+
 
 
 

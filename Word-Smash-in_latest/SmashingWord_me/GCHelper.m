@@ -97,6 +97,7 @@ static GCHelper *sharedHelper = nil;
                 [playersDict setObject:player forKey:player.playerID];
             }
             
+            
             // Notify delegate match can begin
             matchStarted = YES;
             [delegate matchStarted];

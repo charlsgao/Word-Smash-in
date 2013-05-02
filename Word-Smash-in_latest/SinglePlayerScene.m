@@ -14,8 +14,8 @@
 
 const int MAX_LETTER_ARRAY = 10;             // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
-const int STARTING_MINUTES = 1;              // STAGE DURATION
-const int STARTING_SECONDS = 0;             // STAGE DURATION
+const int STARTING_MINUTES = 0;              // STAGE DURATION
+const int STARTING_SECONDS = 10;             // STAGE DURATION
 const int INCR_SCORE = 10;                   // score increment step
 
 const int TOTAL_WORDS_IN_FILE = 20;          // MAXIMUM NUMBER OF WORDS IN A DICTIONARY FILE
@@ -328,7 +328,13 @@ NSMutableDictionary *lettersDict;
     word2Dict = nil;
     word3Dict = nil;
     lettersDict = nil;
-    //[self request:@"users/SaveScores/single"];
+    NSLog(@"fuck!!");
+    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
+                              score_p1, @"score",
+                              nil];
+    NSLog(@"33434");
+    [self request:@"users/SaveScores/single" SecondParameter:param];
+    NSLog(@"1111");
     CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
     [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
     [self init];
@@ -944,13 +950,21 @@ NSMutableDictionary *lettersDict;
 // Changing the image of the same sprite
 //[test setTexture:[[CCTextureCache sharedTextureCache] addImage:@"two.png"]];
 
-- (void) request:(NSString*) path{
-    NSDictionary *jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
+- (NSArray*) request:(NSString*) path SecondParameter:(NSDictionary*) parameter{
+    NSDictionary *jsonDict;
+    if ([path isEqualToString:@"users/SaveScores/single"]){
+        jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
                               score_p1, @"score",
                               nil];
+    }
+    else{
+        jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:nil];
+    }
+    
+    //[jsonDictionaryResponse objectForKey:@"data"];
     NSError *tempError;
     NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&tempError];
-    NSString *fullPath = [NSString stringWithFormat:@"%@%@", @"http://fast-hollows-4122.herokuapp.com", path];
+    NSString *fullPath = [NSString stringWithFormat:@"%@%@", @"http://enigmatic-everglades-8004.herokuapp.com/", path];
     NSURL *url = [NSURL URLWithString:fullPath];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     
@@ -959,13 +973,13 @@ NSMutableDictionary *lettersDict;
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:[NSString stringWithFormat:@"%d", [jsonRequest length]] forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:jsonRequest];
-    
+    NSLog(@"diu la ma");
     NSURLResponse *tempResponse =[[NSURLResponse alloc]init];
     NSData *jsonResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&tempResponse error:&tempError];
     
     NSDictionary *jsonDictionaryResponse = [NSJSONSerialization JSONObjectWithData:jsonResponse options:kNilOptions error:&tempError];
     
-    //NSArray  = [jsonDictionaryResponse objectForKey:@"data"];
+    return [jsonDictionaryResponse objectForKey:@"data"];
     
 }
 
