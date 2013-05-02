@@ -1820,8 +1820,8 @@ int pressButtonTest;
 - (NSArray*) request:(NSString*) path SecondParameter:(NSDictionary*) parameter{
     NSDictionary *jsonDict;
     jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                    score_p1, @"score",
-                    selfName,@"user",
+                    [parameter objectForKey:@"score"], @"score",
+                    [parameter objectForKey:@"user"],@"user",
                     nil];
     
     NSError *tempError;
