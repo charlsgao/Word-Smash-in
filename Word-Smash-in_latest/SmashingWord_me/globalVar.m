@@ -19,5 +19,13 @@ BOOL isPlayer1 = YES;
 
 BOOL TEST_MODE = NO;
 
+//shop features
+int money =99999;
+int extraTimeCounter =0;
+int freezeTimeCounter =0;
+int slowdownTimeCounter =0;
+
+int cloudCounter =0;
+int increaseCounter =0;
 
 @end

@@ -29,4 +29,13 @@ extern NSString* scorePageMessage;
 extern BOOL isPlayer1;
 
 extern BOOL TEST_MODE;
+
+///feature for shop
+extern int money;
+extern int extraTimeCounter;
+extern int freezeTimeCounter;
+extern int slowdownTimeCounter;
+
+extern int cloudCounter;
+extern int increaseCounter;
 @end

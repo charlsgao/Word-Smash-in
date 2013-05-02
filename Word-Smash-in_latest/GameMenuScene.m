@@ -34,4 +34,8 @@
     [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
 }
 
+-(void)ShopButtonPress: (id)sender{
+    CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Shop.ccbi"];
+    [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
+}
 @end

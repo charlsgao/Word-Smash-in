@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B3DF4AC172B41C400DAD15B /* ccb.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2B3DF4AB172B41C400DAD15B /* ccb.zip */; };
-		2B3DF4AD172B41C400DAD15B /* ccb.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2B3DF4AB172B41C400DAD15B /* ccb.zip */; };
+		2B638C041731D8F900561B82 /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B638C031731D8F900561B82 /* ShopScene.m */; };
+		2B638C051731D8F900561B82 /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B638C031731D8F900561B82 /* ShopScene.m */; };
+		2B638C101731E43200561B82 /* ccb.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2B638C0F1731E43200561B82 /* ccb.zip */; };
+		2B638C111731E43200561B82 /* ccb.zip in Resources */ = {isa = PBXBuildFile; fileRef = 2B638C0F1731E43200561B82 /* ccb.zip */; };
 		2B80F5FD171E75920018A4F1 /* backarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B80F5FC171E75920018A4F1 /* backarrow.png */; };
 		2B820FEC170BE52C0000A1DC /* A.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B820FD2170BE52C0000A1DC /* A.png */; };
 		2B820FED170BE52C0000A1DC /* B.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B820FD3170BE52C0000A1DC /* B.png */; };
@@ -458,7 +460,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2B3DF4AB172B41C400DAD15B /* ccb.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ccb.zip; sourceTree = "<group>"; };
+		2B638C021731D8F900561B82 /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopScene.h; sourceTree = "<group>"; };
+		2B638C031731D8F900561B82 /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopScene.m; sourceTree = "<group>"; };
+		2B638C0F1731E43200561B82 /* ccb.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ccb.zip; sourceTree = "<group>"; };
 		2B80F5FC171E75920018A4F1 /* backarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backarrow.png; sourceTree = "<group>"; };
 		2B820FD2170BE52C0000A1DC /* A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = A.png; sourceTree = "<group>"; };
 		2B820FD3170BE52C0000A1DC /* B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = B.png; sourceTree = "<group>"; };
@@ -964,6 +968,8 @@
 				2B865E6F1713C97200DC791B /* MultiPlayerScene.m */,
 				2B865E631712BB9900DC791B /* LevelSelectScene.h */,
 				2B865E641712BB9900DC791B /* LevelSelectScene.m */,
+				2B638C021731D8F900561B82 /* ShopScene.h */,
+				2B638C031731D8F900561B82 /* ShopScene.m */,
 				2B89927516FC211700FE90E8 /* SinglePlayerScene.h */,
 				2B89927616FC211700FE90E8 /* SinglePlayerScene.m */,
 				2B829BA8170D235200EEFEC3 /* ScoreScene.h */,
@@ -984,7 +990,7 @@
 			children = (
 				A29D19621720FFD500328D51 /* dictionary */,
 				2B821006170BF1D40000A1DC /* start.png */,
-				2B3DF4AB172B41C400DAD15B /* ccb.zip */,
+				2B638C0F1731E43200561B82 /* ccb.zip */,
 				2B820FD2170BE52C0000A1DC /* A.png */,
 				2B820FD3170BE52C0000A1DC /* B.png */,
 				2B820FD4170BE52C0000A1DC /* C.png */,
@@ -1719,7 +1725,7 @@
 				A29D19981720FFD500328D51 /* 9.txt in Resources */,
 				A29D19991720FFD500328D51 /* test.txt in Resources */,
 				A29D199A1720FFD500328D51 /* test2.txt in Resources */,
-				2B3DF4AC172B41C400DAD15B /* ccb.zip in Resources */,
+				2B638C101731E43200561B82 /* ccb.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1804,7 +1810,7 @@
 				A29D19611720FF1100328D51 /* ChangeLog in Resources */,
 				A29D17331720E19E00328D51 /* Default@2x.png in Resources */,
 				A29D17351720E19E00328D51 /* Default-568h@2x.png in Resources */,
-				2B3DF4AD172B41C400DAD15B /* ccb.zip in Resources */,
+				2B638C111731E43200561B82 /* ccb.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1952,6 +1958,7 @@
 				2B865E651712BB9900DC791B /* LevelSelectScene.m in Sources */,
 				2B865E6A17137DAF00DC791B /* GCHelper.m in Sources */,
 				2BC879CB172131EC00C4565A /* HighestScoreScene.m in Sources */,
+				2B638C041731D8F900561B82 /* ShopScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2098,6 +2105,7 @@
 				A29D181B1720EB7300328D51 /* matrix.c in Sources */,
 				A29D18261720F16600328D51 /* GHUnitCocos2dBase.m in Sources */,
 				2BC879CC172131EC00C4565A /* HighestScoreScene.m in Sources */,
+				2B638C051731D8F900561B82 /* ShopScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
