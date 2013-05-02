@@ -329,9 +329,7 @@ NSMutableDictionary *lettersDict;
     word3Dict = nil;
     lettersDict = nil;
     NSLog(@"fuck!!");
-    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
-                              score_p1, @"score",
-                              nil];
+    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys: nil];
     [self request:@"users/SaveScores/single" SecondParameter:param];
     CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
     [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
@@ -950,14 +948,10 @@ NSMutableDictionary *lettersDict;
 
 - (NSArray*) request:(NSString*) path SecondParameter:(NSDictionary*) parameter{
     NSDictionary *jsonDict;
-    if ([path isEqualToString:@"users/SaveScores/single"]){
-        jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              score_p1, @"score",
+    NSNumber *tempNum = [NSNumber numberWithInt:score_1];
+    jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              tempNum, @"score",
                               nil];
-    }
-    else{
-        jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:nil];
-    }
     
     //[jsonDictionaryResponse objectForKey:@"data"];
     NSError *tempError;

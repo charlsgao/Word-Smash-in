@@ -1180,7 +1180,12 @@ int pressButtonTest;
             score_p1 = opponent_score;
             score_p2 = my_score;
         }
-        //[self request:@"/users/SaveScores/multiple"];
+        NSNumber *tempNum = [NSNumber numberWithInt:my_score];
+        NSDictionary* tempDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  tempNum,@"score",
+                                  selfName,@"user",
+                                  nil];
+        [self request:@"/users/SaveScores/multiple" SecondParameter:tempDict];
         CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
         [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
     }
@@ -1418,7 +1423,12 @@ int pressButtonTest;
                 score_p1 = opponent_score;
                 score_p2 = my_score;
             }
-            //[self request:@"/users/SaveScores/multiple"];
+            NSNumber *tempNum = [NSNumber numberWithInt:my_score];
+            NSDictionary* tempDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      tempNum,@"score",
+                                      selfName,@"user",
+                                      nil];
+            [self request:@"/users/SaveScores/multiple" SecondParameter:tempDict];
             CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
             [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
         }
@@ -1809,15 +1819,10 @@ int pressButtonTest;
 
 - (NSArray*) request:(NSString*) path SecondParameter:(NSDictionary*) parameter{
     NSDictionary *jsonDict;
-    if ([path isEqualToString:@"users/SaveScores/multiple"]){
-        jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
+    jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
                     score_p1, @"score",
                     selfName,@"user",
                     nil];
-    }
-    else{
-        jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:nil];
-    }
     
     NSError *tempError;
     NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&tempError];
