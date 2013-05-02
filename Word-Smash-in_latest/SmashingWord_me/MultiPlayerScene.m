@@ -40,6 +40,12 @@ BOOL STOP_M = false;
 //int failed_tests = 0;
 //NSInteger score = 0;
 
+NSString* ExtraTime =  @"Extra Time";
+NSString* ViewObstructor = @"View Obstructor";
+NSString* CharacterIncrease = @"Character Increase";
+NSString* TimeFreezer = @"Time Freezer";
+NSString* TimeSlower =@"Time Slower";
+
 NSMutableDictionary *word1Dict;
 NSMutableDictionary *word2Dict;
 NSMutableDictionary *word3Dict;
@@ -111,17 +117,21 @@ int pressButtonTest;
     NSFileManager *filemgr;
     filemgr = [NSFileManager defaultManager];
     
-    NSString *home = NSHomeDirectory();
+    //NSString *home = NSHomeDirectory();
     
-    NSString *destinationPath = [NSString stringWithFormat:@"%@/SmashingWord_me.app/%@", home, fileName];
+    //NSString *destinationPath = [NSString stringWithFormat:@"%@/SmashingWord_me.app/%@", home, fileName];
     //NSLog(@"\nText File: %@\n", destinationPath);
+    //NSLog( @"THIZZZZ: %@" , [[NSBundle mainBundle] bundlePath] );
     
-    /*
-     if ([filemgr fileExistsAtPath: destinationPath] == YES)
-     NSLog (@"File exists");
-     else
-     NSLog (@"File not found!");
-     */
+    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+    NSString *destinationPath = [NSString stringWithFormat:@"%@/%@", bundlePath, fileName];
+    
+    NSLog(@"\nText File: %@\n", destinationPath);
+    if ([filemgr fileExistsAtPath: destinationPath] == YES)
+        NSLog (@"File exists");
+    else
+        NSLog (@"File not found!");
+    
     
     NSString *readText = [[NSString alloc] initWithContentsOfFile:destinationPath
                                                          encoding:NSUTF8StringEncoding
@@ -132,7 +142,6 @@ int pressButtonTest;
     
     return [lines[lineNum] lowercaseString];
 }
-
 -(void) hideButtons{
     [button[0] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [button[0] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
@@ -876,6 +885,8 @@ int pressButtonTest;
         [self addChild:word3 z:1];
         
         AppController * delegate = (AppController *) [UIApplication sharedApplication].delegate;
+        
+        if  (!TEST_MUL)
         [[GCHelper sharedInstance] findMatchWithMinPlayers:2 maxPlayers:2 viewController:delegate.navController delegate:self];
         
         

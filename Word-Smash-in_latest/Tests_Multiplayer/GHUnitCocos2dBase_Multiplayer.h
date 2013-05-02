@@ -7,7 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <GHUnitIOS/GHUnit.h>
+#import "cocos2d.h"
 
-@interface GHUnitCocos2dBase_Multiplayer : NSObject
+//#import "SinglePlayerScene.h"
+#import "MultiPlayerScene.h"
+#import "AppDelegate.h"
 
+@interface GHUnitCocos2dBase_Multiplayer : GHTestCase
+{
+    //AppController *app;
+	UIWindow *window_;
+	UINavigationController *navController_;
+    
+    
+    
+	CCDirectorIOS	*director_;							// weak ref
+    
+    //SinglePlayerScene *spc;
+    MultiPlayerScene *mpc;
+}
 @end

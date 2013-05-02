@@ -117,6 +117,8 @@ typedef enum {
 } GameState;
 
 //score=0;
+
+
 NSString *word_1;
 NSString *word_2;
 NSString *word_3;
@@ -125,11 +127,7 @@ NSInteger score_1;
 NSInteger score_2;
 NSInteger score_3;
 
-NSString* ExtraTime =  @"Extra Time";
-NSString* ViewObstructor = @"View Obstructor";
-NSString* CharacterIncrease = @"Character Increase";
-NSString* TimeFreezer = @"Time Freezer";
-NSString* TimeSlower =@"Time Slower";
+
 
 @interface MultiPlayerScene : CCLayer <GCHelperDelegate>{ 
     CCMenuItemImage* startButton;

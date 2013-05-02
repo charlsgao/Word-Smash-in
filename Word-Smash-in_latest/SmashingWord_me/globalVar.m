@@ -19,6 +19,8 @@ BOOL isPlayer1 = YES;
 
 BOOL TEST_MODE = NO;
 
+BOOL TEST_MUL = YES;
+
 //shop features
 int money =99999;
 int extraTimeCounter =0;
