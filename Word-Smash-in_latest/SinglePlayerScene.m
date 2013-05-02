@@ -332,9 +332,7 @@ NSMutableDictionary *lettersDict;
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
                               score_p1, @"score",
                               nil];
-    NSLog(@"33434");
     [self request:@"users/SaveScores/single" SecondParameter:param];
-    NSLog(@"1111");
     CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
     [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
     [self init];

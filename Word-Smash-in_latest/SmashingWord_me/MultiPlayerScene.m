@@ -1829,7 +1829,7 @@ int pressButtonTest;
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:[NSString stringWithFormat:@"%d", [jsonRequest length]] forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody:jsonRequest];
+    [request setHTTPBody:jsonRequest]; 
     NSLog(@"diu la ma");
     NSURLResponse *tempResponse =[[NSURLResponse alloc]init];
     NSData *jsonResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&tempResponse error:&tempError];

@@ -15,4 +15,4 @@
     CCLabelTTF* moneyLabel;
 }
 
-@end
+@end 

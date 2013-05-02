@@ -18,7 +18,7 @@ typedef enum {
     kMessageTypePressButton,
     kMessageTypeGenerateButton,
     kMessageTypeHideButton,
-    kMessageTypeGameOver,
+    kMessageTypeGameOver, 
     //kMessageTypeStartButton
     kMessageTypeWord1,
     kMessageTypeWord2,
