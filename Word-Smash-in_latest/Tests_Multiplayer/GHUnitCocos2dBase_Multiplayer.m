@@ -49,6 +49,22 @@
 
 /*******************************************************************************/
 
+- (void) testMulti_Button1
+{
+    //Initialize the buttons and select lists
+    [mpc hideButtons];
+    [mpc resetSelectArray];
+    [[mpc getButton1] setNormalImage:[CCSprite spriteWithFile:@"B.png"]];
+    [[mpc getButton1] setSelectedImage:[CCSprite spriteWithFile:@"B.png"]];
+    [mpc getButton1].tag = 66;
+    [mpc getButton1].isEnabled=YES;
+    
+    //Assume select[0] is occupied
+    [mpc getSelect0].tag = 1;
+    [mpc pressButton1:self];
+    GHAssertEquals([mpc getButton1].tag, [mpc getSelect1].tag, @"button 0 and select 0 should have same tag values");
+}
+
 - (void)testStrings {
     NSString *string1 = @"a string";
     GHTestLog(@"I can log to the GHUnit test console: %@", string1);
@@ -89,23 +105,6 @@
  [mpc getButton0].isEnabled=YES;
  [mpc pressButton0:self];
  GHAssertEquals([mpc getButton0].tag, [mpc getSelect0].tag, @"button 0 and select 0 should have same tag values");
- 
- }
- 
- - (void) testMulti_Button1
- {
- //Initialize the buttons and select lists
- [mpc hideButtons];
- [mpc resetSelectArray];
- [[mpc getButton1] setNormalImage:[CCSprite spriteWithFile:@"B.png"]];
- [[mpc getButton1] setSelectedImage:[CCSprite spriteWithFile:@"B.png"]];
- [mpc getButton1].tag = 66;
- [mpc getButton1].isEnabled=YES;
- 
- //Assume select[0] is occupied
- [mpc getSelect0].tag = 1;
- [mpc pressButton1:self];
- GHAssertEquals([mpc getButton1].tag, [mpc getSelect1].tag, @"button 0 and select 0 should have same tag values");
  
  }
  
@@ -281,6 +280,8 @@
  [mpc pressButton6:self];
  [mpc pressButton7:self];
  [mpc pressButton8:self];
+     
+    //mpc.button[0];
  
  GHAssertEquals([mpc getButton0].isEnabled, NO, @"After pressing button0, button0 should be disabled");
  GHAssertEquals([mpc getButton1].isEnabled, NO, @"After pressing button1, button1 should be disabled");
@@ -293,6 +294,7 @@
  GHAssertEquals([mpc getButton8].isEnabled, NO, @"After pressing button8, button8 should be disabled");
  }
 
+<<<<<<< HEAD
 
 
 
@@ -537,6 +539,105 @@
     }
     GHAssertEquals(PASS, YES, @"Fetch Data fail. Inconsistent with expected Result");
     
+=======
+-(void) testMulti_SendRandomNumber{
+    [mpc sendRandomNumber];
+    NSData* tempData = [mpc getNSData];
+    Message *message = (Message *) [tempData bytes];
+    GHAssertEquals(message->messageType, kMessageTypeRandomNumber, @"message type should be kMessageTypeRandomNumber");
+}
+
+-(void) testMulti_SendGameBegin{
+    [mpc sendGameBegin];
+    NSData* tempData = [mpc getNSData];
+    Message *message = (Message *) [tempData bytes];
+    GHAssertEquals(message->messageType, kMessageTypeGameBegin, @"message type should be kMessageTypeGameBegin");
+}
+
+-(void) testMulti_SendGenerateButton{
+    [mpc sendGenerateButton:5 :10];
+    NSData* tempData = [mpc getNSData];
+    Message *message = (Message *) [tempData bytes];
+    GHAssertEquals(message->messageType, kMessageTypeGenerateButton, @"message type should be kMessageTypeGenerateButton");
+    MessageGenerateButton *tempMessage = (MessageGenerateButton*) [tempData bytes];
+    GHAssertEquals(tempMessage->buttonPosition, 5, @"button position should be 5");
+    GHAssertEquals(tempMessage->letterTag, 10, @"letter tag should be 10");
+}
+
+-(void) testMulti_SendStartButton{
+    [mpc sendStartButton];
+    NSData* tempData = [mpc getNSData];
+    Message *message = (Message *) [tempData bytes];
+    GHAssertEquals(message->messageType, kMessageTypeStartButton, @"message type should be kMessageTypeStartButton");
+}
+
+-(void) testMulti_SendWord1{
+    [mpc sendWord1:"shabi"];
+    NSData* tempData = [mpc getNSData];
+    Message *message = (Message *) [tempData bytes];
+    GHAssertEquals(message->messageType, kMessageTypeWord1, @"message type should be kMessageTypeWord1");
+    MessageWord1 *tempMessage = (MessageWord1*) [tempData bytes];
+    GHAssertEquals(strcmp(tempMessage->word,"shabi"), 0,@"tempMessage->word should be shabi");
+}
+
+-(void) testMulti_SendWord2{
+    [mpc sendWord2:"shabi"];
+    NSData* tempData = [mpc getNSData];
+    Message *message = (Message *) [tempData bytes];
+    GHAssertEquals(message->messageType, kMessageTypeWord2, @"message type should be kMessageTypeWord2");
+    MessageWord2 *tempMessage = (MessageWord2*) [tempData bytes];
+    GHAssertEquals(strcmp(tempMessage->word,"shabi"), 0,@"tempMessage->word should be shabi");
+}
+
+-(void) testMulti_SendWor3{
+    [mpc sendWord3:"shabi"];
+    NSData* tempData = [mpc getNSData];
+    Message *message = (Message *) [tempData bytes];
+    GHAssertEquals(message->messageType, kMessageTypeWord3, @"message type should be kMessageTypeWord3");
+    MessageWord3 *tempMessage = (MessageWord3*) [tempData bytes];
+    GHAssertEquals(strcmp(tempMessage->word,"shabi"), 0,@"tempMessage->word should be shabi");
+}
+
+-(void) testMulti_SendTime{
+    [mpc sendTime:"5"];
+    NSData* tempData = [mpc getNSData];
+    Message *message = (Message *) [tempData bytes];
+    GHAssertEquals(message->messageType, kMessageTypeTime, @"message type should be kMessageTypeTime");
+    MessageTime *tempMessage = (MessageTime*) [tempData bytes];
+    GHAssertEquals(strcmp(tempMessage->time, "5"),0, @"tempMessage->time should be 5");
+}
+
+-(void) testMulti_SendEndGame{
+    [mpc sendEndGame];
+    NSData* tempData = [mpc getNSData];
+    Message *message = (Message *) [tempData bytes];
+    GHAssertEquals(message->messageType, kMessageTypeEndGame, @"message type should be kMessageTypeEndGame");
+}
+
+-(void) testMulti_SendScore{
+    [mpc sendScore:5];
+    NSData* tempData = [mpc getNSData];
+    Message *message = (Message *) [tempData bytes];
+    GHAssertEquals(message->messageType, kMessageTypeScore, @"message type should be kMessageTypeScore");
+    MessageScore *tempMessage = (MessageScore*) [tempData bytes];
+    GHAssertEquals(tempMessage->score, 5, @"score should be 5");
+}
+
+-(void) testMulti_SendUseCloud{
+    [mpc sendUseCloud];
+    NSData* tempData = [mpc getNSData];
+    Message *message = (Message *) [tempData bytes];
+    GHAssertEquals(message->messageType, kMessageTypeUseCloud, @"message type should be kMessageTypeUseCloud");
+}
+
+-(void) testMulti_SendGameOver{
+    [mpc sendGameOver:YES];
+    NSData* tempData = [mpc getNSData];
+    Message *message = (Message *) [tempData bytes];
+    GHAssertEquals(message->messageType, kMessageTypeGameOver, @"message type should be kMessageTypeGameOver");
+    MessageGameOver *tempMessage = (MessageGameOver*) [tempData bytes];
+    GHAssertEquals(tempMessage->player1Won, YES, @"isPlayer1 should be YES");
+>>>>>>> llk
 }
 
 @end
