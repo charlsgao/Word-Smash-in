@@ -528,7 +528,9 @@ BOOL p1Clouded = NO;
         [self temporaryTests];
         return;
     }
-    //[self sendStartButton];
+    shopItem[0].isEnabled = YES;
+    shopItem[1].isEnabled = YES;
+    [self sendStartButton];
     [self getWords];
     //self.word1.text = @"Edwarda";
     [self parseWord: [word1 string] dictionary:word1Dict];
@@ -1477,13 +1479,13 @@ BOOL p1Clouded = NO;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageHideButton)];
     [self sendData:data];
 }
-/*
+
 -(void)sendStartButton{
     MessageStartButton message;
     message.message.messageType = kMessageTypeGameBegin;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageStartButton)];
     [self sendData:data];
-}*/
+}
 
 -(void)sendWord1:(const char*) words{
     MessageWord1 message;
@@ -1544,7 +1546,7 @@ BOOL p1Clouded = NO;
 /*Send data method for item usage*/
 -(void)sendUseCloud{
     MessageEndGame message;
-    message.message.messageType = KMessageTypeUseCloud;
+    message.message.messageType = kMessageTypeUseCloud;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageUseCloud)];
     [self sendData:data];
 }
@@ -1618,9 +1620,10 @@ BOOL p1Clouded = NO;
     [self tryStartGame];
 }
 
+/*
 - (void)inviteReceived {
     [self restartTapped:nil];
-}
+}*/
 
 - (void)matchEnded {
     CCLOG(@"Match ended");
@@ -1819,7 +1822,13 @@ BOOL p1Clouded = NO;
         [self setGameState:kGameStateActive];
         [self setupStringsWithOtherPlayerId:playerID];
         
-    } else if (message->messageType == kMessageTypeGenerateButton) {
+    }
+    else if (message->messageType == kMessageTypePressButton) {
+        shopItem[0].isEnabled = YES;
+        shopItem[1].isEnabled = YES;
+    }
+    
+    else if (message->messageType == kMessageTypeGenerateButton) {
         
         MessageGenerateButton * tempMessage = (MessageGenerateButton*) [data bytes];
         //CCLOG(@"Received button information to generate");
@@ -1917,7 +1926,7 @@ BOOL p1Clouded = NO;
             [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
         }
     }
-    else if(message->messageType == KMessageTypeUseCloud){
+    else if(message->messageType == kMessageTypeUseCloud){
         p1Clouded = YES;
         p1CloudedTime = currSeconds;
     }

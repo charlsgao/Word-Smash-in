@@ -19,12 +19,12 @@ typedef enum {
     kMessageTypeGenerateButton,
     kMessageTypeHideButton,
     kMessageTypeGameOver, 
-    //kMessageTypeStartButton
+    kMessageTypeStartButton,
     kMessageTypeWord1,
     kMessageTypeWord2,
     kMessageTypeWord3,
     kMessageTypeTime,
-    KMessageTypeUseCloud,
+    kMessageTypeUseCloud,
     kMessageTypeEndGame,
     kMessageTypeScore
 } MessageType;
@@ -69,10 +69,11 @@ typedef struct {
     Message message;
     BOOL player1Won;
 } MessageGameOver;
-/*
+
 typedef struct {
     Message message;
-} MessageStartButton;*/
+} MessageStartButton;
+
 typedef struct {
     Message message;
     char word[30];
