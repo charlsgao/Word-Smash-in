@@ -158,6 +158,7 @@ NSString* selfName;
 
 @property (strong, nonatomic) NSTimer *aTimer;              //stage timer
 @property (strong, nonatomic) NSTimer *timer;               //button appear duration timer
+@property (strong, nonatomic) NSTimer *cloudTimer;
 //@property double BUTTON_APPEAR_DURATION;
 @property (strong, nonatomic) NSArray *strArray;
 

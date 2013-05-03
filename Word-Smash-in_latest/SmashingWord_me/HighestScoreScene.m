@@ -38,15 +38,16 @@
         NSLog(@"232");
         NSLog(@"%i",length);
         for(int i=0; i<length; i++){
+            /*
             singleTopTen[i] = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i. %@", i+1, single_highest[i]] fontName:@"Arial" fontSize:15];
-            singleTopTen[i].position = ccp(40,400-i*30);
+             */
+            singleTopTen[i]= [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i. %@", i+1, single_highest[i]] dimensions:CGSizeMake(100, 20) hAlignment:kCCTextAlignmentLeft fontName:@"Arial" fontSize:15];
+            
+            
+            
+            singleTopTen[i].position = ccp(70,400-i*30);
             singleTopTen[i].color = ccBLACK;
             [self addChild:singleTopTen[i] z:1];
-            /*
-            multiTopTen[i] = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i. %@ %@", i+1, [multi_highest[i] objectForKey:@"user"], [multi_highest[i] objectForKey:@"score"]] fontName:@"Arial" fontSize:15
-                hAlignment:kCCTextAlignmentCenter
-                lineBreakMode:kCCLineBreakModeWordWrap];
-             */
             
             multiTopTen[i]= [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i. %@ %@", i+1, [multi_highest[i] objectForKey:@"user"], [multi_highest[i] objectForKey:@"score"]] dimensions:CGSizeMake(200, 20) hAlignment:kCCTextAlignmentLeft fontName:@"Arial" fontSize:15];
             

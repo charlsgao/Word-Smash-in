@@ -43,6 +43,9 @@ BOOL STOP_M = false;
 NSString* ExtraTime =  @"Extra Time";
 NSString* ViewObstructor = @"View Obstructor";
 NSString* CharacterIncrease = @"Character Increase";
+
+
+
 NSString* TimeFreezer = @"Time Freezer";
 NSString* TimeSlower =@"Time Slower";
 
@@ -1212,72 +1215,86 @@ int pressButtonTest;
 /* Methods used to handle item-using action;*/
 
 - (void) useExtraTime{
-    
-    
-    
-    [self sendWord1:[ExtraTime UTF8String]];
+    /*
+    if (isPlayer1){
+        if(extraTimeCounter > 0){
+            extraTimeCounter --;
+            [shopItemCounter[2] setString:[NSString stringWithFormat:@"x%i", extraTimeCounter]];
+            currSeconds += 5;
+            if(currSeconds>59)
+            {
+                currMinute++;
+                currSeconds -=60;
+            }
+        }
+    }
+    else{
+        [self sendWord1:[ExtraTime UTF8String]];
+    }
+     */
 }
 
 
 - (void) useViewObstructor{
     
-    
     [self sendWord1:[ViewObstructor UTF8String]];
+    
 }
 - (void) useCharacterIncrease{
-    
-    
-    [self sendWord1:[CharacterIncrease UTF8String]];
-}
+    /*
+        shopItem[3].isEnabled = NO;
+        if(increaseCounter > 0){
+            increaseCounter --;
+            [shopItemCounter[3] setString:[NSString stringWithFormat:@"x%i", increaseCounter]];
+            maxChar = 15;
+        }
+     */
 
-- (void) useTimeFreezer{
-    
-    
-    
-    [self sendWord1:[TimeFreezer UTF8String]];
-}
-
-
-
-- (void) useTimeSlower{
-    
-    
-    
-    [self sendWord1:[TimeSlower UTF8String]];
+    //[self sendWord1:[CharacterIncrease UTF8String]];
 }
 
 
 
 
 - (void) ReceiveExtraTime{
+    //If player receieve this, it must be player 1.
+    
+    /*
+    if(extraTimeCounter > 0){
+        extraTimeCounter --;
+        [shopItemCounter[2] setString:[NSString stringWithFormat:@"x%i", extraTimeCounter]];
+        currSeconds += 5;
+        if(currSeconds>59)
+        {
+            currMinute++;
+            currSeconds -=60;
+        }
+    }
+    */
     
 }
 
 
 - (void) ReceiveViewObstructor{
+    // Add codt to  the cloud;
     
     
+    
+    self.cloudTimer=[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(removeCloud) userInfo:nil repeats:YES];
+    
+    
+}
+
+-(void) removeCloud{
+    
+    //Add code to remove the cloud.
+    
+    [self.cloudTimer invalidate];
 }
 
 
 
 - (void) ReceiveCharacterIncrease{
-    
-    
-    
-}
-
-
-
-- (void) ReceiveTimeFreezer{
-    
-    
-    
-}
-
-
-
-- (void) ReceiveTimeSlower{
     
     
     
