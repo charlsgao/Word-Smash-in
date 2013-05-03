@@ -1065,7 +1065,7 @@ BOOL p1Clouded = NO;
 -(void)cloudPress: (id)sender{
     shopItem[1].isEnabled = NO;
     if(cloudCounter > 0){
-        increaseCounter --;
+        cloudCounter --;
         [shopItemCounter[1] setString:[NSString stringWithFormat:@"x%i", cloudCounter]];
         if(!isPlayer1)
             [self sendUseCloud];
@@ -1485,7 +1485,7 @@ BOOL p1Clouded = NO;
 
 -(void)sendStartButton{
     MessageStartButton message;
-    message.message.messageType = kMessageTypeGameBegin;
+    message.message.messageType = kMessageTypeStartButton;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageStartButton)];
     [self sendData:data];
 }
@@ -1826,7 +1826,7 @@ BOOL p1Clouded = NO;
         [self setupStringsWithOtherPlayerId:playerID];
         
     }
-    else if (message->messageType == kMessageTypePressButton) {
+    else if (message->messageType == kMessageTypeStartButton) {
         shopItem[0].isEnabled = YES;
         shopItem[1].isEnabled = YES;
     }
