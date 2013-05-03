@@ -251,13 +251,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Tests_Multiplayer/GHUnitCocos2dBase_Multiplayer.m"
-         timestampString = "389278365.411484"
+         timestampString = "389279924.391769"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "396"
-         endingLineNumber = "396"
-         landmarkName = "@implementation GHUnitCocos2dBase_Multiplayer"
-         landmarkType = "3">
+         startingLineNumber = "392"
+         endingLineNumber = "392"
+         landmarkName = "-testMultiple_saveScoreAndThenFetch"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

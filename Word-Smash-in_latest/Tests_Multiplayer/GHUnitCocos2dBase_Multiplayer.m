@@ -294,10 +294,6 @@
  GHAssertEquals([mpc getButton8].isEnabled, NO, @"After pressing button8, button8 should be disabled");
  }
 
-<<<<<<< HEAD
-
-
-
 - (void) testMultiple_saveScoreAndThenFetch{
     NSLog(@"diulamaAAA");
     NSDictionary * temp =[NSDictionary dictionaryWithObjectsAndKeys: nil];
@@ -414,10 +410,6 @@
     GHAssertEquals(PASS, YES, @"Fetch Data fail. Inconsistent with expected Result");
     
 }
-
-
-
-
 
 
 - (void) testMultiple_saveScoreUpdateAndThenFetch{
@@ -538,8 +530,8 @@
         }
     }
     GHAssertEquals(PASS, YES, @"Fetch Data fail. Inconsistent with expected Result");
-    
-=======
+}
+
 -(void) testMulti_SendRandomNumber{
     [mpc sendRandomNumber];
     NSData* tempData = [mpc getNSData];
@@ -637,7 +629,6 @@
     GHAssertEquals(message->messageType, kMessageTypeGameOver, @"message type should be kMessageTypeGameOver");
     MessageGameOver *tempMessage = (MessageGameOver*) [tempData bytes];
     GHAssertEquals(tempMessage->player1Won, YES, @"isPlayer1 should be YES");
->>>>>>> llk
 }
 
 @end
