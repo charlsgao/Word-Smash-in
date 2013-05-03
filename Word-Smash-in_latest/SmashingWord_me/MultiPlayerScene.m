@@ -217,11 +217,14 @@ BOOL p1Clouded = NO;
             NSString* tempString = [NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",currMinute,@":",currSeconds];
             [clock setString:tempString];
             [self sendTime:[tempString UTF8String]];
-            if(currSeconds == cloudTime - 3)
+            if(isCloud == YES && currSeconds == cloudTime - 5){
                 isCloud = NO;
-            if(currSeconds == p1CloudedTime -3)
+                shopItem[1].isEnabled = YES;
+            }
+            if(p1Clouded == YES && currSeconds == p1CloudedTime -3){
                 p1Clouded = NO;
-            
+                [self sendStartButton];
+            }
         }
         
     }
