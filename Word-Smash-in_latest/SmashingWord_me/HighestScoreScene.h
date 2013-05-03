@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "globalVar.h"
 
 @interface HighestScoreScene : CCLayer {
     CCLabelTTF* singleTopTen[10];
@@ -18,6 +19,17 @@
     
     NSArray* single_highest;
     NSArray* multi_highest;
+    
+    
 }
+
+@property(retain) globalVar *gv;
+
+
+/**** TESTING ******/
+@property(retain) NSArray *single;
+@property(retain) NSArray *multi;
+
+-(void)requestScore;
 
 @end

@@ -26,36 +26,11 @@
         multi.position = ccp(210,430);
         multi.color = ccBLACK;
         [self addChild:multi z:1];
-        NSDictionary* tempDict = [NSDictionary dictionaryWithObjectsAndKeys:
-         nil];
-        single_highest = [self request:@"/users/Top10Scores/single" SecondParameter:tempDict];
         
-        multi_highest = [self request:@"/users/Top10Scores/multiple" SecondParameter:tempDict];
+        self.gv = [[globalVar alloc] init];
         
         
-        
-        int length = [single_highest count];
-        NSLog(@"232");
-        NSLog(@"%i",length);
-        for(int i=0; i<length; i++){
-            /*
-            singleTopTen[i] = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i. %@", i+1, single_highest[i]] fontName:@"Arial" fontSize:15];
-             */
-            singleTopTen[i]= [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i. %@", i+1, single_highest[i]] dimensions:CGSizeMake(100, 20) hAlignment:kCCTextAlignmentLeft fontName:@"Arial" fontSize:15];
-            
-            
-            
-            singleTopTen[i].position = ccp(70,400-i*30);
-            singleTopTen[i].color = ccBLACK;
-            [self addChild:singleTopTen[i] z:1];
-            
-            multiTopTen[i]= [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i. %@ %@", i+1, [multi_highest[i] objectForKey:@"user"], [multi_highest[i] objectForKey:@"score"]] dimensions:CGSizeMake(200, 20) hAlignment:kCCTextAlignmentLeft fontName:@"Arial" fontSize:15];
-            
-            multiTopTen[i].position = ccp(222,400-i*30);
-            multiTopTen[i].color = ccBLACK;
-            [self addChild:multiTopTen[i] z:1];
-            
-        }
+        [self requestScore];
 
         
     }
@@ -67,6 +42,46 @@
     [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
 }
 
+
+-(void)requestScore
+{
+    
+    //single_highest = [self.gv requestData:@"/users/Top10Scores/single" SecondParameter:tempDict];
+    single_highest = [self.gv requestData:@"/users/Top10Scores/single"];
+    //multi_highest = [self.gv requestData:@"/users/Top10Scores/multiple" SecondParameter:tempDict];
+    multi_highest = [self.gv requestData:@"/users/Top10Scores/multiple"];
+    
+    
+    int length = [single_highest count];
+    NSLog(@"232");
+    NSLog(@"%i",length);
+    
+    /**** TESTING ******/
+    self.single = single_highest;
+    self.multi = multi_highest;
+    
+    for(int i=0; i<length; i++){
+        //singleTopTen[i] = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i. %@", i+1, single_highest[i]] fontName:@"Arial" fontSize:15];
+        singleTopTen[i]= [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i. %@", i+1, single_highest[i]] dimensions:CGSizeMake(100, 20) hAlignment:kCCTextAlignmentLeft fontName:@"Arial" fontSize:15];
+        //singleTopTen[i].position = ccp(40,400-i*30);
+        singleTopTen[i].position = ccp(70,400-i*30);
+        singleTopTen[i].color = ccBLACK;
+        [self addChild:singleTopTen[i] z:1];
+        /*
+         multiTopTen[i] = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i. %@ %@", i+1, [multi_highest[i] objectForKey:@"user"], [multi_highest[i] objectForKey:@"score"]] fontName:@"Arial" fontSize:15
+         hAlignment:kCCTextAlignmentCenter
+         lineBreakMode:kCCLineBreakModeWordWrap];
+         */
+        
+        multiTopTen[i]= [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i. %@ %@", i+1, [multi_highest[i] objectForKey:@"user"], [multi_highest[i] objectForKey:@"score"]] dimensions:CGSizeMake(200, 20) hAlignment:kCCTextAlignmentLeft fontName:@"Arial" fontSize:15];
+        
+        multiTopTen[i].position = ccp(222,400-i*30);
+        multiTopTen[i].color = ccBLACK;
+        [self addChild:multiTopTen[i] z:1];
+    }
+}
+
+/*
 - (NSArray*) request:(NSString*) path SecondParameter:(NSDictionary*) parameter{
     NSDictionary *jsonDict;
     if ([path isEqualToString:@"users/Top10Scores/single"]){
@@ -112,5 +127,5 @@
     
 }
 
-
+*/
 @end

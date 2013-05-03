@@ -1,8 +1,8 @@
 //
-//  GHUnitCocos2dBase_Multiplayer.h
+//  GHUnitCocos2dbase_Highscore.h
 //  SmashingWord_me
 //
-//  Created by Denny Winoto on 5/1/13.
+//  Created by Denny Winoto on 5/2/13.
 //
 //
 
@@ -12,11 +12,12 @@
 
 #import <OCMock/OCMock.h>
 
-//#import "SinglePlayerScene.h"
-#import "MultiPlayerScene.h"
+
+#import "HighestScoreScene.h"
+#import "globalVar.h"
 #import "AppDelegate.h"
 
-@interface GHUnitCocos2dBase_Multiplayer : GHTestCase
+@interface GHUnitCocos2dbase_Highscore : GHTestCase
 {
     //AppController *app;
 	UIWindow *window_;
@@ -27,7 +28,6 @@
 	CCDirectorIOS	*director_;							// weak ref
     
     //SinglePlayerScene *spc;
-    MultiPlayerScene *mpc;
-    
+    HighestScoreScene *hss;
 }
 @end

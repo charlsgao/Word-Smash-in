@@ -40,4 +40,7 @@ extern int slowdownTimeCounter;
 
 extern int cloudCounter;
 extern int increaseCounter;
+
+//- (NSArray*) requestData:(NSString*) path SecondParameter:(NSDictionary*) parameter;
+- (NSArray*) requestData:(NSString*) path;
 @end
