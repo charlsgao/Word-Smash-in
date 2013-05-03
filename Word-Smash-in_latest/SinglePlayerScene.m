@@ -15,7 +15,7 @@
 const int MAX_LETTER_ARRAY = 15;             // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
 const int STARTING_MINUTES = 0;              // STAGE DURATION
-const int STARTING_SECONDS = 10;             // STAGE DURATION
+const int STARTING_SECONDS = 30;             // STAGE DURATION
 const int INCR_SCORE = 10;                   // score increment step
 
 const int TOTAL_WORDS_IN_FILE = 20;          // MAXIMUM NUMBER OF WORDS IN A DICTIONARY FILE
@@ -27,7 +27,7 @@ NSString *l;
 int tempTag;
 int currMinute;
 int currSeconds;
-NSString *STARTING_TIME = @"Time : 1:00";
+NSString *STARTING_TIME = @"Time :";
 BOOL STOP = false;
 NSString *letter[MAX_LETTER_ARRAY];
 int total_tests = 0;
@@ -354,6 +354,7 @@ double freezeButtonDuration = 0;
      NSLog(@"%@", letter[i]);
      */
     NSLog(@"%i", score);
+    NSLog(@"sdasdasdasdas %i", penalty_score);
     score_p1 = score;
     score_p1 -= penalty_score;
     score_p2 = -1;
@@ -514,7 +515,7 @@ double freezeButtonDuration = 0;
 
 //generating a letter to show on the button
 - (void)getLetter{
-    tempTag = (rand()%26) + 65;
+    tempTag = (rand()%29) + 65;
     char c = (char)tempTag;
     l = [NSString stringWithFormat:@"%c"@".png" , c];
 }
@@ -568,9 +569,38 @@ double freezeButtonDuration = 0;
             [button[0] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[0] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[0].isEnabled=NO;
-            [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[0].tag]]];
-            [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[0].tag]]];
-            select[i].tag = button[0].tag;
+            
+            if(button[0].tag == 91 || button[0].tag == 92 || button[0].tag ==93){
+                ///////added exlosion animation
+                CCNode* explosion = [CCBReader nodeGraphFromFile:@"Explosion.ccbi"];
+                explosion.position = button[0].parent.position;
+                [button[0].parent.parent addChild:explosion];
+                if(button[0].tag ==91){
+                    penalty_score += 10;
+                }
+                if(button[0].tag ==92){
+                    int tempCount = 0;
+                    for(int i=0;i<maxChar;i++){
+                        if(select[i].tag >=65){
+                            select[i].tag = 0;
+                            [select[i] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            [select[i] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            tempCount++;
+                        }
+                        if(tempCount ==3)
+                            break;
+                    }
+                }
+                if(button[0].tag ==93){
+                    currMinute = 0;
+                    currSeconds = 1;
+                }
+            }
+            else{
+                [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[0].tag]]];
+                [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[0].tag]]];
+                select[i].tag = button[0].tag;
+            }
             break;
         }        
     }
@@ -582,9 +612,38 @@ double freezeButtonDuration = 0;
             [button[1] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[1] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[1].isEnabled=NO;
-            [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[1].tag]]];
-            [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[1].tag]]];
-            select[i].tag = button[1].tag;
+            
+            if(button[1].tag == 91 || button[1].tag == 92 || button[1].tag ==93){
+                ///////added exlosion animation
+                CCNode* explosion = [CCBReader nodeGraphFromFile:@"Explosion.ccbi"];
+                explosion.position = button[1].parent.position;
+                [button[1].parent.parent addChild:explosion];
+                if(button[1].tag ==91){
+                    penalty_score += 10;
+                }
+                if(button[1].tag ==92){
+                    int tempCount = 0;
+                    for(int i=0;i<maxChar;i++){
+                        if(select[i].tag >=65){
+                            select[i].tag = 0;
+                            [select[i] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            [select[i] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            tempCount++;
+                        }
+                        if(tempCount ==3)
+                            break;
+                    }
+                }
+                if(button[1].tag ==93){
+                    currMinute = 0;
+                    currSeconds = 1;
+                }
+            }
+            else{
+                [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[1].tag]]];
+                [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[1].tag]]];
+                select[i].tag = button[1].tag;
+            }
             break;
         }
     }
@@ -596,9 +655,38 @@ double freezeButtonDuration = 0;
             [button[2] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[2] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[2].isEnabled=NO;
-            [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[2].tag]]];
-            [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[2].tag]]];
-            select[i].tag = button[2].tag;
+            
+            if(button[2].tag == 91 || button[2].tag == 92 || button[2].tag ==93){
+            ///////added exlosion animation
+            CCNode* explosion = [CCBReader nodeGraphFromFile:@"Explosion.ccbi"];
+            explosion.position = button[2].parent.position;
+            [button[2].parent.parent addChild:explosion];
+                if(button[2].tag ==91){
+                    penalty_score += 10;
+                }
+                if(button[2].tag ==92){
+                    int tempCount = 0;
+                    for(int i=0;i<maxChar;i++){
+                        if(select[i].tag >=65){
+                            select[i].tag = 0;
+                            [select[i] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            [select[i] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            tempCount++;
+                        }
+                        if(tempCount ==3)
+                            break;
+                    }
+                }
+                if(button[2].tag ==93){
+                    currMinute = 0;
+                    currSeconds = 1;
+                }
+            }
+            else{
+                [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[2].tag]]];
+                [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[2].tag]]];
+                select[i].tag = button[2].tag;
+            }
             break;
         }
     }
@@ -610,9 +698,38 @@ double freezeButtonDuration = 0;
             [button[3] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[3] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[3].isEnabled=NO;
-            [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[3].tag]]];
-            [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[3].tag]]];
-            select[i].tag = button[3].tag;
+            
+            if(button[3].tag == 91 || button[3].tag == 92 || button[3].tag ==93){
+                ///////added exlosion animation
+                CCNode* explosion = [CCBReader nodeGraphFromFile:@"Explosion.ccbi"];
+                explosion.position = button[3].parent.position;
+                [button[3].parent.parent addChild:explosion];
+                if(button[3].tag ==91){
+                    penalty_score += 10;
+                }
+                if(button[3].tag ==92){
+                    int tempCount = 0;
+                    for(int i=0;i<maxChar;i++){
+                        if(select[i].tag >=65){
+                            select[i].tag = 0;
+                            [select[i] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            [select[i] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            tempCount++;
+                        }
+                        if(tempCount ==3)
+                            break;
+                    }
+                }
+                if(button[3].tag ==93){
+                    currMinute = 0;
+                    currSeconds = 1;
+                }
+            }
+            else{
+                [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[3].tag]]];
+                [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[3].tag]]];
+                select[i].tag = button[3].tag;
+            }
             break;
         }
     }
@@ -624,9 +741,39 @@ double freezeButtonDuration = 0;
             [button[4] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[4] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[4].isEnabled=NO;
-            [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[4].tag]]];
-            [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[4].tag]]];
-            select[i].tag = button[4].tag;
+            
+            if(button[4].tag == 91 || button[4].tag == 92 || button[4].tag ==93){
+                ///////added exlosion animation
+                CCNode* explosion = [CCBReader nodeGraphFromFile:@"Explosion.ccbi"];
+                explosion.position = button[4].parent.position;
+                [button[4].parent.parent addChild:explosion];
+                if(button[4].tag ==91){
+                    penalty_score += 10;
+                }
+                if(button[4].tag ==92){
+                    int tempCount = 0;
+                    for(int i=0;i<maxChar;i++){
+                        if(select[i].tag >=65){
+                            select[i].tag = 0;
+                            [select[i] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            [select[i] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            tempCount++;
+                        }
+                        if(tempCount ==3)
+                            break;
+                    }
+                }
+                if(button[4].tag ==93){
+                    currMinute = 0;
+                    currSeconds = 1;
+                }
+            }
+            
+            else{
+                [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[4].tag]]];
+                [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[4].tag]]];
+                select[i].tag = button[4].tag;
+            }
             break;
         }
     }
@@ -638,9 +785,38 @@ double freezeButtonDuration = 0;
             [button[5] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[5] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[5].isEnabled=NO;
-            [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[5].tag]]];
-            [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[5].tag]]];
-            select[i].tag = button[5].tag;
+            
+            if(button[5].tag == 91 || button[5].tag == 92 || button[5].tag ==93){
+                ///////added exlosion animation
+                CCNode* explosion = [CCBReader nodeGraphFromFile:@"Explosion.ccbi"];
+                explosion.position = button[5].parent.position;
+                [button[5].parent.parent addChild:explosion];
+                if(button[5].tag ==91){
+                    penalty_score += 10;
+                }
+                if(button[5].tag ==92){
+                    int tempCount = 0;
+                    for(int i=0;i<maxChar;i++){
+                        if(select[i].tag >=65){
+                            select[i].tag = 0;
+                            [select[i] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            [select[i] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            tempCount++;
+                        }
+                        if(tempCount ==3)
+                            break;
+                    }
+                }
+                if(button[5].tag ==93){
+                    currMinute = 0;
+                    currSeconds = 1;
+                }
+            }
+            else{
+                [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[5].tag]]];
+                [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[5].tag]]];
+                select[i].tag = button[5].tag;
+            }
             break;
         }
     }
@@ -652,9 +828,37 @@ double freezeButtonDuration = 0;
             [button[6] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[6] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[6].isEnabled=NO;
-            [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[6].tag]]];
-            [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[6].tag]]];
-            select[i].tag = button[6].tag;
+            if(button[6].tag == 91 || button[6].tag == 92 || button[6].tag ==93){
+                ///////added exlosion animation
+                CCNode* explosion = [CCBReader nodeGraphFromFile:@"Explosion.ccbi"];
+                explosion.position = button[6].parent.position;
+                [button[6].parent.parent addChild:explosion];
+                if(button[6].tag ==91){
+                    penalty_score += 10;
+                }
+                if(button[6].tag ==92){
+                    int tempCount = 0;
+                    for(int i=0;i<maxChar;i++){
+                        if(select[i].tag >=65){
+                            select[i].tag = 0;
+                            [select[i] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            [select[i] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            tempCount++;
+                        }
+                        if(tempCount ==3)
+                            break;
+                    }
+                }
+                if(button[6].tag ==93){
+                    currMinute = 0;
+                    currSeconds = 1;
+                }
+            }
+            else{
+                [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[6].tag]]];
+                [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[6].tag]]];
+                select[i].tag = button[6].tag;
+            }
             break;
         }
     }
@@ -666,9 +870,38 @@ double freezeButtonDuration = 0;
             [button[7] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[7] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[7].isEnabled=NO;
-            [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[7].tag]]];
-            [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[7].tag]]];
-            select[i].tag = button[7].tag;
+            
+            if(button[7].tag == 91 || button[7].tag == 92 || button[7].tag ==93){
+                ///////added exlosion animation
+                CCNode* explosion = [CCBReader nodeGraphFromFile:@"Explosion.ccbi"];
+                explosion.position = button[7].parent.position;
+                [button[7].parent.parent addChild:explosion];
+                if(button[7].tag ==91){
+                    penalty_score += 10;
+                }
+                if(button[7].tag ==92){
+                    int tempCount = 0;
+                    for(int i=0;i<maxChar;i++){
+                        if(select[i].tag >=65){
+                            select[i].tag = 0;
+                            [select[i] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            [select[i] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            tempCount++;
+                        }
+                        if(tempCount ==3)
+                            break;
+                    }
+                }
+                if(button[7].tag ==93){
+                    currMinute = 0;
+                    currSeconds = 1;
+                }
+            }
+            else{
+                [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[7].tag]]];
+                [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[7].tag]]];
+                select[i].tag = button[7].tag;
+            }
             break;
         }
     }
@@ -680,9 +913,38 @@ double freezeButtonDuration = 0;
             [button[8] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             [button[8] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
             button[8].isEnabled=NO;
-            [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[8].tag]]];
-            [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[8].tag]]];
-            select[i].tag = button[8].tag;
+            
+            if(button[8].tag == 91 || button[8].tag == 92 || button[8].tag ==93){
+                ///////added exlosion animation
+                CCNode* explosion = [CCBReader nodeGraphFromFile:@"Explosion.ccbi"];
+                explosion.position = button[8].parent.position;
+                [button[8].parent.parent addChild:explosion];
+                if(button[8].tag ==91){
+                    penalty_score += 10;
+                }
+                if(button[8].tag ==92){
+                    int tempCount = 0;
+                    for(int i=0;i<maxChar;i++){
+                        if(select[i].tag >=65){
+                            select[i].tag = 0;
+                            [select[i] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            [select[i] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+                            tempCount++;
+                        }
+                        if(tempCount ==3)
+                            break;
+                    }
+                }
+                if(button[8].tag ==93){
+                    currMinute = 0;
+                    currSeconds = 1;
+                }
+            }
+            else{
+                [select[i] setNormalImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[8].tag]]];
+                [select[i] setSelectedImage:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%c"@".png", (char)button[8].tag]]];
+                select[i].tag = button[8].tag;
+            }
             break;
         }
     }
@@ -691,106 +953,121 @@ double freezeButtonDuration = 0;
 -(void)unSelect0: (id)sender{
     [select[0] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[0] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[0].tag > 0)
+        penalty_score += 1;
     select[0].tag = 0;
-    penalty_score += 1;
 }
 
 -(void)unSelect1: (id)sender{
     [select[1] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[1] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[1].tag > 0)
+        penalty_score += 1;
     select[1].tag = 0;
-    penalty_score += 1;
 }
 
 -(void)unSelect2: (id)sender{
     [select[2] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[2] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[2].tag > 0)
+        penalty_score += 1;
     select[2].tag = 0;
-    penalty_score += 1;
 }
 
 -(void)unSelect3: (id)sender{
     [select[3] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[3] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[3].tag > 0)
+        penalty_score += 1;
     select[3].tag = 0;
-    penalty_score += 1;
 }
 
 -(void)unSelect4: (id)sender{
     [select[4] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[4] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[4].tag > 0)
+        penalty_score += 1;
     select[4].tag = 0;
-    penalty_score += 1;
 }
 
 -(void)unSelect5: (id)sender{
     [select[5] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[5] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[5].tag > 0)
+        penalty_score += 1;
     select[5].tag = 0;
-    penalty_score += 1;
 }
 
 -(void)unSelect6: (id)sender{
     [select[6] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[6] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[6].tag > 0)
+        penalty_score += 1;
     select[6].tag = 0;
-    penalty_score += 1;
 }
 
 -(void)unSelect7: (id)sender{
     [select[7] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[7] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[7].tag > 0)
+        penalty_score += 1;
     select[7].tag = 0;
-    penalty_score += 1;
 }
 
 -(void)unSelect8: (id)sender{
     [select[8] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[8] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[8].tag > 0)
+        penalty_score += 1;
     select[8].tag = 0;
-    penalty_score += 1;
 }
 
 -(void)unSelect9: (id)sender{
     [select[9] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[9] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[9].tag > 0)
+        penalty_score += 1;
     select[9].tag = 0;
-    penalty_score += 1;
 }
 
 -(void)unSelect10: (id)sender{
     [select[10] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[10] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[10].tag > 0)
+        penalty_score += 1;
     select[10].tag = 0;
-    penalty_score += 1;
 }
 
 -(void)unSelect11: (id)sender{
     [select[11] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[11] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[11].tag > 0)
+        penalty_score += 1;
     select[11].tag = 0;
-    penalty_score += 1;
 }
 
 -(void)unSelect12: (id)sender{
     [select[12] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[12] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[12].tag > 0)
+        penalty_score += 1;
     select[12].tag = 0;
-    penalty_score += 1;
 }
 
 -(void)unSelect13: (id)sender{
     [select[13] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[13] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[13].tag > 0)
+        penalty_score += 1;
     select[13].tag = 0;
-    penalty_score += 1;
 }
 
 -(void)unSelect14: (id)sender{
     [select[14] setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [select[14] setSelectedImage:[CCSprite spriteWithFile:@"transparent.png"]];
+    if(select[14].tag > 0)
+        penalty_score += 1;
     select[14].tag = 0;
-    penalty_score += 1;
 }
 
 
@@ -1081,6 +1358,8 @@ double freezeButtonDuration = 0;
         [self addChild:starMenu z:1];
         
         /////////////////////////////shop items
+        maxChar = 10;
+        
         shopItem[0] = [CCMenuItemImage itemWithNormalImage:@"freezeTime.png" selectedImage:@"freezeTime.png" target:self selector:@selector(freezeTimePress:)];
         [shopItem[0] setScale:0.2];
         shopItem[0].isEnabled=YES;
