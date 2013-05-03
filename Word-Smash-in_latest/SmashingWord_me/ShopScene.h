@@ -15,4 +15,15 @@
     CCLabelTTF* moneyLabel;
 }
 
+
+-(void)freezeTimePress:(id)sender;
+
+-(void)extraTimePress:(id)sender;
+
+-(void)slowdownTimePress:(id)sender;
+
+-(void)cloudPress:(id)sender;
+
+-(void)increasePress:(id)sender;
+
 @end 

@@ -53,8 +53,12 @@ exclude_data()
 "${LCOV}" --remove ${LCOV_INFO} "SmashingWord_me/Supporting Files/*" -d "${OBJ_DIR}" -o ${LCOV_INFO}
 "${LCOV}" --remove ${LCOV_INFO} "SmashingWord_me/MultiPlayerScene.h" -d "${OBJ_DIR}" -o ${LCOV_INFO}
 "${LCOV}" --remove ${LCOV_INFO} "SmashingWord_me/LevelSelectScene.h" -d "${OBJ_DIR}" -o ${LCOV_INFO}
+"${LCOV}" --remove ${LCOV_INFO} "SmashingWord_me/LevelSelectScene.m" -d "${OBJ_DIR}" -o ${LCOV_INFO}
 "${LCOV}" --remove ${LCOV_INFO} "SmashingWord_me/SinglePlayerScene.h" -d "${OBJ_DIR}" -o ${LCOV_INFO}
 "${LCOV}" --remove ${LCOV_INFO} "SmashingWord_me/HighestScoreScene.h" -d "${OBJ_DIR}" -o ${LCOV_INFO}
+"${LCOV}" --remove ${LCOV_INFO} "SmashingWord_me/HighestScoreScene.m" -d "${OBJ_DIR}" -o ${LCOV_INFO}
+"${LCOV}" --remove ${LCOV_INFO} "SmashingWord_me/globalVar.m" -d "${OBJ_DIR}" -o ${LCOV_INFO}
+
 }
 
 generate_report()

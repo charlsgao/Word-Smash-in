@@ -242,6 +242,7 @@ NSString* selfName;
 
 - (CCMenuItemImage*) getShopItem0;
 - (CCMenuItemImage*) getShopItem1;
+- (CCMenuItemImage*) getStartButton;
 
 
 - (CCLabelTTF*) getShopItemCounter0;
@@ -258,8 +259,9 @@ NSString* selfName;
 -(NSString*) get_l;
 
 -(int) getPenalty;
--(int) setPenalty:(int)p;
-
-
+-(void) setPenalty:(int)p;
+-(void)generateButton;
+-(void)cloudPress:(id)sender;
+-(void)start:(id)sender;
 @end
 

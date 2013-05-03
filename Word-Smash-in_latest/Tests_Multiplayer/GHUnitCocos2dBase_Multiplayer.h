@@ -14,6 +14,8 @@
 
 //#import "SinglePlayerScene.h"
 #import "MultiPlayerScene.h"
+#import "ShopScene.h"
+#import "LevelSelectScene.h"
 #import "AppDelegate.h"
 
 @interface GHUnitCocos2dBase_Multiplayer : GHTestCase
@@ -28,6 +30,8 @@
     
     //SinglePlayerScene *spc;
     MultiPlayerScene *mpc;
+    ShopScene *ss;
+    LevelSelectScene *lss;
     
 }
 @end

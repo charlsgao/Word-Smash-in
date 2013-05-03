@@ -1969,6 +1969,9 @@ NSData* data;
 {
     return clock;
 }
+- (CCMenuItemImage*) getStartButton{
+    return startButton;
+}
 
 - (void) setCurrentMinute :(int)minute
 {
@@ -2014,7 +2017,7 @@ NSData* data;
     return my_penalty;
 }
 
--(int) setPenalty:(int)p{
+-(void) setPenalty:(int)p{
     my_penalty = p;
 }
 

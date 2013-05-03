@@ -251,12 +251,38 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Tests_Multiplayer/GHUnitCocos2dBase_Multiplayer.m"
-         timestampString = "389279924.391769"
+         timestampString = "389286711.674375"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "392"
-         endingLineNumber = "392"
+         startingLineNumber = "394"
+         endingLineNumber = "394"
          landmarkName = "-testMultiple_saveScoreAndThenFetch"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SmashingWord_me/MultiPlayerScene.m"
+         timestampString = "389285201.147162"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "2022"
+         endingLineNumber = "2022"
+         landmarkName = "-setPenalty:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SmashingWord_me/MultiPlayerScene.m"
+         timestampString = "389284283.311296"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "549"
+         endingLineNumber = "549"
+         landmarkName = "-start:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

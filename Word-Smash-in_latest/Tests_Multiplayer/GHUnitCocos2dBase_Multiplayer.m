@@ -24,6 +24,8 @@
     
     //mpc = [[MultiPlayerScene alloc] init];
     mpc = [[MultiPlayerScene alloc] init];
+    ss = [[ShopScene alloc] init];
+    lss = [[LevelSelectScene alloc] init];
     
 }
 
@@ -745,4 +747,66 @@
     GHAssertEquals(result, 1, @"Letter can not be generated!");
 }
 
+-(void) testSingle_generateButton
+{
+    BOOL correct = YES;
+    [mpc generateButton];
+    if ([mpc getButton0].isEnabled==NO && [mpc getButton1].isEnabled==NO && [mpc getButton2].isEnabled==NO &&
+        [mpc getButton3].isEnabled==NO && [mpc getButton4].isEnabled==NO && [mpc getButton5].isEnabled==NO &&
+        [mpc getButton6].isEnabled==NO && [mpc getButton7].isEnabled==NO && [mpc getButton8].isEnabled==NO)
+        correct = NO;
+    GHAssertEquals(correct, YES, @"Button generation error!");
+}
+
+- (void) testMulti_CloudPress
+{
+    cloudCounter = 2;
+    [mpc cloudPress:self];
+    GHAssertEquals([mpc getShopItem1].isEnabled, NO, @"It can only be used once so it should be disabled to prevent player from using it multiple times");
+    GHAssertEquals(cloudCounter, 1, @"After using the powerup, the cloudCounter should decrease by 1 and becomes 1");
+    GHAssertEquals([[[mpc getShopItemCounter1] string] isEqualToString:@"x1"], YES, @"The value of shopItemCounter[1] decreases and becomes 1");
+    cloudCounter = 0;
+    
+}
+/*
+-(void) testMulti_StartPress{
+    [mpc start:self];
+    GHAssertEquals([mpc getStartButton].isEnabled, NO, @"after pressing starting button, it should be disabled");
+    
+}*/
+-(void) testShopScene{
+    
+    freezeTimeCounter = 0;
+    extraTimeCounter = 0;
+    slowdownTimeCounter = 0;
+    cloudCounter =0;
+    increaseCounter = 0;
+    money = 99999;
+    [ss freezeTimePress:self];
+    [ss extraTimePress:self];
+    [ss slowdownTimePress:self];
+    [ss cloudPress:self];
+    [ss increasePress:self];
+    
+    GHAssertEquals(freezeTimeCounter, 1, @"freezeTimeCounter should be 1");
+    GHAssertEquals(extraTimeCounter, 1, @"extraTimeCounter should be 1");
+    GHAssertEquals(slowdownTimeCounter, 1, @"slowdownTimeCounter should be 1");
+    GHAssertEquals(cloudCounter, 1, @"cloudCounter should be 1");
+    GHAssertEquals(increaseCounter, 1, @"increaseCounter should be 1");
+    GHAssertEquals(money, 99999-650 , @"money should be 99340");
+}
+/*
+-(void) testLevelSelectScene{
+    [lss Level1Chosen:self];
+    GHAssertEquals(BUTTON_APPEAR_DURATION, 1.6, @"button appear duration should be 1.6");
+    [lss Level2Chosen:self];
+    GHAssertEquals(BUTTON_APPEAR_DURATION, 1.4, @"button appear duration should be 1.4");
+    [lss Level3Chosen:self];
+    GHAssertEquals(BUTTON_APPEAR_DURATION, 1.2, @"button appear duration should be 1.2");
+    [lss Level4Chosen:self];
+    GHAssertEquals(BUTTON_APPEAR_DURATION, 1.0, @"button appear duration should be 1.0");
+    [lss Level5Chosen:self];
+    GHAssertEquals(BUTTON_APPEAR_DURATION, 0.8, @"button appear duration should be 0.8");
+    
+}*/
 @end
