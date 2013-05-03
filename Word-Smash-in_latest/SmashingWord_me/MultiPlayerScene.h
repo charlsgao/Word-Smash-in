@@ -189,6 +189,11 @@ NSString* selfName;
 - (CCMenuItemImage*) getSelect7;
 - (CCMenuItemImage*) getSelect8;
 - (CCMenuItemImage*) getSelect9;
+- (CCMenuItemImage*) getSelect10;
+- (CCMenuItemImage*) getSelect11;
+- (CCMenuItemImage*) getSelect12;
+- (CCMenuItemImage*) getSelect13;
+- (CCMenuItemImage*) getSelect14;
 
 - (CCLabelTTF*) getWord1;
 -(void)pressButton0:(id)sender;
@@ -203,5 +208,20 @@ NSString* selfName;
 
 -(void)hideButtons;
 -(void)resetSelectArray;
+
+-(NSData*) getNSData;
+-(void)sendRandomNumber;
+-(void)sendGameBegin;
+-(void)sendGenerateButton:(int)position :(int)type;
+-(void)sendStartButton;
+-(void)sendWord1:(const char*) words;
+-(void)sendWord2:(const char*) words;
+-(void)sendWord3:(const char*) words;
+-(void)sendTime:(const char*) times;
+-(void)sendEndGame;
+-(void)sendScore:(int)score;
+- (void)sendGameOver:(BOOL)player1Won;
+-(void)sendUseCloud;
+
 @end
 

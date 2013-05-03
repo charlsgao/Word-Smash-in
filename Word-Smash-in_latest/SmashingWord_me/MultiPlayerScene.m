@@ -1456,12 +1456,14 @@ BOOL p1Clouded = NO;
     }
 }
 
+NSData* data;
+
 - (void)sendRandomNumber {
     
     MessageRandomNumber message;
     message.message.messageType = kMessageTypeRandomNumber;
     message.randomNumber = ourRandom;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageRandomNumber)];
+    data = [NSData dataWithBytes:&message length:sizeof(MessageRandomNumber)];
     [self sendData:data];
 }
 
@@ -1469,7 +1471,7 @@ BOOL p1Clouded = NO;
     
     MessageGameBegin message;
     message.message.messageType = kMessageTypeGameBegin;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageGameBegin)];
+    data = [NSData dataWithBytes:&message length:sizeof(MessageGameBegin)];
     [self sendData:data];
     
 }
@@ -1479,7 +1481,7 @@ BOOL p1Clouded = NO;
     MessagePressButton message;
     message.buttonPosition = position;
     message.message.messageType = kMessageTypePressButton;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessagePressButton)];
+    data = [NSData dataWithBytes:&message length:sizeof(MessagePressButton)];
     [self sendData:data];
     
 }
@@ -1489,7 +1491,7 @@ BOOL p1Clouded = NO;
     message.buttonPosition = position;
     message.letterTag = tag;
     message.message.messageType = kMessageTypeGenerateButton;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageGenerateButton)];
+    data = [NSData dataWithBytes:&message length:sizeof(MessageGenerateButton)];
     [self sendData:data];
 }
 
@@ -1497,14 +1499,14 @@ BOOL p1Clouded = NO;
     MessageHideButton message;
     message.buttonPosition = position;
     message.message.messageType = kMessageTypeHideButton;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageHideButton)];
+    data = [NSData dataWithBytes:&message length:sizeof(MessageHideButton)];
     [self sendData:data];
 }
 
 -(void)sendStartButton{
     MessageStartButton message;
     message.message.messageType = kMessageTypeStartButton;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageStartButton)];
+    data = [NSData dataWithBytes:&message length:sizeof(MessageStartButton)];
     [self sendData:data];
 }
 
@@ -1512,7 +1514,7 @@ BOOL p1Clouded = NO;
     MessageWord1 message;
     strcpy(message.word,words);
     message.message.messageType = kMessageTypeWord1;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord1)];
+    data = [NSData dataWithBytes:&message length:sizeof(MessageWord1)];
     [self sendData:data];
 }
 
@@ -1520,14 +1522,14 @@ BOOL p1Clouded = NO;
     MessageWord2 message;
     strcpy(message.word,words);
     message.message.messageType = kMessageTypeWord2;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord2)];
+    data = [NSData dataWithBytes:&message length:sizeof(MessageWord2)];
     [self sendData:data];}
 
 -(void)sendWord3:(const char*) words{
     MessageWord3 message;
     strcpy(message.word,words);
     message.message.messageType = kMessageTypeWord3;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageWord3)];
+    data = [NSData dataWithBytes:&message length:sizeof(MessageWord3)];
     [self sendData:data];
 }
 
@@ -1535,14 +1537,14 @@ BOOL p1Clouded = NO;
     MessageTime message;
     strcpy(message.time, times);
     message.message.messageType = kMessageTypeTime;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageTime)];
+    data = [NSData dataWithBytes:&message length:sizeof(MessageTime)];
     [self sendData:data];
 }
 
 -(void)sendEndGame {
     MessageEndGame message;
     message.message.messageType = kMessageTypeEndGame;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageEndGame)];
+    data = [NSData dataWithBytes:&message length:sizeof(MessageEndGame)];
     [self sendData:data];   
 }
 
@@ -1550,7 +1552,7 @@ BOOL p1Clouded = NO;
     MessageScore message;
     message.message.messageType = kMessageTypeScore;
     message.score = score;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageScore)];
+    data = [NSData dataWithBytes:&message length:sizeof(MessageScore)];
     [self sendData:data];
 }
 
@@ -1559,7 +1561,7 @@ BOOL p1Clouded = NO;
     MessageGameOver message;
     message.message.messageType = kMessageTypeGameOver;
     message.player1Won = player1Won;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageGameOver)];
+    data = [NSData dataWithBytes:&message length:sizeof(MessageGameOver)];
     [self sendData:data];
     
 }
@@ -1568,13 +1570,9 @@ BOOL p1Clouded = NO;
 -(void)sendUseCloud{
     MessageEndGame message;
     message.message.messageType = kMessageTypeUseCloud;
-    NSData *data = [NSData dataWithBytes:&message length:sizeof(MessageUseCloud)];
+    data = [NSData dataWithBytes:&message length:sizeof(MessageUseCloud)];
     [self sendData:data];
 }
-
-
-
-
 
 - (void)tryStartGame {
     
@@ -1582,33 +1580,6 @@ BOOL p1Clouded = NO;
         [self setGameState:kGameStateActive];
         [self sendGameBegin];
         [self setupStringsWithOtherPlayerId:otherPlayerID];
-    }
-    
-}
-
-
-- (void)setupStringsWithOtherPlayerId:(NSString *)playerID {
-    
-    if (isPlayer1) {
-        
-        /*player1Label = [CCLabelBMFont labelWithString:[GKLocalPlayer localPlayer].alias fntFile:@"Arial.fnt"];
-        [self addChild:player1Label];
-        
-        GKPlayer *player = [[GCHelper sharedInstance].playersDict objectForKey:playerID];
-        player2Label = [CCLabelBMFont labelWithString:player.alias fntFile:@"Arial.fnt"];
-        [self addChild:player2Label];*/
-        CCLOG(@"ddasd");
-        
-    } else {
-        /*
-        player2Label = [CCLabelBMFont labelWithString:[GKLocalPlayer localPlayer].alias fntFile:@"Arial.fnt"];
-        [self addChild:player2Label];
-        
-        GKPlayer *player = [[GCHelper sharedInstance].playersDict objectForKey:playerID];
-        player1Label = [CCLabelBMFont labelWithString:player.alias fntFile:@"Arial.fnt"];
-        [self addChild:player1Label];*/
-        CCLOG(@"dsadas");
-        
     }
     
 }
@@ -1699,99 +1670,6 @@ BOOL p1Clouded = NO;
     //[self init];
 
 }
-
-
-
-
-
-
-/* Methods used to handle item-using action;*/
-- (void) useExtraTime{
-    /*
-    if (isPlayer1){
-        if(extraTimeCounter > 0){
-            extraTimeCounter --;
-            [shopItemCounter[2] setString:[NSString stringWithFormat:@"x%i", extraTimeCounter]];
-            currSeconds += 5;
-            if(currSeconds>59)
-            {
-                currMinute++;
-                currSeconds -=60;
-            }
-        }
-    }
-    else{
-        [self sendWord1:[ExtraTime UTF8String]];
-    }
-     */
-}
-
-
-- (void) useViewObstructor{
-    
-    [self sendWord1:[ViewObstructor UTF8String]];
-    
-}
-- (void) useCharacterIncrease{
-    /*
-        shopItem[3].isEnabled = NO;
-        if(increaseCounter > 0){
-            increaseCounter --;
-            [shopItemCounter[3] setString:[NSString stringWithFormat:@"x%i", increaseCounter]];
-            maxChar_m = 15;
-        }
-     */
-
-    //[self sendWord1:[CharacterIncrease UTF8String]];
-}
-
-
-
-/*
-- (void) ReceiveExtraTime{
-    //If player receieve this, it must be player 1.
-    
-    
-    if(extraTimeCounter > 0){
-        extraTimeCounter --;
-        [shopItemCounter[2] setString:[NSString stringWithFormat:@"x%i", extraTimeCounter]];
-        currSeconds += 5;
-        if(currSeconds>59)
-        {
-            currMinute++;
-            currSeconds -=60;
-        }
-    }
- 
-}*/
-
-
-- (void) ReceiveViewObstructor{
-    // Add codt to  the cloud;
-    
-    
-    
-    self.cloudTimer=[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(removeCloud) userInfo:nil repeats:YES];
-    
-    
-}
-
--(void) removeCloud{
-    
-    //Add code to remove the cloud.
-    
-    [self.cloudTimer invalidate];
-}
-
-
-
-- (void) ReceiveCharacterIncrease{
-    
-    
-    
-}
-
-
 
 
 
@@ -1955,8 +1833,6 @@ BOOL p1Clouded = NO;
 
 }
 
-
-
 //Methods added for testing
 
 - (void) resetSelectArray
@@ -2048,7 +1924,32 @@ BOOL p1Clouded = NO;
 {
     return select[9];
 }
+- (CCMenuItemImage*) getSelect10
+{
+    return select[10];
+}
+- (CCMenuItemImage*) getSelect11
+{
+    return select[11];
+}
+- (CCMenuItemImage*) getSelect12
+{
+    return select[12];
+}
+- (CCMenuItemImage*) getSelect13
+{
+    return select[13];
+}
+- (CCMenuItemImage*) getSelect14
+{
+    return select[14];
+}
 
+-(NSData *) getNSData{
+    return data;
+}
+
+/*
 //Temporary tests methods
 -(void) temporaryTests
 {
@@ -2323,7 +2224,7 @@ BOOL p1Clouded = NO;
     NSAssert(pressButtonTest == 5, @"After sending 5, pressButtonTest should be 5");
     successTests++;
 }
-
+*/
 
 - (NSArray*) request:(NSString*) path SecondParameter:(NSDictionary*) parameter{
     NSDictionary *jsonDict;
