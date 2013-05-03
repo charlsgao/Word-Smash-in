@@ -390,8 +390,8 @@ BOOL p1Clouded = NO;
             if(p1Clouded){
                 [button[1] setNormalImage:[CCSprite spriteWithFile:@"^.png"]];
                 [button[1] setSelectedImage:[CCSprite spriteWithFile:@"^.png"]];
-                button[0].tag = 94;
-                button[0].isEnabled=YES;
+                button[1].tag = 94;
+                button[1].isEnabled=YES;
             }
             else{
                 [button[1] setNormalImage:[CCSprite spriteWithFile:l_M]];
@@ -408,8 +408,8 @@ BOOL p1Clouded = NO;
             if(p1Clouded){
                 [button[2] setNormalImage:[CCSprite spriteWithFile:@"^.png"]];
                 [button[2] setSelectedImage:[CCSprite spriteWithFile:@"^.png"]];
-                button[0].tag = 94;
-                button[0].isEnabled=YES;
+                button[2].tag = 94;
+                button[2].isEnabled=YES;
             }
             else{
                 [button[2] setNormalImage:[CCSprite spriteWithFile:l_M]];
@@ -425,8 +425,8 @@ BOOL p1Clouded = NO;
             if(p1Clouded){
                 [button[3] setNormalImage:[CCSprite spriteWithFile:@"^.png"]];
                 [button[3] setSelectedImage:[CCSprite spriteWithFile:@"^.png"]];
-                button[0].tag = 94;
-                button[0].isEnabled=YES;
+                button[3].tag = 94;
+                button[3].isEnabled=YES;
             }
             else{
                 [button[3] setNormalImage:[CCSprite spriteWithFile:l_M]];
@@ -443,8 +443,8 @@ BOOL p1Clouded = NO;
             if(p1Clouded){
                 [button[4] setNormalImage:[CCSprite spriteWithFile:@"^.png"]];
                 [button[4] setSelectedImage:[CCSprite spriteWithFile:@"^.png"]];
-                button[0].tag = 94;
-                button[0].isEnabled=YES;
+                button[4].tag = 94;
+                button[4].isEnabled=YES;
             }
             else{
                 [button[4] setNormalImage:[CCSprite spriteWithFile:l_M]];
@@ -461,8 +461,8 @@ BOOL p1Clouded = NO;
             if(p1Clouded){
                 [button[5] setNormalImage:[CCSprite spriteWithFile:@"^.png"]];
                 [button[5] setSelectedImage:[CCSprite spriteWithFile:@"^.png"]];
-                button[0].tag = 94;
-                button[0].isEnabled=YES;
+                button[5].tag = 94;
+                button[5].isEnabled=YES;
             }
             else{
                 [button[5] setNormalImage:[CCSprite spriteWithFile:l_M]];
@@ -479,8 +479,8 @@ BOOL p1Clouded = NO;
             if(p1Clouded){
                 [button[6] setNormalImage:[CCSprite spriteWithFile:@"^.png"]];
                 [button[6] setSelectedImage:[CCSprite spriteWithFile:@"^.png"]];
-                button[0].tag = 94;
-                button[0].isEnabled=YES;
+                button[6].tag = 94;
+                button[6].isEnabled=YES;
             }
             else{
                 [button[6] setNormalImage:[CCSprite spriteWithFile:l_M]];
@@ -497,8 +497,8 @@ BOOL p1Clouded = NO;
             if(p1Clouded){
                 [button[7] setNormalImage:[CCSprite spriteWithFile:@"^.png"]];
                 [button[7] setSelectedImage:[CCSprite spriteWithFile:@"^.png"]];
-                button[0].tag = 94;
-                button[0].isEnabled=YES;
+                button[7].tag = 94;
+                button[7].isEnabled=YES;
             }
             else{
                 [button[7] setNormalImage:[CCSprite spriteWithFile:l_M]];
@@ -515,8 +515,8 @@ BOOL p1Clouded = NO;
             if(p1Clouded){
                 [button[8] setNormalImage:[CCSprite spriteWithFile:@"^.png"]];
                 [button[8] setSelectedImage:[CCSprite spriteWithFile:@"^.png"]];
-                button[0].tag = 94;
-                button[0].isEnabled=YES;
+                button[8].tag = 94;
+                button[8].isEnabled=YES;
             }
             else{
                 [button[8] setNormalImage:[CCSprite spriteWithFile:l_M]];

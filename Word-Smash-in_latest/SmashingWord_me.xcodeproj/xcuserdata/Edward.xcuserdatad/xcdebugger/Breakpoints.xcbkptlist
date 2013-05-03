@@ -208,7 +208,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1537"
          endingLineNumber = "1537"
-         landmarkName = "-sendScore:"
+         landmarkName = "-sendTime:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -243,8 +243,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1476"
          endingLineNumber = "1476"
-         landmarkName = "-sendGenerateButton::"
-         landmarkType = "5">
+         landmarkName = "@implementation MultiPlayerScene"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
