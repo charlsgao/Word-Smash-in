@@ -1463,12 +1463,17 @@ double freezeButtonDuration = 0;
 //[test setTexture:[[CCTextureCache sharedTextureCache] addImage:@"two.png"]];
 
 - (NSArray*) request:(NSString*) path SecondParameter:(NSDictionary*) parameter{
-    NSDictionary *jsonDict;
-    NSNumber *tempNum = [NSNumber numberWithInt:score_p1];
-    jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              tempNum, @"score",
-                              nil];
-    
+    NSDictionary * jsonDict;
+    NSLog(@"%@",path);
+    if ([path isEqualToString:@"users/SaveScores/single"]){
+        jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                    [parameter objectForKey:@"score"], @"score",
+                    nil];
+    }
+    else{
+        jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                    nil];
+    }
     //[jsonDictionaryResponse objectForKey:@"data"];
     NSError *tempError;
     NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&tempError];
@@ -1481,7 +1486,6 @@ double freezeButtonDuration = 0;
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:[NSString stringWithFormat:@"%d", [jsonRequest length]] forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:jsonRequest];
-    NSLog(@"diu la ma");
     NSURLResponse *tempResponse =[[NSURLResponse alloc]init];
     NSData *jsonResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&tempResponse error:&tempError];
     

@@ -287,6 +287,108 @@
 
 
 
+/* The following tests are to send all different kinds of request to backend and check the response*/
+
+- (void) testSingle_FetchBackendSampleData{
+    NSDictionary * temp =[NSDictionary dictionaryWithObjectsAndKeys: nil];
+    /* Request backend to generate sample data. */
+    [spc request:@"diulama/inittestdb" SecondParameter:temp];
+    NSArray* result = [spc request:@"users/Top10Scores/single" SecondParameter:temp];
+    int Expected[10] = {100,64,42,41,23,10,8,0,0,0};
+    int length = [result count];
+    BOOL PASS = YES;
+    NSLog(@"before is %c",PASS);
+    if (length!=10){
+        PASS=NO;
+    }
+    else{
+        for (int i=0; i<length; i++){
+            if ([[result objectAtIndex:i] intValue]!=Expected[i]){
+                PASS=NO;
+            }
+        }
+    }
+    GHAssertEquals(PASS, YES, @"Fetch Data fail. Inconsistent with expected Result");
+    
+}
+
+
+- (void) testSingle_saveScoreAndThenFetch{
+    NSDictionary * temp =[NSDictionary dictionaryWithObjectsAndKeys: nil];
+    /* Request backend to generate sample data. */
+    [spc request:@"diulama/emptydb" SecondParameter:temp];
+    NSNumber * tempNum = [NSNumber numberWithInt:10];
+    NSDictionary* temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", nil];
+    [spc request:@"users/SaveScores/single" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:11];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", nil];
+    [spc request:@"users/SaveScores/single" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:9];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", nil];
+    [spc request:@"users/SaveScores/single" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:8];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", nil];
+    [spc request:@"users/SaveScores/single" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:7];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", nil];
+    [spc request:@"users/SaveScores/single" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:6];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", nil];
+    [spc request:@"users/SaveScores/single" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:5];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", nil];
+    [spc request:@"users/SaveScores/single" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:4];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", nil];
+    [spc request:@"users/SaveScores/single" SecondParameter:temp2];
+    
+    
+    tempNum = [NSNumber numberWithInt:3];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", nil];
+    [spc request:@"users/SaveScores/single" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:2];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", nil];
+    [spc request:@"users/SaveScores/single" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:1];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", nil];
+    [spc request:@"users/SaveScores/single" SecondParameter:temp2];
+    
+    NSArray* result = [spc request:@"users/Top10Scores/single" SecondParameter:temp];
+    int Expected[10] = {11,10,9,8,7,6,5,4,3,2};
+    int length = [result count];
+    BOOL PASS = YES;
+    NSLog(@"before is %c",PASS);
+    if (length!=10){
+        PASS=NO;
+        NSLog(@"here");
+    }
+    else{
+        for (int i=0; i<length; i++){
+            NSLog(@"actual %i", [[result objectAtIndex:i] intValue]);
+            NSLog(@"expect %i", Expected[i]);
+            if ([[result objectAtIndex:i] intValue]!=Expected[i]){
+                PASS=NO;
+                NSLog(@"there");
+            }
+        }
+    }
+    GHAssertEquals(PASS, YES, @"Fetch Data fail. Inconsistent with expected Result");
+    
+}
+
+
+
+
+
 /*
 - (void) testMulti_GetWords
 {

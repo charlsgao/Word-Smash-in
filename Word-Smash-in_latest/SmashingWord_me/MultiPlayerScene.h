@@ -168,6 +168,7 @@ NSString* selfName;
 
 //Methods used for testing
 - (void) getWords;
+- (NSArray*) request:(NSString*) path SecondParameter:(NSDictionary*) parameter;
 - (CCMenuItemImage*) getButton0;
 - (CCMenuItemImage*) getButton1;
 - (CCMenuItemImage*) getButton2;

@@ -292,6 +292,251 @@
  GHAssertEquals([mpc getButton7].isEnabled, NO, @"After pressing button7, button7 should be disabled");
  GHAssertEquals([mpc getButton8].isEnabled, NO, @"After pressing button8, button8 should be disabled");
  }
- 
+
+
+
+
+- (void) testMultiple_saveScoreAndThenFetch{
+    NSLog(@"diulamaAAA");
+    NSDictionary * temp =[NSDictionary dictionaryWithObjectsAndKeys: nil];
+    NSLog(@"22");
+    /* Request backend to generate sample data. */
+    [mpc request:@"diulama/emptydb" SecondParameter:temp];
+    NSLog(@"33");
+    NSNumber * tempNum = [NSNumber numberWithInt:11];
+    NSLog(@"44");
+    NSDictionary* temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score",@"Test1",@"user", nil];
+    
+    NSLog(@"A 1");
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    NSLog(@"A 2");
+    tempNum = [NSNumber numberWithInt:10];
+    NSLog(@"A 3");
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test2",@"user",nil];
+    NSLog(@"A 4");
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    NSLog(@"A 5");
+    
+    tempNum = [NSNumber numberWithInt:9];
+    NSLog(@"A 6");
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test3",@"user", nil];
+    NSLog(@"A 7");
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:8];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test4",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:7];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score",@"Test5",@"user", nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:6];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test6",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:5];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test7",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:4];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test8",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    
+    tempNum = [NSNumber numberWithInt:3];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test9",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:2];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test10",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:1];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test11",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    NSArray* result = [mpc request:@"users/Top10Scores/multiple" SecondParameter:temp];
+    NSMutableArray *Expected = [NSMutableArray array];
+    tempNum = [NSNumber numberWithInt:11];
+    NSDictionary * tempResultDict1 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test1", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict1];
+    tempNum = [NSNumber numberWithInt:10];
+    NSDictionary * tempResultDict2 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test2", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict2];
+    tempNum = [NSNumber numberWithInt:9];
+    NSDictionary * tempResultDict3 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test3", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict3];
+    
+    tempNum = [NSNumber numberWithInt:8];
+    NSDictionary * tempResultDict4 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test4", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict4];
+    tempNum = [NSNumber numberWithInt:7];
+    NSDictionary * tempResultDict5 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test5", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict5];
+    
+   tempNum = [NSNumber numberWithInt:6];
+    NSDictionary * tempResultDict6 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test6", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict6];
+    
+    tempNum = [NSNumber numberWithInt:5];
+    NSDictionary * tempResultDict7 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test7", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict7];
+    
+    tempNum = [NSNumber numberWithInt:4];
+    NSDictionary * tempResultDict8 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test8", @"user", tempNum, @"score", nil];
+    
+    [Expected addObject:tempResultDict8];
+    tempNum = [NSNumber numberWithInt:3];
+    NSDictionary * tempResultDict9 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test9", @"user", tempNum, @"score", nil];
+    
+    [Expected addObject:tempResultDict9];
+    tempNum = [NSNumber numberWithInt:2];
+    NSDictionary * tempResultDict10 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test10", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict10];
+    
+    
+    int length = [Expected count];
+    BOOL PASS = YES;
+    NSLog(@"before is %c",PASS);
+    if (length!=10){
+        PASS=NO;
+    }
+    else{
+        for (int i=0; i<length; i++){
+            if (!([[result objectAtIndex:i] isEqualToDictionary:[Expected objectAtIndex:i]])){
+                PASS=NO;
+            }
+        }
+    }
+    GHAssertEquals(PASS, YES, @"Fetch Data fail. Inconsistent with expected Result");
+    
+}
+
+
+
+
+
+
+- (void) testMultiple_saveScoreUpdateAndThenFetch{
+    NSDictionary * temp =[NSDictionary dictionaryWithObjectsAndKeys: nil];
+    /* Request backend to generate sample data. */
+    [mpc request:@"diulama/emptydb" SecondParameter:temp];
+    NSNumber * tempNum = [NSNumber numberWithInt:11];
+    NSDictionary* temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score",@"Test1",@"user", nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    tempNum = [NSNumber numberWithInt:10];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test2",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    tempNum = [NSNumber numberWithInt:9];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test3",@"user", nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    tempNum = [NSNumber numberWithInt:8];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test4",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:7];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score",@"Test5",@"user", nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:6];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test6",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:5];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test7",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:4];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test8",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    
+    tempNum = [NSNumber numberWithInt:3];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test9",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:2];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test10",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:1];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test11",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+    
+    tempNum = [NSNumber numberWithInt:20];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test11",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+
+    tempNum = [NSNumber numberWithInt:19];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test10",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+
+    tempNum = [NSNumber numberWithInt:18];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test9",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+
+    tempNum = [NSNumber numberWithInt:17];
+    temp2 = [NSDictionary dictionaryWithObjectsAndKeys:tempNum,@"score", @"Test8",@"user",nil];
+    [mpc request:@"users/SaveScores/multiple" SecondParameter:temp2];
+
+    
+    
+    NSArray* result = [mpc request:@"users/Top10Scores/multiple" SecondParameter:temp];
+    NSMutableArray *Expected = [NSMutableArray array];
+    tempNum = [NSNumber numberWithInt:20];
+    NSDictionary * tempResultDict1 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test11", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict1];
+    tempNum = [NSNumber numberWithInt:19];
+    NSDictionary * tempResultDict2 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test10", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict2];
+    tempNum = [NSNumber numberWithInt:18];
+    NSDictionary * tempResultDict3 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test9", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict3];
+    
+    tempNum = [NSNumber numberWithInt:17];
+    NSDictionary * tempResultDict4 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test8", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict4];
+    tempNum = [NSNumber numberWithInt:11];
+    NSDictionary * tempResultDict5 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test1", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict5];
+    
+    tempNum = [NSNumber numberWithInt:10];
+    NSDictionary * tempResultDict6 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test2", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict6];
+    
+    tempNum = [NSNumber numberWithInt:9];
+    NSDictionary * tempResultDict7 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test3", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict7];
+    
+    tempNum = [NSNumber numberWithInt:8];
+    NSDictionary * tempResultDict8 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test4", @"user", tempNum, @"score", nil];
+    
+    [Expected addObject:tempResultDict8];
+    tempNum = [NSNumber numberWithInt:7];
+    NSDictionary * tempResultDict9 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test5", @"user", tempNum, @"score", nil];
+    
+    [Expected addObject:tempResultDict9];
+    tempNum = [NSNumber numberWithInt:6];
+    NSDictionary * tempResultDict10 = [NSDictionary dictionaryWithObjectsAndKeys:@"Test6", @"user", tempNum, @"score", nil];
+    [Expected addObject:tempResultDict10];
+    
+    
+    int length = [Expected count];
+    BOOL PASS = YES;
+    NSLog(@"before is %c",PASS);
+    if (length!=10){
+        PASS=NO;
+    }
+    else{
+        for (int i=0; i<length; i++){
+            if (!([[result objectAtIndex:i] isEqualToDictionary:[Expected objectAtIndex:i]])){
+                PASS=NO;
+            }
+        }
+    }
+    GHAssertEquals(PASS, YES, @"Fetch Data fail. Inconsistent with expected Result");
+    
+}
 
 @end

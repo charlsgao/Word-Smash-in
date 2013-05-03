@@ -45,6 +45,8 @@ NSInteger score_3;
 - (NSString*) readDictionaryFile:(NSInteger)lineNum fileName:(NSString*)fileName;
 - (NSString*) testing;
 - (void) getWords;
+- (NSArray*) request:(NSString*) path SecondParameter:(NSDictionary*) parameter;
+
 
 //Methods used for testing
 - (CCMenuItemImage*) getButton0;

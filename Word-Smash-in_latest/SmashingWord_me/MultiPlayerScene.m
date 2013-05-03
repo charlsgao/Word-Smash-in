@@ -2327,10 +2327,16 @@ BOOL p1Clouded = NO;
 
 - (NSArray*) request:(NSString*) path SecondParameter:(NSDictionary*) parameter{
     NSDictionary *jsonDict;
+    if ([path isEqualToString:@"users/SaveScores/multiple"]){
     jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
                     [parameter objectForKey:@"score"], @"score",
                     [parameter objectForKey:@"user"],@"user",
                     nil];
+    }
+    else{
+        jsonDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                    nil];
+    }
     
     NSError *tempError;
     NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&tempError];
@@ -2343,7 +2349,6 @@ BOOL p1Clouded = NO;
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:[NSString stringWithFormat:@"%d", [jsonRequest length]] forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:jsonRequest]; 
-    NSLog(@"diu la ma");
     NSURLResponse *tempResponse =[[NSURLResponse alloc]init];
     NSData *jsonResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:&tempResponse error:&tempError];
     
