@@ -24,7 +24,7 @@ typedef enum {
     kMessageTypeWord2,
     kMessageTypeWord3,
     kMessageTypeTime,
-    KMessageTypeUseItem,
+    KMessageTypeUseCloud,
     kMessageTypeEndGame,
     kMessageTypeScore
 } MessageType;
@@ -36,8 +36,8 @@ typedef struct {
 
 typedef struct{
     Message message;
-    char Item[30];
-}MessageUseItem;
+    //char Item[30];
+}MessageUseCloud;
 
 
 typedef struct {
@@ -135,7 +135,7 @@ NSString* selfName;
     CCMenuItemImage* startButton;
     CCMenuItemImage* back;
     CCMenuItemImage* button[9];
-    CCMenuItemImage* select[10];
+    CCMenuItemImage* select[15];
     CCLabelTTF* clock;
     CCLabelTTF* word1;
     CCLabelTTF* word2;
@@ -154,6 +154,9 @@ NSString* selfName;
     
     int my_score;
     int opponent_score;
+    int my_penalty;
+    CCMenuItemImage* shopItem[2];
+    CCLabelTTF* shopItemCounter[2];
 }
 
 @property (strong, nonatomic) NSTimer *aTimer;              //stage timer
