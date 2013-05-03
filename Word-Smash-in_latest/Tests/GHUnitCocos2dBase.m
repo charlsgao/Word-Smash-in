@@ -336,8 +336,6 @@
     penalty_score = 0;
 }
 
-<<<<<<< HEAD
-
 
 /* The following tests are to send all different kinds of request to backend and check the response*/
 
@@ -441,11 +439,9 @@
 
 
 
-/*
-- (void) testMulti_GetWords
-=======
+
+
 -(void) testSingle_penaltyScoreBomb
->>>>>>> Single player tests!
 {
     penalty_score = 0;
     
