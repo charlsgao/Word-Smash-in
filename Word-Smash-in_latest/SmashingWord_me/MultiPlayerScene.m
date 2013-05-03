@@ -1579,7 +1579,7 @@ NSData* data;
     if (isPlayer1 && gameState == kGameStateWaitingForStart) {
         [self setGameState:kGameStateActive];
         [self sendGameBegin];
-        [self setupStringsWithOtherPlayerId:otherPlayerID];
+        //[self setupStringsWithOtherPlayerId:otherPlayerID];
     }
     
 }
@@ -1719,7 +1719,7 @@ NSData* data;
     } else if (message->messageType == kMessageTypeGameBegin) {
         
         [self setGameState:kGameStateActive];
-        [self setupStringsWithOtherPlayerId:playerID];
+        //[self setupStringsWithOtherPlayerId:playerID];
         
     }
     else if (message->messageType == kMessageTypeStartButton) {
@@ -1944,9 +1944,78 @@ NSData* data;
 {
     return select[14];
 }
+- (CCMenuItemImage*) getShopItem0
+{
+    return shopItem[0];
+}
+
+- (CCMenuItemImage*) getShopItem1
+{
+    return shopItem[1];
+}
+
+- (CCLabelTTF*) getShopItemCounter0
+{
+    return shopItemCounter[0];
+}
+
+- (CCLabelTTF*) getShopItemCounter1
+{
+    return shopItemCounter[1];
+}
+
+
+- (CCLabelTTF*) getClock
+{
+    return clock;
+}
+
+- (void) setCurrentMinute :(int)minute
+{
+    currMinute = minute;
+}
+
+- (int) getCurrentMinute
+{
+    return currMinute;
+}
+
+- (void) setCurrentSecond :(int)second
+{
+    currSeconds = second;
+}
+
+- (int) getCurrentSecond
+{
+    return currSeconds;
+}
+
+
+- (int) getMaxChar
+{
+    return maxChar_m;
+}
+
+- (NSString*) testing
+{
+    return @"hello";
+}
 
 -(NSData *) getNSData{
     return data;
+}
+
+-(NSString*) get_l
+{
+    return l_M;
+}
+
+-(int) getPenalty{
+    return my_penalty;
+}
+
+-(int) setPenalty:(int)p{
+    my_penalty = p;
 }
 
 /*

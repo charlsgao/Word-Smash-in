@@ -223,5 +223,43 @@ NSString* selfName;
 - (void)sendGameOver:(BOOL)player1Won;
 -(void)sendUseCloud;
 
+-(void)unSelect0: (id)sender;
+-(void)unSelect1: (id)sender;
+-(void)unSelect2: (id)sender;
+-(void)unSelect3: (id)sender;
+-(void)unSelect4: (id)sender;
+-(void)unSelect5: (id)sender;
+-(void)unSelect6: (id)sender;
+-(void)unSelect7: (id)sender;
+-(void)unSelect8: (id)sender;
+-(void)unSelect9: (id)sender;
+-(void)unSelect10: (id)sender;
+-(void)unSelect11: (id)sender;
+-(void)unSelect12: (id)sender;
+-(void)unSelect13: (id)sender;
+-(void)unSelect14: (id)sender;
+
+
+- (CCMenuItemImage*) getShopItem0;
+- (CCMenuItemImage*) getShopItem1;
+
+
+- (CCLabelTTF*) getShopItemCounter0;
+- (CCLabelTTF*) getShopItemCounter1;
+
+- (CCLabelTTF*) getClock;
+
+
+- (int) getMaxChar;
+
+-(void)increasePress:(id)sender;
+
+-(void)getLetter;
+-(NSString*) get_l;
+
+-(int) getPenalty;
+-(int) setPenalty:(int)p;
+
+
 @end
 

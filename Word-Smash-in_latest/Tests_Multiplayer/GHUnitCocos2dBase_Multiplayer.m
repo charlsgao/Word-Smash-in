@@ -22,7 +22,7 @@
     
 	CC_DIRECTOR_INIT();
     
-    //spc = [[SinglePlayerScene alloc] init];
+    //mpc = [[MultiPlayerScene alloc] init];
     mpc = [[MultiPlayerScene alloc] init];
     
 }
@@ -629,6 +629,120 @@
     GHAssertEquals(message->messageType, kMessageTypeGameOver, @"message type should be kMessageTypeGameOver");
     MessageGameOver *tempMessage = (MessageGameOver*) [tempData bytes];
     GHAssertEquals(tempMessage->player1Won, YES, @"isPlayer1 should be YES");
+}
+
+
+
+- (void) testMulti_unSelect
+{
+    //int my_penalty = [mpc getPenalty];
+    //my_penalty = 0;
+    [mpc setPenalty:0];
+    [mpc getSelect0].tag = 1;
+    [mpc getSelect1].tag = 1;
+    [mpc getSelect2].tag = 1;
+    [mpc getSelect3].tag = 1;
+    [mpc getSelect4].tag = 1;
+    [mpc getSelect5].tag = 1;
+    [mpc getSelect6].tag = 1;
+    [mpc getSelect7].tag = 1;
+    [mpc getSelect8].tag = 1;
+    [mpc getSelect9].tag = 1;
+    [mpc getSelect10].tag = 1;
+    [mpc getSelect11].tag = 1;
+    [mpc getSelect12].tag = 1;
+    [mpc getSelect13].tag = 1;
+    [mpc getSelect14].tag = 1;
+    
+    [mpc unSelect0:self];
+    GHAssertEquals([mpc getPenalty], 1, @"After unselecting button0, my_penalty should be 1.");
+    [mpc unSelect1:self];
+    GHAssertEquals([mpc getPenalty], 2, @"After unselecting button1, my_penalty should be 2.");
+    [mpc unSelect2:self];
+    GHAssertEquals([mpc getPenalty], 3, @"After unselecting button2, my_penalty should be 3.");
+    [mpc unSelect3:self];
+    GHAssertEquals([mpc getPenalty], 4, @"After unselecting button3, my_penalty should be 4.");
+    [mpc unSelect4:self];
+    GHAssertEquals([mpc getPenalty], 5, @"After unselecting button4, my_penalty should be 5.");
+    [mpc unSelect5:self];
+    GHAssertEquals([mpc getPenalty], 6, @"After unselecting button5, my_penalty should be 6.");
+    [mpc unSelect6:self];
+    GHAssertEquals([mpc getPenalty], 7, @"After unselecting button6, my_penalty should be 7.");
+    [mpc unSelect7:self];
+    GHAssertEquals([mpc getPenalty], 8, @"After unselecting button7, my_penalty should be 8.");
+    [mpc unSelect8:self];
+    GHAssertEquals([mpc getPenalty], 9, @"After unselecting button8, my_penalty should be 9.");
+    [mpc unSelect9:self];
+    GHAssertEquals([mpc getPenalty], 10, @"After unselecting button9, my_penalty should be 10.");
+    [mpc unSelect10:self];
+    GHAssertEquals([mpc getPenalty], 11, @"After unselecting button10, my_penalty should be 11.");
+    [mpc unSelect11:self];
+    GHAssertEquals([mpc getPenalty], 12, @"After unselecting button11, my_penalty should be 12.");
+    [mpc unSelect12:self];
+    GHAssertEquals([mpc getPenalty], 13, @"After unselecting button12, my_penalty should be 13.");
+    [mpc unSelect13:self];
+    GHAssertEquals([mpc getPenalty], 14, @"After unselecting button13, my_penalty should be 14.");
+    [mpc unSelect14:self];
+    GHAssertEquals([mpc getPenalty], 15, @"After unselecting button14, my_penalty should be 15.");
+    [mpc setPenalty:0];
+}
+
+-(void) testMulti_penaltyScoreBomb
+{
+    //int my_penalty = [mpc getPenalty];
+    //my_penalty = 0;
+    [mpc setPenalty:0];
+    
+    [mpc getButton0].tag = 91;
+    [mpc getSelect0].tag=0;
+    [mpc pressButton0:self];
+    NSLog(@"%i", [mpc getPenalty]);
+    GHAssertEquals([mpc getPenalty], 10, @"After pressing my_penalty bomb, my_penalty should be 10");
+    [mpc getButton1].tag = 91;
+    [mpc pressButton1:self];
+    GHAssertEquals([mpc getPenalty], 20, @"After pressing my_penalty bomb 2 times, my_penalty should be 20");
+    [mpc getButton2].tag = 91;
+    [mpc pressButton2:self];
+    GHAssertEquals([mpc getPenalty], 30, @"After pressing my_penalty bomb 3 times, my_penalty should be 30");
+    [mpc getButton3].tag = 91;
+    [mpc pressButton3:self];
+    GHAssertEquals([mpc getPenalty], 40, @"After pressing my_penalty bomb 4 times, my_penalty should be 40");
+    [mpc getButton4].tag = 91;
+    [mpc pressButton4:self];
+    GHAssertEquals([mpc getPenalty], 50, @"After pressing my_penalty bomb 5 times, my_penalty should be 50");
+    [mpc getButton5].tag = 91;
+    [mpc pressButton5:self];
+    GHAssertEquals([mpc getPenalty], 60, @"After pressing my_penalty bomb 6 times, my_penalty should be 60");
+    [mpc getButton6].tag = 91;
+    [mpc pressButton6:self];
+    GHAssertEquals([mpc getPenalty], 70, @"After pressing my_penalty bomb 7 times, my_penalty should be 70");
+    [mpc getButton7].tag = 91;
+    [mpc pressButton7:self];
+    GHAssertEquals([mpc getPenalty], 80, @"After pressing my_penalty bomb 8 times, my_penalty should be 80");
+    [mpc getButton8].tag = 91;
+    [mpc pressButton8:self];
+    GHAssertEquals([mpc getPenalty], 90, @"After pressing my_penalty bomb 9 times, my_penalty should be 90");
+    [mpc setPenalty:0];
+}
+
+
+- (void) testMulti_IncreasePress
+{
+    increaseCounter = 2;
+    [mpc increasePress:self];
+    GHAssertEquals([mpc getShopItem0].isEnabled, NO, @"Increasing the length of character holder by 5. It can only be used once so it should be disabled to prevent player from using it multiple times");
+    GHAssertEquals(increaseCounter, 1, @"After using the powerup, the increaseCounter should decrease by 1 and becomes 1");
+    GHAssertEquals([[[mpc getShopItemCounter0] string] isEqualToString:@"x1"], YES, @"The value of shopItemCounter[0] decreases and becomes 1");
+    GHAssertEquals([mpc getMaxChar], 15, @"The increased length should be 15 after using powerup");
+}
+
+-(void) testMulti_getLetter
+{
+    int result =1;
+    [mpc getLetter];
+    if ([mpc get_l] == nil)
+        result = 0;
+    GHAssertEquals(result, 1, @"Letter can not be generated!");
 }
 
 @end

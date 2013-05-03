@@ -52,7 +52,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "233"
          endingLineNumber = "233"
-         landmarkName = "-readDictionaryFile:fileName:"
+         landmarkName = "-getShopItem2"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -65,7 +65,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "349"
          endingLineNumber = "349"
-         landmarkName = "-endOfGame"
+         landmarkName = "-readDictionaryFile:fileName:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -78,7 +78,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "358"
          endingLineNumber = "358"
-         landmarkName = "-endOfGame"
+         landmarkName = "-hideButtons"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -91,7 +91,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "362"
          endingLineNumber = "362"
-         landmarkName = "-endOfGame"
+         landmarkName = "-hideButtons"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -104,7 +104,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "360"
          endingLineNumber = "360"
-         landmarkName = "-endOfGame"
+         landmarkName = "-hideButtons"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -117,7 +117,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "355"
          endingLineNumber = "355"
-         landmarkName = "-endOfGame"
+         landmarkName = "-hideButtons"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -130,7 +130,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "361"
          endingLineNumber = "361"
-         landmarkName = "-endOfGame"
+         landmarkName = "-hideButtons"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -143,7 +143,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "223"
          endingLineNumber = "223"
-         landmarkName = "-readDictionaryFile:fileName:"
+         landmarkName = "-getShopItem0"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -156,7 +156,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "222"
          endingLineNumber = "222"
-         landmarkName = "-readDictionaryFile:fileName:"
+         landmarkName = "-getShopItem0"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -169,7 +169,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "220"
          endingLineNumber = "220"
-         landmarkName = "-readDictionaryFile:fileName:"
+         landmarkName = "-getSelect14"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

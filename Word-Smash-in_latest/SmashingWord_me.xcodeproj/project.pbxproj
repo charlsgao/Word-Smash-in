@@ -26,6 +26,10 @@
 		2B050C2717338B0800C3ABBA /* ^.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B050C2517338B0800C3ABBA /* ^.png */; };
 		2B050C2817338B0800C3ABBA /* ^.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B050C2517338B0800C3ABBA /* ^.png */; };
 		2B050C2917338B0800C3ABBA /* ^.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B050C2517338B0800C3ABBA /* ^.png */; };
+		2B050C2B1733FBD600C3ABBA /* Explosion.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 2B050C2A1733FBD600C3ABBA /* Explosion.ccbi */; };
+		2B050C2C1733FBD600C3ABBA /* Explosion.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 2B050C2A1733FBD600C3ABBA /* Explosion.ccbi */; };
+		2B050C2D1733FBD600C3ABBA /* Explosion.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 2B050C2A1733FBD600C3ABBA /* Explosion.ccbi */; };
+		2B050C2E1733FBD600C3ABBA /* Explosion.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 2B050C2A1733FBD600C3ABBA /* Explosion.ccbi */; };
 		2B638C041731D8F900561B82 /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B638C031731D8F900561B82 /* ShopScene.m */; };
 		2B638C051731D8F900561B82 /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B638C031731D8F900561B82 /* ShopScene.m */; };
 		2B638C17173214B900561B82 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B638C12173214B900561B82 /* cloud.png */; };
@@ -959,6 +963,7 @@
 		2B050C1A1733567200C3ABBA /* ].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "].png"; sourceTree = "<group>"; };
 		2B050C1B1733567200C3ABBA /* \.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "\\.png"; sourceTree = "<group>"; };
 		2B050C2517338B0800C3ABBA /* ^.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "^.png"; sourceTree = "<group>"; };
+		2B050C2A1733FBD600C3ABBA /* Explosion.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = Explosion.ccbi; sourceTree = "<group>"; };
 		2B638C021731D8F900561B82 /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopScene.h; sourceTree = "<group>"; };
 		2B638C031731D8F900561B82 /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopScene.m; sourceTree = "<group>"; };
 		2B638C12173214B900561B82 /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.png; sourceTree = "<group>"; };
@@ -2164,6 +2169,7 @@
 		A24322D81732278100075E8C /* Tests_Multiplayer */ = {
 			isa = PBXGroup;
 			children = (
+				CE21779A1733E6ED006E6E85 /* Explosion.ccbi */,
 				A24322D91732278100075E8C /* Supporting Files */,
 				A24323CF1732289700075E8C /* GHUnitCocos2dBase_Multiplayer.h */,
 				A24323D01732289700075E8C /* GHUnitCocos2dBase_Multiplayer.m */,
@@ -2188,7 +2194,7 @@
 		A29D17241720E19E00328D51 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CE21779A1733E6ED006E6E85 /* Explosion.ccbi */,
+				2B050C2A1733FBD600C3ABBA /* Explosion.ccbi */,
 				A29D17251720E19E00328D51 /* Supporting Files */,
 				A29D17931720E8CD00328D51 /* MyTest.m */,
 				A29D18241720F16600328D51 /* GHUnitCocos2dBase.h */,
@@ -2437,6 +2443,7 @@
 				2B050C1F1733567200C3ABBA /* ].png in Resources */,
 				2B050C221733567200C3ABBA /* \.png in Resources */,
 				2B050C2617338B0800C3ABBA /* ^.png in Resources */,
+				2B050C2B1733FBD600C3ABBA /* Explosion.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2530,6 +2537,7 @@
 				A240D9321733493B00CB1E1A /* Default-568h@2x.png in Resources */,
 				A240D947173349C200CB1E1A /* ocmock-2.1.1.dmg in Resources */,
 				2B050C2917338B0800C3ABBA /* ^.png in Resources */,
+				2B050C2E1733FBD600C3ABBA /* Explosion.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2619,6 +2627,7 @@
 				2B050C211733567200C3ABBA /* ].png in Resources */,
 				2B050C241733567200C3ABBA /* \.png in Resources */,
 				2B050C2817338B0800C3ABBA /* ^.png in Resources */,
+				2B050C2D1733FBD600C3ABBA /* Explosion.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2714,6 +2723,7 @@
 				2B050C231733567200C3ABBA /* \.png in Resources */,
 				2B050C2717338B0800C3ABBA /* ^.png in Resources */,
 				CE21779B1733E6EE006E6E85 /* Explosion.ccbi in Resources */,
+				2B050C2C1733FBD600C3ABBA /* Explosion.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
