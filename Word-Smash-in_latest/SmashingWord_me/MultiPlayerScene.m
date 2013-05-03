@@ -20,7 +20,7 @@ const int MAX_LETTER_ARRAY_M = 10;             // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR_M = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
 const int STARTING_MINUTES_M = 1;              // STAGE DURATION
 const int STARTING_SECONDS_M = 0;             // STAGE DURATION
-const int INCR_SCORE_M = 10;                   // score increment step
+const int INCR_SCORE_M = 50;                   // score increment step
 
 const int TOTAL_WORDS_IN_FILE_M = 20;          // MAXIMUM NUMBER OF WORDS IN A DICTIONARY FILE
 const int RANGE_OF_WORD_LENGTH_M = 2;         // RANGE OF WORD LENGTH USED
@@ -221,7 +221,7 @@ BOOL p1Clouded = NO;
                 isCloud = NO;
                 shopItem[1].isEnabled = YES;
             }
-            if(p1Clouded == YES && currSeconds == p1CloudedTime -3){
+            if(p1Clouded == YES && currSeconds == p1CloudedTime -5){
                 p1Clouded = NO;
                 [self sendStartButton];
             }
@@ -562,7 +562,7 @@ BOOL p1Clouded = NO;
     
     
     //button appear timer
-    self.aTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(onTick) userInfo:nil repeats:YES];
+    self.aTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTick) userInfo:nil repeats:YES];
     
     [startButton setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
     [startButton setNormalImage:[CCSprite spriteWithFile:@"transparent.png"]];
