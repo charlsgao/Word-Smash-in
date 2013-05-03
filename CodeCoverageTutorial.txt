@@ -14,7 +14,7 @@ CodeCoverage Tutorial with LCOV on GHUnit
 ** TO RUN **
 - Run one of any GHUnit test(s)
 - Press HOME Button on simulator
-- Run getcov script
+- Run getcov script from terminal (e.g. ./getcov)
 
 ==============================================================================
 ** IF TEST CODE CHANGED **
