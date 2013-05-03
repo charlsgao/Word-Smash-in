@@ -2253,6 +2253,7 @@
 				2B82DAAB16F92A7400DE8649 /* Sources */,
 				2B82DAAC16F92A7400DE8649 /* Frameworks */,
 				2B82DAAD16F92A7400DE8649 /* Resources */,
+				A240DA8A1733775500CB1E1A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2270,6 +2271,7 @@
 				A240D9191733493B00CB1E1A /* Sources */,
 				A240D91A1733493B00CB1E1A /* Frameworks */,
 				A240D91B1733493B00CB1E1A /* Resources */,
+				A240DA8B1733897A00CB1E1A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2287,6 +2289,7 @@
 				A24322D01732278100075E8C /* Sources */,
 				A24322D11732278100075E8C /* Frameworks */,
 				A24322D21732278100075E8C /* Resources */,
+				A240DA8C1733899600CB1E1A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2304,6 +2307,7 @@
 				A29D171C1720E19E00328D51 /* Sources */,
 				A29D171D1720E19E00328D51 /* Frameworks */,
 				A29D171E1720E19E00328D51 /* Resources */,
+				A240DA2E17336E0700CB1E1A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2710,6 +2714,61 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A240DA2E17336E0700CB1E1A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = XcodeCoverage/exportenv.sh;
+		};
+		A240DA8A1733775500CB1E1A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = XcodeCoverage/exportenv.sh;
+		};
+		A240DA8B1733897A00CB1E1A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = XcodeCoverage/exportenv.sh;
+		};
+		A240DA8C1733899600CB1E1A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = XcodeCoverage/exportenv.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2B82DAAB16F92A7400DE8649 /* Sources */ = {
@@ -3335,6 +3394,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -3356,6 +3417,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
 					"NS_BLOCK_ASSERTIONS=1",
@@ -3443,6 +3506,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests_Highscore/Tests_Highscore-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3487,6 +3552,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests_Highscore/Tests_Highscore-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
