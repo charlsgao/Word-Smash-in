@@ -948,6 +948,7 @@
 		A29D19B41721001300328D51 /* 9.txt in Resources */ = {isa = PBXBuildFile; fileRef = A29D197C1720FFD500328D51 /* 9.txt */; };
 		A29D19B51721001300328D51 /* test.txt in Resources */ = {isa = PBXBuildFile; fileRef = A29D197D1720FFD500328D51 /* test.txt */; };
 		A29D19B61721001300328D51 /* test2.txt in Resources */ = {isa = PBXBuildFile; fileRef = A29D197E1720FFD500328D51 /* test2.txt */; };
+		CE21779B1733E6EE006E6E85 /* Explosion.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = CE21779A1733E6ED006E6E85 /* Explosion.ccbi */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1403,6 +1404,7 @@
 		A29D197C1720FFD500328D51 /* 9.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 9.txt; sourceTree = "<group>"; };
 		A29D197D1720FFD500328D51 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		A29D197E1720FFD500328D51 /* test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test2.txt; sourceTree = "<group>"; };
+		CE21779A1733E6ED006E6E85 /* Explosion.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; name = Explosion.ccbi; path = SmashingWord_me/ccb/Explosion.ccbi; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2186,6 +2188,7 @@
 		A29D17241720E19E00328D51 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				CE21779A1733E6ED006E6E85 /* Explosion.ccbi */,
 				A29D17251720E19E00328D51 /* Supporting Files */,
 				A29D17931720E8CD00328D51 /* MyTest.m */,
 				A29D18241720F16600328D51 /* GHUnitCocos2dBase.h */,
@@ -2710,6 +2713,7 @@
 				2B050C201733567200C3ABBA /* ].png in Resources */,
 				2B050C231733567200C3ABBA /* \.png in Resources */,
 				2B050C2717338B0800C3ABBA /* ^.png in Resources */,
+				CE21779B1733E6EE006E6E85 /* Explosion.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

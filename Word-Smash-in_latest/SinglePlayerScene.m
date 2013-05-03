@@ -115,6 +115,10 @@ double freezeButtonDuration = 0;
 {
     return word1;
 }
+-(NSString*) get_l
+{
+    return l;
+}
 
 - (CCMenuItemImage*) getButton0
 {
@@ -192,6 +196,117 @@ double freezeButtonDuration = 0;
 - (CCMenuItemImage*) getSelect9
 {
     return select[9];
+}
+
+- (CCMenuItemImage*) getSelect10
+{
+    return select[10];
+}
+- (CCMenuItemImage*) getSelect11
+{
+    return select[11];
+}
+- (CCMenuItemImage*) getSelect12
+{
+    return select[12];
+}
+- (CCMenuItemImage*) getSelect13
+{
+    return select[13];
+}
+- (CCMenuItemImage*) getSelect14
+{
+    return select[14];
+}
+
+- (CCMenuItemImage*) getShopItem0
+{
+    return shopItem[0];
+}
+
+- (CCMenuItemImage*) getShopItem1
+{
+    return shopItem[1];
+}
+
+- (CCMenuItemImage*) getShopItem2
+{
+    return shopItem[2];
+}
+
+- (CCMenuItemImage*) getShopItem3
+{
+    return shopItem[3];
+}
+
+- (CCMenuItemImage*) getShopItemCounter0
+{
+    return shopItemCounter[0];
+}
+
+- (CCMenuItemImage*) getShopItemCounter1
+{
+    return shopItemCounter[1];
+}
+
+- (CCMenuItemImage*) getShopItemCounter2
+{
+    return shopItemCounter[2];
+}
+
+- (CCMenuItemImage*) getShopItemCounter3
+{
+    return shopItemCounter[3];
+}
+
+- (CCLabelTTF*) getClock
+{
+    return clock;
+}
+
+- (void) setCurrentMinute :(int)minute
+{
+    currMinute = minute;
+}
+
+- (int) getCurrentMinute
+{
+    return currMinute;
+}
+
+- (void) setCurrentSecond :(int)second
+{
+    currSeconds = second;
+}
+
+- (int) getCurrentSecond
+{
+    return currSeconds;
+}
+
+- (int) getFreezeMinute
+{
+    return freezeMinute;
+}
+
+-(int) getFreezeSecond
+{
+    return freezeSecond;
+}
+
+- (BOOL) getIsFreeze
+{
+    return isFreeze;
+}
+
+- (BOOL) getIsSlowDown
+{
+    return isSlowDown;
+}
+
+- (int) getMaxChar
+{
+    return maxChar;
 }
 
 - (NSString*) testing
