@@ -239,22 +239,22 @@ double freezeButtonDuration = 0;
     return shopItem[3];
 }
 
-- (CCMenuItemImage*) getShopItemCounter0
+- (CCLabelTTF*) getShopItemCounter0
 {
     return shopItemCounter[0];
 }
 
-- (CCMenuItemImage*) getShopItemCounter1
+- (CCLabelTTF*) getShopItemCounter1
 {
     return shopItemCounter[1];
 }
 
-- (CCMenuItemImage*) getShopItemCounter2
+- (CCLabelTTF*) getShopItemCounter2
 {
     return shopItemCounter[2];
 }
 
-- (CCMenuItemImage*) getShopItemCounter3
+- (CCLabelTTF*) getShopItemCounter3
 {
     return shopItemCounter[3];
 }

@@ -620,4 +620,28 @@
     GHAssertEquals(result, 1, @"Letter can not be generated!");
 }
 
+-(void) testSingle_parseWord
+{
+    BOOL result = NO;
+    NSString* str = @"letters";
+    NSMutableDictionary* dict;
+    dict = [[NSMutableDictionary alloc] init];
+    [spc parseWord:str dictionary: dict];
+    
+    if ([dict[@"l"]isEqual:@"1"] && [dict[@"e"]isEqual:@"2"] && [dict[@"t"]isEqual:@"2"] && [dict[@"r"]isEqual:@"1"] && [dict[@"s"]isEqual:@"1"])
+        result = YES;
+    GHAssertEquals(result, YES, @"Words can not be parsed!");
+}
+
+-(void) testSingle_generateButton
+{
+    BOOL correct = YES;
+    [spc generateButton];
+    if ([spc getButton0].isEnabled==NO && [spc getButton1].isEnabled==NO && [spc getButton2].isEnabled==NO &&
+        [spc getButton3].isEnabled==NO && [spc getButton4].isEnabled==NO && [spc getButton5].isEnabled==NO &&
+        [spc getButton6].isEnabled==NO && [spc getButton7].isEnabled==NO && [spc getButton8].isEnabled==NO)
+        correct = NO;
+    GHAssertEquals(correct, YES, @"Button generation error!");
+}
+
 @end

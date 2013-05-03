@@ -134,4 +134,6 @@ NSInteger score_3;
 -(void)resetSelectArray;
 -(void)getLetter;
 -(NSString*) get_l;
+-(void)parseWord: (NSString*) str dictionary:(NSMutableDictionary*) dict;
+-(void)generateButton;
 @end
