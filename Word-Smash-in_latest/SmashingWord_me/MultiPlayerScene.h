@@ -166,6 +166,9 @@ NSString* selfName;
 //@property double BUTTON_APPEAR_DURATION;
 @property (strong, nonatomic) NSArray *strArray;
 
+@property (retain) GCHelper *helper;
+@property (retain) NSData *result;
+
 //Methods used for testing
 - (void) getWords;
 - (NSArray*) request:(NSString*) path SecondParameter:(NSDictionary*) parameter;
@@ -210,6 +213,7 @@ NSString* selfName;
 -(void)resetSelectArray;
 
 -(NSData*) getNSData;
+-(void)sendData:(NSData *)data;
 -(void)sendRandomNumber;
 -(void)sendGameBegin;
 -(void)sendGenerateButton:(int)position :(int)type;
@@ -238,7 +242,6 @@ NSString* selfName;
 -(void)unSelect12: (id)sender;
 -(void)unSelect13: (id)sender;
 -(void)unSelect14: (id)sender;
-
 
 - (CCMenuItemImage*) getShopItem0;
 - (CCMenuItemImage*) getShopItem1;

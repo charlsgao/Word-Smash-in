@@ -72,7 +72,7 @@ int increaseCounter =0;
     NSDictionary *jsonDictionaryResponse = [NSJSONSerialization JSONObjectWithData:jsonResponse options:kNilOptions error:&tempError];
     NSLog(@"11");
     
-    NSLog(@"Dictionary: %@", [jsonDictionaryResponse objectForKey:@"data"][0]);
+    NSLog(@"Dictionary: %@", [jsonDictionaryResponse objectForKey:@"data"]);
     //NSDictionary *test = {{1,2},3,4};
     //NSLog(@"TEST: %@", test);
     return [jsonDictionaryResponse objectForKey:@"data"];

@@ -53,8 +53,10 @@
     
     
     int length = [single_highest count];
-    NSLog(@"232");
-    NSLog(@"%i",length);
+    NSLog(@"Single Highest Count:");
+    NSLog(@"%i",[single_highest count]);
+    NSLog(@"Multiple Highest Count:");
+    NSLog(@"%i",[multi_highest count]);
     
     /**** TESTING ******/
     self.single = single_highest;

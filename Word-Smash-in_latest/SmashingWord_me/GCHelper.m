@@ -241,4 +241,18 @@ static GCHelper *sharedHelper = nil;
     [delegate matchEnded];
 }
 
+- (NSData *)broadcastData:(NSData *) data
+{
+    NSError *error;
+    NSLog(@"Broadcasting Data...");
+    BOOL success = [[GCHelper sharedInstance].match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
+    if (!success) {
+        CCLOG(@"Error sending init packet");
+        //[self matchEnded];
+        [[GCHelper sharedInstance].match disconnect];
+        [GCHelper sharedInstance].match = nil;
+    }
+    return data;
+}
+
 @end

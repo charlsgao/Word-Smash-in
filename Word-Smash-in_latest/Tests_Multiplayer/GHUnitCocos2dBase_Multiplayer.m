@@ -49,6 +49,45 @@
                          @"Should have returned the expected string.");
 }
 
+- (void)testMockGameCenterSendRandomNumber
+{
+    id mockGCHelper = [OCMockObject mockForClass:[GCHelper class]];
+    mpc.helper = mockGCHelper;
+    
+    NSData *data;
+    
+    /******** TEST sendRandomNumber ***********/
+    MessageRandomNumber message;
+    message.message.messageType = kMessageTypeRandomNumber;
+    message.randomNumber = 5;
+    data = [NSData dataWithBytes:&message length:sizeof(MessageRandomNumber)];
+    [[[mockGCHelper stub] andReturn:data] broadcastData:[OCMArg any]];
+    [mpc sendRandomNumber];
+    MessageRandomNumber *result = (MessageRandomNumber *) [mpc.result bytes];
+    GHAssertEquals(message.randomNumber, result->randomNumber, @"Random number sent must be 5!");
+
+
+}
+
+- (void)testMockGameCenterSendGameBegin
+{
+    id mockGCHelper = [OCMockObject mockForClass:[GCHelper class]];
+    mpc.helper = mockGCHelper;
+    
+    NSData *data;
+    
+    /******** TEST sendGameBegin ***********/
+    MessageGameBegin message;
+    message.message.messageType = kMessageTypeGameBegin;
+    data = [NSData dataWithBytes:&message length:sizeof(MessageGameBegin)];
+    
+    [[[mockGCHelper stub] andReturn:data] broadcastData:[OCMArg any]];
+    [mpc sendGameBegin];
+    MessageGameBegin *result = (MessageGameBegin *) [mpc.result bytes];
+    GHAssertEquals(message.message.messageType, result->message.messageType, @"sendGameBegin: messageType must be the same!");
+}
+
+
 /*******************************************************************************/
 
 - (void) testMulti_Button1

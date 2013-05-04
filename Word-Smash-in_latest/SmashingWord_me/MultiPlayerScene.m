@@ -1409,6 +1409,8 @@ BOOL p1Clouded = NO;
         ourRandom = arc4random();
         [self setGameState:kGameStateWaitingForStart];
         
+        self.helper = [GCHelper sharedInstance];
+        
     }
     return self;
 }
@@ -1443,10 +1445,16 @@ BOOL p1Clouded = NO;
         [debugLabel setString:@"Done"];
     }
     
+    
 }
 
 - (void)sendData:(NSData *)data {
+    //self.helper = [GCHelper sharedInstance];
+    NSLog(@"Sending Data...");
+    self.result = [self.helper broadcastData:data];
+    /*
     NSError *error;
+    NSLog(@"Sending Data...");
     BOOL success = [[GCHelper sharedInstance].match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
     if (!success) {
         CCLOG(@"Error sending init packet");
@@ -1454,6 +1462,7 @@ BOOL p1Clouded = NO;
         [[GCHelper sharedInstance].match disconnect];
         [GCHelper sharedInstance].match = nil;
     }
+     */
 }
 
 NSData* data;

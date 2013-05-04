@@ -17,6 +17,7 @@
 #import "ShopScene.h"
 #import "LevelSelectScene.h"
 #import "AppDelegate.h"
+#import "GCHelper.h"
 
 @interface GHUnitCocos2dBase_Multiplayer : GHTestCase
 {
