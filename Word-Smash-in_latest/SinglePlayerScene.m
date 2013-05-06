@@ -483,8 +483,9 @@ double freezeButtonDuration = 0;
     money += 10;
     [self saveData];
     
-    NSLog(@"fuck!!");
-    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys: nil];
+    NSNumber * tempScore = [NSNumber numberWithInt:score_p1];
+    
+    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys: tempScore,@"score",nil];
     [self request:@"users/SaveScores/single" SecondParameter:param];
     CCScene* scene = [CCBReader sceneWithNodeGraphFromFile:@"Score.ccbi"];
     [[CCDirector sharedDirector]replaceScene:[CCTransitionCrossFade transitionWithDuration:0.3 scene:scene]];
