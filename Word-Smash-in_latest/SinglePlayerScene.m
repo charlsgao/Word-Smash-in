@@ -14,8 +14,8 @@
 
 const int MAX_LETTER_ARRAY = 15;             // SIZE OF THE LETTER ARRAY
 const int MAX_BUTTON_APPEAR = 9;             // MAXIMUM NUMBER OF BUTTONS APPEAR ON EACH TIME STEP
-const int STARTING_MINUTES = 0;              // STAGE DURATION
-const int STARTING_SECONDS = 30;             // STAGE DURATION
+const int STARTING_MINUTES = 1;              // STAGE DURATION
+const int STARTING_SECONDS = 0;             // STAGE DURATION
 const int INCR_SCORE = 10;                   // score increment step
 
 const int TOTAL_WORDS_IN_FILE = 20;          // MAXIMUM NUMBER OF WORDS IN A DICTIONARY FILE
@@ -49,6 +49,7 @@ int freezeMinute = 0;
 int freezeSecond = 0;
 int slowSecond = 0;
 double freezeButtonDuration = 0;
+
 
 //************** generating the words **********************
 - (void) getWords
@@ -478,6 +479,10 @@ double freezeButtonDuration = 0;
     word2Dict = nil;
     word3Dict = nil;
     lettersDict = nil;
+    
+    money += 10;
+    [self saveData];
+    
     NSLog(@"fuck!!");
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys: nil];
     [self request:@"users/SaveScores/single" SecondParameter:param];
@@ -1193,6 +1198,7 @@ double freezeButtonDuration = 0;
         shopItem[1].isEnabled = NO;
         shopItem[2].isEnabled = NO;
         freezeTimeCounter --;
+        [self saveData];
         isFreeze = YES;
         [shopItemCounter[0] setString:[NSString stringWithFormat:@"x%i", freezeTimeCounter]];
         freezeMinute = currMinute;
@@ -1207,6 +1213,7 @@ double freezeButtonDuration = 0;
 -(void)extraTimePress: (id)sender{
     if(extraTimeCounter > 0){
         extraTimeCounter --;
+        [self saveData];
         [shopItemCounter[2] setString:[NSString stringWithFormat:@"x%i", extraTimeCounter]];
         currSeconds += 5;
         if(currSeconds>59)
@@ -1223,6 +1230,7 @@ double freezeButtonDuration = 0;
         shopItem[1].isEnabled = NO;
         shopItem[2].isEnabled = NO;
         slowdownTimeCounter --;
+        [self saveData];
         [shopItemCounter[1] setString:[NSString stringWithFormat:@"x%i", slowdownTimeCounter]];
         isSlowDown = YES;
         slowSecond = currSeconds;
@@ -1237,6 +1245,7 @@ double freezeButtonDuration = 0;
     shopItem[3].isEnabled = NO;
     if(increaseCounter > 0){
         increaseCounter --;
+        [self saveData];
         [shopItemCounter[3] setString:[NSString stringWithFormat:@"x%i", increaseCounter]];
         maxChar = 15;
     }
@@ -1245,10 +1254,53 @@ double freezeButtonDuration = 0;
 
 -(id)init{
     if((self=[super init])){
+        //fetch game setting from plist
+        NSString *errorDesc = nil;
+        NSPropertyListFormat format;
+        NSString *plistPath;
+        NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                  NSUserDomainMask, YES) objectAtIndex:0];
+        
+        plistPath = [rootPath stringByAppendingPathComponent:@"SavedState.plist"];
+        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+        NSDictionary *unarchivedData = (NSDictionary *)[NSPropertyListSerialization
+                                                        propertyListFromData:plistXML
+                                                        mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                                        format:&format
+                                                        errorDescription:&errorDesc];
+        
+        // If NSDictionary exists, look to see if it holds a saved game state
+        if (!unarchivedData)
+        {
+            NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        }
+        else
+        {
+            NSNumber *integerValue = [unarchivedData objectForKey:@"money"];
+            money = [integerValue integerValue];
+            
+            integerValue = [unarchivedData objectForKey:@"extraTimeCounter"];
+            extraTimeCounter = [integerValue integerValue];
+            
+            integerValue = [unarchivedData objectForKey:@"freezeTimeCounter"];
+            freezeTimeCounter =[integerValue integerValue];
+            
+            integerValue = [unarchivedData objectForKey:@"slowdownTimeCounter"];
+            slowdownTimeCounter =[integerValue integerValue];
+            
+            integerValue = [unarchivedData objectForKey:@"cloudCounter"];
+            cloudCounter =[integerValue integerValue];
+            
+            integerValue = [unarchivedData objectForKey:@"increaseCounter"];
+            increaseCounter =[integerValue integerValue];
+        }
+        
+                //NSLog(@"sddddddddddddddddd");
+        
         srand ( time(NULL) );//clear out random numbers
         
         self.strArray = [NSArray arrayWithObjects:@"HELLO",@"WORLD",@"EDWARD",@"BING",@"WENHAO",@"DENNY",nil];
-    
+        
         //word1Dict= [NSMutableDictionary dictionary];
         word1Dict= [[NSMutableDictionary alloc] init];
         word2Dict= [[NSMutableDictionary alloc] init];
@@ -1608,6 +1660,47 @@ double freezeButtonDuration = 0;
     
     return [jsonDictionaryResponse objectForKey:@"data"];
     
+}
+
+-(void)saveData{
+    // We're going to save the data to SavedState.plist in our app's documents directory
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"SavedState.plist"];
+    
+    // Create a dictionary to store all your data
+    NSMutableDictionary *prefs = [NSMutableDictionary dictionary];
+    
+    
+    //NSUserDefaults *prefs = [[NSUserDefaults standardUserDefaults] synchronize];
+    [prefs setObject:[NSNumber numberWithInteger:money] forKey:@"money"];
+    [prefs setObject:[NSNumber numberWithInteger:extraTimeCounter] forKey:@"extraTimeCounter"];
+    [prefs setObject:[NSNumber numberWithInteger:freezeTimeCounter] forKey:@"freezeTimeCounter"];
+    [prefs setObject:[NSNumber numberWithInteger:slowdownTimeCounter] forKey:@"slowdownTimeCounter"];
+    [prefs setObject:[NSNumber numberWithInteger:cloudCounter] forKey:@"cloudCounter"];
+    [prefs setObject:[NSNumber numberWithInteger:increaseCounter]forKey:@"increaseCounter"];
+    
+    
+    NSString *errorDescription;
+    NSData *serializedData = [NSPropertyListSerialization dataFromPropertyList:prefs
+                                                                        format:NSPropertyListXMLFormat_v1_0
+                                                              errorDescription:&errorDescription];
+    
+    if(serializedData)
+    {
+        // Write file
+        NSError *error;
+        BOOL didWrite = [serializedData writeToFile:plistPath options:NSDataWritingFileProtectionComplete error:&error];
+        //NSLog(@"Error while writing: %@", [error description]);
+        
+        if (didWrite)
+            NSLog(@"File did write");
+        else
+            NSLog(@"File write failed");
+    }
+    else
+    {
+        NSLog(@"Error in creating state data dictionary: %@", errorDescription);
+    }
 }
 
 @end

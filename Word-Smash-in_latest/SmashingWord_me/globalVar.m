@@ -22,11 +22,10 @@ BOOL TEST_MODE = NO;
 BOOL TEST_MUL = YES;
 
 //shop features
-int money =99999;
+int money =500;
 int extraTimeCounter =0;
 int freezeTimeCounter =0;
 int slowdownTimeCounter =0;
-
 int cloudCounter =0;
 int increaseCounter =0;
 

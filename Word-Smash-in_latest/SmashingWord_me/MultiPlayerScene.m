@@ -1075,6 +1075,7 @@ BOOL p1Clouded = NO;
     shopItem[0].isEnabled = NO;
     if(increaseCounter > 0){
         increaseCounter --;
+        [self saveData];
         [shopItemCounter[0] setString:[NSString stringWithFormat:@"x%i", increaseCounter]];
         maxChar_m = 15;
     }
@@ -1084,6 +1085,7 @@ BOOL p1Clouded = NO;
     shopItem[1].isEnabled = NO;
     if(cloudCounter > 0){
         cloudCounter --;
+        [self saveData];
         [shopItemCounter[1] setString:[NSString stringWithFormat:@"x%i", cloudCounter]];
         if(!isPlayer1)
             [self sendUseCloud];
@@ -1097,6 +1099,47 @@ BOOL p1Clouded = NO;
 
 -(id)init{
     if((self=[super init])){
+        //fetch game setting from plist
+        NSString *errorDesc = nil;
+        NSPropertyListFormat format;
+        NSString *plistPath;
+        NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                  NSUserDomainMask, YES) objectAtIndex:0];
+        plistPath = [rootPath stringByAppendingPathComponent:@"SavedState.plist"];
+        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+        NSDictionary *unarchivedData = (NSDictionary *)[NSPropertyListSerialization
+                                                        propertyListFromData:plistXML
+                                                        mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                                        format:&format
+                                                        errorDescription:&errorDesc];
+        
+        // If NSDictionary exists, look to see if it holds a saved game state
+        if (!unarchivedData)
+        {
+            NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        }
+        else
+        {
+            NSNumber *integerValue = [unarchivedData objectForKey:@"money"];
+            money = [integerValue integerValue];
+            
+            integerValue = [unarchivedData objectForKey:@"extraTimeCounter"];
+            extraTimeCounter = [integerValue integerValue];
+            
+            integerValue = [unarchivedData objectForKey:@"freezeTimeCounter"];
+            freezeTimeCounter =[integerValue integerValue];
+            
+            integerValue = [unarchivedData objectForKey:@"slowdownTimeCounter"];
+            slowdownTimeCounter =[integerValue integerValue];
+            
+            integerValue = [unarchivedData objectForKey:@"cloudCounter"];
+            cloudCounter =[integerValue integerValue];
+            
+            integerValue = [unarchivedData objectForKey:@"increaseCounter"];
+            increaseCounter =[integerValue integerValue];
+        }
+        
+        //
         my_score = 0;
         opponent_score = 0;
     
@@ -1652,6 +1695,8 @@ NSData* data;
     word3Dict = nil;
     lettersDict = nil;
     if(!isPlayer1){
+        money += 20;
+        [self saveData];
         if(my_score < opponent_score)
             scorePageMessage = @"You Lost!";
         else if(my_score > opponent_score)
@@ -1809,6 +1854,8 @@ NSData* data;
         MessageScore* tempMessage = (MessageScore*) [data bytes];
         opponent_score = tempMessage->score;
         if(isPlayer1){
+            money += 20;
+            [self saveData];
             if(my_score < opponent_score)
                 scorePageMessage = @"You Lost!";
             else if(my_score > opponent_score)
@@ -2340,7 +2387,46 @@ NSData* data;
     
 }
 
-
+-(void)saveData{
+    // We're going to save the data to SavedState.plist in our app's documents directory
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"SavedState.plist"];
+    
+    // Create a dictionary to store all your data
+    NSMutableDictionary *prefs = [NSMutableDictionary dictionary];
+    
+    
+    //NSUserDefaults *prefs = [[NSUserDefaults standardUserDefaults] synchronize];
+    [prefs setObject:[NSNumber numberWithInteger:money] forKey:@"money"];
+    [prefs setObject:[NSNumber numberWithInteger:extraTimeCounter] forKey:@"extraTimeCounter"];
+    [prefs setObject:[NSNumber numberWithInteger:freezeTimeCounter] forKey:@"freezeTimeCounter"];
+    [prefs setObject:[NSNumber numberWithInteger:slowdownTimeCounter] forKey:@"slowdownTimeCounter"];
+    [prefs setObject:[NSNumber numberWithInteger:cloudCounter] forKey:@"cloudCounter"];
+    [prefs setObject:[NSNumber numberWithInteger:increaseCounter]forKey:@"increaseCounter"];
+    
+    
+    NSString *errorDescription;
+    NSData *serializedData = [NSPropertyListSerialization dataFromPropertyList:prefs
+                                                                        format:NSPropertyListXMLFormat_v1_0
+                                                              errorDescription:&errorDescription];
+    
+    if(serializedData)
+    {
+        // Write file
+        NSError *error;
+        BOOL didWrite = [serializedData writeToFile:plistPath options:NSDataWritingFileProtectionComplete error:&error];
+        //NSLog(@"Error while writing: %@", [error description]);
+        
+        if (didWrite)
+            NSLog(@"File did write");
+        else
+            NSLog(@"File write failed");
+    }
+    else
+    {
+        NSLog(@"Error in creating state data dictionary: %@", errorDescription);
+    }
+}
 
 
 @end
