@@ -574,7 +574,7 @@ BOOL p1Clouded = NO;
     //self.clock.backgroundColor=[UIColor clearColor];
     
     STOP_M = false;
-    
+    score = 0;
     //stage timer
     self.timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
     

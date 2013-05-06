@@ -669,7 +669,7 @@ double freezeButtonDuration = 0;
     //self.clock.backgroundColor=[UIColor clearColor];
     
     STOP = false;
-    
+    score = 0;
     //stage timer
     self.timer=[NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
     
